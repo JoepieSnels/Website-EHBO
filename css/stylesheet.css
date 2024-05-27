@@ -3,15 +3,11 @@
 	height: 300px;
 }
 .card {
-	max-width: 40rem;
+	min-width: 30rem;
 	border-radius: 28px;
 	padding: 50px;
 	margin-top: 100px;
 	margin-bottom: 100px;
-}
-.reset {
-	width: 40rem;
-	float: center;
 }
 
 .error-message {
