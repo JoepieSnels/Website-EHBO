@@ -1,0 +1,26 @@
+div {
+    border: 1px solid red;
+    
+}
+
+.banner-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    
+}
+
+.logo-image {
+    height: 100%;
+    width: 150px;
+    object-fit: contain;
+}
+
+.container-fluid {
+    padding: 0xp;
+}
+
+.title {
+    display: inline;
+    align-self: bottom;
+}
