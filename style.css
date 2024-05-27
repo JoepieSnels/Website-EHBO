@@ -11,16 +11,19 @@
 }
 
 .logo-image {
+    min-width: 70px;
     height: 100%;
     width: 150px;
     object-fit: contain;
 }
 
-.container-fluid {
-    padding: 0xp;
-}
+
 
 .title {
     display: inline;
     align-self: bottom;
+}
+
+.nav-buttons {
+    padding: 0px 10px
 }
