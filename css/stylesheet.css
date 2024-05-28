@@ -15,9 +15,7 @@
 	color: red;
 	visibility: visible;
 }
-.row {
-	display: inline-flex;
-}
+
 .form-group {
 	width: 15rem;
 }
