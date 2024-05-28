@@ -54,16 +54,22 @@ h1 {
 }
 
 .btn-group a:hover p, .lala:hover{
-    color: yellow;
+    color: #fbe326;
 
 }
 
-.login-btn {
-    padding-right:50px;
+.login-btn a{
+    margin-right:50px;
+    background-color: #042062;
+    border: 0px;
+
+}
+.login-btn a:hover{
+    background-color:#6f85c2;
 }
 
 .btn-group > a:hover::after, .lala:hover::after {
-  background: yellow;
+  background: #fbe326;
   content: "";
   position: absolute;
   bottom: 0;
@@ -85,7 +91,7 @@ h1 {
 }
 
 .divider {
-    background: yellow;
+    background: #fbe326;
     content: "";
     position: relative;
     bottom: 0;
@@ -102,5 +108,14 @@ h1 {
     color: grey;
     padding: 5px 30px 0px 30px;
 
+}
+
+.content .btn {
+    background-color:#042062;
+    border: 0px;
+}
+
+.content .btn:hover{
+    background-color: #6f85c2 ;
 }
 
