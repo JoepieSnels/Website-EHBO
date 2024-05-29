@@ -1,18 +1,51 @@
-async function sendMail(){
-    console.log('TEST')
+function isOn() {
+    let items = []
+    let i = 0;
+    if(document.getElementById('eenheidsdiploma').checked) {
+        items[i] = 'Eenheidsdiploma'
+        console.log(items)
+        i++
+    }
+    if(document.getElementById('reanimatie').checked) {
+        items[i] = 'Reanimate'
+        console.log(items)
+        i++
+    }
+    if(document.getElementById('verbandleer').checked) {
+        items[i] = 'Verbandleer'
+        console.log(items)
+        i++
+    }
+    if(document.getElementById('aed').checked) {
+        items[i] = 'AED'
+        console.log(items)
+        i++
+    }
+    if(document.getElementById('bhv').checked) {
+        items[i] = 'BHV'
+        console.log(items)
+        i++
+    }
+    return items
+}
+
+function sendMail(){
+    let items = isOn();
+    console.log(items)
+
     var params = {
         email: document.getElementById('email').value,
         firstName: document.getElementById('firstName').value,
         lastName: document.getElementById('lastName').value,
         phoneNumber: document.getElementById('phoneNumber').value,
-        // dateOfBirth: document.getElementById('dateOfBirth').value,
+        dateOfBirth: document.getElementById('dateOfBirth').value,
         gender: document.getElementById('gender').value,
         city: document.getElementById('city').value,
         postalcode: document.getElementById('postalCode').value,
         street: document.getElementById('street').value,
         houseNumber: document.getElementById('houseNumber').value,
         bankInfo: document.getElementById('bank').value,
-        certificates: ['Basis EHBO', 'Reanimatie'],
+        certificates: items,
         password: document.getElementById('password').value
     }
     console.log(params)
