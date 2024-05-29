@@ -64,166 +64,168 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-lg-12 text-center">
-                    <h2>Account Gegevens</h2>
-                    <p>Aanvraag Formulier</p>
+            <div class="card">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12 text-center card-title">
+                        <h2>Account Gegevens</h2>
+                        <p>Aanvraag Formulier</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row" style="padding: 10px">
-                <form name="requestAccount" class="form-inline" action="">
-                    <div class="col-lg-12 col-sm-12 col-12">
-                        <div class="form-group row">
-                            <!-- Email -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="email" class="mb-2 mr-sm-2">Email adres:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="email" class="form-control mb-2 mr-sm-2" placeholder="joepsnels@home.nl" id="email" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- City -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="city" class="mb-2 mr-sm-2">Woonplaats:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Breda" id="city" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- firstName -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="firstName" class="mb-2 mr-sm-2">Voornaam:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Jan" id="firstName" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- Postal Code -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="postalCode" class="mb-2 mr-sm-2">Postcode:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="5001AA" id="postalCode" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- Last Name -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="lastName" class="mb-2 mr-sm-2">Achternaam:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Montizaan" id="lastName" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- Street -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="street" class="mb-2 mr-sm-2">Straat:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat" id="street" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- Phone Number -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="phoneNumber" class="mb-2 mr-sm-2">Telefoon Nummer:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="06 12345678" id="phoneNumber" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- House Number -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="houseNumber" class="mb-2 mr-sm-2">Huisnummer:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="18" id="houseNumber" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- Date of Birth -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="dateOfBirth" class="mb-2 mr-sm-2">Geboorte Datum:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="date" class="form-control mb-2 mr-sm-2" id="dateOfBirth" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- Banking Information -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="bank" class="mb-2 mr-sm-2">Rekening:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="rekening nummer" id="bank" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- Gender -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="gender" class="mb-2 mr-sm-2">Geslacht:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Man/Vrouw/Anders" id="gender" required />
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-                            </div>
-                            <!-- Certificates -->
-                            <div class="input-group col-lg-6 col-sm-6 col-6">
-                                <label for="certificates" class="mb-2 mr-sm-2"
-                                    >Certificaten
-                                    <div class="dropdown">
-                                        <button class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <div class="dropdown-menu choiceboxAlignment">
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="eenheidsdiploma" />
-                                                <label class="form-check-label" for="eenheidsdiploma">Eenheidsdiploma</label>
-                                            </div>
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="reanimatie" />
-                                                <label class="form-check-label" for="reanimatie">Reanimatie</label>
-                                            </div>
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="verbandleer" />
-                                                <label class="form-check-label" for="verbandleer">Verbandleer</label>
-                                            </div>
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="aed" />
-                                                <label class="form-check-label" for="aed">AED</label>
-                                            </div>
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="bhv" />
-                                                <label class="form-check-label" for="bhv">BHV</label>
+                <div class="row card-body" style="padding: 10px">
+                    <form name="requestAccount" class="form-inline" onsubmit="sendMail(event)">
+                        <div class="col-lg-12 col-sm-12 col-12">
+                            <div class="form-group row">
+                                <!-- Email -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="email" class="mb-2 mr-sm-2">Email adres:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="joepsnels@home.nl" id="email" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- City -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="city" class="mb-2 mr-sm-2">Woonplaats:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Breda" id="city" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- firstName -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="firstName" class="mb-2 mr-sm-2">Voornaam:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Jan" id="firstName" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- Postal Code -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="postalCode" class="mb-2 mr-sm-2">Postcode:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="5001AA" id="postalCode" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- Last Name -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="lastName" class="mb-2 mr-sm-2">Achternaam:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Montizaan" id="lastName" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- Street -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="street" class="mb-2 mr-sm-2">Straat:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat" id="street" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- Phone Number -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="phoneNumber" class="mb-2 mr-sm-2">Telefoon Nummer:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="06 12345678" id="phoneNumber" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- House Number -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="houseNumber" class="mb-2 mr-sm-2">Huisnummer:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="18" id="houseNumber" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- Date of Birth -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="dateOfBirth" class="mb-2 mr-sm-2">Geboorte Datum:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="date" class="form-control mb-2 mr-sm-2" id="dateOfBirth" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- Banking Information -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="bank" class="mb-2 mr-sm-2">Rekening:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="rekening nummer" id="bank" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- Gender -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="gender" class="mb-2 mr-sm-2">Geslacht:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Man/Vrouw/Anders" id="gender" required />
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
+                                <!-- Certificates -->
+                                <div class="input-group col-lg-6 col-sm-6 col-6">
+                                    <label for="certificates" class="mb-2 mr-sm-2"
+                                        >Certificaten
+                                        <div class="dropdown">
+                                            <button class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <div class="dropdown-menu choiceboxAlignment">
+                                                <div class="form-check dropdown-item">
+                                                    <input type="checkbox" class="form-check-input" id="eenheidsdiploma" />
+                                                    <label class="form-check-label" for="eenheidsdiploma">Eenheidsdiploma</label>
+                                                </div>
+                                                <div class="form-check dropdown-item">
+                                                    <input type="checkbox" class="form-check-input" id="reanimatie" />
+                                                    <label class="form-check-label" for="reanimatie">Reanimatie</label>
+                                                </div>
+                                                <div class="form-check dropdown-item">
+                                                    <input type="checkbox" class="form-check-input" id="verbandleer" />
+                                                    <label class="form-check-label" for="verbandleer">Verbandleer</label>
+                                                </div>
+                                                <div class="form-check dropdown-item">
+                                                    <input type="checkbox" class="form-check-input" id="aed" />
+                                                    <label class="form-check-label" for="aed">AED</label>
+                                                </div>
+                                                <div class="form-check dropdown-item">
+                                                    <input type="checkbox" class="form-check-input" id="bhv" />
+                                                    <label class="form-check-label" for="bhv">BHV</label>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </label>
-                            </div>
-                            <!-- Password -->
-                            <div class="input-group col-lg-2 col-sm-6 col-6">
-                                <label for="password" class="mb-2 mr-sm-2">Wachtwoord:</label>
-                            </div>
-                            <div class="input-group col-lg-4 col-sm-6 col-6">
-                                <div class="input-group-append">
-                                    <input type="password" class="form-control mb-2" placeholder="A1bcF*yQ" id="password" required />
-                                    <button type="button" class="fa-solid fa-eye mb-2 mr-sm-2" onclick="showPassword()"></button>
+                                    </label>
                                 </div>
-                                <div class="valid-feedback">Valide</div>
-                                <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                <!-- Password -->
+                                <div class="input-group col-lg-2 col-sm-6 col-6">
+                                    <label for="password" class="mb-2 mr-sm-2">Wachtwoord:</label>
+                                </div>
+                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                    <div class="input-group-append">
+                                        <input type="password" class="form-control mb-2" placeholder="A1bcF*yQ" id="password" required />
+                                        <button type="button" class="fa-solid fa-eye mb-2 mr-sm-2" onclick="showPassword()"></button>
+                                    </div>
+                                    <div class="valid-feedback">Valide</div>
+                                    <div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div style="padding: 10px">
-                        <button type="submit" class="btn btn-primary px-4" onclick="sendMail()">Versturen</button>
-                    </div>
-                </form>
+                        <div style="padding: 10px">
+                            <button type="submit" class="btn btn-primary px-4">Versturen</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </body>

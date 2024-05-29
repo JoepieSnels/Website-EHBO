@@ -29,7 +29,8 @@ function isOn() {
     return items
 }
 
-function sendMail(){
+function sendMail(event){
+    event.preventDefault();
     let items = isOn();
     console.log(items)
 
