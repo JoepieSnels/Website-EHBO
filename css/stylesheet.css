@@ -5,8 +5,11 @@
 .card {
 	min-width: 30rem;
 	border-radius: 28px;
-	padding: 50px;
+
 	margin-top: 50px;
+
+	margin-top: 100px;
+
 	margin-bottom: 100px;
 	border: 3px solid #000;
 }
@@ -16,9 +19,25 @@
 	visibility: visible;
 }
 
+
 .inlog-form {
 	width: 15rem;
 }
+
+
+.form-group {
+	width: 15rem;
+}
+/* div {
+    border: 1px solid red;
+    
+} */
+
+/* body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+} */
 
 .banner-image {
 	width: 100%;
@@ -127,6 +146,7 @@ h1 {
 .content .btn:hover {
 	background-color: #6f85c2;
 }
+
 
 .form-check {
     padding: 3px;
