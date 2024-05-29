@@ -6,13 +6,3 @@ function showPassword() {
         x.type = "password"
     }
 }
-
-function validateForm() {
-    var x = document.forms["requestAccount"]["fname"].value;
-    if (x == "" || x == null) {
-      alert("Name must be filled out")
-      return false
-    } else {
-        sendMail()
-    }
-  }
