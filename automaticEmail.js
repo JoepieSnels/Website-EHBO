@@ -23,6 +23,9 @@ function isOn() {
         items[i] = 'Evenement hulpverlening'
         i++
     }
+    if(i===0) {
+        items[i] = 'Geen certificaten ingevuld'
+    }
     return items
 }
 
@@ -42,10 +45,23 @@ function sendMail(event){
         postalcode: document.getElementById('postalCode').value,
         street: document.getElementById('street').value,
         houseNumber: document.getElementById('houseNumber').value,
-        bankInfo: document.getElementById('bank').value,
         certificates: items,
-        password: document.getElementById('password').value
+        invoiceEmail: null,
+        invoiceAdres: null
     }
+
+    if(document.getElementById('invoiceEmail').value) {
+        params.invoiceEmail = document.getElementById('invoiceEmail').value
+    } else {
+        params.invoiceEmail = 'Niet ingevuld'
+    }
+
+    if(document.getElementById('invoiceAdres').value && document.getElementById('invoiceStreet').value && document.getElementById('invoiceNumber').value) {
+        params.invoiceAdres =  `${document.getElementById('invoiceStreet').value} ${document.getElementById('invoiceNumber').value}, ${document.getElementById('invoiceAdres').value}`
+    } else {
+        params.invoiceAdres = 'Niet ingevuld'
+    }
+
     console.log(params)
 
     const serviceID = 'service_hxe2zge'
@@ -63,7 +79,10 @@ function sendMail(event){
             document.getElementById('postalCode').value = ''
             document.getElementById('street').value = ''
             document.getElementById('houseNumber').value = ''
-            document.getElementById('bank').value = ''
+            document.getElementById('invoiceEmail').value = ''
+            document.getElementById('invoiceAdres').value = ''
+            document.getElementById('invoiceStreet').value = ''
+            document.getElementById('invoiceNumber').value = ''
 
             console.log(res)
             alert('Aanvraag is ingezonden')
