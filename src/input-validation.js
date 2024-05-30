@@ -37,4 +37,7 @@ function validateForm() {
 
 		error.style.display = "block";
 	}
+	if (email.trim() !== "" && password.trim() !== "") {
+		window.location.href = "index.html";
+	}
 }
