@@ -14,7 +14,7 @@
         <div class="col-12">
             <div class="card h-100">
                 <div class="card-body">
-                    <form>
+                    <form onsubmit="validateFields(event, activateAlert, validateEmail, validatePassword)">
                         <div class="row gutters">
                             <div class="col-12">
                                 <h6 class="mb-2 text-primary">Persoonsgegevens</h6>
@@ -34,7 +34,7 @@
                             <div class="col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="email">Emailadres</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Vul emailadres in" required onKeyUp="validateEmail()">
+                                    <input type="email" class="form-control" id="email" placeholder="Vul emailadres in" required>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-12">
@@ -111,7 +111,7 @@
                                 <div class="form-group">
                                     <label for="currentPassword">Huidig Wachtwoord</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" placeholder="Vul huidig wachtwoord in" id="currentPassword" required onKeyUp="validatePassword()"/>
+                                        <input type="password" class="form-control" placeholder="Vul huidig wachtwoord in" id="currentPassword" required>
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-outline-secondary" onclick="showPassword()">
                                                 <i class="bi bi-eye"></i>
