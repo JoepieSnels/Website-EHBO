@@ -11,19 +11,16 @@ function isOn() {
         console.log(items)
         i++
     }
-    if(document.getElementById('verbandleer').checked) {
-        items[i] = 'Verbandleer'
-        console.log(items)
+    if(document.getElementById('ehak').checked) {
+        items[i] = 'Eerste hulp aan kinderen'
         i++
     }
-    if(document.getElementById('aed').checked) {
-        items[i] = 'AED'
-        console.log(items)
+    if(document.getElementById('brandwondletsels').checked) {
+        items[i] = 'Brandwondletsels'
         i++
     }
-    if(document.getElementById('bhv').checked) {
-        items[i] = 'BHV'
-        console.log(items)
+    if(document.getElementById('ehv').checked) {
+        items[i] = 'Evenement hulpverlening'
         i++
     }
     return items
