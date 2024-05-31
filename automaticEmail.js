@@ -47,7 +47,14 @@ function sendMail(event){
         houseNumber: document.getElementById('houseNumber').value,
         certificates: items,
         invoiceEmail: null,
-        invoiceAdres: null
+        invoiceAdres: null,
+        landLine: null
+    }
+
+    if(document.getElementById('landLine').value) {
+        params.landLine = document.getElementById('landLine').value
+    } else {
+        params.landLine = 'Niet ingevuld'
     }
 
     if(document.getElementById('invoiceEmail').value) {
@@ -73,6 +80,7 @@ function sendMail(event){
             document.getElementById('firstName').value = ''
             document.getElementById('lastName').value = ''
             document.getElementById('phoneNumber').value = ''
+            document.getElementById('landLine').value = ''
             document.getElementById('dateOfBirth').value = ''
             document.getElementById('gender').value = ''
             document.getElementById('city').value = ''
