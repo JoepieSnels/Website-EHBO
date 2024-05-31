@@ -18,15 +18,15 @@
 					<div class="col-lg-2 col-sm-1 d-none d-lg-flex">
 						<a href="./index.html"><img class="logo-image img-fluid float-left" src="images/logo.png" alt="ehbo logo" /></a>
 					</div>
-					<div class="col-lg-10 col-sm-11 align-self-center">
+					<div class="col-lg-10 col-sm-12 align-self-center">
 						<div class="row">
 							<div class="col-sm-2 d-flex d-lg-none">
 								<img class="logo-image img-fluid float-left" src="images/logo.png" alt="ehbo logo" />
 							</div>
-							<div class="col-lg-9 col-sm-8">
+							<div class="col-lg-9 col-sm-4">
 								<h1>EHBO Tiburg</h1>
 							</div>
-							<div class="col-lg-3 col-sm-2 align-self-end login-btn">
+							<div class="col-lg-3 col-sm-4 align-self-end login-btn">
 								<a type="button" class="btn btn-primary float-right" id="login-lg" href="Login.html">Inloggen</a>
 							</div>
 							<div class="row">
@@ -50,22 +50,23 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row d-flex">
 				<div class="d-flex d-lg-none">
-					<div class="col-lg-2 col-sm-1 d-none d-lg-flex">
-						<a href="./index.html"><img class="logo-image img-fluid float-left" src="images/logo.png" alt="ehbo logo" /></a>
-					</div>
-					<div class="col-lg-10 col-sm-11 align-self-center">
+					<div class="col-lg-10 col-sm-12 align-self-center">
 						<div class="row">
-							<div class="col-sm-2 d-flex d-lg-none">
-								<img class="logo-image img-fluid float-left" src="images/logo.png" alt="ehbo logo" />
+							<div class="col-lg-2 col-sm-4 d-flex d-lg-none">
+								<a href="./index.html"><img class="logo-image img-fluid float-left" src="images/logo.png" alt="ehbo logo" /></a>
 							</div>
-							<div class="col-lg-9 col-sm-8">
+							<div class="col-lg-9 col-sm-4">
 								<h1>EHBO Tiburg</h1>
 							</div>
-							<div class="row align-self-end float-right">
-								<div class="nav-buttons navbar navbar-expand-lg navbar-light float-right">
+							<div class="row float-right">
+								<div class="nav-buttons navbar navbar-expand-lg navbar-light">
 									<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-										<span class="navbar-toggler-icon float-right"></span>
+										<span class="navbar-toggler-icon col-sm-6"></span>
 									</button>
 									<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 										<div class="navbar-nav">
@@ -86,16 +87,54 @@
 			</div>
 		</div>
 
-		<script>
-			$(window).on("resize", function () {
-				if ($(window).width() < 992) {
-					$("#login-lg").remove();
-				} else {
-					if ($("#login-lg").length === 0) {
-						$(".login-btn").append('<a type="button" class="btn btn-primary d-none d-lg-inline" id="login-lg" href="Login.html">Inloggen</a>');
-					}
-				}
-			});
-		</script>
+		<div class="container-fluid d-flex justify-content-center">
+			<div class="row col-lg-12">
+				<div class="card request-form">
+					<div class="card-header">
+						<h3>Evenement aanvragen</h3>
+					</div>
+					<div class="card-body col-12">
+						<form class="col-12">
+							<div class="form-row col-12">
+								<label class="col-lg-1 col-form-label col-12" for="name">Bedrijf naam:</label>
+								<input type="text" class="form-control col-lg-5 col-12" name="name" id="name" required />
+								<label class="col-lg-1 col-12" for="phonenumber">telefoonnr:</label>
+								<input type="tel" class="form-control col-lg-5 col-12" id="phonenumber" required />
+							</div>
+							<div class="form-row">
+								<label class="col-lg-1 col-12 col-form-label" for="email">Email:</label>
+								<input type="email" class="form-control col-lg-5 col-12" id="email" required />
+								<label class="col-lg-1 col-12" for="date">Datum:</label>
+								<input type="datetime-local" class="form-control col-lg-5 col-12" id="date" required />
+							</div>
+							<div class="form-row">
+								<label class="col-lg-1 col-form-label col-12" for="city">Stad:</label>
+								<input type="text" class="form-control col-lg-5 col-12" id="city" required />
+								<label class="col-lg-1 col-form-label col-12" for="adress">Address:</label>
+								<input type="text" class="form-control col-lg-5 col-12" id="adress" required />
+							</div>
+							<div class="form-row">
+								<label class="col-lg-1 col-form-label col-12" for="houseNumber">Huisnummer:</label>
+								<input type="text" class="form-control col-lg-5 col-12" id="houseNumber" required />
+								<label for="title" class="col-form-label col-lg-1 col-12">Title:</label>
+								<input type="text" class="form-control col-lg 5 col-12" id="title" required />
+							</div>
+						</form>
+						<div class="form-row">
+							<label class="col-lg-1 col-form-label col-12" for="description">Beschrijving:</label>
+							<textarea class="form-control col-lg-5 col-12" id="description" required></textarea>
+						</div>
+						<button type="submit" class="btn btn-primary float-right">Verstuur</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div class="divider"></div>
+			<div class="row footer">
+				<div class="col-6"><p>EHBO Afdeling Tilburg</p></div>
+				<div class="col-6"><p class="float-right">2024</p></div>
+			</div>
+		</footer>
 	</body>
 </html>
