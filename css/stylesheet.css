@@ -1,40 +1,3 @@
-.card img {
-	width: 100%;
-	height: 400px;
-}
-.card {
-	min-width: 30rem;
-	border-radius: 28px;
-
-	margin-top: 50px;
-
-	margin-top: 100px;
-
-	margin-bottom: 100px;
-	border: 3px solid #000;
-}
-
-.error-message {
-	color: red;
-	visibility: visible;
-}
-
-
-.inlog-form {
-	width: 15rem;
-}
-
-/* div {
-    border: 1px solid red;
-    
-} */
-
-/* body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-} */
-
 .banner-image {
 	width: 100%;
 	height: 300px;
@@ -126,7 +89,7 @@ h1 {
 	right: 0;
 }
 .footer {
-	margin-top: auto;
+	margin-top: 40px;
 }
 
 .footer p {
@@ -141,14 +104,4 @@ h1 {
 
 .content .btn:hover {
 	background-color: #6f85c2;
-}
-
-
-.form-check {
-    padding: 3px;
-    float: left;
-}
-
-.choiceboxAlignment {
-    padding:5px;
 }
