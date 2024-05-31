@@ -73,7 +73,7 @@
                 </div>
                 <!-- on md-lg screens -->
                 <div class="row card-body d-none d-lg-block" style="padding: 10px">
-                    <form name="requestAccount" class="form-inline" onsubmit="sendMail(event)">
+                    <form name="requestAccount" class="form-inline" onsubmit="verifyInputs(event)">
                         <div class="col-lg-12 col-sm-12 col-12">
                             <div class="form-group row">
                                 <!-- Email -->
@@ -218,13 +218,12 @@
                         </div>
                         <div style="padding: 10px">
                             <button type="submit" class="btn btn-primary px-4">Versturen</button>
-                            <button type="button" class="btn btn-primary px-4" onclick="verifyInputs()">TEST</button>
                         </div>
                     </form>
                 </div>
                 <!-- On md and smaller screens -->
                 <div class="row card-body d-lg-none" style="padding: 10px">
-                    <form name="requestAccount" class="form-inline" onsubmit="sendMail(event)">
+                    <form name="requestAccount" class="form-inline" onsubmit="verifyInputs(event)">
                         <div class="col-lg-12 col-sm-12 col-12">
                             <div class="form-group row">
                                 <!-- Email -->
@@ -369,7 +368,6 @@
                         </div>
                         <div style="padding: 10px">
                             <button type="submit" class="btn btn-primary px-4">Versturen</button>
-                            <button type="button" class="btn btn-primary px-4" onclick="verifyInputs()">TEST</button>
                         </div>
                     </form>
                 </div>
