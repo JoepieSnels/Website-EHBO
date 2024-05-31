@@ -105,3 +105,12 @@ h1 {
 .content .btn:hover {
 	background-color: #6f85c2;
 }
+
+.choiceboxAlignment {
+    padding:5px;
+}
+
+.form-check {
+    padding: 3px;
+    float: left;
+}
