@@ -38,6 +38,31 @@ function validateForm() {
 		error.style.display = "block";
 	}
 	if (email.trim() !== "" && password.trim() !== "") {
+		// fetch( //api link
+		//     ,{
+		//     method: 'POST',
+		//     headers: {
+		//         'Content-Type': 'application/json'
+		//     },
+		//     body: JSON.stringify({
+		//         email: email,
+		//         password: password
+		//     })
+		// })
+		// .then(response => response.json())
+		// .then(data => {
+		//     if (data.success) {
+		//         alert('Login successful!');
+
+		//     } else {
+		//         alert('Login failed: ' + data.message);
+		//         // Handle login failure
+		//     }
+		// })
+		// .catch((error) => {
+		//     console.error('Error:', error);
+		//     alert('An error occurred during login');
+		// });
 		window.location.href = "index.html";
 	}
 }

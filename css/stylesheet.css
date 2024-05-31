@@ -147,3 +147,7 @@ h1 {
 .divider {
 	margin-top: 20px;
 }
+nav {
+	border: #000 3px solid;
+	margin-top: 10px;
+}
