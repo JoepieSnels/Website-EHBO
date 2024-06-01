@@ -9,6 +9,7 @@
 
 		<link href="./css/stylesheet.css" rel="stylesheet" />
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0-alpha2/css/all.min.css" />
+		<script src="src/input-validation.js"></script>
 		<title>Document</title>
 	</head>
 	<body>
@@ -63,7 +64,7 @@
 							<div class="col-lg-9 col-sm-4">
 								<h1>EHBO Tiburg</h1>
 							</div>
-							<div class="row float-right">
+							<div class="row">
 								<div class="nav-buttons navbar navbar-expand-lg navbar-light">
 									<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 										<span class="navbar-toggler-icon col-sm-6"></span>
@@ -96,9 +97,9 @@
 					<div class="card-body col-12">
 						<form class="col-12">
 							<div class="form-row col-12">
-								<label class="col-lg-1 col-form-label col-12" for="name">Bedrijfsnaam:</label>
-								<input type="text" class="form-control col-lg-5 col-12" name="name" id="name" required />
-								<label class="col-lg-1 col-12" for="phonenumber">telefoonnr:</label>
+								<label class="col-lg-1 col-form-label col-12" for="company">Bedrijfsnaam:</label>
+								<input type="text" class="form-control col-lg-5 col-12" name="name" id="company" required />
+								<label class="col-lg-1 col-12" for="phonenumber">Telefoonnr:</label>
 								<input type="tel" class="form-control col-lg-5 col-12" id="phonenumber" required />
 							</div>
 							<div class="form-row">
@@ -114,17 +115,18 @@
 								<input type="text" class="form-control col-lg-5 col-12" id="adress" required />
 							</div>
 							<div class="form-row">
-								<label class="col-lg-1 col-form-label col-12" for="houseNumber">Huisnummer:</label>
-								<input type="text" class="form-control col-lg-5 col-12" id="houseNumber" required />
-								<label for="title" class="col-form-label col-lg-1 col-12">Title:</label>
+								<label class="col-lg-1 col-form-label col-12" for="housenumber">Huisnummer:</label>
+								<input type="text" class="form-control col-lg-5 col-12" id="housenumber" required />
+								<label for="title" class="col-form-label col-lg-1 col-12">Titel:</label>
 								<input type="text" class="form-control col-lg 5 col-12" id="title" required />
 							</div>
+
+							<div class="form-row">
+								<label class="col-lg-1 col-form-label col-12" for="description">Beschrijving:</label>
+								<textarea class="form-control col-lg-5 col-12" id="description" required></textarea>
+							</div>
+							<button type="button" class="btn btn-primary float-right" onclick="ExtractInfo()">Verstuur</button>
 						</form>
-						<div class="form-row">
-							<label class="col-lg-1 col-form-label col-12" for="description">Beschrijving:</label>
-							<textarea class="form-control col-lg-5 col-12" id="description" required></textarea>
-						</div>
-						<button type="submit" class="btn btn-primary float-right">Verstuur</button>
 					</div>
 				</div>
 			</div>
