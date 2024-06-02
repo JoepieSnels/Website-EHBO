@@ -3,8 +3,6 @@ function showPassword() {
 
 	if (x.type === "password") {
 		x.type = "text";
-	} else if (y.type === "password") {
-		y.type = "text";
 	} else {
 		x.type = "password";
 	}

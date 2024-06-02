@@ -17,10 +17,6 @@
 	visibility: visible;
 }
 
-.inlog-form {
-	width: 15rem;
-}
-
 .banner-image {
 	width: 100%;
 	height: 300px;
@@ -145,6 +141,9 @@ h1 {
 .footer p {
 	color: grey;
 	padding: 5px 30px 0px 30px;
+}
+.input-group-append {
+	width: 28rem;
 }
 .form-row {
 	padding: 5px;
