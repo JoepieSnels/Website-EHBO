@@ -20,6 +20,7 @@ function ExtractInfo() {
 			if (info[i].trim() === "" || info[i] === null || info[i] === undefined) {
 				allFilled = false;
 				console.error("Some fields are missing or incorrect");
+				alert("Some fields are missing or incorrect");
 				break;
 			}
 		}
