@@ -41,11 +41,11 @@ function createCard(projectDetails) {
 
 var item = `<div class="eventCard" onclick="location.href = 'index.html';   ">
                 <div class="row">
-                    <div class="col-lg-3 col-12 eventItem">
+                    <div class="col-lg-4 col-12 eventItem">
                         <h3 id="title">${projectDetails.title}</h3>
                         <h5 id="businessName">${projectDetails.company}</h5>
                     </div>
-                    <div class="col-lg-2 col-5">
+                    <div class="col-lg-2 col-6 setRight">
                         <p>Datum & Tijd:</p>
                         <p>Aanvraag datum:</p>
                     </div>
@@ -53,7 +53,10 @@ var item = `<div class="eventCard" onclick="location.href = 'index.html';   ">
                         <p id="dateOfEvent">${projectDetails.dateTime}</p>
                         <p id="dateOfRequest">${projectDetails.requestDate}</p>
                     </div>
-                    <div class="col-lg-5 col-12 eventItem">
+                    <div class="col-lg-4 col-12 eventItem">
+                    <div class="d-none d-lg-flex">
+                        <br />
+                    </div>
                         <p>Status: ${projectDetails.isAccepted}</p>
                     </div>
                 </div>
