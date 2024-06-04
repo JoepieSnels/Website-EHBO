@@ -45,7 +45,7 @@ function ExtractInfo(event) {
 	event.preventDefault();
 
 	// Extract values from input elements
-	let info = [document.getElementById("company").value, document.getElementById("phonenumber").value, document.getElementById("email").value, document.getElementById("date").value, document.getElementById("city").value, document.getElementById("adress").value, document.getElementById("housenumber").value, document.getElementById("title").value, document.getElementById("description").value, document.getElementById("landlinenumber").value];
+	let info = [document.getElementById("company").value, document.getElementById("phonenumber").value, document.getElementById("email").value, document.getElementById("date").value, document.getElementById("city").value, document.getElementById("adress").value, document.getElementById("housenumber").value, document.getElementById("title").value, document.getElementById("description").value, document.getElementById("landlinenumber").value, document.getElementById("contact").value];
 
 	try {
 		let allFilled = true;
@@ -87,7 +87,7 @@ function ExtractInfo(event) {
 			}
 			// Check for empty or invalid fields
 			if (info[i].trim() === "" || info[i] === null || info[i] === undefined) {
-				if (info[i].required === false) {
+				if (info[i].required === true) {
 					allFilled = false;
 					console.error("Some fields are missing or incorrect");
 					alert("Some fields are missing or incorrect");
@@ -99,9 +99,40 @@ function ExtractInfo(event) {
 		}
 
 		if (allFilled) {
-			console.log(info);
+			createProjectOnAPI(event);
+			alert("Project created successfully");
 		}
 	} catch (error) {
 		console.log(error);
+	}
+}
+async function createProjectOnAPI(event) {
+	event.preventDefault();
+	try {
+		const projectResult = await fetch("http://localhost:3000/api/create", {
+			method: "POST",
+			body: JSON.stringify({
+				company: document.getElementById("company").value,
+				phonenumber: document.getElementById("phonenumber").value,
+				contactemail: document.getElementById("email").value,
+				contactperson: document.getElementById("contact").value,
+				date: document.getElementById("date").value,
+				city: document.getElementById("city").value,
+				adress: document.getElementById("adress").value,
+				housenumber: document.getElementById("housenumber").value,
+				title: document.getElementById("title").value,
+				description: document.getElementById("description").value,
+				landlinenumber: document.getElementById("landlinenumber").value,
+				currentdate: new Date(),
+			}),
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+			},
+		});
+		const projectData = await projectResult.json();
+
+		console.log(projectData);
+	} catch (error) {
+		console.error("Error posting data:" + error);
 	}
 }
