@@ -1,16 +1,14 @@
 .card img {
 	width: 100%;
 	height: 400px;
+	border-radius: 28px;
 }
 .card {
 	min-width: 30rem;
 	border-radius: 28px;
-
 	margin-top: 50px;
 
-	margin-top: 100px;
-
-	margin-bottom: 100px;
+	padding-bottom: -50px;
 	border: 3px solid #000;
 }
 
@@ -19,25 +17,9 @@
 	visibility: visible;
 }
 
-
 .inlog-form {
 	width: 15rem;
 }
-
-
-.form-group {
-	width: 15rem;
-}
-/* div {
-    border: 1px solid red;
-    
-} */
-
-/* body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-} */
 
 .banner-image {
 	width: 100%;
@@ -147,12 +129,19 @@ h1 {
 	background-color: #6f85c2;
 }
 
-
 .form-check {
-    padding: 3px;
-    float: left;
+	padding: 3px;
+	float: left;
 }
 
 .choiceboxAlignment {
-    padding:5px;
+	padding: 5px;
+}
+.footer {
+	margin-top: auto;
+}
+
+.footer p {
+	color: grey;
+	padding: 5px 30px 0px 30px;
 }
