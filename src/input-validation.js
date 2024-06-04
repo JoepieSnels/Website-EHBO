@@ -78,46 +78,6 @@ async function loginOnAPI(event, email, password) {
 	}
 }
 
-// Dit wordt gerunned als een niet publieke pagina laad
-async function onPageLoadHulpverlenerDetails(requiredPermission) {
-	console.log("On page load");
-
-	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
-	const permissions = window.sessionStorage.getItem("permissions"); // Haalt de permissies op
-
-	// Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
-	if (jwtToken === null) {
-		alertNoAcces();
-		return;
-	}
-
-	// Kijk of in de string van permissies de benodigde permissie zit
-	if (permissions === null || !permissions.match(requiredPermission)) {
-		alertNoAcces();
-		return;
-	}
-
-	// Maak verzoek naar de server om te kijken of de token geldig is
-	const apiRoute = "https://api-ehbo.onrender.com/api/validatetoken";
-	const validateResult = await fetch(apiRoute, {
-		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
-			Authorization: `bearer ${jwtToken}`,
-		},
-	});
-
-	const toJson = await validateResult.json();
-
-	if (toJson.message === "Not authorized") {
-		alertNoAcces();
-		return;
-	}
-
-	document.getElementById("unBlockID").style.display = "block"; // Even controleren welke dit moet zijn
-
-	// HET STUK HIER NA IS ANDERS PER PAGINA
-}
-
 function alertNoAcces() {
 	console.log("Not the right site permissions");
 	alert("You have no acces to this page, redirecting to login");
@@ -128,5 +88,5 @@ function alertNoAcces() {
 function createSessionAndPermission(token, permissions) {
 	window.sessionStorage.setItem("jwtToken", token);
 	window.sessionStorage.setItem("permissions", permissions);
-	window.location.href = "index.html";
+	window.location.href = "../StaticUserInfo.html";
 }
