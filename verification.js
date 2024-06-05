@@ -63,12 +63,15 @@ function verifyInputs(event, origin) {
     // Check Birthday
     const date = new Date();
     const today = date.toISOString().split('T')[0];
-    if(!(document.getElementById('dateOfBirth').value < today)) {
+    const centuryInMilliseconds = date.setFullYear(date.getFullYear() - 101);
+    const centuryAgo = new Date(centuryInMilliseconds).toISOString().split('T')[0];
+    
+    if(!(document.getElementById('dateOfBirth').value < today && !(document.getElementById('dateOfBirth').value < centuryAgo))) {
         issues += 1;
         if(issues > 1) {
             issueMessage += ', ';
         }
-        issueMessage += 'Geboorte datum moet voor vandaag zijn';
+        issueMessage += `Geboorte datum moet voor vandaag zijn na ${centuryAgo}`;
     }
 
     // Check phonenumber
@@ -95,7 +98,7 @@ function verifyInputs(event, origin) {
     }
 
     // Check if all fields of the invoice are filled in IF one of them is filled in
-    if(!document.getElementById('invoiceAdres').value || !document.getElementById('invoiceStreet').value || !document.getElementById('invoiceNumber').value) {
+    if(!document.getElementById('invoiceAdres').value.trim() || !document.getElementById('invoiceStreet').value.trim() || !document.getElementById('invoiceNumber').value.trim()) {
         if(!document.getElementById('invoiceAdres').value && !document.getElementById('invoiceStreet').value && !document.getElementById('invoiceNumber').value) {
 
         } else {
