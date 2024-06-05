@@ -103,13 +103,13 @@ function ExtractInfo(event) {
 			}
 			// Check for empty or invalid fields
 			if (i !== 9) {
-                if (info[i].trim() === "" || info[i] === null || (info[i] === undefined && i)) {
-                    allFilled = false;
-                    console.error("Some fields are missing or incorrect");
-                    alert("Some fields are missing or incorrect");
-                    break;
-                }
-            }
+				if (info[i].trim() === "" || info[i] === null || (info[i] === undefined && i)) {
+					allFilled = false;
+					console.error("Some fields are missing or incorrect");
+					alert("Some fields are missing or incorrect");
+					break;
+				}
+			}
 		}
 
 		if (allFilled) {
