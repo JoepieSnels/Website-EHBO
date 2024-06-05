@@ -64,22 +64,16 @@ function generateCards(items) {
             neededCertificates = item.NeededCertificates
         }
 
-
+        card.innerHTML=`<div class="card-header col-12" id="projectTitle"><b>Project:</b> ${item.Title}</div>`
         cardBody.innerHTML= `
-        <h5 class="card-title">Title:</h5><h5 class="card-title col-4" id="projectTitle">${item.Title}</h5>
-        <p class="card-text">Date:</p><p class="card-text col-4" id="projectDate">${item.Date.split('T')[0]}</p>
-        <p class="card-text col-4" id="projectNeededCertificates">${neededCertificates}</p>
-        <p class="card-text col-4" id="projectLocation">${item.Address} ${item.HouseNr}, ${item.City}</p>
-        <p class="card-text col-4" id="projectTime">${item.StartTime.split('T')[1].slice(0,5)} - ${item.EndTime.split('T')[1].slice(0,5)}</p>
-        <p class="card-text col-4" id="amountFirstResponders">${item.PeopleAssigned}/${item.PeopleNeeded}</p>
-        <i class="fa-solid fa-chevron-right"></i>`;
-
-        // document.getElementById('projectTitle').innerHTML = body.Title;
-        // document.getElementById("projectDate").innerText = body.DateTime.split('T')[0]
-        // document.getElementById("projectTime").innerText = body.DateTime.split('T')[1]
-        // document.getElementById("projectLocation").innerText = `${body.Address} ${body.HouseNr}, ${body.City}`;
-        // document.getElementById('amountFirstResponders').innerText = `${body.PeopleNeeded}/${body.PeopleAssigned}`
-        // document.getElementById('projectNeededCertificates').innerHTML = body.NeededCertificates
+        
+        <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum:</b> ${item.Date.split('T')[0]}</p>
+        <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd:</b> ${item.StartTime.slice(0,5)} - ${item.EndTime.slice(0,5)}</p>
+        <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig:</b> ${item.PeopleAssigned}/${item.PeopleNeeded}</p>
+        <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie:</b> ${item.Address} ${item.HouseNr}, ${item.City}</p>
+        <p class="card-text col-lg-8 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> ${neededCertificates}</p>`;
+        
+        
 
 
         container.appendChild(card);
@@ -101,5 +95,7 @@ async function init() {
         console.log('init')
     }
 }
+
+
 
 document.addEventListener('DOMContentLoaded', init);
