@@ -1,3 +1,18 @@
+.tinkiewinkie a:hover,
+.tinkiewinkie button:hover,
+.tinkiewinkie li a:hover {
+    color: #3159b7 !important;
+}
+
+.dipsy a:hover::after {
+    background: #fbe326;
+    content: "";
+    position: absolute;
+    height: 20%;
+    width: 5px;
+    left: 0;
+}
+
 /* div {
     border: 1px solid red;
     
