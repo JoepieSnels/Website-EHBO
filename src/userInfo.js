@@ -2,7 +2,7 @@ async function onLoadUserInfo(requiredPermission) {
 	console.log('On page load');
 
 	// HARDCODDED, WEGHALEN ZODRA LOGIN WERKT
-	createSessionAndPermission('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTcxNzUwNjQ2MCwiZXhwIjoxNzE4NTQzMjYwfQ.YrckiyoGuslcp_5oiBpT6fAe8lUfQAadTwOh1HmR9ow', 'Hulpverlener!Coordinator');
+	// createSessionAndPermission('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTcxNzUwNjQ2MCwiZXhwIjoxNzE4NTQzMjYwfQ.YrckiyoGuslcp_5oiBpT6fAe8lUfQAadTwOh1HmR9ow', 'Hulpverlener!Coordinator');
 	
 	const jwtToken = window.sessionStorage.getItem('jwtToken'); // Haalt de token op uit de session
 	const permissions = window.sessionStorage.getItem('permissions'); // Haalt de permissies op
@@ -52,7 +52,6 @@ async function loadInfo(jwtToken) {
             }
 		});
 
-
 	// To do validate Result
 	const toJson = await validateResult.json();
 	const data = toJson.data;
@@ -68,8 +67,6 @@ async function loadInfo(jwtToken) {
 			cleanRoles +=  rolesArray[i] + ', ';
 		}
 	}
-
-
 
 	document.getElementById('firstname').innerHTML = data.FirstName;
 	document.getElementById('lastname').innerHTML = data.LastName;
@@ -104,12 +101,12 @@ function alertNoAcces() {
 
 // TIJDELIJK -> REMOVE!!!
 // Zo kan je een sessie aanmaken
-function createSessionAndPermission(token, permissions) {
-	window.sessionStorage.setItem('jwtToken', token);
-	window.sessionStorage.setItem('permissions', permissions);
+// function createSessionAndPermission(token, permissions) {
+// 	window.sessionStorage.setItem('jwtToken', token);
+// 	window.sessionStorage.setItem('permissions', permissions);
 
-	
-}
+// }
+
 function transgender(deadGender) {
 	if (deadGender === 'Male') {
 		return 'Man';
