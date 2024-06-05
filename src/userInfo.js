@@ -62,7 +62,7 @@ async function loadInfo(jwtToken) {
 	let cleanRoles = '';
 	for (let i = 0; i < rolesArray.length; i++) {
 		if (i === rolesArray.length - 1) {
-			cleanRoles +=  rolesArray[i] + '.';
+			cleanRoles +=  rolesArray[i];
 		} else {
 			cleanRoles +=  rolesArray[i] + ', ';
 		}
@@ -109,11 +109,11 @@ function alertNoAcces() {
 
 function transgender(deadGender) {
 	const lowercaseGender = deadGender.toLowerCase();
-	if (lowercaseGender === 'male' || 'm' || 'Male' || 'M') {
+	if (lowercaseGender === 'male' || lowercaseGender === 'm' || lowercaseGender ===  'Male' || lowercaseGender ===  'M') {
 		return 'Man';
-	} else if (lowercaseGender === 'female' || 'f' || 'Female' || 'F') {
+	} else if (lowercaseGender === 'female' || lowercaseGender === 'f' || lowercaseGender === 'Female' || lowercaseGender ===  'F') {
 		return 'Vrouw';
-	} else if (lowercaseGender === 'other' || 'o' || 'Other' || 'O') {
+	} else if (lowercaseGender === 'other' || lowercaseGender === 'o' || lowercaseGender === 'Other' || lowercaseGender === 'O') {
 		return 'Anders';
 	} else {
 		return 'Zeg ik liever niet';
