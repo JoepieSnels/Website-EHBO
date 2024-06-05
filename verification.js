@@ -97,17 +97,20 @@ function verifyInputs(event, origin) {
         }
     }
 
+    // Check invoice house number
+    if(document.getElementById('invoiceNumber').value.trim()) {
+        if(!houseNumberPattern.test(document.getElementById('invoiceNumber').value.trim())) {
+            issues += 1;
+            if(issues > 1) {
+                issueMessage += ', ';
+            }
+            issueMessage += 'Factuur huisnummer';
+        }
+    }
+
     // Check if all fields of the invoice are filled in IF one of them is filled in
     if(!document.getElementById('invoiceAdres').value.trim() || !document.getElementById('invoiceStreet').value.trim() || !document.getElementById('invoiceNumber').value.trim()) {
         if(!document.getElementById('invoiceAdres').value && !document.getElementById('invoiceStreet').value && !document.getElementById('invoiceNumber').value) {
-            // Check invoice house number
-            if(!houseNumberPattern.test(document.getElementById('invoiceNumber').value.trim())) {
-                issues += 1;
-                if(issues > 1) {
-                    issueMessage += ', ';
-                }
-                issueMessage += 'Factuur huisnummer';
-            }
 
         } else {
             issues += 1;
