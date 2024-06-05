@@ -23,6 +23,15 @@ function showPassword() {
     }
 }
 
+function showPasswordLogin() {
+    let x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
 // Check if Email and Password fields are not empty
 function validateForm(event) {
 	let email = document.getElementById("email").value;
