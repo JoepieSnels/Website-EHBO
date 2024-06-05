@@ -108,13 +108,14 @@ function alertNoAcces() {
 // }
 
 function transgender(deadGender) {
-	if (deadGender === 'Male') {
+	const lowercaseGender = deadGender.toLowerCase();
+	if (lowercaseGender === 'male' || 'm' || 'Male' || 'M') {
 		return 'Man';
-	} else if (deadGender === 'Female') {
+	} else if (lowercaseGender === 'female' || 'f' || 'Female' || 'F') {
 		return 'Vrouw';
-	} else if (deadGender === 'Other') {
+	} else if (lowercaseGender === 'other' || 'o' || 'Other' || 'O') {
 		return 'Anders';
 	} else {
-		return 'Zeg ik lieven niet';
+		return 'Zeg ik liever niet';
 	}
 }
