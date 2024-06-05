@@ -1,239 +1,482 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Account Aanvragen</title>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-		<script src="https://kit.fontawesome.com/ef708f113d.js" crossorigin="anonymous"></script>
-		<link rel="stylesheet" href="css/stylesheet.css" />
-		<script src="verification.js"></script>
-		<script src="automaticEmail.js"></script>
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-		<script type="text/javascript">
-			(function () {
-				emailjs.init({
-					publicKey: "GfG6Lk8GX3FeYcY3W",
-				});
-			})();
-		</script>
-	</head>
-	<body>
-		<div class="container-fluid">
-			<div class="row d-flex">
-				<div class="col-lg-2 col-sm-1 d-none d-lg-flex">
-					<a href="index.html"><img class="logo-image img-fluid float-left" src="./logo.png" alt="ehbo logo" /></a>
-				</div>
-				<div class="col-lg-10 col-sm-11 align-self-center">
-					<div class="row">
-						<div class="col-sm-2 d-flex d-lg-none">
-							<img class="logo-image img-fluid float-left" src="./logo.png" alt="ehbo logo" />
-						</div>
-						<div class="col-lg-9 col-sm-8 align-self-end">
-							<h1>EHBO Tiburg</h1>
-						</div>
-						<div class="col-lg-3 col-sm-2 align-self-end login-btn">
-							<a type="button" class="btn btn-primary float-right" href="./Login.html">Inloggen</a>
-						</div>
-					</div>
-					<div class="row nav-buttons">
-						<div class="btn-group" role="group">
-							<div class="dropdown">
-								<a class="btn lala" type="button" href="./tilburg.html">Tilburg</a>
-								<button class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-									<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">De vereniging</a>
-									<a class="dropdown-item" href="#">Het bestuur</a>
-									<a class="dropdown-item" href="#">Docenten</a>
-									<a class="dropdown-item" href="#">Lotus</a>
-								</div>
-							</div>
 
-							<a type="button" class="btn" href="./activiteiten.html"><p>Activiteiten</p></a>
-							<a type="button" class="btn" href="./opleidingen.html"><p>Opleidingen</p></a>
-							<a type="button" class="btn" href="./StaticUserInfo.html"><p>Lidmaatschap</p></a>
-							<a type="button" class="btn" href="./contact.html"><p>Contact</p></a>
-							<a type="button" class="btn" href="./hulpverlening.html"><p>Hulpverlening</p></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="card">
-				<div class="row">
-					<div class="col-sm-12 col-lg-12 text-center card-title">
-						<h2>Account Gegevens</h2>
-						<p>Aanvraag Formulier</p>
-					</div>
-				</div>
-				<div class="row card-body" style="padding: 10px">
-					<form name="requestAccount" class="form-inline" onsubmit="sendMail(event)">
-						<div class="col-lg-12 col-sm-12 col-12">
-							<div class="form-group row">
-								<!-- Email -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="email" class="mb-2 mr-sm-2">Email adres:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="email" class="form-control mb-2 mr-sm-2" placeholder="joepsnels@home.nl" id="email" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- City -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="city" class="mb-2 mr-sm-2">Woonplaats:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="text" class="form-control mb-2 mr-sm-2" placeholder="Breda" id="city" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- firstName -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="firstName" class="mb-2 mr-sm-2">Voornaam:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="text" class="form-control mb-2 mr-sm-2" placeholder="Jan" id="firstName" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- Postal Code -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="postalCode" class="mb-2 mr-sm-2">Postcode:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="text" class="form-control mb-2 mr-sm-2" placeholder="5001AA" id="postalCode" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- Last Name -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="lastName" class="mb-2 mr-sm-2">Achternaam:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="text" class="form-control mb-2 mr-sm-2" placeholder="Montizaan" id="lastName" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- Street -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="street" class="mb-2 mr-sm-2">Straat:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat" id="street" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- Phone Number -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="phoneNumber" class="mb-2 mr-sm-2">Telefoon Nummer:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="text" class="form-control mb-2 mr-sm-2" placeholder="06 12345678" id="phoneNumber" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- House Number -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="houseNumber" class="mb-2 mr-sm-2">Huisnummer:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="text" class="form-control mb-2 mr-sm-2" placeholder="18" id="houseNumber" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- Date of Birth -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="dateOfBirth" class="mb-2 mr-sm-2">Geboorte Datum:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="date" class="form-control mb-2 mr-sm-2" id="dateOfBirth" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- Banking Information -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="bank" class="mb-2 mr-sm-2">Rekening:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="text" class="form-control mb-2 mr-sm-2" placeholder="rekening nummer" id="bank" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- Gender -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="gender" class="mb-2 mr-sm-2">Geslacht:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<input type="text" class="form-control mb-2 mr-sm-2" placeholder="Man/Vrouw/Anders" id="gender" required />
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-								<!-- Certificates -->
-								<div class="input-group col-lg-6 col-sm-6 col-6">
-									<label for="certificates" class="mb-2 mr-sm-2"
-										>Certificaten
-										<div class="dropdown">
-											<button class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-												<span class="sr-only">Toggle Dropdown</span>
-											</button>
-											<div class="dropdown-menu choiceboxAlignment">
-												<div class="form-check dropdown-item">
-													<input type="checkbox" class="form-check-input" id="eenheidsdiploma" />
-													<label class="form-check-label" for="eenheidsdiploma">Eenheidsdiploma</label>
-												</div>
-												<div class="form-check dropdown-item">
-													<input type="checkbox" class="form-check-input" id="reanimatie" />
-													<label class="form-check-label" for="reanimatie">Reanimatie</label>
-												</div>
-												<div class="form-check dropdown-item">
-													<input type="checkbox" class="form-check-input" id="verbandleer" />
-													<label class="form-check-label" for="verbandleer">Verbandleer</label>
-												</div>
-												<div class="form-check dropdown-item">
-													<input type="checkbox" class="form-check-input" id="aed" />
-													<label class="form-check-label" for="aed">AED</label>
-												</div>
-												<div class="form-check dropdown-item">
-													<input type="checkbox" class="form-check-input" id="bhv" />
-													<label class="form-check-label" for="bhv">BHV</label>
-												</div>
-											</div>
-										</div>
-									</label>
-								</div>
-								<!-- Password -->
-								<div class="input-group col-lg-2 col-sm-6 col-6">
-									<label for="password" class="mb-2 mr-sm-2">Wachtwoord:</label>
-								</div>
-								<div class="input-group col-lg-4 col-sm-6 col-6">
-									<div class="input-group-append">
-										<input type="password" class="form-control mb-2" placeholder="A1bcF*yQ" id="password" required />
-										<button type="button" class="fa-solid fa-eye mb-2 mr-sm-2" onclick="showPassword()"></button>
-									</div>
-									<div class="valid-feedback">Valide</div>
-									<div class="invalid-feedback">Dit veld is verplicht om in te vullen</div>
-								</div>
-							</div>
-						</div>
-						<div style="padding: 10px">
-							<button type="submit" class="btn btn-primary px-4">Versturen</button>
-						</div>
-					</form>
-				</div>
-			</div>
-			<footer>
-				<div class="divider"></div>
-				<div class="row footer">
-					<div class="col-6"><p>EHBO Afdeling Tilburg</p></div>
-					<div class="col-6"><p class="float-right">2024</p></div>
-				</div>
-			</footer>
-		</div>
-	</body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Aanvragen</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/ef708f113d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/stylesheet.css" />
+    <script src="./src/verification.js"></script>
+    <script src="./src/automaticEmail.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "GfG6Lk8GX3FeYcY3W",
+            });
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Begin navigatie -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px">
+        <!-- Hamburger Menu -->
+        <div class="fixed-top d-sm-none">
+            <nav class="navbar navbar-light bg-light d-flex align-items-center" style="gap: 10px">
+                <img src="./images/logo.png" alt="logo" style="width: 80px" />
+                <h3>EHBO Tilburg</h3>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-light p-4">
+                    <div class="dropdown-divider"></div>
+                    <ul class="navbar-nav">
+                        <div class="dropdown">
+                            <!-- Dropdown overons-->
+                            <a href="./tilburg.html" class="btn">Over Ons</a><br />
+                            <div class="dropdown-divider"></div>
+                            <a class="btn" href="./activiteiten.html">Activiteiten</a><br />
+                            <a class="btn" href="./opleidingen.html">Opleidingen</a><br />
+                            <a class="btn" href="./lidmaatschap.html">Lidmaatschap</a><br />
+                            <a class="btn" href="./contact.html">Contact</a><br />
+                            <a class="btn" href="./hulpverlening.html">Hulpverlening</a><br />
+                            <div class="dropdown-divider"></div>
+                            <a href="./Login.html" class="btn btn-lg btn-primary"
+                                style="background-color: #042062; border-color: #042062">Inloggen</a>
+                        </div>
+                    </ul>
+                </div>
+                <div style="height: 1000px; background-color: rgba(0, 0, 0, 0.6)"></div>
+            </div>
+        </div>
+    
+        <div class="d-md-none" style="height: 50px"></div>
+    
+        <!-- Voor als de pagina wel normaal wilt doen -->
+    
+        <a class="navbar-brand d-none d-sm-block" href="index.html">
+            <img src="./images/logo.png" alt="logo" style="width: 100px" />
+        </a>
+    
+        <!-- Header en andere button zooi -->
+        <div class="d-none d-sm-block">
+            <h1 class="d-none d-lg-block">EHBO Vereniging Tilburg</h1>
+            <h2 class="d-none d-sm-block d-lg-none">EHBO Tilburg</h2>
+            <ul class="navbar-nav tinkiewinkie">
+                <div class="btn-group tinkiewinkie" style="width: fit-content">
+                    <!-- Dropdown overons-->
+                    <a href="./tilburg.html" class="btn btn-light d-none d-md-block">Over&nbsp;Ons</a>
+                    <a href="./tilburg.html" class="btn btn-light d-md-none">Over</a>
+                    <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-spilt"
+                        data-toggle="dropdown"></button>
+                    <div class="dropdown-menu dipsy" style="padding: 2px">
+                        <a href="#" class="btn">De vereniging</a><br />
+                        <a href="#" class="btn">Het bestuur</a><br />
+                        <a href="#" class="btn">Docenten</a><br />
+                        <a href="#" class="btn">Lotus</a>
+                    </div>
+                </div>
+                <div class="dropdown d-lg-none tinkiewinkie">
+                    <!-- Dit is de dropdown voor als items weg gehaald worden-->
+                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">Meer weten</button>
+                    <div class="dropdown-menu dipsy" style="padding: 2px">
+                        <a href="./activiteiten.html" class="btn">Activiteiten</a><br />
+                        <a href="./hulpverlening.html" class="btn">Hulpverlening</a><br />
+                        <a href="./opleidingen.html" class="btn">Opleidingen</a><br />
+                        <a href="./lidmaatschap.html" class="btn d-md-none">Lidmaatschap</a>
+                    </div>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link d-none d-lg-block" href="./activiteiten.html">Activiteiten</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-none d-lg-block" href="./opleidingen.html">Opleidingen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-none d-md-block" href="./lidmaatschap.html">Lidmaatschap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-none d-lg-block" href="./hulpverlening.html">Hulpverlening</a>
+                </li>
+            </ul>
+        </div>
+    
+        <!-- Inloggen -->
+        <div class="d-flex justify-content-end" style="width: 100%">
+            <a href="./Login.html" class="btn btn-lg btn-primary d-none d-xl-block"
+                style="margin-right: 20px; background-color: #042062; border-color: #042062">Inloggen</a>
+        </div>
+    
+        <div class="d-flex justify-content-end d-xl-none" style="width: 60%">
+            <a href="./Login.html" class="btn btn-lg btn-primary d-none d-sm-block d-lx-none"
+                style="background-color: #042062; border-color: #042062">Inloggen</a>
+        </div>
+    </nav>
+    
+    <!-- Einde navigatie -->
+    <!-- Start Form -->
+    <div class="container">
+        <div class="card">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12 text-center card-title">
+                    <h2>Account Gegevens</h2>
+                    <p>Aanvraag Formulier</p>
+                </div>
+            </div>
+            <!-- on md-lg screens -->
+            <div class="row card-body d-none d-lg-block" style="padding: 10px">
+                <form name="requestAccount" class="form-inline" onsubmit="verifyInputs(event, 1)">
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <div class="form-group row">
+                            <!-- Email -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="email" class="mb-2 mr-sm-2">Email adres:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="email" class="form-control mb-2 mr-sm-2" placeholder="abc@example.com"
+                                    id="email" maxlength="320" required />
+                            </div>
+                            <!-- City -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="city" class="mb-2 mr-sm-2">Woonplaats:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Breda" id="city"
+                                    maxlength="50" required />
+                            </div>
+                            <!-- firstName -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="firstName" class="mb-2 mr-sm-2">Voornaam:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Jan" id="firstName"
+                                    maxlength="50" required />
+                            </div>
+                            <!-- Postal Code -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="postalCode" class="mb-2 mr-sm-2">Postcode:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="5001AA"
+                                    id="postalCode" maxlength="70" required />
+                            </div>
+                            <!-- Last Name -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="lastName" class="mb-2 mr-sm-2">Achternaam:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="de Jong" id="lastName"
+                                    maxlength="50" required />
+                            </div>
+                            <!-- Street -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="street" class="mb-2 mr-sm-2">Straat:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat"
+                                    id="street" maxlength="70" required />
+                            </div>
+                            <!-- Phone Number -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="phoneNumber" class="mb-2 mr-sm-2">Mobiel Telefoon Nummer:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="06 12345678"
+                                    id="phoneNumber" maxlength="11" required />
+                            </div>
+                            <!-- House Number -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="houseNumber" class="mb-2 mr-sm-2">Huisnummer:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="18" id="houseNumber"
+                                    maxlength="10" required />
+                            </div>
+                            <!-- Home Phone Number/Landline -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="landLine" class="mb-2 mr-sm-2">Vaste Telefoon Nummer:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="(+31)-70 123 45 67"
+                                    maxlength="16" id="landLine" />
+                            </div>
+                            <!-- Invoice Email -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="invoiceEmail" class="mb-2 mr-sm-2">Email factuuradres:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="email" class="form-control mb-2 mr-sm-2" placeholder="abc@example.com"
+                                    id="invoiceEmail" maxlength="320" />
+                            </div>
+                            <!-- Date of Birth -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="dateOfBirth" class="mb-2 mr-sm-2">Geboorte Datum:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="date" class="form-control mb-2 mr-sm-2" id="dateOfBirth" required />
+                            </div>
+                            <!-- Invoice Adres -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="invoiceAdres" class="mb-2 mr-sm-2">Factuuradres:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Amsterdam"
+                                    id="invoiceAdres" maxlength="50" />
+                            </div>
+                            <!-- Gender -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="gender" class="mb-2 mr-sm-2">Gender:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Man/Vrouw/Anders"
+                                    id="gender" maxlength="10" required />
+                            </div>
+                            <!-- Invoice Street -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="invoiceStreet" class="mb-2 mr-sm-2">Straat:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat"
+                                    id="invoiceStreet" maxlength="70" />
+                            </div>
+                            <!-- Certificates -->
+                            <div class="input-group col-lg-6 col-sm-12 col-12">
+                                <label for="certificates" class="mb-2 mr-sm-2">Certificaten
+                                    <div class="dropdown">
+                                        <button class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu choiceboxAlignment">
+                                            <div class="form-check dropdown-item">
+                                                <input type="checkbox" class="form-check-input" id="eenheidsdiploma" />
+                                                <label class="form-check-label"
+                                                    for="eenheidsdiploma">Eenheidsdiploma</label>
+                                            </div>
+                                            <div class="form-check dropdown-item">
+                                                <input type="checkbox" class="form-check-input" id="reanimatie" />
+                                                <label class="form-check-label" for="reanimatie">Reanimatie</label>
+                                            </div>
+                                            <div class="form-check dropdown-item">
+                                                <input type="checkbox" class="form-check-input" id="ehak" />
+                                                <label class="form-check-label" for="ehaK">Eerste hulp aan
+                                                    Kinderen</label>
+                                            </div>
+                                            <div class="form-check dropdown-item">
+                                                <input type="checkbox" class="form-check-input" id="brandwondletsels" />
+                                                <label class="form-check-label"
+                                                    for="brandwondletsels">Brandwondletsels</label>
+                                            </div>
+                                            <div class="form-check dropdown-item">
+                                                <input type="checkbox" class="form-check-input" id="ehv" />
+                                                <label class="form-check-label" for="ehv">Evenementen
+                                                    hulpverlening</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <!-- Invoice Adres Number -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="invoiceNumber" class="mb-2 mr-sm-2">Nummer:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="7" id="invoiceNumber"
+                                    maxlength="10" />
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 10px">
+                        <button type="submit" class="btn btn-primary px-4">Versturen</button>
+                    </div>
+                </form>
+            </div>
+            <!-- On md and smaller screens -->
+            <div class="row card-body d-lg-none" style="padding: 10px">
+                <form name="requestAccount" class="form-inline" onsubmit="verifyInputs(event, 2)">
+                    <div class="col-lg-12 col-sm-12 col-12">
+                        <div class="form-group row">
+                            <!-- Email -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="email2" class="mb-2 mr-sm-2">Email adres:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="email" class="form-control mb-2 mr-sm-2" placeholder="abc@example.com"
+                                    id="email2" maxlength="320" required />
+                            </div>
+                            <!-- firstName -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="firstName2" class="mb-2 mr-sm-2">Voornaam:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Jan" id="firstName2"
+                                    maxlength="50" required />
+                            </div>
+                            <!-- Last Name -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="lastName2" class="mb-2 mr-sm-2">Achternaam:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="de Jong"
+                                    id="lastName2" maxlength="50" required />
+                            </div>
+                            <!-- Phone Number -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="phoneNumber2" class="mb-2 mr-sm-2">Mobiel Telefoon Nummer:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="06 12345678"
+                                    id="phoneNumber2" maxlength="11" required />
+                            </div>
+                            <!-- Home Phone Number/Landline -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="landLine2" class="mb-2 mr-sm-2">Vaste Telefoon Nummer:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="(+31)-70 123 45 67"
+                                    id="landLine2" maxlength="16" />
+                            </div>
+                            <!-- Date of Birth -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="dateOfBirth2" class="mb-2 mr-sm-2">Geboorte Datum:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="date" class="form-control mb-2 mr-sm-2" id="dateOfBirth2" required />
+                            </div>
+                            <!-- Gender -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="gender2" class="mb-2 mr-sm-2">Gender:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Man/Vrouw/Anders"
+                                    id="gender2" maxlength="10" required />
+                            </div>
+                            <!-- City -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="city2" class="mb-2 mr-sm-2">Woonplaats:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Breda" id="city2"
+                                    maxlength="50" required />
+                            </div>
+                            <!-- Postal Code -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="postalCode2" class="mb-2 mr-sm-2">Postcode:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="5001AA"
+                                    id="postalCode2" maxlength="70" required />
+                            </div>
+                            <!-- Street -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="street2" class="mb-2 mr-sm-2">Straat:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat"
+                                    id="street2" maxlength="70" required />
+                            </div>
+                            <!-- House Number -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="houseNumber2" class="mb-2 mr-sm-2">Huisnummer:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="18" id="houseNumber2"
+                                    maxlength="10" required />
+                            </div>
+                            <!-- Invoice Email -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="invoiceEmail2" class="mb-2 mr-sm-2">Email factuuradres:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="email" class="form-control mb-2 mr-sm-2" placeholder="abc@example.com"
+                                    id="invoiceEmail2" maxlength="320" />
+                            </div>
+                            <!-- Invoice Adres -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="invoiceAdres2" class="mb-2 mr-sm-2">Factuuradres:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Amsterdam"
+                                    id="invoiceAdres2" maxlength="50" />
+                            </div>
+                            <!-- Invoice Street -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="invoiceStreet2" class="mb-2 mr-sm-2">Straat:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat"
+                                    id="invoiceStreet2" maxlength="70" />
+                            </div>
+                            <!-- Invoice Adres Number -->
+                            <div class="input-group col-lg-2 col-sm-6 col-6">
+                                <label for="invoiceNumber2" class="mb-2 mr-sm-2">Nummer:</label>
+                            </div>
+                            <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="7" id="invoiceNumber2"
+                                    maxlength="10" />
+                            </div>
+                            <!-- Certificates -->
+                            <div class="input-group col-lg-6 col-sm-12 col-12">
+                                <label for="certificates2" class="mb-2 mr-sm-2">Certificaten </label>
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                                        aria-expanded="false" style="padding: 0px; padding-left: 5px">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu choiceboxAlignmentSmall">
+                                        <div class="form-check dropdown-item">
+                                            <input type="checkbox" class="form-check-input" id="eenheidsdiploma22" />
+                                            <label class="form-check-label"
+                                                for="eenheidsdiploma2">Eenheidsdiploma</label>
+                                        </div>
+                                        <div class="form-check dropdown-item">
+                                            <input type="checkbox" class="form-check-input" id="reanimatie2" />
+                                            <label class="form-check-label" for="reanimatie2">Reanimatie</label>
+                                        </div>
+                                        <div class="form-check dropdown-item">
+                                            <input type="checkbox" class="form-check-input" id="ehak2" />
+                                            <label class="form-check-label" for="EHaK2">Eerste hulp aan Kinderen</label>
+                                        </div>
+                                        <div class="form-check dropdown-item">
+                                            <input type="checkbox" class="form-check-input" id="brandwondletsels2" />
+                                            <label class="form-check-label"
+                                                for="brandwondletsels2">Brandwondletsels</label>
+                                        </div>
+                                        <div class="form-check dropdown-item">
+                                            <input type="checkbox" class="form-check-input" id="ehv2" />
+                                            <label class="form-check-label" for="ehv2">Evenementen hulpverlening</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 10px">
+                        <button type="submit" class="btn btn-primary px-4">Versturen</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
