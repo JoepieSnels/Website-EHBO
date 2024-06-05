@@ -1,5 +1,3 @@
-const moment = require("moment");
-
 // Validate Email
 function validateEmail(email) {
 	const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -128,9 +126,7 @@ function ExtractInfo(event) {
 
 async function createProjectOnAPI(data) {
 	try {
-		data[3] = formatDate(data[3]); // Format date to "YYYY-MM-DD" format
-
-		const projectResult = await fetch("http://localhost:3000/api/create", {
+		const projectResult = await fetch("https://api-ehbo.onrender.com/api/create", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
@@ -152,7 +148,6 @@ async function createProjectOnAPI(data) {
 				currentdate: Date.now(),
 			}),
 		});
-		console.log(data[11] + ":00");
 
 		const projectData = await projectResult.json();
 
