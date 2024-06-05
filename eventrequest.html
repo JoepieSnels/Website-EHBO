@@ -95,41 +95,47 @@
 						<h3>Evenement aanvragen</h3>
 					</div>
 					<div class="card-body col-12">
-						<form class="col-12">
+						<form class="col-12" id="form">
 							<div class="form-row col-12">
-								<label class="col-lg-1 col-form-label col-12" for="company">Bedrijfsnaam:</label>
-								<input type="text" maxlength="120" class="form-control col-lg-5 col-12" name="name" id="company" required />
-								<label class="col-lg-1 col-12 col-form-label" for="contactperson">Contactpersoon:</label>
-								<input type="name" maxlength="120" class="form-control col-lg-5 col-12" id="contact" required />
+								<label class="col-lg-2 col-form-label col-12" for="company">Bedrijfsnaam</label>
+								<input type="text" maxlength="120" class="form-control col-lg-4 col-12" name="name" id="company" required />
+								<label class="col-lg-2 col-12 col-form-label" for="contactperson">Contactpersoon</label>
+								<input type="name" maxlength="120" class="form-control col-lg-4 col-12" id="contact" required />
 							</div>
 							<div class="form-row">
-								<label class="col-lg-1 col-12" for="phonenumber">Mobielnr:</label>
-								<input type="tel" maxlength="11" class="form-control col-lg-5 col-12" id="phonenumber" required />
-								<label class="col-lg-1 col-12" for="phonenumber">Vast telefoonnr:</label>
-								<input type="tel" maxlength="11" class="form-control col-lg-5 col-12" id="landlinenumber" />
+								<label class="col-lg-2 col-12" for="phonenumber">Mobielnr</label>
+								<input type="tel" maxlength="11" class="form-control col-lg-4 col-12" id="phonenumber" required />
+								<label class="col-lg-2 col-12" for="phonenumber">Vast telefoonnr</label>
+								<input type="tel" maxlength="11" class="form-control col-lg-4 col-12" id="landlinenumber" />
 							</div>
 							<div class="form-row">
-								<label class="col-lg-1 col-12 col-form-label" for="email">Email:</label>
-								<input type="email" maxlength="320" class="form-control col-lg-5 col-12" id="email" required />
-								<label class="col-lg-1 col-12" for="date">Datum:</label>
-								<input type="datetime-local" class="form-control col-lg-5 col-12" id="date" required />
+								<label class="col-lg-2 col-12 col-form-label" for="email">Email</label>
+								<input type="email" maxlength="320" class="form-control col-lg-4 col-12" id="email" required />
+								<label class="col-lg-2 col-12" for="date">Datum</label>
+								<input type="date" class="form-control col-lg-4 col-12" id="date" required />
 							</div>
 							<div class="form-row">
-								<label class="col-lg-1 col-form-label col-12" for="housenumber">Huisnummer:</label>
-								<input type="text" maxlength="10" class="form-control col-lg-5 col-12" id="housenumber" required />
-								<label class="col-lg-1 col-form-label col-12" for="city">Stad:</label>
-								<input type="text" maxlength="70" class="form-control col-lg-5 col-12" id="city" required />
+								<label class="col-lg-2 col-12" for="beginTime">Begin tijd</label>
+								<input type="time" class="form-control col-lg-4 col-12" id="beginTime" required />
+								<label class="col-lg-2 col-12" for="endTime">Eind tijd</label>
+								<input type="time" class="form-control col-lg-4 col-12" id="endTime" required />
+							</div>
+							<div class="form-row">
+								<label class="col-lg-2 col-form-label col-12" for="housenumber">Huisnummer</label>
+								<input type="text" maxlength="10" class="form-control col-lg-4 col-12" id="housenumber" required />
+								<label class="col-lg-2 col-form-label col-12" for="city">Stad:</label>
+								<input type="text" maxlength="70" class="form-control col-lg-4 col-12" id="city" required />
 							</div>
 
 							<div class="form-row">
-								<label class="col-lg-1 col-form-label col-12" for="adress">Adress:</label>
-								<input type="text" maxlength="70" class="form-control col-lg-5 col-12" id="adress" required />
-								<label for="title" class="col-form-label col-lg-1 col-12">Titel:</label>
-								<input type="text" maxlength="120" class="form-control col-lg 5 col-12" id="title" required />
+								<label class="col-lg-2 col-form-label col-12" for="adress">Adress</label>
+								<input type="text" maxlength="70" class="form-control col-lg-4 col-12" id="adress" required />
+								<label for="title" class="col-form-label col-lg-2 col-12">Titel</label>
+								<input type="text" maxlength="120" class="form-control col-lg 4 col-12" id="title" required />
 							</div>
 							<div class="form-row">
-								<label class="col-lg-1 col-form-label col-12" for="description">Beschrijving:</label>
-								<textarea class="form-control col-lg-10 col-12" maxlength="320" id="description" required></textarea>
+								<label class="col-lg-2 col-form-label col-12" for="description">Beschrijving</label>
+								<textarea class="form-control col-lg-9 col-12" maxlength="320" id="description" required></textarea>
 							</div>
 							<button type="button" class="btn btn-primary float-right" onclick="ExtractInfo(event)">Verstuur</button>
 						</form>

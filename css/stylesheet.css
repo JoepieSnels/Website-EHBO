@@ -146,7 +146,8 @@ h1 {
 	width: 28rem;
 }
 .form-row {
-	padding: 5px;
+	padding: 10px;
+	margin-left: 5px;
 }
 .request-form {
 	width: 100rem;
