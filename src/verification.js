@@ -62,16 +62,17 @@ function verifyInputs(event, origin) {
 
     // Check Birthday
     const date = new Date();
-    const today = date.toISOString().split('T')[0];
+    const twelvePlus = date.setFullYear(date.getFullYear() - 12);
+    const olderThanTwelve = new Date(twelvePlus).toISOString().split('T')[0];
     const centuryInMilliseconds = date.setFullYear(date.getFullYear() - 101);
     const centuryAgo = new Date(centuryInMilliseconds).toISOString().split('T')[0];
     
-    if(!(document.getElementById('dateOfBirth').value < today && !(document.getElementById('dateOfBirth').value < centuryAgo))) {
+    if(!(document.getElementById('dateOfBirth').value < olderThanTwelve && !(document.getElementById('dateOfBirth').value < centuryAgo))) {
         issues += 1;
         if(issues > 1) {
             issueMessage += ', ';
         }
-        issueMessage += `Geboorte datum moet voor vandaag zijn na ${centuryAgo}`;
+        issueMessage += `Geboorte datum moet voor ${olderThanTwelve} zijn na ${centuryAgo}`;
     }
 
     // Check phonenumber
