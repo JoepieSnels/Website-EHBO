@@ -281,4 +281,5 @@ function validateForm(event) {
 		window.sessionStorage.setItem("permissions", permissions);
 		window.location.href = "./StaticUserInfo.html";
 	}
+
 }
