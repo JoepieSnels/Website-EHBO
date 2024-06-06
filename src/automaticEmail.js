@@ -29,10 +29,10 @@ function isOn() {
     return items
 }
 
-function sendMail(event){
-    event.preventDefault();
-    let items = isOn();
-    console.log(items)
+function sendMail(event) {
+	event.preventDefault();
+	let items = isOn();
+	console.log(items);
 
     var params = {
         email: document.getElementById('email').value,
