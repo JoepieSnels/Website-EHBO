@@ -232,5 +232,5 @@ function alertNoAcces() {
 function createSessionAndPermission(token, permissions) {
 	window.sessionStorage.setItem("jwtToken", token);
 	window.sessionStorage.setItem("permissions", permissions);
-	window.location.href = "../StaticUserInfo.html";
+	window.location.href = "./StaticUserInfo.html";
 }
