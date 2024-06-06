@@ -2,7 +2,6 @@
 function validateEmail(email) {
 	const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	if (!pattern.test(email)) {
-		alert("Email not valid");
 		console.error("Email not valid");
 		return false;
 	}
@@ -48,13 +47,36 @@ function formatDate(date) {
 
 	return d.toISOString().split("T")[0];
 }
+// Check House number
+function validateHouseNumber(houseNumber) {
+	const houseNumberPattern = /^[0-9]{1,5} ?[a-zA-Z]?$/;
+	return houseNumberPattern.test(houseNumber);
+}
+function validateTime(beginTime, endTime, beginDate, endDate) {
+	if (beginDate === endDate) {
+		if (beginTime >= endTime) {
+			alert("End time must be after begin time");
+			console.error("End time must be after begin time");
+			return false;
+		}
+	}
+	return true;
+}
 
+function validateDate(beginDate, endDate) {
+	if (beginDate > endDate) {
+		alert("End date must be after begin date");
+		console.error("End date must be after begin date");
+		return false;
+	}
+	return true;
+}
 // Validate the form and extract info
 function ExtractInfo(event) {
 	event.preventDefault();
 
 	// Extract values from input elements
-	let info = [document.getElementById("company").value, document.getElementById("phonenumber").value, document.getElementById("email").value, document.getElementById("date").value, document.getElementById("city").value, document.getElementById("adress").value, document.getElementById("housenumber").value, document.getElementById("title").value, document.getElementById("description").value, document.getElementById("landlinenumber").value, document.getElementById("contact").value, document.getElementById("beginTime").value, document.getElementById("endTime").value];
+	let info = [document.getElementById("company").value, document.getElementById("phonenumber").value, document.getElementById("email").value, document.getElementById("beginDate").value, document.getElementById("city").value, document.getElementById("adress").value, document.getElementById("housenumber").value, document.getElementById("title").value, document.getElementById("description").value, document.getElementById("landlinenumber").value, document.getElementById("contact").value, document.getElementById("beginTime").value, document.getElementById("endTime").value, document.getElementById("endDate").value];
 
 	try {
 		let allFilled = true;
@@ -84,6 +106,20 @@ function ExtractInfo(event) {
 					alert("Date is not at least a week away");
 					break;
 				}
+				if (!validateDate(info[i], info[13])) {
+					allFilled = false;
+					console.error("End date must be after begin date");
+					alert("End date must be after begin date");
+					break;
+				}
+			}
+			if (i === 6) {
+				if (!validateHouseNumber(info[i])) {
+					allFilled = false;
+					console.error("House number is not valid");
+					alert("House number is not valid");
+					break;
+				}
 			}
 			// Check landline number if present
 			if (i === 9 && info[i].trim() !== "") {
@@ -96,11 +132,13 @@ function ExtractInfo(event) {
 			}
 			// Check time
 			if (i === 11) {
-				if (!validateTime(info[i], info[i + 1])) {
+				if (!validateTime(info[i], info[12], info[3], info[13])) {
+					alert("End time must be after begin time");
 					allFilled = false;
 					break;
 				}
 			}
+
 			// Check for empty or invalid fields
 			if (i !== 9) {
 				if (info[i].trim() === "" || info[i] === null || (info[i] === undefined && i)) {
@@ -144,6 +182,7 @@ async function createProjectOnAPI(data) {
 				beginTime: data[11] + ":00",
 				endTime: data[12] + ":00",
 				currentdate: Date.now(),
+				endDate: data[13],
 			}),
 		});
 
@@ -155,14 +194,13 @@ async function createProjectOnAPI(data) {
 	}
 }
 
-
 function showPasswordLogin() {
-    let x = document.getElementById("password");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
+	let x = document.getElementById("password");
+	if (x.type === "password") {
+		x.type = "text";
+	} else {
+		x.type = "password";
+	}
 }
 
 // Check if Email and Password fields are not empty
@@ -171,66 +209,77 @@ function validateForm(event) {
 	let password = document.getElementById("password").value;
 	var passwordError = document.getElementById("passwordValidation");
 	var emailError = document.getElementById("emailValidation");
-	if (email.trim() === "") {
+
+	if (!validateEmail(email)) {
 		emailError.style.display = "block";
+		passwordError.style.display = "none";
+	}
+	if (email.trim() === "") {
+		emailError.innerHTML = "Vul een email in";
+		emailError.style.display = "block";
+		passwordError.style.display = "none";
 	}
 
-	if (password.trim() === "") {
+	if (email.length > 1 && password.trim() === "") {
+		emailError.style.display = "none";
+		passwordError.innerHTML = "Vul een wachtwoord in";
 		passwordError.style.display = "block";
 	}
-	if (email.trim() !== "" && password.trim() !== "") {
+	if (email.trim() !== "" && password.trim() !== "" && validateEmail(email)) {
 		emailError.style.display = "none";
 		passwordError.style.display = "none";
 		loginOnAPI(event, email, password);
 	}
-}
-// Benader de API on in te loggen
-async function loginOnAPI(event, email, password) {
-	console.log("Trying to login");
-	event.preventDefault();
 
-	try {
-		const loginResult = await fetch("https://api-ehbo.onrender.com/api/login", {
-			method: "POST",
-			body: JSON.stringify({
-				emailaddress: email,
-				password: password,
-			}),
-			headers: {
-				"Content-Type": "application/json; charset=UTF-8",
-			},
-		});
+	// Benader de API on in te loggen
+	async function loginOnAPI(event, email, password) {
+		console.log("Trying to login");
+		event.preventDefault();
 
-		const jsonResult = await loginResult.json();
+		try {
+			const loginResult = await fetch("https://api-ehbo.onrender.com/api/login", {
+				method: "POST",
+				body: JSON.stringify({
+					emailaddress: email,
+					password: password,
+				}),
+				headers: {
+					"Content-Type": "application/json; charset=UTF-8",
+				},
+			});
 
-		if (jsonResult.data.SessionToken || jsonResult.data.Permissions) {
-			// Store session tokens
-			createSessionAndPermission(jsonResult.data.SessionToken, jsonResult.data.Permissions);
-		} else {
-			if (jsonResult.message === "User not found or password invalid") {
-				document.getElementById("APIResult").innerText = jsonResult.message;
+			const jsonResult = await loginResult.json();
+
+			if (jsonResult.data.SessionToken || jsonResult.data.Permissions) {
+				// Store session tokens
+				createSessionAndPermission(jsonResult.data.SessionToken, jsonResult.data.Permissions);
 			} else {
-				document.getElementById("APIResult").innerText = "Something went wrong";
+				if (jsonResult.message === "User not found or password invalid") {
+					document.getElementById("APIResult").innerText = jsonResult.message;
+				} else {
+					document.getElementById("APIResult").innerText = "Something went wrong";
+				}
 			}
+		} catch (error) {
+			console.error("Error fetching data:" + error);
+
+			var passwordError = document.getElementById("passwordValidation");
+			passwordError.innerHTML = "Combinatie van email en wachtwoord is incorrect";
+			passwordError.style.display = "block";
 		}
-	} catch (error) {
-		console.error("Error fetching data:" + error);
-		var emailError = document.getElementById("emailValidation");
-		var passwordError = document.getElementById("passwordValidation");
-		emailError.style.display = "block";
-		passwordError.style.display = "block";
 	}
-}
 
-function alertNoAcces() {
-	console.log("Not the right site permissions");
-	alert("You have no acces to this page, redirecting to login");
-	window.location.href = "./Login.html";
-}
+	function alertNoAcces() {
+		console.log("Not the right site permissions");
+		alert("You have no acces to this page, redirecting to login");
+		window.location.href = "./Login.html";
+	}
 
-// Zo kan je een sessie aanmaken
-function createSessionAndPermission(token, permissions) {
-	window.sessionStorage.setItem("jwtToken", token);
-	window.sessionStorage.setItem("permissions", permissions);
-	window.location.href = "./StaticUserInfo.html";
+	// Zo kan je een sessie aanmaken
+	function createSessionAndPermission(token, permissions) {
+		window.sessionStorage.setItem("jwtToken", token);
+		window.sessionStorage.setItem("permissions", permissions);
+		window.location.href = "./StaticUserInfo.html";
+	}
+
 }
