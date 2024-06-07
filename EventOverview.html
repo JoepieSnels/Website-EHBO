@@ -10,7 +10,7 @@
         <link href="css/stylesheet.css" rel="stylesheet" />
         <script src="src/DynamicEventLoading.js"></script>
     </head>
-    <body onload="getProjectsFromDB(event)">
+    <body onload="loadAllProjects(event)">
         <!-- Begin navigatie -->
         <nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px">
             <!-- Hamburger Menu -->
@@ -107,7 +107,6 @@
             </div>
         </nav>
         <!-- Einde navigatie -->
-        <button type="button" class="btn-primary" onclick="addItem(false)">Add</button>
         <div class="container" id="eventCards"></div>
     </body>
 </html>
