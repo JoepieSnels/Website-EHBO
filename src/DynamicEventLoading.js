@@ -60,16 +60,28 @@ function loadAllProjects(event) {
     });
 }
 
+
+// Load project based on ID
 async function getProjectsFromDBWithId(event, id) {
-    console.log('Loading project with ID Number: ' + id);
+    console.log(id);
+    const jwtToken = window.sessionStorage.getItem('jwtToken');
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw';
+    console.log('Loading project with Id: ' + id);
     event.preventDefault();
 
-    // Item loaded from database based on ID
-    let projectItem = testProjectDetails;
-    loadDetailPage(projectItem);
     try {
+        const response = await fetch(`http://localhost:3000/api/getProject?projectId=${id}`, {
+            method: 'GET', // Use GET method
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
-    } catch(error) {
+        const dataJson = await response.json();
+        return dataJson.data;
+
+    } catch (error) {
         console.log('Error fetching data: ' + error);
     }
 }
@@ -87,8 +99,28 @@ function loadProjectDetails(event) {
          tmp = params[i].split('=');
          data[tmp[0]] = tmp[1];
     }
-    console.log(data);
-    document.getElementById('test').innerHTML = data.id;
+    console.log(data.id);
 
-    getProjectsFromDBWithId(event, data.ProjectId);
+    getProjectsFromDBWithId(event, data.id).then(project => {
+        console.log(project)
+        fillDetailPage(project);
+    }).catch(error => {
+        console.log('Error loading projects:', error);
+    });
+}
+
+function fillDetailPage(projectDetails) {
+    console.log(projectDetails);
+    
+    const projectItem = `<div class="card-header col-12" id="projectTitle"><b>Project:</b> ${projectDetails.Title}</div>
+                            <div class="card-body row project-card-body">
+                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split('T')[0]}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0,5)} - ${projectDetails.EndTime.slice(0,5)}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status: </b>${projectDetails.IsAccepted}</p>
+                            </div>
+                        </div>`
+    document.getElementById('replacable').innerHTML = projectItem;
 }
