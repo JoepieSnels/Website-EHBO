@@ -155,14 +155,13 @@ async function createProjectOnAPI(data) {
 	}
 }
 
-
 function showPasswordLogin() {
-    let x = document.getElementById("password");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
+	let x = document.getElementById("password");
+	if (x.type === "password") {
+		x.type = "text";
+	} else {
+		x.type = "password";
+	}
 }
 
 // Check if Email and Password fields are not empty
@@ -190,7 +189,7 @@ async function loginOnAPI(event, email, password) {
 	event.preventDefault();
 
 	try {
-		const loginResult = await fetch("https://api-ehbo.onrender.com/api/login", {
+		const loginResult = await fetch("http://localhost:3000/api/login", {
 			method: "POST",
 			body: JSON.stringify({
 				emailaddress: email,
