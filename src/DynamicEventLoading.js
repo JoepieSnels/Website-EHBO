@@ -90,7 +90,7 @@ async function getProjectsFromDBWithId(event, id) {
 }
 
 function goDetailPage(id) {
-    document.location.href = `./testpage.html?id=${id}`
+    document.location.href = `./EventDetail.html?id=${id}`
 }
 
 function loadProjectDetails(event) {
