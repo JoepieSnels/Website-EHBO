@@ -114,6 +114,12 @@ function loadProjectDetails(event) {
 
 function fillDetailPage(projectDetails) {
     console.log(projectDetails);
+
+    if(!projectDetails.EndDate) {
+        projectDetails.EndDate = ''
+    } else {
+        projectDetails.EndDate = '- ' + projectDetails.EndDate.split('T')[0];
+    }
     
     const projectItem = `<div class="card project-card">
                             <div class="card-header col-12" id="projectTitle">
@@ -121,12 +127,16 @@ function fillDetailPage(projectDetails) {
                                 <b> Bedrijf:</b> ${projectDetails.Company}
                             </div>                            
                             <div class="card-body row project-card-body">
-                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split('T')[0]}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split('T')[0]} ${projectDetails.EndDate}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0,5)} - ${projectDetails.EndTime.slice(0,5)}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status: </b>${projectDetails.IsAccepted}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="ContactPersonName"><b>Contact Persoon: </b>${projectDetails.ContactPerson}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="ContactPersonEmail"><b>Contact Email: </b>${projectDetails.ContactEmailAddress}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="CompanyPhoneNumber"><b>Telefoon Nummer: </b>${projectDetails.PhoneNumber}</p>
+                                <p class="card-text col-lg-6 col-sm-6" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
                             </div>
                         </div>`
     document.getElementById('replacable').innerHTML = projectItem;
