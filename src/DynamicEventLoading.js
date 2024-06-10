@@ -9,15 +9,17 @@ function createCard(projectDetails) {
     }
 
     var item = `<div class="card project-card" onclick="goDetailPage(${projectDetails.ProjectId})">
-                    <div class="card-header col-12" id="projectTitle"><b>Project:</b> ${projectDetails.Title}</div>
-                            <div class="card-body row project-card-body">
-                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum:</b> ${projectDetails.Date}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd:</b> ${projectDetails.StartTime.slice(0,5)} - ${projectDetails.EndTime.slice(0,5)}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig:</b> ${projectDetails.PeopleNeeded}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie:</b> ${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
-                            </div>
+                    <div class="card-header" id="projectTitle">
+                        <b>Project:</b> ${projectDetails.Title} 
+                        <b> Bedrijf:</b> ${projectDetails.Company}
+                    </div>
+                    <div class="card-body row project-card-body">
+                        <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum:</b> ${projectDetails.Date}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd:</b> ${projectDetails.StartTime.slice(0,5)} - ${projectDetails.EndTime.slice(0,5)}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig:</b> ${projectDetails.PeopleNeeded}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie:</b> ${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
                     </div>
                 </div>`
 
@@ -42,6 +44,7 @@ async function getProjectsFromDB(event) {
 
             });
             const dataJson = await response.json();
+            console.log(dataJson);
             return dataJson.data;
     } catch(error) {
         console.log('Error fetching data: ' + error);
@@ -112,7 +115,11 @@ function loadProjectDetails(event) {
 function fillDetailPage(projectDetails) {
     console.log(projectDetails);
     
-    const projectItem = `<div class="card-header col-12" id="projectTitle"><b>Project:</b> ${projectDetails.Title}</div>
+    const projectItem = `<div class="card project-card">
+                            <div class="card-header col-12" id="projectTitle">
+                                <b>Project:</b> ${projectDetails.Title} 
+                                <b> Bedrijf:</b> ${projectDetails.Company}
+                            </div>                            
                             <div class="card-body row project-card-body">
                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split('T')[0]}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0,5)} - ${projectDetails.EndTime.slice(0,5)}</p>
