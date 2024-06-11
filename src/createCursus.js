@@ -11,8 +11,9 @@ async function createCursus() {
     const locationElement = document.getElementById('cursus-location');
     const datetimeElement = document.getElementById('cursus-datetime');
     const certificateElement = document.getElementById('cursus-certificate');
+    const deelnemersElement = document.getElementById('cursus-deelnemers');
 
-    const validationResult = validateFieldValues(titleElement.value.trim(), descriptionElement.value.trim(), locationElement.value.trim(), datetimeElement.value.trim(), certificateElement.value.trim());
+    const validationResult = validateFieldValues(titleElement.value.trim(), descriptionElement.value.trim(), locationElement.value.trim(), datetimeElement.value.trim(), certificateElement.value.trim(), deelnemersElement.value.trim());
 
     if (validationResult === 1) {
         // The fields are correct, make the API call
@@ -35,10 +36,6 @@ async function createCursus() {
         return;
     }
 
-
-
-
-
 }
 
 
@@ -50,7 +47,7 @@ async function createCursus() {
  * @param {datetime} datetime 
  * @param {string} certificate 
  */
-function validateFieldValues(title, description, location, datetime, certificate) {
+function validateFieldValues(title, description, location, datetime, certificate, deelnemers) {
     
     if (title === '') {
         return 'Er is geen titel opgegeven, geef alstublieft een titel op';
@@ -62,7 +59,7 @@ function validateFieldValues(title, description, location, datetime, certificate
 
     if (location === '') {
         return 'Er is geen locatie opgegeven, geef alstublieft een locatie op';
-    }
+    } 
 
     if (datetime === '') {
         return 'Er is geen datum en tijd opgegeven, geef alstublief een datum en tijd op';
@@ -70,6 +67,10 @@ function validateFieldValues(title, description, location, datetime, certificate
 
     if (certificate === '') {
         return 'Er is geen certificaat opgegeven, geef alstublief een certificaat op';
+    }
+
+    if (deelnemers === '') {
+        return 'Er is geen maximaal aantal deelnemers opgegeven, geef alstublief een maximaal aantal deelnemers op';
     }
     
     
