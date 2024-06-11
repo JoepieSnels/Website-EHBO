@@ -20,6 +20,22 @@
 	border-radius: 28px;
 }
 
+
+.login-card {
+	width: 30rem;
+}
+
+.update-card {
+	margin-top: 40px;
+}
+
+.update-card h6{
+	font-size: larger;
+	font-weight: 600;
+	color:#3159b7;
+}
+
+
 .side-nav {
 	margin: 10px;
 	border-radius: 5px;
@@ -193,18 +209,25 @@ h1 {
 	background-color: #6f85c2;
 }
 
-.choiceboxAlignment {
-	padding: 5px;
-}
 
-.choiceboxAlignmentSmall {
-	padding-left: 25px;
-	padding-right: 5px;
+
+.certificates {
+	margin: 21px;
 }
 
 .form-check {
 	padding: 3px;
 	float: left;
+}
+
+
+.footer {
+	margin-top: auto;
+}
+
+.footer p {
+	color: grey;
+	padding: 0px 30px 0px 30px;
 }
 
 .login-password {
@@ -216,9 +239,12 @@ h1 {
 		height: 350px;
 	}
 }
+
+
 .input-group-append {
 	width: 28rem;
 }
+
 .form-row {
 	padding: 10px;
 	margin-left: 5px;
@@ -229,6 +255,7 @@ h1 {
 
 .top {
 	margin-top: 60px;
+
 }
 
 /* DIT FIXED HET HORIZONTAAL SCROLLEN NIET WEGHALEN!!! */
