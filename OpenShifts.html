@@ -16,7 +16,7 @@
 		<link href="css/stylesheet.css" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/ef708f113d.js" crossorigin="anonymous"></script>
 	</head>
-	<body>
+	<body onload="loadShifts(event)">
         <!-- Begin navigatie -->
 		<nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px;">
 		
@@ -146,8 +146,7 @@
             </div>
             <div class="col-lg-9 col-sm-8">
                 <h2 class="page-title">Open diensten</h2>
-                <div class="project-card-container" id="card-container"></div>
-                <script src="./src/openDiensten.js"></script>
+                <div class="project-card-container" id="replacable"></div>
             </div>
             <div class="container content">
 			

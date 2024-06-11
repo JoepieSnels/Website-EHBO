@@ -29,9 +29,9 @@ function generateCards(items) {
 		console.log("item", item);
 		const card = document.createElement("div");
 		card.className = "card project-card";
-		const cardLink = document.createElement("div");
 
-		cardLink.onclick = () => loadDetail(item.Id); // Corrected to use a function
+		const cardLink = document.createElement("a");
+		cardLink.href = `Openshifts.html?id=${item.ProjectId}`;
 		const cardBody = document.createElement("div");
 		cardBody.className = "card-body row project-card-body";
 		let neededCertificates = item.CertificatesNeeded || "-";
@@ -59,4 +59,119 @@ async function init() {
 	} else {
 		console.log("init");
 	}
+}
+function loadShifts(event) {
+	event.preventDefault();
+
+	var url = document.location.href;
+	var paramsString = url.split("?")[1];
+	if (!paramsString) {
+		console.error("No query parameters found in the URL");
+		return;
+	}
+	var params = paramsString.split("&");
+	var data = {},
+		tmp;
+	for (var i = 0, l = params.length; i < l; i++) {
+		tmp = params[i].split("=");
+		data[tmp[0]] = tmp[1];
+	}
+	const projectId = data.id;
+
+	getShifts(event, projectId)
+		.then((shifts) => {
+			fillShiftPage(shifts, projectId);
+		})
+		.catch((error) => {
+			console.log("Error loading projects:", error);
+		});
+}
+
+async function getShifts(event, projectId) {
+	if (event) {
+		event.preventDefault();
+	}
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
+
+	try {
+		const response = await fetch(`http://localhost:3000/api/getshifts?projectId=${projectId}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+				Authorization: `Bearer ${jwtToken}`,
+			},
+		});
+
+		if (!response.ok) {
+			throw new Error("Network response was not ok");
+		}
+
+		const dataJson = await response.json();
+		return dataJson.data;
+	} catch (error) {
+		console.log("Error fetching data: " + error);
+	}
+}
+
+async function assignShift(shiftId, projectId) {
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
+	const userId = window.sessionStorage.getItem("userID"); // Assuming userID is stored in session storage
+	console.log("Assigning shift:", shiftId, projectId, userId);
+	if (!userId) {
+		console.error("No userID found in session storage");
+		return;
+	}
+
+	try {
+		const response = await fetch(`http://localhost:3000/api/assignShift`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+				Authorization: `Bearer ${jwtToken}`,
+			},
+			body: JSON.stringify({ shiftId, projectId, userId }),
+		});
+
+		if (!response.ok) {
+			throw new Error("Network response was not ok");
+		}
+
+		const dataJson = await response.json();
+		alert("Inschrijving gelukt!");
+	} catch (error) {
+		console.log("Error assigning shift: " + error);
+	}
+}
+
+function fillShiftPage(shiftDetailsArray, projectId) {
+	if (!Array.isArray(shiftDetailsArray) || shiftDetailsArray.length === 0) {
+		console.error("No shift details provided");
+		return;
+	}
+
+	let projectItems = "";
+
+	shiftDetailsArray.forEach((shiftDetails) => {
+		if (!shiftDetails.StartDate) {
+			console.error("No StartDate in shift details");
+			return;
+		}
+
+		let endDate = shiftDetails.EndDate ? "- " + shiftDetails.EndDate.split("T")[0] : "";
+
+		const projectItem = `<div class="card project-card">
+                                <div class="card-header col-12" id="projectTitle">
+                                    <b>Shift:</b> ${shiftDetails.ShiftId}
+                                </div>                            
+                                <div class="card-body row project-card-body">
+                                    <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${shiftDetails.StartDate.split("T")[0]} ${endDate}</p>
+                                    <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
+                                    <h5 class="col-12">Schrijf je in!</h5>
+                                    <button class="btn btn-primary float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${projectId}')">Schrijf in!</button>
+                                </div>
+                            </div>`;
+		projectItems += projectItem;
+	});
+
+	document.getElementById("replacable").innerHTML = projectItems;
 }
