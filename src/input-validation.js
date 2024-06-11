@@ -237,7 +237,7 @@ function validateForm(event) {
 		event.preventDefault();
 
 		try {
-			const loginResult = await fetch("https://api-ehbo.onrender.com/api/login", {
+			const loginResult = await fetch("http://localhost:3000/api/login", {
 				method: "POST",
 				body: JSON.stringify({
 					emailaddress: email,

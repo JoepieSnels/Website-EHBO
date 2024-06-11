@@ -3,7 +3,9 @@
 .tinkiewinkie li a:hover {
 	color: #3159b7 !important;
 }
-
+.project-card:hover {
+	cursor: pointer;
+}
 .dipsy a:hover::after {
 	background: #fbe326;
 	content: "";
