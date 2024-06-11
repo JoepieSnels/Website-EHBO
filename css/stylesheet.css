@@ -235,19 +235,9 @@ h1 {
 		height: 350px;
 	}
 }
-.input-group-append {
-	width: 28rem;
-}
-.form-row {
-	padding: 10px;
-	margin-left: 5px;
-}
-.request-form {
-	width: 100rem;
-}
-.input-group-append {
-	width: 28rem;
-}
+/*.input-group-append {*/
+/*	width: 28rem;*/
+/*}*/
 .form-row {
 	padding: 10px;
 	margin-left: 5px;
