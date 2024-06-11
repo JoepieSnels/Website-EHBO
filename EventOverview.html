@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<title>KNV EHBO Tilburg</title>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
-
-		<title>Document</title>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
-
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-        <script src="./src/openDiensten.js"></script>
-		<link href="css/stylesheet.css" rel="stylesheet" />
-        <script src="https://kit.fontawesome.com/ef708f113d.js" crossorigin="anonymous"></script>
-	</head>
-	<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Project Overview</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <link href="css/stylesheet.css" rel="stylesheet" />
+        <script src="src/DynamicEventLoading.js"></script>
+    </head>
+    <body onload="loadAllProjects(event)">
         <!-- Begin navigatie -->
 		<nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px;">
 		
@@ -118,50 +112,26 @@
                                 <a class="nav-link d-none d-lg-block" href="./hulpverlening.html">Hulpverlening</a>
                             </li>
                         </ul>
-                
-                    </div>
-                
-                    <!-- Inloggen -->
-                    <div class="d-flex justify-content-end" style="width: 100%;">
-                        <a href="./Login.html" class="btn btn-lg btn-primary d-none d-xl-block" style="margin-right:20px; background-color: #042062; border-color: #042062;">Inloggen</a>
-                    </div>
-                
-                    <div class="d-flex justify-content-end d-xl-none" style="width: 60%;">
-                        <a href="./Login.html" class="btn btn-lg btn-primary d-none d-sm-block d-lx-none" style="background-color: #042062; border-color: #042062;">Inloggen</a>
                     </div>
                 </div>
-            
             </div>
 		</nav>
-
+        <!-- Einde Navigatie -->
         <div class="row">
-            <div class="col-lg-3 col-sm-4 d-none d-sm-block">
+            <div class="col-lg-3 col-sm-0 d-none d-sm-block">
                 <ul class="side-nav">
                     <li><a href="./#">Mijn diensten</a></li>
-                    <li class="active-link"><a href="./OpenShifts.html">Open diensten</a></li>
+                    <li><a href="./OpenShifts.html">Open diensten</a></li>
                     <li><a href="./#">Certificaten</a></li>
                     <li><a href="./#">Materiaal</a></li>
                     <li><a href="./#">Account gegevens</a></li>
+                    <li class="active-link"><a href="./EventOverview.html">Evenement Overview</a></li>
                 </ul>
             </div>
-            <div class="col-lg-9 col-sm-8">
+            <div class="col-lg-9 col-md-12">
                 <h2 class="page-title">Open diensten</h2>
-                <div class="project-card-container" id="card-container"></div>
-                <script src="./src/openDiensten.js"></script>
+                <div class="project-card-container" id="eventCards"></div>
             </div>
         </div>
-
-	
-		<div class="container content">
-			
-		</div>
-		<footer>
-			<div class="divider"></div>
-			<div class="row footer">
-				<div class="col-6"><p>EHBO Afdeling Tilburg</p></div>
-				<div class="col-6"><p class="float-right">2024</p></div>
-			</div>
-		</footer>
-
-	</body>
+    </body>
 </html>
