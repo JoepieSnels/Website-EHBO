@@ -22,7 +22,7 @@
     <script src="./src/createCursus.js"></script>
 </head>
 
-<body>
+<body style="display: none;" onload="loadCreateCursus('LedenAdministrator')" id="unBlockID">
     <!-- Begin navigatie -->
     <nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px;">
 
@@ -168,7 +168,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="cursus-datetime">Datum en tijd van de cursus:</label>
+                            <label for="cursus-datetime">Datum en tijd van de cursus: (moet mistens 3 dagen vanaf vandaag zijn)</label>
                             <input type="datetime-local" class="form-control" id="cursus-datetime">
                         </div>
 
