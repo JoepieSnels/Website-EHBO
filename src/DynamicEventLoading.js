@@ -138,19 +138,58 @@ function fillDetailPage(projectDetails) {
                                 <p class="card-text col-lg-4 col-sm-6" id="ContactPersonEmail"><b>Contact Email: </b>${projectDetails.ContactEmailAddress}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="CompanyPhoneNumber"><b>Telefoon Nummer: </b>${projectDetails.PhoneNumber}</p>
                                 <p class="card-text col-lg-6 col-sm-6" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
+                                <div class=" float-right" id="buttons">
+                                <button class="btn btn-succes" onclick="acceptProject(${projectDetails.ProjectId})">Accepteren</button>
+                                <button class="btn btn-danger" onclick="rejectProject(${projectDetails.ProjectId})">Weigeren</button>
+                                </div>
                             </div>
                         </div>`;
-	const acceptButton = document.createElement("button");
-	acceptButton.textContent = "Accepteren";
-	acceptButton.className = "btn btn-succes";
-	acceptButton.onclick = () => acceptProject(item.ProjectId, card); // Replace acceptProject with the actual function to handle accepting the project
 
-	const rejectButton = document.createElement("button");
-	rejectButton.textContent = "Weigeren";
-	rejectButton.className = "btn btn-danger";
-	rejectButton.onclick = () => rejectProject(item.ProjectId, card); // Replace rejectProject with the actual function to handle rejecting the project
-
-	projectItem.appendChild(acceptButton);
-	ProjectItem.appendChild(rejectButton);
 	document.getElementById("replacable").innerHTML = projectItem;
+}
+function acceptProject(id) {
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
+
+	fetch("http://localhost:3000/api/acceptproject", {
+		method: "PUT",
+		body: JSON.stringify({ projectId: id }),
+		headers: {
+			"Content-Type": "application/json; charset=UTF-8",
+			Authorization: `bearer ${jwtToken}`,
+		},
+	})
+		.then((response) => {
+			console.log("Response Status:", response.status);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			alert("Project geaccepteerd");
+			window.location.href = "./EventOverview.html";
+		})
+		.catch((error) => {
+			console.error("Error accepting project:", error);
+		});
+}
+function rejectProject(id) {
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
+
+	fetch("http://localhost:3000/api/rejectproject", {
+		method: "PUT",
+		body: JSON.stringify({ projectId: id }),
+		headers: {
+			"Content-Type": "application/json; charset=UTF-8",
+			Authorization: `bearer ${jwtToken}`,
+		},
+	})
+		.then((response) => {
+			console.log("Response Status:", response.status);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			alert("Project geweigerd");
+			window.location.href = "./EventOverview.html";
+		})
+		.catch((error) => {
+			console.error("Error rejecting project:", error);
+		});
 }
