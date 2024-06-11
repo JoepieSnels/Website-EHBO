@@ -122,6 +122,8 @@
 
         <!-- Einde navigatie -->
         <!-- Start Form -->
+        <div class="d-none d-lg-block top"></div>
+        <div class="d-lg-none"><br /></div>
         <div class="container">
             <div class="card">
                 <div class="row">
@@ -131,7 +133,7 @@
                     </div>
                 </div>
                 <!-- on md-lg screens -->
-                <div class="row card-body d-none d-lg-block" style="padding: 10px">
+                <div class="row card-body d-none d-lg-block" style="">
                     <form name="requestAccount" class="form-inline" onsubmit="verifyInputs(event, 1)">
                         <div class="col-lg-12 col-sm-12 col-12">
                             <div class="form-group row">
@@ -335,7 +337,7 @@
                                 <div class="input-group col-lg-2 col-sm-6 col-6">
                                     <label for="gender2" class="mb-2 mr-sm-2">Gender:</label>
                                 </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
+                                <div class="input-group col-lg-4 col-sm-6 col-6" style="margin-bottom: 10px">
                                     <select name="gender2" id="gender2">
                                         <option value="Man">Man</option>
                                         <option value="Vrouw">Vrouw</option>
@@ -438,7 +440,7 @@
                 </div>
             </div>
         </div>
-        <footer>
+        <footer class="top">
             <div class="divider"></div>
             <div class="row footer">
                 <div class="col-6"><p>EHBO Afdeling Tilburg</p></div>
