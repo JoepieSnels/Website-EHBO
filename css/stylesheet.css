@@ -23,6 +23,16 @@
 	width: 30rem;
 }
 
+.update-card {
+	margin-top: 40px;
+}
+
+.update-card h6{
+	font-size: larger;
+	font-weight: 600;
+	color:#3159b7;
+}
+
 .side-nav {
 	margin: 10px;
 	border-radius: 5px;
@@ -192,13 +202,10 @@ h1 {
 	background-color: #6f85c2;
 }
 
-.choiceboxAlignment {
-	padding: 5px;
-}
 
-.choiceboxAlignmentSmall {
-	padding-left: 25px;
-	padding-right: 5px;
+
+.certificates {
+	margin: 21px;
 }
 
 .form-check {
@@ -206,9 +213,7 @@ h1 {
 	float: left;
 }
 
-.choiceboxAlignment {
-	padding: 5px;
-}
+
 .footer {
 	margin-top: auto;
 }

@@ -122,319 +122,166 @@
 
         <!-- Einde navigatie -->
         <!-- Start Form -->
+        
         <div class="container">
-            <div class="card">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-12 text-center card-title">
-                        <h2>Account Gegevens</h2>
-                        <p>Aanvraag Formulier</p>
-                    </div>
-                </div>
-                <!-- on md-lg screens -->
-                <div class="row card-body d-none d-lg-block" style="padding: 10px">
-                    <form name="requestAccount" class="form-inline" onsubmit="verifyInputs(event, 1)">
-                        <div class="col-lg-12 col-sm-12 col-12">
-                            <div class="form-group row">
-                                <!-- Email -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="email" class="mb-2 mr-sm-2">Email adres:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="abc@example.com" id="email" maxlength="320" required />
-                                </div>
-                                <!-- City -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="city" class="mb-2 mr-sm-2">Woonplaats:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Breda" id="city" maxlength="50" required />
-                                </div>
-                                <!-- firstName -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="firstName" class="mb-2 mr-sm-2">Voornaam:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Jan" id="firstName" maxlength="50" required />
-                                </div>
-                                <!-- Postal Code -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="postalCode" class="mb-2 mr-sm-2">Postcode:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="5001AA" id="postalCode" maxlength="70" required />
-                                </div>
-                                <!-- Last Name -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="lastName" class="mb-2 mr-sm-2">Achternaam:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="de Jong" id="lastName" maxlength="50" required />
-                                </div>
-                                <!-- Street -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="street" class="mb-2 mr-sm-2">Straat:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat" id="street" maxlength="70" required />
-                                </div>
-                                <!-- Phone Number -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="phoneNumber" class="mb-2 mr-sm-2">Mobiel Telefoon Nummer:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="06 12345678" id="phoneNumber" maxlength="11" required />
-                                </div>
-                                <!-- House Number -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="houseNumber" class="mb-2 mr-sm-2">Huisnummer:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="18" id="houseNumber" maxlength="10" required />
-                                </div>
-                                <!-- Home Phone Number/Landline -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="landLine" class="mb-2 mr-sm-2">Vaste Telefoon Nummer:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="(+31)-70 123 45 67" maxlength="16" id="landLine" />
-                                </div>
-                                <!-- Invoice Email -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="invoiceEmail" class="mb-2 mr-sm-2">Email factuuradres:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="abc@example.com" id="invoiceEmail" maxlength="320" />
-                                </div>
-                                <!-- Date of Birth -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="dateOfBirth" class="mb-2 mr-sm-2">Geboorte Datum:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="date" class="form-control mb-2 mr-sm-2" id="dateOfBirth" required />
-                                </div>
-                                <!-- Invoice Adres -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="invoiceAdres" class="mb-2 mr-sm-2">Factuuradres:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Amsterdam" id="invoiceAdres" maxlength="50" />
-                                </div>
-                                <!-- Gender -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="gender" class="mb-2 mr-sm-2">Gender:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <select name="gender" id="gender">
-                                        <option value="Man">Man</option>
-                                        <option value="Vrouw">Vrouw</option>
-                                        <option value="Anders">Anders</option>
-                                    </select>
-                                </div>
-                                <!-- Invoice Street -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="invoiceStreet" class="mb-2 mr-sm-2">Straat:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat" id="invoiceStreet" maxlength="70" />
-                                </div>
-                                <!-- Certificates -->
-                                <div class="input-group col-lg-6 col-sm-12 col-12">
-                                    <label for="certificates" class="mb-2 mr-sm-2"
-                                        >Certificaten
-                                        <div class="dropdown">
-                                            <button class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <div class="dropdown-menu choiceboxAlignment">
-                                                <div class="form-check dropdown-item">
-                                                    <input type="checkbox" class="form-check-input" id="eenheidsdiploma" />
-                                                    <label class="form-check-label" for="eenheidsdiploma">Eenheidsdiploma</label>
-                                                </div>
-                                                <div class="form-check dropdown-item">
-                                                    <input type="checkbox" class="form-check-input" id="reanimatie" />
-                                                    <label class="form-check-label" for="reanimatie">Reanimatie</label>
-                                                </div>
-                                                <div class="form-check dropdown-item">
-                                                    <input type="checkbox" class="form-check-input" id="ehak" />
-                                                    <label class="form-check-label" for="ehaK">Eerste hulp aan Kinderen</label>
-                                                </div>
-                                                <div class="form-check dropdown-item">
-                                                    <input type="checkbox" class="form-check-input" id="brandwondletsels" />
-                                                    <label class="form-check-label" for="brandwondletsels">Brandwondletsels</label>
-                                                </div>
-                                                <div class="form-check dropdown-item">
-                                                    <input type="checkbox" class="form-check-input" id="ehv" />
-                                                    <label class="form-check-label" for="ehv">Evenementen hulpverlening</label>
-                                                </div>
-                                            </div>
+            <div class="row gutters">
+                <div class="col-12">
+                    <div class="card update-card">
+                        <div class="card-body">
+                            <form onsubmit="verifyInputs()">
+                                <div class="row gutters">
+                                    <div class="col-12">
+                                        <h6 class="mb-2">Persoonsgegevens</h6>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="firstname">Voornaam</label>
+                                            <input type="text" class="form-control" id="firstname" placeholder="Jan" maxlength=50 required>
                                         </div>
-                                    </label>
-                                </div>
-                                <!-- Invoice Adres Number -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="invoiceNumber" class="mb-2 mr-sm-2">Nummer:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="7" id="invoiceNumber" maxlength="10" />
-                                </div>
-                            </div>
-                        </div>
-                        <div style="padding: 10px">
-                            <button type="submit" class="btn btn-primary px-4">Versturen</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- On md and smaller screens -->
-                <div class="row card-body d-lg-none" style="padding: 10px">
-                    <form name="requestAccount" class="form-inline" onsubmit="verifyInputs(event, 2)">
-                        <div class="col-lg-12 col-sm-12 col-12">
-                            <div class="form-group row">
-                                <!-- Email -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="email2" class="mb-2 mr-sm-2">Email adres:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="abc@example.com" id="email2" maxlength="320" required />
-                                </div>
-                                <!-- firstName -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="firstName2" class="mb-2 mr-sm-2">Voornaam:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Jan" id="firstName2" maxlength="50" required />
-                                </div>
-                                <!-- Last Name -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="lastName2" class="mb-2 mr-sm-2">Achternaam:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="de Jong" id="lastName2" maxlength="50" required />
-                                </div>
-                                <!-- Phone Number -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="phoneNumber2" class="mb-2 mr-sm-2">Mobiel Telefoon Nummer:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="06 12345678" id="phoneNumber2" maxlength="11" required />
-                                </div>
-                                <!-- Home Phone Number/Landline -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="landLine2" class="mb-2 mr-sm-2">Vaste Telefoon Nummer:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="(+31)-70 123 45 67" id="landLine2" maxlength="16" />
-                                </div>
-                                <!-- Date of Birth -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="dateOfBirth2" class="mb-2 mr-sm-2">Geboorte Datum:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="date" class="form-control mb-2 mr-sm-2" id="dateOfBirth2" required />
-                                </div>
-                                <!-- Gender -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="gender2" class="mb-2 mr-sm-2">Gender:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <select name="gender2" id="gender2">
-                                        <option value="Man">Man</option>
-                                        <option value="Vrouw">Vrouw</option>
-                                        <option value="Anders">Anders</option>
-                                    </select>
-                                </div>
-                                <!-- City -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="city2" class="mb-2 mr-sm-2">Woonplaats:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Breda" id="city2" maxlength="50" required />
-                                </div>
-                                <!-- Postal Code -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="postalCode2" class="mb-2 mr-sm-2">Postcode:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="5001AA" id="postalCode2" maxlength="70" required />
-                                </div>
-                                <!-- Street -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="street2" class="mb-2 mr-sm-2">Straat:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat" id="street2" maxlength="70" required />
-                                </div>
-                                <!-- House Number -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="houseNumber2" class="mb-2 mr-sm-2">Huisnummer:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="18" id="houseNumber2" maxlength="10" required />
-                                </div>
-                                <!-- Invoice Email -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="invoiceEmail2" class="mb-2 mr-sm-2">Email factuuradres:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="email" class="form-control mb-2 mr-sm-2" placeholder="abc@example.com" id="invoiceEmail2" maxlength="320" />
-                                </div>
-                                <!-- Invoice Adres -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="invoiceAdres2" class="mb-2 mr-sm-2">Factuuradres:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Amsterdam" id="invoiceAdres2" maxlength="50" />
-                                </div>
-                                <!-- Invoice Street -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="invoiceStreet2" class="mb-2 mr-sm-2">Straat:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Ridderstraat" id="invoiceStreet2" maxlength="70" />
-                                </div>
-                                <!-- Invoice Adres Number -->
-                                <div class="input-group col-lg-2 col-sm-6 col-6">
-                                    <label for="invoiceNumber2" class="mb-2 mr-sm-2">Nummer:</label>
-                                </div>
-                                <div class="input-group col-lg-4 col-sm-6 col-6">
-                                    <input type="text" class="form-control mb-2 mr-sm-2" placeholder="7" id="invoiceNumber2" maxlength="10" />
-                                </div>
-                                <!-- Certificates -->
-                                <div class="input-group col-lg-6 col-sm-12 col-12">
-                                    <label for="certificates2" class="mb-2 mr-sm-2">Certificaten </label>
-                                    <div class="dropdown">
-                                        <button class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false" style="padding: 0px; padding-left: 5px">
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <div class="dropdown-menu choiceboxAlignmentSmall">
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="eenheidsdiploma22" />
-                                                <label class="form-check-label" for="eenheidsdiploma2">Eenheidsdiploma</label>
-                                            </div>
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="reanimatie2" />
-                                                <label class="form-check-label" for="reanimatie2">Reanimatie</label>
-                                            </div>
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="ehak2" />
-                                                <label class="form-check-label" for="EHaK2">Eerste hulp aan Kinderen</label>
-                                            </div>
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="brandwondletsels2" />
-                                                <label class="form-check-label" for="brandwondletsels2">Brandwondletsels</label>
-                                            </div>
-                                            <div class="form-check dropdown-item">
-                                                <input type="checkbox" class="form-check-input" id="ehv2" />
-                                                <label class="form-check-label" for="ehv2">Evenementen hulpverlening</label>
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="lastname">Achternaam</label>
+                                            <input type="text" class="form-control" id="lastname" placeholder="de Jong" maxlength=50 required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="mobilePhone">Mobiel telefoonnummer</label>
+                                            <input type="text" class="form-control" id="mobilePhone" placeholder="06-12345678" maxlength=11 required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="homePhone">Vast telefoonnummer</label>
+                                            <input type="text" class="form-control" id="homePhone" placeholder="(+31) 70 123 45 67" maxlength=16>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="email">Emailadres</label>
+                                            <input type="email" class="form-control" id="email" placeholder="abc@example.nl" maxlength=320 required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="dateOfBirth">Geboortedatum</label>
+                                            <input type="date" class="form-control" id="dateOfBirth" placeholder="dd - mm - jjjj" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="gender">Gender</label>
+                                            <select class="custom-select" id="gender" required>
+                                                <option value="" selected>Selecteer een gender</option>
+                                                <option value="Male">Man</option>
+                                                <option value="Female">Vrouw</option>
+                                                <option value="Other">Anders</option>
+                                                <option value="Won't say">Zeg ik liever niet</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row gutters">
+                                    <div class="col-12">
+                                        <h6 class="mt-3 mb-2">Adresgegevens</h6>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="street">Straat</label>
+                                            <input type="name" class="form-control" id="street" placeholder="Ridderstraat" maxlength=70 required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="houseNumber">Huisnummer</label>
+                                            <input type="name" class="form-control" id="houseNumber" placeholder="18" maxlength=10 required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="postalCode">Postcode</label>
+                                            <input type="text" class="form-control" id="postalCode" placeholder="5001AA" maxlength=7 required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="city">Woonplaats</label>
+                                            <input type="text" class="form-control" id="city" placeholder="Breda" maxlength=50 required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gutters">
+                                    <div class="col-12">
+                                        <h6 class="mt-3 mb-2">Factuurgegevens</h6>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="billingStreet">Straat</label>
+                                            <input type="name" class="form-control" id="billingStreet" placeholder="Molenstraat" maxlength=70>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="billingHouseNumber">Huisnummer</label>
+                                            <input type="name" class="form-control" id="billingHouseNumber" placeholder="158" maxlength=10>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="billingCity">Woonplaats</label>
+                                            <input type="text" class="form-control" id="billingCity" placeholder="Amsterdam" maxlength=50>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="billingEmail">Emailadres</label>
+                                            <input type="text" class="form-control" id="billingEmail" placeholder="factuur@server.nl" maxlength=320>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class="col-9">
+    
+                                        <button class="btn btn-outline-primary" type="button" data-toggle="collapse" aria-expanded="false" data-target="#collapse" role="button" aria-controls="#collapse">Certificaten</button>
+                                        
+                                        
+                                        <div class="collapse certificates" id="collapse">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="eenheidsdiploma">
+                                                 <label class="form-check-label" for="eenheidsdiploma">Eenheidsdiploma</label>   
+                                            </div>
+                                            <div class="form-check col-12">
+                                                <input type="checkbox" class="form-check-input" id="reanimatie" />
+                                                <label class="form-check-label" for="reanimatie">Reanimatie</label>
+                                            </div>
+                                            <div class="form-check col-12">
+                                                <input type="checkbox" class="form-check-input" id="ehak" />
+                                                <label class="form-check-label" for="ehaK">Eerste hulp aan Kinderen</label>
+                                            </div>
+                                          
+                                            <div class="form-check col-12">
+                                                <input type="checkbox" class="form-check-input" id="brandwondletsels" />
+                                                <label class="form-check-label" for="brandwondletsels">Brandwondletsels</label>
+                                            </div>
+                                            <div class="form-check col-12">
+                                                <input type="checkbox" class="form-check-input" id="ehv" />
+                                                <label class="form-check-label" for="ehv">Evenementen hulpverlening</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                        <div class="col-3">
+                                            <div>
+                                                <button type="submit" id="save" name="submit" class="btn btn-secondary float-right">Opslaan</button>
+                                            </div>
+                            
+                                    </div>
+                                </div>
+                                
+                            </form>
                         </div>
-                        <div style="padding: 10px">
-                            <button type="submit" class="btn btn-primary px-4">Versturen</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

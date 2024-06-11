@@ -1,90 +1,128 @@
-
-function validateFields(event, activateAlert, validateEmail, validateBillingEmail, validatePassword, validateNewPassword, validatePostalCode, /*validateBillingPostalCode, */validateHouseNumber, validateBillingHouseNumber, validateDateOfBirth, validateMobilePhone, validateHomePhone, validateBillingAddress) {
-    event.preventDefault();
-    activateAlert(validateEmail, validateBillingEmail, validatePassword, validateNewPassword, validatePostalCode, /*validateBillingPostalCode, */validateHouseNumber, validateBillingHouseNumber, validateDateOfBirth, validateMobilePhone, validateHomePhone, validateBillingAddress)
+function submitUpdateForm(){
+    event.preventDefault()
+    const validators = [validateUpdateEmail, validateUpdatePassword, validateNewPassword, validateUpdatePostalCode, validateUpdateHouseNumber, validateUpdateDateOfBirth, validateUpdatePhoneNumber, validateUpdateLandLineNumber, validateBillingAddress]
+    const error = validateFields(validators);
+    if(error){
+        alert(error)
+    } else {
+        updateMemberOnAPI();
+    }  
+    
 }
 
-function activateAlert(validateEmail, validateBillingEmail, validatePassword, validateNewPassword, validatePostalCode, /*validateBillingPostalCode, */validateHouseNumber, validateBillingHouseNumber, validateDateOfBirth, validateMobilePhone, validateHomePhone, validateBillingAddress) {
-    let issues = 0;
-    let alertString = 'Er zijn één of meerdere velden verkeerd ingevuld: ';
 
-    let methodArray = [validateEmail(), validateBillingEmail(), validatePassword(), validateNewPassword(), validatePostalCode(), /*validateBillingPostalCode(), */validateHouseNumber(), validateBillingHouseNumber(), validateDateOfBirth(), validateMobilePhone(), validateHomePhone(), validateBillingAddress()]
+function validateUpdateEmail() {
+    let email = document.getElementById('email').value.trim();
+    return email ? validateEmail(email) : 'Email mist';
 
-    if (methodArray.some(isTrue)) {
-        for(let i = 0; i < methodArray.length; i++) {
-            if (methodArray[i] && issues > 0) {
-                issues++
-                alertString += (', ' + methodArray[i])
-            } else if (methodArray[i]) {
-                alertString += methodArray[i]
-                issues++
-            }
-        }
-        alert(alertString)
-    };
+
 }
-
-const isTrue = (element) => {
-    if (element) {
-        return true
-    }
-}
-
-function validatePassword() {
-
+//check of input leeg is
+function validateUpdatePassword() {
     let currentPassword = document.getElementById('currentPassword').value;
-
-    if (currentPassword === '') {
-        document.getElementById('currentPassword').value = '';
-        return 'wachtwoord'
-    }
+    return currentPassword ? true : 'Huidig wachtwoord mist'
 }
 
+//check of wachtwoord leeg is, en of het pattroon klopt
 function validateNewPassword() {
-    const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\S{8,}$/;
-
     let newPassword = document.getElementById('newPassword').value;
-
-    if ((!(pattern.test(newPassword)) && newPassword !== '') || (newPassword !== currentPassword && newPassword !== '')) {
-        document.getElementById('newPassword').value = '';
-        return 'nieuw wachtwoord'
-    }
-};
-
-function validateEmail() {
-    let pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-    let input = document.getElementById('email').value.trim();
-
-    if (!(pattern.test(input))) {
-        document.getElementById('email').value = '';
-        return 'email'
-    }
+    return newPassword ? validatePassword(newPassword) : true;
 }
 
-function validateBillingEmail() {
-    let pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-    let input = document.getElementById('billingEmail').value.trim();
-
-    if (input) {
-        if (!(pattern.test(input))) {
-            document.getElementById('billingEmail').value = '';
-            return 'factuur-email'
-        }
-    }
+function validateUpdatePostalCode() {
+    let postalCode = document.getElementById('postalCode').value;
+    return postalCode ? validatePostalCode(postalCode) : 'Postcode mist'
 }
 
-function validatePostalCode() {
-    const pattern = /^[0-9]{4} ?[a-zA-Z]{2}$/;
+function validateUpdateHouseNumber() {
+    let houseNumber = document.getElementById('houseNumber').value;
+    return houseNumber ? validateHouseNumber(houseNumber) : 'Huisnummer mist'
 
-    let input = document.getElementById('postalCode').value.trim();
-
-    if(!(pattern.test(input))) {
-        document.getElementById('postalCode').value = '';
-        return 'postcode'
-    }
 }
+
+function validateUpdateDateOfBirth() {
+    let dateOfBirth = document.getElementById('dateOfBirth').value;
+    return dateOfBirth ? validateDateOfBirth(dateOfBirth) : 'Geboortedatum mist'
+}
+
+function validateUpdatePhoneNumber() {
+    let mobilePhone = document.getElementById('mobilePhone').value;
+    return mobilePhone ? validatePhoneNumber(mobilePhone) : 'Mobiel nummer mist'
+}
+
+function validateUpdateLandLineNumber() {
+    let landLine = document.getElementById('homePhone').value;
+    return landLine ? validateLandlineNumber(landLine) : true;
+}
+
+// function validateFields(event, activateAlert, validateEmail, validateBillingEmail, validatePassword, validateNewPassword, validatePostalCode, validateHouseNumber, validateBillingHouseNumber, validateDateOfBirth, validateMobilePhone, validateHomePhone, validateBillingAddress) {
+//     event.preventDefault();
+//     activateAlert(validateEmail(), validateBillingEmail(), validatePassword(), validateNewPassword(), validatePostalCode(), validateHouseNumber(), validateBillingHouseNumber(), validateDateOfBirth(), validateMobilePhone(), validateHomePhone(), validateBillingAddress())
+// }
+
+// function activateAlert(validateEmail, validateBillingEmail, validatePassword, validateNewPassword, validatePostalCode, validateHouseNumber, validateBillingHouseNumber, validateDateOfBirth, validateMobilePhone, validateHomePhone, validateBillingAddress) {
+//     let issues = 0;
+//     let alertString = 'Er zijn één of meerdere velden verkeerd ingevuld: ';
+
+//     let methodArray = [validateEmail(), validateBillingEmail(), validatePassword(), validateNewPassword(), validatePostalCode(), validateHouseNumber(), validateBillingHouseNumber(), validateDateOfBirth(), validateMobilePhone(), validateHomePhone(), validateBillingAddress()]
+
+//     if (methodArray.some(isTrue)) {
+//         for(let i = 0; i < methodArray.length; i++) {
+//             if (methodArray[i] && issues > 0) {
+//                 issues++
+//                 alertString += (', ' + methodArray[i])
+//             } else if (methodArray[i]) {
+//                 alertString += methodArray[i]
+//                 issues++
+//             }
+//         }
+//         alert(alertString)
+//     };
+// }
+
+// const isTrue = (element) => {
+//     if (element) {
+//         return true
+//     }
+// }
+
+
+
+
+// function validateEmail() {
+//     let pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+//     let input = document.getElementById('email').value.trim();
+
+//     if (!(pattern.test(input))) {
+//         document.getElementById('email').value = '';
+//         return 'email'
+//     }
+// }
+
+// function validateBillingEmail() {
+//     let pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+//     let input = document.getElementById('billingEmail').value.trim();
+
+//     if (input) {
+//         if (!(pattern.test(input))) {
+//             document.getElementById('billingEmail').value = '';
+//             return 'factuur-email'
+//         }
+//     }
+// }
+
+// function validatePostalCode() {
+//     const pattern = /^[0-9]{4} ?[a-zA-Z]{2}$/;
+
+//     let input = document.getElementById('postalCode').value.trim();
+
+//     if(!(pattern.test(input))) {
+//         document.getElementById('postalCode').value = '';
+//         return 'postcode'
+//     }
+// }
 
 // function validateBillingPostalCode() {
 //     const pattern = /^[0-9]{4} ?[a-zA-Z]{2}$/;
@@ -99,72 +137,76 @@ function validatePostalCode() {
 //     }
 // }
 
-function validateHouseNumber() {
-    const pattern =/^[0-9]{1,5} ?[a-zA-Z]?$/;
+// function validateHouseNumber() {
+//     const pattern =/^[0-9]{1,5} ?[a-zA-Z]?$/;
 
-    let input = document.getElementById('houseNumber').value.trim();
+//     let input = document.getElementById('houseNumber').value.trim();
 
-    if(!pattern.test(input)) {
-        document.getElementById('houseNumber').value = '';
-        return 'huisnummer'
-    }
-}
+//     if(!pattern.test(input)) {
+//         document.getElementById('houseNumber').value = '';
+//         return 'huisnummer'
+//     }
+// }
 
-function validateBillingHouseNumber() {
-    const pattern =/^[0-9]{1,5} ?[a-zA-Z]?$/;
+// function validateBillingHouseNumber() {
+//     const pattern =/^[0-9]{1,5} ?[a-zA-Z]?$/;
 
-    let input = document.getElementById('billingHouseNumber').value.trim();
+//     let input = document.getElementById('billingHouseNumber').value.trim();
 
-    if (input) {
-        if(!pattern.test(input)) {
-            document.getElementById('billingHouseNumber').value = '';
-            return 'factuur-huisnummer'
-        }
-    }
-}
+//     if (input) {
+//         if(!pattern.test(input)) {
+//             document.getElementById('billingHouseNumber').value = '';
+//             return 'factuur-huisnummer'
+//         }
+//     }
+// }
 
-function validateDateOfBirth() {
-    const date = new Date();
-    const today = date.toISOString().split('T')[0];
-    let input = document.getElementById('dateOfBirth').value;
+// function validateDateOfBirth() {
+//     const date = new Date();
+//     const today = date.toISOString().split('T')[0];
+//     let input = document.getElementById('dateOfBirth').value;
 
-    if(!(input < today) || !input) {
-        document.getElementById('dateOfBirth').value = '';
-        return 'geboortedatum'
-    }
-}
+//     if(!(input < today) || !input) {
+//         document.getElementById('dateOfBirth').value = '';
+//         return 'geboortedatum'
+//     }
+// }
 
-function validateMobilePhone() {
-    const pattern = /^(?:\+31[ -]?)?(06|6)[ -]?[1-9][0-9]{7}$/;
+// function validateMobilePhone() {
+//     const pattern = /^(?:\+31[ -]?)?(06|6)[ -]?[1-9][0-9]{7}$/;
 
-    let input = document.getElementById('mobilePhone').value.trim();
+//     let input = document.getElementById('mobilePhone').value.trim();
 
-    if (!pattern.test(input)) {
-        document.getElementById('mobilePhone').value = '';
-        return 'mobiel telefoonnummer'
-    }
-}
+//     if (!pattern.test(input)) {
+//         document.getElementById('mobilePhone').value = '';
+//         return 'mobiel telefoonnummer'
+//     }
+// }
 
-function validateHomePhone() {
-    const pattern = /^(?:\+31[ -]?)?(0[0-9]{2}|[0-9]{2})[ -]?[0-9]{3} ?[0-9]{2} ?[0-9]{2}$/;
+// function validateHomePhone() {
+//     const pattern = /^(?:\+31[ -]?)?(0[0-9]{2}|[0-9]{2})[ -]?[0-9]{3} ?[0-9]{2} ?[0-9]{2}$/;
 
-    let input = document.getElementById('homePhone').value.trim();
+//     let input = document.getElementById('homePhone').value.trim();
 
-    if (input) {
-        if (!pattern.test(input)) {
-            document.getElementById('homePhone').value = '';
-            return 'vast telefoonnummer'
-        }
-    }
-}
+//     if (input) {
+//         if (!pattern.test(input)) {
+//             document.getElementById('homePhone').value = '';
+//             return 'vast telefoonnummer'
+//         }
+//     }
+// }
 
 function validateBillingAddress() {
-    if (!document.getElementById('billingStreet').value.trim() || !document.getElementById('billingCity').value.trim() || !document.getElementById('billingHouseNumber').value.trim()/* || !document.getElementById('billingPostalCode').value.trim()*/) {
-        if (!document.getElementById('billingStreet').value.trim() && !document.getElementById('billingCity').value.trim() && !document.getElementById('billingHouseNumber').value.trim()/* && !document.getElementById('billingPostalCode').value.trim()*/) {
-        } else {
-            return 'bij factuurgegevens moeten postcode, huisnummer, straat en woonplaats allemaal ingevuld zijn OF allemaal leeg zijn.'
+    const billingStreet = document.getElementById('billingStreet').value.trim();
+    const billingCity = document.getElementById('billingCity').value.trim();
+    const billingHouseNumber = document.getElementById('billingHouseNumber').value.trim();
+    if(billingStreet || billingCity || billingHouseNumber) {
+        if(!billingStreet || !billingCity || !billingHouseNumber) {
+            return 'Alle factuur adres gegevens moeten ingevuld worden'
         }
+        
     }
+    return true;
 }
 
 function showPassword(id) {
@@ -190,10 +232,11 @@ function formatDate(date) {
 // Extract values from input elements
 
 async function updateMemberOnAPI() {
-    let data = [document.getElementById("firstname").value, document.getElementById("lastname").value, document.getElementById("mobilePhone").value, document.getElementById("homePhone").value, document.getElementById("email").value, document.getElementById("dateOfBirth").value, document.getElementById("gender").value,/* document.getElementById("certificatesButton").value, */document.getElementById("street").value, document.getElementById("houseNumber").value, document.getElementById("postalCode").value, document.getElementById("city").value, document.getElementById("billingStreet").value, document.getElementById("billingHouseNumber").value,/* document.getElementById("billingPostalCode").value, */document.getElementById("billingCity").value, document.getElementById("billingEmail").value, document.getElementById("currentPassword").value, document.getElementById("newPassword").value];
+
+    let data = [document.getElementById("firstname").value, document.getElementById("lastname").value, document.getElementById("mobilePhone").value, document.getElementById("homePhone").value, document.getElementById("email").value, document.getElementById("dateOfBirth").value, document.getElementById("gender").value, document.getElementById("street").value, document.getElementById("houseNumber").value, document.getElementById("postalCode").value, document.getElementById("city").value, document.getElementById("billingStreet").value, document.getElementById("billingHouseNumber").value, document.getElementById("billingCity").value, document.getElementById("billingEmail").value, document.getElementById("currentPassword").value, document.getElementById("newPassword").value];
     const jwtToken = window.sessionStorage.getItem('jwtToken'); // Haalt de token op uit de session
     // const userId = loadInfo(jwtToken)
-
+    event.preventDefault();
     try {
         data[5] = formatDate(data[5]); // Format date to "YYYY-MM-DD" format
 
@@ -231,6 +274,11 @@ async function updateMemberOnAPI() {
         const projectData = await projectResult.json();
 
         console.log(projectData);
+        if(projectData.status === 404) {
+            alert('Gebruiker niet gevonden, de combinatie van wachtwoord en emailadres is incorrect')
+        } else if (projectData.status === 200) {
+            alert('Gebruiker succesvol veranderd')
+        }
     } catch (error) {
         console.error("Error putting data:" + error);
     }
@@ -335,7 +383,6 @@ async function loadInfo(jwtToken) {
 function transgender(deadGender) {
     const lowercaseGender = deadGender.toLowerCase();
     if (lowercaseGender === 'male' || lowercaseGender === 'm' || lowercaseGender ===  'Male' || lowercaseGender ===  'M') {
-        console.log("ik ben man")
         return 'Male';
     } else if (lowercaseGender === 'female' || lowercaseGender === 'f' || lowercaseGender === 'Female' || lowercaseGender ===  'F') {
         return 'Female';
