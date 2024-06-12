@@ -1,7 +1,7 @@
 async function fetchData() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
 	try {
-		const response = await fetch("http://localhost:3000/api/getActiveProjects", {
+		const response = await fetch("https://api-ehbo.onrender.com/api/getActiveProjects", {
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
 				Authorization: `bearer ${jwtToken}`, // Ensure the format is correct
@@ -94,7 +94,7 @@ async function getShifts(event, projectId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
 	try {
-		const response = await fetch(`http://localhost:3000/api/getshifts?projectId=${projectId}`, {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/getshifts?projectId=${projectId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
@@ -123,7 +123,7 @@ async function assignShift(shiftId, projectId) {
 	}
 
 	try {
-		const response = await fetch(`http://localhost:3000/api/assignShift`, {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/assignShift`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
