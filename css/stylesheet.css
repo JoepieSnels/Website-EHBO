@@ -22,7 +22,6 @@
 	border-radius: 28px;
 }
 
-
 .login-card {
 	width: 30rem;
 }
@@ -31,12 +30,11 @@
 	margin-top: 40px;
 }
 
-.update-card h6{
+.update-card h6 {
 	font-size: larger;
 	font-weight: 600;
-	color:#3159b7;
+	color: #3159b7;
 }
-
 
 .side-nav {
 	margin: 10px;
@@ -77,10 +75,6 @@
 	color: black;
 }
 
-.page-title {
-	padding: 15px;
-}
-
 .project-list-card {
 	margin: 15px;
 }
@@ -93,10 +87,9 @@
 	font-size: 14px;
 }
 
-.project-list-card:hover{
+.project-list-card:hover {
 	border: 1px solid #042062;
-	box-shadow: 2px 2px #6f85c2
-
+	box-shadow: 2px 2px #6f85c2;
 }
 
 .error-message {
@@ -217,8 +210,6 @@ h1 {
 	background-color: #6f85c2;
 }
 
-
-
 .certificates {
 	margin: 21px;
 }
@@ -227,7 +218,6 @@ h1 {
 	padding: 3px;
 	float: left;
 }
-
 
 .footer {
 	margin-top: auto;
@@ -251,7 +241,6 @@ h1 {
 	}
 }
 
-
 .input-group-append {
 	width: 28rem;
 }
@@ -266,7 +255,6 @@ h1 {
 
 .top {
 	margin-top: 60px;
-
 }
 
 /* DIT FIXED HET HORIZONTAAL SCROLLEN NIET WEGHALEN!!! */
