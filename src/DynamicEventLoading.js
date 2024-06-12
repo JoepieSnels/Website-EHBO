@@ -9,9 +9,9 @@
 
 // 	const projectItem = `<div class="card project-card">
 //                             <div class="card-header col-12" id="projectTitle">
-//                                 <b>Project:</b> ${projectDetails.Title} 
+//                                 <b>Project:</b> ${projectDetails.Title}
 //                                 <b> Bedrijf:</b> ${projectDetails.Company}
-//                             </div>                            
+//                             </div>
 //                             <div class="card-body row project-card-body">
 //                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
 //                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
@@ -39,7 +39,7 @@
 
 // 	var item = `<div class="card project-card" onclick="goDetailPage(${projectDetails.ProjectId})">
 //                     <div class="card-header" id="projectTitle">
-//                         <b>Project:</b> ${projectDetails.Title} 
+//                         <b>Project:</b> ${projectDetails.Title}
 //                         <b> Bedrijf:</b> ${projectDetails.Company}
 //                     </div>
 //                     <div class="card-body row project-card-body">
@@ -66,8 +66,7 @@ function createAcceptedCard(projectDetails) {
 	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
 		projectDetails.IsAccepted = "No Reply";
 	}
-	const status = setStatus(projectDetails.IsAccepted)
-	
+	const status = setStatus(projectDetails.IsAccepted);
 
 	var item = `<div class="card project-list-card" onclick="goAcceptedDetailPage(${projectDetails.ProjectId})">
                     <div class="card-header" id="projectTitle">
@@ -87,13 +86,10 @@ function createAcceptedCard(projectDetails) {
 	console.log(projectDetails.Id);
 }
 
-
 //gebruikt
 function goAcceptedDetailPage(id) {
 	document.location.href = `./CreateShift.html?id=${id}`;
 }
-
-
 
 //gebruikt
 function loadAcceptedProjects(event) {
@@ -167,34 +163,14 @@ async function getAcceptedProjectsFromDB(event) {
 // 		});
 // }
 
-
 //gebruikt
 // Load project based on ID
 async function getProjectsFromDBWithId(event, id) {
-
-    console.log(id);
-    const jwtToken = window.sessionStorage.getItem('jwtToken');
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw';
-    console.log('Loading project with Id: ' + id);
-    event.preventDefault();
-
-    try {
-        const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
-            method: 'GET', // Use GET method
-            headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-                'Authorization': `Bearer ${token}`
-            }
-        });
-
-        const dataJson = await response.json();
-        return dataJson.data;
-
-    } catch (error) {
-        console.log('Error fetching data: ' + error);
-    }
-}
-
+	console.log(id);
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
+	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
+	console.log("Loading project with Id: " + id);
+	event.preventDefault();
 
 	try {
 		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
@@ -210,6 +186,21 @@ async function getProjectsFromDBWithId(event, id) {
 	} catch (error) {
 		console.log("Error fetching data: " + error);
 	}
+}
+
+try {
+	const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
+		method: "GET", // Use GET method
+		headers: {
+			"Content-Type": "application/json; charset=UTF-8",
+			Authorization: `Bearer ${token}`,
+		},
+	});
+
+	const dataJson = await response.json();
+	return dataJson.data;
+} catch (error) {
+	console.log("Error fetching data: " + error);
 }
 
 // function goDetailPage(id) {
@@ -252,9 +243,9 @@ async function getProjectsFromDBWithId(event, id) {
 
 // 	const projectItem = `<div class="card project-card">
 //                             <div class="card-header col-12" id="projectTitle">
-//                                 <b>Project:</b> ${projectDetails.Title} 
+//                                 <b>Project:</b> ${projectDetails.Title}
 //                                 <b> Bedrijf:</b> ${projectDetails.Company}
-//                             </div>                            
+//                             </div>
 //                             <div class="card-body row project-card-body">
 //                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
 //                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
@@ -354,7 +345,7 @@ function fillAcceptedDetailPage(projectDetails) {
 		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
 	}
 
-	const status = setStatus(projectDetails.IsAccepted)
+	const status = setStatus(projectDetails.IsAccepted);
 
 	const projectItem = `<div class="card project-card">
                             <div class="card-header col-12" id="projectTitle">
@@ -412,12 +403,12 @@ function checkInput() {
 	const endTime = document.getElementById(`shiftEndTime${count}`).value;
 	const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
 	const endDate = document.getElementById(`shiftEndDate${count}`).value;
-	let alert = '';
-	if(!beginTime || !endTime || !beginDate || !endDate) {
-		console.log('leeg veld')
-		alert = 'Een veld mist'
+	let alert = "";
+	if (!beginTime || !endTime || !beginDate || !endDate) {
+		console.log("leeg veld");
+		alert = "Een veld mist";
 		return false;
-	} 
+	}
 	// if(validateDate(beginDate, endDate) && validateTime(beginTime, endTime, beginDate, endDate)) {
 	// 	return true
 	// }
@@ -427,47 +418,41 @@ function checkInput() {
 	// 	console.log('datum')
 	// 	alert = 'Einddatum moet voor begindatum zijn'
 	// 	return false;
-	// } 
+	// }
 	// if (!validateTime(beginTime, endTime, beginDate, endDate)) {
 	// 	console.log('tijd')
 	// 	alert = 'Eindtijd moet na begintijd zijn'
 	// 	return false;
 	// }
 	// return 'hoi'
-	
 }
 function addShift(projectId) {
 	// if(!checkInput()) {
 	// 	alert("NEEE")
 	// } else {
 	// alert(checkInput())
-		appendShiftForm(count+1)
+	appendShiftForm(count + 1);
 
-		const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
-		const endTime = document.getElementById(`shiftEndTime${count}`).value;
-		const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
-		const endDate = document.getElementById(`shiftEndDate${count}`).value;
-		
+	const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
+	const endTime = document.getElementById(`shiftEndTime${count}`).value;
+	const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
+	const endDate = document.getElementById(`shiftEndDate${count}`).value;
 
-	
-		shifts.push({
-			beginTime: beginTime,
-			endTime: endTime,
-			beginDate: beginDate,
-			endDate: endDate,
-			projectId: projectId,
-		});
+	shifts.push({
+		beginTime: beginTime,
+		endTime: endTime,
+		beginDate: beginDate,
+		endDate: endDate,
+		projectId: projectId,
+	});
 
-		hideLastShift(count)
-		count++;
+	hideLastShift(count);
+	count++;
 
-		
 	//}
-
 }
 
 function hideLastShift(teller) {
-
 	document.getElementById(`shift${teller}`).innerHTML = `
 										<div class="row">
 										<label for="shiftBeginTime" class="col-3">Begin Tijd</label>          
@@ -480,12 +465,11 @@ function hideLastShift(teller) {
 										<p class="col-3">${shifts[teller].beginDate}</p>
 										<label for="shiftEndDate" class="col-3">Eind datum</label>
 										<p class="col-3">${shifts[teller].endDate}</p>
-									</div>`
+									</div>`;
 }
 
 function appendShiftForm(teller) {
-
-	const shiftForm = document.createElement('div')
+	const shiftForm = document.createElement("div");
 	shiftForm.innerHTML = `
 				<div id="shift${teller}">
 					<div class="row">
@@ -501,12 +485,8 @@ function appendShiftForm(teller) {
 						<input type="date" id="shiftEndDate${teller}" class="col-3"></input>
 					</div>
 				</div>
-										`
-	document.getElementById('shiftCreator').appendChild(shiftForm)
-
-
-
-
+										`;
+	document.getElementById("shiftCreator").appendChild(shiftForm);
 }
 function setActive(id) {
 	if (shifts.length === 0) {
@@ -571,5 +551,3 @@ function createShifts() {
 			});
 	}
 }
-
-
