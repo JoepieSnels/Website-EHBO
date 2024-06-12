@@ -186,7 +186,7 @@ async function getProjectsFromDBWithId(event, id) {
 	} catch (error) {
 		console.log("Error fetching data: " + error);
 	}
-}
+
 
 try {
 	const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
@@ -201,6 +201,7 @@ try {
 	return dataJson.data;
 } catch (error) {
 	console.log("Error fetching data: " + error);
+}
 }
 
 // function goDetailPage(id) {
