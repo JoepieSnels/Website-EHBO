@@ -31,7 +31,7 @@ function generateCards(items) {
 		card.className = "card project-card";
 
 		const cardLink = document.createElement("a");
-		cardLink.href = `Openshifts.html?id=${item.ProjectId}`;
+		cardLink.href = `ShiftDetailPage.html?id=${item.ProjectId}`;
 		const cardBody = document.createElement("div");
 		cardBody.className = "card-body row project-card-body";
 		let neededCertificates = item.CertificatesNeeded || "-";
