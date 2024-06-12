@@ -1,4 +1,3 @@
-
 function fillAcceptedDetailPage(projectDetails) {
 	console.log(projectDetails);
 
@@ -57,64 +56,63 @@ function createCard(projectDetails) {
 	console.log(projectDetails.Id);
 }
 
-// function fillAcceptedDetailPage(projectDetails) {
-// 	console.log(projectDetails);
+function fillAcceptedDetailPage(projectDetails) {
+	console.log(projectDetails);
 
-// 	if (!projectDetails.EndDate) {
-// 		projectDetails.EndDate = "";
-// 	} else {
-// 		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
-// 	}
+	if (!projectDetails.EndDate) {
+		projectDetails.EndDate = "";
+	} else {
+		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
+	}
 
-// 	const projectItem = `<div class="card project-card">
-//                             <div class="card-header col-12" id="projectTitle">
-//                                 <b>Project:</b> ${projectDetails.Title}
-//                                 <b> Bedrijf:</b> ${projectDetails.Company}
-//                             </div>
-//                             <div class="card-body row project-card-body">
-//                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
-//                                 <p class="card-text col-lg-4 col
-//                         <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
-//                     </div>
-//                 </div>`;
+	const projectItem = `<div class="card project-card">
+                            <div class="card-header col-12" id="projectTitle">
+                                <b>Project:</b> ${projectDetails.Title}
+                                <b> Bedrijf:</b> ${projectDetails.Company}
+                            </div>
+                            <div class="card-body row project-card-body">
+                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
+                                <p class="card-text col-lg-4 col
+                        <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
+                    </div>
+                </div>`;
 
-// 	document.getElementById("eventCards").innerHTML += projectItem;
+	document.getElementById("eventCards").innerHTML += projectItem;
 
-// 	console.log(projectDetails.Id);
-// }
-// function createCard(projectDetails) {
-// 	console.log(projectDetails);
-// 	// projectDetails = testProjectDetails;
+	console.log(projectDetails.Id);
+}
+function createCard(projectDetails) {
+	console.log(projectDetails);
+	// projectDetails = testProjectDetails;
 
-// 	projectDetails.RequestDate = projectDetails.RequestDate.split("T")[0];
-// 	projectDetails.Date = projectDetails.Date.split("T")[0];
-// 	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
-// 		projectDetails.IsAccepted = "No Reply";
-// 	}
+	projectDetails.RequestDate = projectDetails.RequestDate.split("T")[0];
+	projectDetails.Date = projectDetails.Date.split("T")[0];
+	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
+		projectDetails.IsAccepted = "No Reply";
+	}
 
-// 	var item = `<div class="card project-card" onclick="goDetailPage(${projectDetails.ProjectId})">
-//                     <div class="card-header" id="projectTitle">
-//                         <b>Project:</b> ${projectDetails.Title}
-//                         <b> Bedrijf:</b> ${projectDetails.Company}
-//                     </div>
-//                     <div class="card-body row project-card-body">
-//                         <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum:</b> ${projectDetails.Date}</p>
-//                         <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd:</b> ${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-//                         <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig:</b> ${projectDetails.PeopleNeeded}</p>
-//                         <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie:</b> ${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
-//                         <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
-//                         <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
-//                     </div>
-//                 </div>`;
+	var item = `<div class="card project-card" onclick="goDetailPage(${projectDetails.ProjectId})">
+                    <div class="card-header" id="projectTitle">
+                        <b>Project:</b> ${projectDetails.Title}
+                        <b> Bedrijf:</b> ${projectDetails.Company}
+                    </div>
+                    <div class="card-body row project-card-body">
+                        <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum:</b> ${projectDetails.Date}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd:</b> ${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig:</b> ${projectDetails.PeopleNeeded}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie:</b> ${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
+                    </div>
+                </div>`;
 
-// 	document.getElementById("eventCards").innerHTML += item;
-// 	console.log(projectDetails.Id);
-// }
-
+	document.getElementById("eventCards").innerHTML += item;
+	console.log(projectDetails.Id);
+}
 
 function createAcceptedCard(projectDetails) {
 	console.log(projectDetails);
@@ -192,7 +190,6 @@ async function getProjectsFromDB(event) {
 	console.log("Loading projects from Database");
 	event.preventDefault();
 
-
 	try {
 		const response = await fetch("https://api-ehbo.onrender.com/api/getAllUndecidedProjects", {
 			method: "GET",
@@ -222,7 +219,6 @@ function loadAllProjects(event) {
 		});
 }
 
-
 //gebruikt
 // Load project based on ID
 
@@ -248,7 +244,6 @@ async function getProjectsFromDBWithId(event, id) {
 		console.log("Error fetching data: " + error);
 	}
 
-
 	try {
 		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
 			method: "GET", // Use GET method
@@ -264,23 +259,21 @@ async function getProjectsFromDBWithId(event, id) {
 		console.log("Error fetching data: " + error);
 	}
 
+	try {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
+			method: "GET", // Use GET method
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+				Authorization: `Bearer ${token}`,
+			},
+		});
 
-try {
-	const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
-		method: "GET", // Use GET method
-		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
-			Authorization: `Bearer ${token}`,
-		},
-	});
-
-	const dataJson = await response.json();
-	return dataJson.data;
-} catch (error) {
-	console.log("Error fetching data: " + error);
+		const dataJson = await response.json();
+		return dataJson.data;
+	} catch (error) {
+		console.log("Error fetching data: " + error);
+	}
 }
-}
-
 
 function goDetailPage(id) {
 	document.location.href = `./EventDetail.html?id=${id}`;
@@ -346,69 +339,69 @@ function fillDetailPage(projectDetails) {
 	document.getElementById("replacable").innerHTML = projectItem;
 }
 
-// function goDetailPage(id) {
-// 	document.location.href = `./EventDetail.html?id=${id}`;
-// }
-// function goAcceptedDetailPage(id) {
-// 	document.location.href = `./CreateShift.html?id=${id}`;
-// }
+function goDetailPage(id) {
+	document.location.href = `./EventDetail.html?id=${id}`;
+}
+function goAcceptedDetailPage(id) {
+	document.location.href = `./CreateShift.html?id=${id}`;
+}
 
-// function loadProjectDetails(event) {
-// 	var url = document.location.href,
-// 		params = url.split("?")[1].split("&"),
-// 		data = {},
-// 		tmp;
-// 	console.log(params);
-// 	for (var i = 0, l = params.length; i < l; i++) {
-// 		tmp = params[i].split("=");
-// 		data[tmp[0]] = tmp[1];
-// 	}
-// 	console.log(data.id);
+function loadProjectDetails(event) {
+	var url = document.location.href,
+		params = url.split("?")[1].split("&"),
+		data = {},
+		tmp;
+	console.log(params);
+	for (var i = 0, l = params.length; i < l; i++) {
+		tmp = params[i].split("=");
+		data[tmp[0]] = tmp[1];
+	}
+	console.log(data.id);
 
-// 	getProjectsFromDBWithId(event, data.id)
-// 		.then((project) => {
-// 			console.log(project);
-// 			fillDetailPage(project);
-// 		})
-// 		.catch((error) => {
-// 			console.log("Error loading projects:", error);
-// 		});
-// }
+	getProjectsFromDBWithId(event, data.id)
+		.then((project) => {
+			console.log(project);
+			fillDetailPage(project);
+		})
+		.catch((error) => {
+			console.log("Error loading projects:", error);
+		});
+}
 
-// function fillDetailPage(projectDetails) {
-// 	console.log(projectDetails);
+function fillDetailPage(projectDetails) {
+	console.log(projectDetails);
 
-// 	if (!projectDetails.EndDate) {
-// 		projectDetails.EndDate = "";
-// 	} else {
-// 		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
-// 	}
+	if (!projectDetails.EndDate) {
+		projectDetails.EndDate = "";
+	} else {
+		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
+	}
 
-// 	const projectItem = `<div class="card project-card">
-//                             <div class="card-header col-12" id="projectTitle">
-//                                 <b>Project:</b> ${projectDetails.Title}
-//                                 <b> Bedrijf:</b> ${projectDetails.Company}
-//                             </div>
-//                             <div class="card-body row project-card-body">
-//                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status: </b>${projectDetails.IsAccepted}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="ContactPersonName"><b>Contact Persoon: </b>${projectDetails.ContactPerson}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="ContactPersonEmail"><b>Contact Email: </b>${projectDetails.ContactEmailAddress}</p>
-//                                 <p class="card-text col-lg-4 col-sm-6" id="CompanyPhoneNumber"><b>Telefoon Nummer: </b>${projectDetails.PhoneNumber}</p>
-//                                 <p class="card-text col-lg-6 col-sm-6" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
-//                                 <div class="col-12" id="buttons">
-//                                 <button class="btn btn-success float-right" onclick="acceptProject(${projectDetails.ProjectId})">Accepteren</button>
-//                                 <button class="btn btn-danger float-right" onclick="rejectProject(${projectDetails.ProjectId})">Weigeren</button>
-//                                 </div>
-//                             </div>
-//                         </div>`;
+	const projectItem = `<div class="card project-card">
+                            <div class="card-header col-12" id="projectTitle">
+                                <b>Project:</b> ${projectDetails.Title}
+                                <b> Bedrijf:</b> ${projectDetails.Company}
+                            </div>
+                            <div class="card-body row project-card-body">
+                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status: </b>${projectDetails.IsAccepted}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="ContactPersonName"><b>Contact Persoon: </b>${projectDetails.ContactPerson}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="ContactPersonEmail"><b>Contact Email: </b>${projectDetails.ContactEmailAddress}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="CompanyPhoneNumber"><b>Telefoon Nummer: </b>${projectDetails.PhoneNumber}</p>
+                                <p class="card-text col-lg-6 col-sm-6" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
+                                <div class="col-12" id="buttons">
+                                <button class="btn btn-success float-right" onclick="acceptProject(${projectDetails.ProjectId})">Accepteren</button>
+                                <button class="btn btn-danger float-right" onclick="rejectProject(${projectDetails.ProjectId})">Weigeren</button>
+                                </div>
+                            </div>
+                        </div>`;
 
-// 	document.getElementById("replacable").innerHTML = projectItem;
-// }
+	document.getElementById("replacable").innerHTML = projectItem;
+}
 
 function acceptProject(id) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
@@ -577,7 +570,6 @@ function addShift(projectId) {
 	// alert(checkInput())
 	appendShiftForm(count + 1);
 
-
 	const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
 	const endTime = document.getElementById(`shiftEndTime${count}`).value;
 	const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
@@ -591,8 +583,6 @@ function addShift(projectId) {
 		projectId: projectId,
 	});
 
-
-
 	const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
 	const endTime = document.getElementById(`shiftEndTime${count}`).value;
 	const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
@@ -605,7 +595,6 @@ function addShift(projectId) {
 		endDate: endDate,
 		projectId: projectId,
 	});
-
 
 	hideLastShift(count);
 	count++;
