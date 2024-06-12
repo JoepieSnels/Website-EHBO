@@ -35,7 +35,7 @@ async function getProjectsFromDB(event) {
     event.preventDefault();
 
     try {
-            const response = await fetch('http://localhost:3000/api/getAllUndecidedProjects', {
+            const response = await fetch('https://api-ehbo.onrender.com/api/getAllUndecidedProjects', {
                 method: 'GET',
                 headers:{
                     'Content-Type': 'application/json; charset-UTF-8',
@@ -73,7 +73,7 @@ async function getProjectsFromDBWithId(event, id) {
     event.preventDefault();
 
     try {
-        const response = await fetch(`http://localhost:3000/api/getProject?projectId=${id}`, {
+        const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
             method: 'GET', // Use GET method
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
