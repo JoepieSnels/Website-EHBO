@@ -78,7 +78,7 @@
 }
 
 .page-title {
-	padding: 15px;
+	padding: 10px;
 }
 
 .project-list-card {
@@ -88,10 +88,11 @@
 	text-decoration: none;
 }
 
-.project-card-body > p {
+.project-card-body p {
 	color: black;
-	font-size: 14px;
+	font-size: 16px;
 }
+
 
 .project-list-card:hover{
 	border: 1px solid #042062;
@@ -186,27 +187,9 @@ h1 {
 	text-decoration: none;
 }
 
-.divider {
-	background: #fbe326;
-	content: "";
-	position: relative;
-	margin-top: 20px;
-	bottom: 0;
-	height: 6px;
-	left: 0;
-	right: 0;
-}
 
-.footer {
-	margin-top: auto;
-	padding-top: 40px;
-	padding-top: 40px;
-}
 
-.footer p {
-	color: grey;
-	padding: 0px 30px 0px 30px;
-}
+
 
 .content .btn {
 	background-color: #042062;
@@ -229,14 +212,6 @@ h1 {
 }
 
 
-.footer {
-	margin-top: auto;
-}
-
-.footer p {
-	color: grey;
-	padding: 0px 30px 0px 30px;
-}
 
 .login-password {
 	width: 28rem;
@@ -269,7 +244,39 @@ h1 {
 
 }
 
+/* login */
+
+
+
+
+/* footer */
+
+.footer {
+	margin-top: auto;
+	padding-top: 20px;
+
+}
+
+.footer p {
+	color: grey;
+	padding: 0px 30px 0px 30px;
+}
+
+
+.divider {
+	background: #fbe326;
+	content: "";
+	position: relative;
+	margin-top: 20px;
+	bottom: 0;
+	height: 6px;
+	left: 0;
+	right: 0;
+}
+
+
 /* DIT FIXED HET HORIZONTAAL SCROLLEN NIET WEGHALEN!!! */
 .row {
 	width: 100%;
+	margin: auto;
 }

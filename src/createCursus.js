@@ -1,76 +1,78 @@
-
 async function loadCreateCursus(requiredPermission) {
-    console.log('On page load');
+    if (getPermission(requiredPermission)){
+        try {
 
-	const jwtToken = window.sessionStorage.getItem('jwtToken'); // Haalt de token op uit de session
-	const permissions = window.sessionStorage.getItem('permissions'); // Haalt de permissies op
+            const apiRoute = 'https://api-ehbo.onrender.com/api/getCertificates';
+            const validateResult = await fetch(apiRoute, {
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                }
+            });
+    
+            const toJson = await validateResult.json();
+            const arrayCertificates = toJson.data;
+    
+            let netteString = '';
+    
+            arrayCertificates.forEach(element => {
+                netteString += `<option>${element.Title}</option>`
+            });
+    
+            document.getElementById('cursus-certificate').innerHTML += netteString;
+            
+        } catch (error) {
+            
+        }
+    }
+    // console.log('On page load');
 
-	// Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
-	if (jwtToken === null) { 
-		alertNoAcces();
-		return;
-	}
+	// const jwtToken = window.sessionStorage.getItem('jwtToken'); // Haalt de token op uit de session
+	// const permissions = window.sessionStorage.getItem('permissions'); // Haalt de permissies op
 
-	// Kijk of in de string van permissies de benodigde permissie zit
-	if (permissions === null || !permissions.match(requiredPermission)) {
-		alertNoAcces();
-		return;
+	// // Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
+	// if (jwtToken === null) { 
+	// 	alertNoAcces();
+	// 	return;
+	// }
 
- 	} 
+	// // Kijk of in de string van permissies de benodigde permissie zit
+	// if (permissions === null || !permissions.match(requiredPermission)) {
+	// 	alertNoAcces();
+	// 	return;
 
-	// Maak verzoek naar de server om te kijken of de token geldig is
-	const apiRoute = 'https://api-ehbo.onrender.com/api/validatetoken';
-	const validateResult = await fetch(apiRoute, {
-			headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-				'Authorization': `bearer ${jwtToken}`
-            }
-		});
+ 	// } 
 
-	const toJson = await validateResult.json();
+	// // Maak verzoek naar de server om te kijken of de token geldig is
+	// const apiRoute = 'https://api-ehbo.onrender.com/api/validatetoken';
+	// const validateResult = await fetch(apiRoute, {
+	// 		headers: {
+    //             'Content-Type': 'application/json; charset=UTF-8',
+	// 			'Authorization': `bearer ${jwtToken}`
+    //         }
+	// 	});
 
-	if (toJson.message === 'Not authorized') {
-		alertNoAcces();
-		return;
-	}
+	// const toJson = await validateResult.json();
 
-	document.getElementById('unBlockID').style.display = 'block'; // Even controleren welke dit moet zijn
+	// if (toJson.message === 'Not authorized') {
+	// 	alertNoAcces();
+	// 	return;
+	// }
+
+	// document.getElementById('unBlockID').style.display = 'block'; // Even controleren welke dit moet zijn
 
     // Load certificates
 
-    try {
 
-        const apiRoute = 'https://api-ehbo.onrender.com/api/getCertificates';
-	    const validateResult = await fetch(apiRoute, {
-			headers: {
-                'Content-Type': 'application/json; charset=UTF-8'
-            }
-		});
-
-	    const toJson = await validateResult.json();
-        const arrayCertificates = toJson.data;
-
-        let netteString = '';
-
-        arrayCertificates.forEach(element => {
-            netteString += `<option>${element.Title}</option>`
-        });
-
-        document.getElementById('cursus-certificate').innerHTML += netteString;
-        
-    } catch (error) {
-        
-    }
 
     
 }
 
-function alertNoAcces() {
-	console.log('Not the right site permissions');
-	alert('You have no access to this page, redirecting to login');
-	window.location.href = './login.html';
+// function alertNoAcces() {
+// 	console.log('Not the right site permissions');
+// 	alert('You have no access to this page, redirecting to login');
+// 	window.location.href = './login.html';
 
-}
+// }
 
 
 async function createCursus() {

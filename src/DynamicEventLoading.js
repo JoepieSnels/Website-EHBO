@@ -92,8 +92,9 @@ function goAcceptedDetailPage(id) {
 }
 
 //gebruikt
-function loadAcceptedProjects(event) {
-	getAcceptedProjectsFromDB(event)
+function loadAcceptedProjects(event, requiredPermission) {
+	if(getPermission(requiredPermission)) {
+		getAcceptedProjectsFromDB(event)
 		.then((projects) => {
 			console.log(projects[0].Title);
 			for (let i = 0; i < projects.length; i++) {
@@ -103,6 +104,8 @@ function loadAcceptedProjects(event) {
 		.catch((error) => {
 			console.log("Error loading projects:", error);
 		});
+	}
+	
 }
 
 //gebruikt
@@ -188,20 +191,20 @@ async function getProjectsFromDBWithId(event, id) {
 	}
 
 
-try {
-	const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
-		method: "GET", // Use GET method
-		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
-			Authorization: `Bearer ${token}`,
-		},
-	});
+	try {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
+			method: "GET", // Use GET method
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+				Authorization: `Bearer ${token}`,
+			},
+		});
 
-	const dataJson = await response.json();
-	return dataJson.data;
-} catch (error) {
-	console.log("Error fetching data: " + error);
-}
+		const dataJson = await response.json();
+		return dataJson.data;
+	} catch (error) {
+		console.log("Error fetching data: " + error);
+	}
 }
 
 // function goDetailPage(id) {
@@ -314,8 +317,9 @@ function rejectProject(id) {
 		});
 }
 //gebruikt
-function loadAcceptedProjectDetails(event) {
-	var url = document.location.href,
+function loadAcceptedProjectDetails(event, requiredPermission) {
+	if(getPermission(requiredPermission)) {
+		var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
 		tmp;
@@ -334,6 +338,8 @@ function loadAcceptedProjectDetails(event) {
 		.catch((error) => {
 			console.log("Error loading projects:", error);
 		});
+	}
+	
 }
 
 //gebruikt
