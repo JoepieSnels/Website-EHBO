@@ -237,7 +237,7 @@ function validateForm(event) {
 		event.preventDefault();
 
 		try {
-			const loginResult = await fetch("https://api-ehbo.onrender.com/api/login", {
+			const loginResult = await fetch("http://localhost:3000/api/login", {
 				method: "POST",
 				body: JSON.stringify({
 					emailaddress: email,
@@ -249,6 +249,9 @@ function validateForm(event) {
 			});
 
 			const jsonResult = await loginResult.json();
+			const userId = jsonResult.data.UserId;
+			console.log(userId);
+			window.sessionStorage.setItem("userID", userId);
 
 			if (jsonResult.data.SessionToken || jsonResult.data.Permissions) {
 				// Store session tokens
@@ -279,7 +282,7 @@ function validateForm(event) {
 	function createSessionAndPermission(token, permissions) {
 		window.sessionStorage.setItem("jwtToken", token);
 		window.sessionStorage.setItem("permissions", permissions);
-		window.location.href = "./StaticUserInfo.html";
+		window.location.href = "./ActiveProjects.html";
 	}
 
 }
