@@ -583,23 +583,8 @@ function addShift(projectId) {
 		projectId: projectId,
 	});
 
-	const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
-	const endTime = document.getElementById(`shiftEndTime${count}`).value;
-	const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
-	const endDate = document.getElementById(`shiftEndDate${count}`).value;
-
-	shifts.push({
-		beginTime: beginTime,
-		endTime: endTime,
-		beginDate: beginDate,
-		endDate: endDate,
-		projectId: projectId,
-	});
-
 	hideLastShift(count);
 	count++;
-
-	//}
 }
 
 function hideLastShift(teller) {
