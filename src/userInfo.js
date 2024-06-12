@@ -79,6 +79,7 @@ async function loadInfo(jwtToken) {
 	document.getElementById('zipCode').innerHTML = data.PostCode;
 	document.getElementById('city').innerHTML = data.City;
 	document.getElementById('roles').innerHTML = cleanRoles;
+	document.getElementById('certificaten').innerHTML = data.certification;
 
 	if (data.InvoiceEmail) {
 		document.getElementById('facEmail').innerHTML = data.InvoiceEmail;

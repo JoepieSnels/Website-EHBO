@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<title>KNV EHBO Tilburg</title>
+		<title>KVN EHBO Tilburg</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
 
 		<title>Document</title>
@@ -16,7 +16,7 @@
 		<link href="css/stylesheet.css" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/ef708f113d.js" crossorigin="anonymous"></script>
 	</head>
-	<body onload="loadShifts(event)">
+	<body onload="init()">
         <!-- Begin navigatie -->
 		<nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px;">
 		
@@ -146,7 +146,7 @@
             </div>
             <div class="col-lg-9 col-sm-8">
                 <h2 class="page-title">Open diensten</h2>
-                <div class="project-card-container" id="replacable"></div>
+                <div class="project-card-container" id="card-container"></div>
             </div>
             <div class="container content">
 			

@@ -3,7 +3,9 @@
 .tinkiewinkie li a:hover {
 	color: #3159b7 !important;
 }
-
+.project-card:hover {
+	cursor: pointer;
+}
 .dipsy a:hover::after {
 	background: #fbe326;
 	content: "";
@@ -16,11 +18,8 @@
 .card img {
 	width: 100%;
 	height: 450px;
+	height: 450px;
 	border-radius: 28px;
-}
-
-.login-card {
-	width: 30rem;
 }
 
 .side-nav {
@@ -80,6 +79,7 @@
 
 .error-message {
 	color: red;
+	display: none;
 	display: none;
 }
 
@@ -168,13 +168,16 @@ h1 {
 	background: #fbe326;
 	content: "";
 	position: relative;
+	margin-top: 20px;
 	bottom: 0;
 	height: 6px;
 	left: 0;
 	right: 0;
 }
+
 .footer {
 	margin-top: auto;
+	padding-top: 40px;
 	padding-top: 40px;
 }
 
@@ -206,34 +209,17 @@ h1 {
 	float: left;
 }
 
-.choiceboxAlignment {
-	padding: 5px;
-}
-.footer {
-	margin-top: auto;
-}
-
-.footer p {
-	color: grey;
-	padding: 0px 30px 0px 30px;
-}
 .login-password {
 	width: 28rem;
 }
-.divider {
-	margin-top: 20px;
-}
 
 @media (max-width: 600px) {
-	.login-card {
-		width: 22rem;
-		margin-top: 40px;
-		margin-left: 7px;
-		padding: 10px;
-	}
 	.card img {
 		height: 350px;
 	}
+	.center {
+		margin-left: 25px;
+	}
 }
 .input-group-append {
 	width: 28rem;
@@ -245,13 +231,12 @@ h1 {
 .request-form {
 	width: 100rem;
 }
-.input-group-append {
-	width: 28rem;
+
+.top {
+	margin-top: 60px;
 }
-.form-row {
-	padding: 10px;
-	margin-left: 5px;
-}
-.request-form {
-	width: 100rem;
+
+/* DIT FIXED HET HORIZONTAAL SCROLLEN NIET WEGHALEN!!! */
+.row {
+	width: 100%;
 }
