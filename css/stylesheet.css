@@ -217,6 +217,9 @@ h1 {
 	.card img {
 		height: 350px;
 	}
+	.center {
+		margin-left: 25px;
+	}
 }
 .input-group-append {
 	width: 28rem;
@@ -235,5 +238,5 @@ h1 {
 
 /* DIT FIXED HET HORIZONTAAL SCROLLEN NIET WEGHALEN!!! */
 .row {
-	width:100%;
+	width: 100%;
 }
