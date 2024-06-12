@@ -3,7 +3,9 @@
 .tinkiewinkie li a:hover {
 	color: #3159b7 !important;
 }
-
+.project-card:hover {
+	cursor: pointer;
+}
 .dipsy a:hover::after {
 	background: #fbe326;
 	content: "";
@@ -238,6 +240,9 @@ h1 {
 	.card img {
 		height: 350px;
 	}
+	.center {
+		margin-left: 25px;
+	}
 }
 
 
@@ -260,5 +265,5 @@ h1 {
 
 /* DIT FIXED HET HORIZONTAAL SCROLLEN NIET WEGHALEN!!! */
 .row {
-	width:100%;
+	width: 100%;
 }
