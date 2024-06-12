@@ -69,7 +69,7 @@ function createAcceptedCard(projectDetails) {
 	const status = setStatus(projectDetails.IsAccepted)
 	
 
-	var item = `<div class="card project-card" onclick="goAcceptedDetailPage(${projectDetails.ProjectId})">
+	var item = `<div class="card project-list-card" onclick="goAcceptedDetailPage(${projectDetails.ProjectId})">
                     <div class="card-header" id="projectTitle">
                         <b>Project:</b> ${projectDetails.Title} 
                     </div>
@@ -256,7 +256,7 @@ async function getProjectsFromDBWithId(event, id) {
 function acceptProject(id) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
-	fetch("http://localhost:3000/api/acceptproject", {
+	fetch("https://api-ehbo.onrender.com/api/acceptproject", {
 		method: "PUT",
 		body: JSON.stringify({ projectId: id }),
 		headers: {
@@ -279,7 +279,7 @@ function acceptProject(id) {
 function rejectProject(id) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
-	fetch("http://localhost:3000/api/rejectproject", {
+	fetch("https://api-ehbo.onrender.com/api/rejectproject", {
 		method: "PUT",
 		body: JSON.stringify({ projectId: id }),
 		headers: {
@@ -332,65 +332,159 @@ function fillAcceptedDetailPage(projectDetails) {
 		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
 	}
 
+	const status = setStatus(projectDetails.IsAccepted)
+
 	const projectItem = `<div class="card project-card">
                             <div class="card-header col-12" id="projectTitle">
                                 <b>Project:</b> ${projectDetails.Title} 
-                                <b> Bedrijf:</b> ${projectDetails.Company}
+
                             </div>                            
                             <div class="card-body row project-card-body">
                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectCompany"><b>Bedrijf: </b> ${projectDetails.Company}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status: </b>${projectDetails.IsAccepted}</p>
+                                <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status: </b>${status}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="ContactPersonName"><b>Contact Persoon: </b>${projectDetails.ContactPerson}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="ContactPersonEmail"><b>Contact Email: </b>${projectDetails.ContactEmailAddress}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="CompanyPhoneNumber"><b>Telefoon Nummer: </b>${projectDetails.PhoneNumber}</p>
-                                <p class="card-text col-lg-6 col-sm-6" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
+                                <p class="card-text col-lg-7 col-sm-7" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
+								<br>
+							
                                 <h5 class="col-12">Maak diensten aan</h5>
-                                <div class="col-12 " id="shiftCreator">
-                                    <label for="shiftBeginTime">Begin Tijd</label>          
-                                    <input type="time" id="shiftBeginTime"></input>
-                                    <label for="shiftEndTime">Eind Tijd</label>
-                                    <input type="time" id="shiftEndTime"></input>
-                                    <label for="shiftBeginDate">Begin datum</label>
-                                    <input type="date" id="shiftBeginDate"></input>
-                                    <label for="shiftEndDate">Eind datum</label>
-                                    <input type="date" id="shiftEndDate"></input>
-                                    <button class="btn btn-primary float-right " onclick="addShift(${projectDetails.ProjectId})">Add Shift</button>
-                                    </br>
-                                    </div>
-                                    <div class="col-12" id="buttons" >
-                                    <button class="btn btn-success float-right "  onclick="setActive(${projectDetails.ProjectId})">Zet actief</button>
-                                    </div>
-                            </div>
-                        </div>`;
+                                <div class="container" id="shiftCreator">
+									<div class="shift0" id="shift0">
+										<div class="row">
+											<label for="shiftBeginTime" class="col-3">Begin Tijd</label>          
+											<input type="time" id="shiftBeginTime0" class="col-3"></input>
+											<label for="shiftEndTime" class="col-3">Eind Tijd</label>
+											<input type="time" id="shiftEndTime0" class="col-3"></input>
+										</div>
+										<div class="row">
+											<label for="shiftBeginDate" class="col-3">Begin datum</label>
+											<input type="date" id="shiftBeginDate0" class="col-3"></input>
+											<label for="shiftEndDate" class="col-3">Eind datum</label>
+											<input type="date" id="shiftEndDate0" class="col-3"></input>
+										</div>
+									</div>
+								</div>
+								<div class="container" id="knop">
+									<div class="row">
+										<div class="col-12" style="padding-top: 20px">
+											<button class="btn btn-primary float-left" onclick="addShift(${projectDetails.ProjectId})" >Add Shift</button>
+											<button class="btn btn-success float-right" onclick="setActive(${projectDetails.ProjectId})">Zet actief</button>
+										</div>
+									</div>
+								</div>
+
+                       		</div>
+						</div>`;
 	document.getElementById("replacable").innerHTML = projectItem;
 }
 
 let shifts = [];
+let count = 0;
+function checkInput() {
+	const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
+	const endTime = document.getElementById(`shiftEndTime${count}`).value;
+	const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
+	const endDate = document.getElementById(`shiftEndDate${count}`).value;
+	let alert = '';
+	if(!beginTime || !endTime || !beginDate || !endDate) {
+		console.log('leeg veld')
+		alert = 'Een veld mist'
+		return false;
+	} 
+	// if(validateDate(beginDate, endDate) && validateTime(beginTime, endTime, beginDate, endDate)) {
+	// 	return true
+	// }
+	// return false
 
+	// if(!validateDate(beginDate, endDate)) {
+	// 	console.log('datum')
+	// 	alert = 'Einddatum moet voor begindatum zijn'
+	// 	return false;
+	// } 
+	// if (!validateTime(beginTime, endTime, beginDate, endDate)) {
+	// 	console.log('tijd')
+	// 	alert = 'Eindtijd moet na begintijd zijn'
+	// 	return false;
+	// }
+	// return 'hoi'
+	
+}
 function addShift(projectId) {
-	const beginTime = document.getElementById("shiftBeginTime").value;
-	const endTime = document.getElementById("shiftEndTime").value;
-	const beginDate = document.getElementById("shiftBeginDate").value;
-	const endDate = document.getElementById("shiftEndDate").value;
+	// if(!checkInput()) {
+	// 	alert("NEEE")
+	// } else {
+	// alert(checkInput())
+		appendShiftForm(count+1)
 
-	console.log(projectId);
-	console.log(beginTime);
-	console.log(endTime);
-	console.log(beginDate);
-	console.log(endDate);
+		const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
+		const endTime = document.getElementById(`shiftEndTime${count}`).value;
+		const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
+		const endDate = document.getElementById(`shiftEndDate${count}`).value;
+		
 
-	shifts.push({
-		beginTime: beginTime,
-		endTime: endTime,
-		beginDate: beginDate,
-		endDate: endDate,
-		projectId: projectId,
-	});
-	console.log(shifts);
+	
+		shifts.push({
+			beginTime: beginTime,
+			endTime: endTime,
+			beginDate: beginDate,
+			endDate: endDate,
+			projectId: projectId,
+		});
+
+		hideLastShift(count)
+		count++;
+
+		
+	//}
+
+}
+
+function hideLastShift(teller) {
+
+	document.getElementById(`shift${teller}`).innerHTML = `
+										<div class="row">
+										<label for="shiftBeginTime" class="col-3">Begin Tijd</label>          
+										<p class="col-3">${shifts[teller].beginTime}</p>
+										<label for="shiftEndTime" class="col-3">Eind Tijd</label>
+										<p class="col-3">${shifts[teller].endTime}</p>
+									</div>
+									<div class="row">
+										<label for="shiftBeginDate" class="col-3">Begin datum</label>
+										<p class="col-3">${shifts[teller].beginDate}</p>
+										<label for="shiftEndDate" class="col-3">Eind datum</label>
+										<p class="col-3">${shifts[teller].endDate}</p>
+									</div>`
+}
+
+function appendShiftForm(teller) {
+
+	const shiftForm = document.createElement('div')
+	shiftForm.innerHTML = `
+				<div id="shift${teller}">
+					<div class="row">
+						<label for="shiftBeginTime" class="col-3">Begin Tijd</label>          
+						<input type="time" id="shiftBeginTime${teller}" class="col-3"></input>
+						<label for="shiftEndTime" class="col-3">Eind Tijd</label>
+						<input type="time" id="shiftEndTime${teller}" class="col-3"></input>
+					</div>
+					<div class="row">
+						<label for="shiftBeginDate" class="col-3">Begin datum</label>
+						<input type="date" id="shiftBeginDate${teller}" class="col-3"></input>
+						<label for="shiftEndDate" class="col-3">Eind datum</label>
+						<input type="date" id="shiftEndDate${teller}" class="col-3"></input>
+					</div>
+				</div>
+										`
+	document.getElementById('shiftCreator').appendChild(shiftForm)
+
+
+
+
 }
 function setActive(id) {
 	if (shifts.length === 0) {
@@ -399,7 +493,7 @@ function setActive(id) {
 	}
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
-	fetch("http://localhost:3000/api/setProjectActive", {
+	fetch("https://api-ehbo.onrender.com/api/setProjectActive", {
 		method: "PUT",
 		body: JSON.stringify({ projectId: id }),
 		headers: {
@@ -428,7 +522,7 @@ function createShifts() {
 		console.log(shifts[i].beginDate);
 		console.log(shifts[i].endDate);
 
-		fetch("http://localhost:3000/api/createshift", {
+		fetch("https://api-ehbo.onrender.com/api/createshift", {
 			method: "POST",
 			body: JSON.stringify({
 				projectId: shifts[i].projectId,
@@ -456,8 +550,4 @@ function createShifts() {
 	}
 }
 
-function setStatus(status) {
-	return status === true ? 'Geaccepteerd'
-	: status === false ? 'Afgewezen'
-	: 'Open'
- }
+
