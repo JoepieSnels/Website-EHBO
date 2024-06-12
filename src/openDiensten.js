@@ -139,7 +139,12 @@ async function assignShift(shiftId, projectId) {
 		const dataJson = await response.json();
 		alert("Inschrijving gelukt!");
 	} catch (error) {
-		console.log("Error assigning shift: " + error);
+		if (error.status === 500) {
+			return;
+		} else {
+			alert("Je bent al ingeschreven voor deze dienst.");
+			console.log("Error assigning shift: " + error);
+		}
 	}
 }
 
@@ -167,7 +172,9 @@ function fillShiftPage(shiftDetailsArray, projectId) {
                                     <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${shiftDetails.StartDate.split("T")[0]} ${endDate}</p>
                                     <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
                                     <h5 class="col-12">Schrijf je in!</h5>
+									<div class="col-12">
                                     <button class="btn btn-primary float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${projectId}')">Schrijf in!</button>
+									</div>
                                 </div>
                             </div>`;
 		projectItems += projectItem;
