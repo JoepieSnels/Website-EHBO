@@ -20,9 +20,21 @@
 	border-radius: 28px;
 }
 
+
 .login-card {
 	width: 30rem;
 }
+
+.update-card {
+	margin-top: 40px;
+}
+
+.update-card h6{
+	font-size: larger;
+	font-weight: 600;
+	color:#3159b7;
+}
+
 
 .side-nav {
 	margin: 10px;
@@ -77,10 +89,6 @@
 .project-card-body > p {
 	color: black;
 	font-size: 14px;
-}
-
-.login-card {
-	width: 30rem;
 }
 
 .error-message {
@@ -201,13 +209,10 @@ h1 {
 	background-color: #6f85c2;
 }
 
-.choiceboxAlignment {
-	padding: 5px;
-}
 
-.choiceboxAlignmentSmall {
-	padding-left: 25px;
-	padding-right: 5px;
+
+.certificates {
+	margin: 21px;
 }
 
 .form-check {
@@ -215,30 +220,42 @@ h1 {
 	float: left;
 }
 
+
+.footer {
+	margin-top: auto;
+}
+
+.footer p {
+	color: grey;
+	padding: 0px 30px 0px 30px;
+}
+
 .login-password {
 	width: 28rem;
 }
 
 @media (max-width: 600px) {
-	.login-card {
-		width: 22rem;
-		margin-top: 40px;
-		margin-left: 7px;
-		padding: 10px;
-	}
 	.card img {
 		height: 350px;
 	}
 }
+
+
 .input-group-append {
 	width: 28rem;
 }
+
 .form-row {
 	padding: 10px;
 	margin-left: 5px;
 }
 .request-form {
 	width: 100rem;
+}
+
+.top {
+	margin-top: 60px;
+
 }
 
 /* DIT FIXED HET HORIZONTAAL SCROLLEN NIET WEGHALEN!!! */

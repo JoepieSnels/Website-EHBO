@@ -1,43 +1,44 @@
-// Validate Email
-function validateEmail(email) {
-	const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-	if (!pattern.test(email)) {
-		console.error("Email not valid");
-		return false;
-	}
-	return true;
-}
+// // Validate Email
+// function validateEmail(email) {
+// 	const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+// 	if (!pattern.test(email)) {
+// 		console.error("Email not valid");
+// 		return false;
+// 	}
+// 	return true;
+// }
 
-// Validate Phone Number
-function validatePhoneNumber(phoneNumber) {
-	const phoneNumberPattern = /^(?:\+31\s?|0)?6[\s-]?[1-9][0-9]{7}$/;
-	return phoneNumberPattern.test(phoneNumber);
-}
 
-// Validate Landline Number
-function validateLandlineNumber(landlineNumber) {
-	const landlinePattern = /^(?:\+31\s?|0)?[1-9][0-9]{1,2}[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/;
-	return landlinePattern.test(landlineNumber);
-}
+// // Validate Phone Number
+// function validatePhoneNumber(phoneNumber) {
+// 	const phoneNumberPattern = /^(?:\+31\s?|0)?6[\s-]?[1-9][0-9]{7}$/;
+// 	return phoneNumberPattern.test(phoneNumber);
+// }
 
-// Validate Date
-function isDateAtLeastAWeekAway(date) {
-	const inputDate = new Date(date);
-	const currentDate = new Date();
-	const minDate = new Date();
-	minDate.setDate(currentDate.getDate() + 7);
-	return inputDate >= minDate;
-}
+// // Validate Landline Number
+// function validateLandlineNumber(landlineNumber) {
+// 	const landlinePattern = /^(?:\+31\s?|0)?[1-9][0-9]{1,2}[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/;
+// 	return landlinePattern.test(landlineNumber);
+// }
 
-// Validate Time
-function validateTime(beginTime, endTime) {
-	if (beginTime >= endTime) {
-		alert("End time must be after begin time");
-		console.error("End time must be after begin time");
-		return false;
-	}
-	return true;
-}
+// // Validate Date
+// function isDateAtLeastAWeekAway(date) {
+// 	const inputDate = new Date(date);
+// 	const currentDate = new Date();
+// 	const minDate = new Date();
+// 	minDate.setDate(currentDate.getDate() + 7);
+// 	return inputDate >= minDate;
+// }
+
+// // Validate Time
+// function validateTime(beginTime, endTime) {
+// 	if (beginTime >= endTime) {
+// 		alert("End time must be after begin time");
+// 		console.error("End time must be after begin time");
+// 		return false;
+// 	}
+// 	return true;
+// }
 
 function formatDate(date) {
 	if (!date) return ""; // Handle null or undefined date values
@@ -47,30 +48,30 @@ function formatDate(date) {
 
 	return d.toISOString().split("T")[0];
 }
-// Check House number
-function validateHouseNumber(houseNumber) {
-	const houseNumberPattern = /^[0-9]{1,5} ?[a-zA-Z]?$/;
-	return houseNumberPattern.test(houseNumber);
-}
-function validateTime(beginTime, endTime, beginDate, endDate) {
-	if (beginDate === endDate) {
-		if (beginTime >= endTime) {
-			alert("End time must be after begin time");
-			console.error("End time must be after begin time");
-			return false;
-		}
-	}
-	return true;
-}
+// // Check House number
+// function validateHouseNumber(houseNumber) {
+// 	const houseNumberPattern = /^[0-9]{1,5} ?[a-zA-Z]?$/;
+// 	return houseNumberPattern.test(houseNumber);
+// }
+// function validateTime(beginTime, endTime, beginDate, endDate) {
+// 	if (beginDate === endDate) {
+// 		if (beginTime >= endTime) {
+// 			alert("End time must be after begin time");
+// 			console.error("End time must be after begin time");
+// 			return false;
+// 		}
+// 	}
+// 	return true;
+// }
 
-function validateDate(beginDate, endDate) {
-	if (beginDate > endDate) {
-		alert("End date must be after begin date");
-		console.error("End date must be after begin date");
-		return false;
-	}
-	return true;
-}
+// function validateDate(beginDate, endDate) {
+// 	if (beginDate > endDate) {
+// 		alert("End date must be after begin date");
+// 		console.error("End date must be after begin date");
+// 		return false;
+// 	}
+// 	return true;
+// }
 // Validate the form and extract info
 function ExtractInfo(event) {
 	event.preventDefault();
@@ -210,7 +211,7 @@ function validateForm(event) {
 	var passwordError = document.getElementById("passwordValidation");
 	var emailError = document.getElementById("emailValidation");
 
-	if (!validateEmail(email)) {
+	if (validateEmail(email)) {
 		emailError.style.display = "block";
 		passwordError.style.display = "none";
 	}
