@@ -81,16 +81,22 @@
 	padding: 15px;
 }
 
-.project-card {
+.project-list-card {
 	margin: 15px;
 }
-.project-card a {
+.project-list-card a {
 	text-decoration: none;
 }
 
 .project-card-body > p {
 	color: black;
 	font-size: 14px;
+}
+
+.project-list-card:hover{
+	border: 1px solid #042062;
+	box-shadow: 2px 2px #6f85c2
+
 }
 
 .error-message {

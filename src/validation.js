@@ -32,6 +32,17 @@ function isDateAtLeastAWeekAway(date) {
 	return inputDate >= minDate ? true : 'Datum moet minimaal een week weg zijn';
 }
 
+function validateDate(beginDate, endDate) {
+    if(beginDate > endDate) {
+        return false;
+    } else if (beginDate < endDate) {
+        return true;
+    } else {
+        return true;
+    }
+    //return beginDate <= endDate ? true : "Einddatum moet na de begindatum zijn"
+}
+
 // // Validate Time
 // function validateTime(beginTime, endTime) {
 //     beginTime <= endTime ? true : 'Eindtijd moet na begintijd zijn'
@@ -46,8 +57,14 @@ function isDateAtLeastAWeekAway(date) {
 //Validate Time
 function validateTime(beginTime, endTime, beginDate, endDate) {
 	if (beginDate === endDate) {
-        return beginTime < endTime ? true : 'Eindtijd moet na begintijd zijn';
+		if (beginTime >= endTime) {
+			alert("End time must be after begin time");
+			console.error("End time must be after begin time");
+			return false;
+		}
 	}
+	return true;
+   
 }
 
 function validatePassword(password) {
@@ -68,6 +85,21 @@ function validateDateOfBirth(dateOfBirth) {
     const date = new Date();
     const today = date.toISOString().split('T')[0];
     return dateOfBirth < today ? true : 'Geboortedatum kan niet in de toekomst zijn'
+}
+
+function setStatus(status) {
+	return status === true ? 'Geaccepteerd'
+	: status === false ? 'Afgewezen'
+	: 'Open'
+}
+
+function timeToInt(time) {
+    console.log(parseInt(time.split(':')[0] + time.split(':')[1]));
+    return parseInt(time.split(':')[0] + time.split(':')[1]);
+}
+
+function dateToInt(date) {
+    
 }
 
 //export {validateEmail, validatePhoneNumber, validateLandlineNumber, isDateAtLeastAWeekAway, validateTime, validatePassword, validatePostalCode, validateHouseNumber, validateDateOfBirth}
