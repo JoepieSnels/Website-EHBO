@@ -87,10 +87,13 @@ function createAcceptedCard(projectDetails) {
 	console.log(projectDetails.Id);
 }
 
+
 //gebruikt
 function goAcceptedDetailPage(id) {
 	document.location.href = `./CreateShift.html?id=${id}`;
 }
+
+
 
 //gebruikt
 function loadAcceptedProjects(event) {
@@ -168,11 +171,30 @@ async function getAcceptedProjectsFromDB(event) {
 //gebruikt
 // Load project based on ID
 async function getProjectsFromDBWithId(event, id) {
-	console.log(id);
-	const jwtToken = window.sessionStorage.getItem("jwtToken");
-	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
-	console.log("Loading project with Id: " + id);
-	event.preventDefault();
+
+    console.log(id);
+    const jwtToken = window.sessionStorage.getItem('jwtToken');
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw';
+    console.log('Loading project with Id: ' + id);
+    event.preventDefault();
+
+    try {
+        const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
+            method: 'GET', // Use GET method
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const dataJson = await response.json();
+        return dataJson.data;
+
+    } catch (error) {
+        console.log('Error fetching data: ' + error);
+    }
+}
+
 
 	try {
 		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
