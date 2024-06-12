@@ -32,7 +32,7 @@ function validateRequestDateOfBirth() {
 }
 
 function validateRequestPhoneNumber() {
-    let mobilePhone = document.getElementById('mobilePhone').value;
+    let mobilePhone = document.getElementById('phoneNumber').value;
     return mobilePhone ? validatePhoneNumber(mobilePhone) : 'Mobiel nummer mist'
 }
 

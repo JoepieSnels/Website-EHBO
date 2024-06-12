@@ -11,7 +11,7 @@
 
         <script src="https://kit.fontawesome.com/ef708f113d.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="./css/stylesheet.css" />
-        <script src="./src/Passwordshow.js"></script>
+        <script src="./src/accountRequest.js"></script>
         <script src="./src/automaticEmail.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
         <script type="text/javascript">
@@ -136,20 +136,20 @@
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="firstname">Voornaam</label>
-                                            <input type="text" class="form-control" id="firstname" placeholder="Jan" maxlength=50 required>
+                                            <label for="firstName">Voornaam</label>
+                                            <input type="text" class="form-control" id="firstName" placeholder="Jan" maxlength=50 required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="lastname">Achternaam</label>
-                                            <input type="text" class="form-control" id="lastname" placeholder="de Jong" maxlength=50 required>
+                                            <label for="lastName">Achternaam</label>
+                                            <input type="text" class="form-control" id="lastName" placeholder="de Jong" maxlength=50 required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
-                                            <label for="mobilePhone">Mobiel telefoonnummer</label>
-                                            <input type="text" class="form-control" id="mobilePhone" placeholder="06-12345678" maxlength=11 required>
+                                            <label for="phoneNumber">Mobiel telefoonnummer</label>
+                                            <input type="text" class="form-control" id="phoneNumber" placeholder="06-12345678" maxlength=11 required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
@@ -272,12 +272,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                  
-                                        <div class="col-3">
-                                            <div>
-                                                <button type="submit" id="save" name="submit" class="btn btn-secondary float-right">Opslaan</button>
-                                            </div>
-                            
+                                    <div class="col-3">
+                                        <button type="submit" class="btn btn-primary px-4 float-right">Versturen</button>
                                     </div>
                                 </div>
                                 
