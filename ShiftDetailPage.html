@@ -12,7 +12,7 @@
 		<link href="css/stylesheet.css" rel="stylesheet" />
 		<script src="https://kit.fontawesome.com/ef708f113d.js" crossorigin="anonymous"></script>
 	</head>
-	<body onload="init()">
+	<body onload="loadShifts(event)">
 		<!-- Begin navigatie -->
 		<nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px">
 			<!-- Hamburger Menu -->
@@ -114,7 +114,10 @@
 			<div class="col-lg-3 col-sm-4 d-none d-sm-block">
 				<ul class="side-nav">
 					<li><a href="./#">Mijn diensten</a></li>
-					<li class="active-link"><a href="./OpenShifts.html">Open diensten</a></li>
+					<li><a href="./ActiveProjects.html">actieve evenmenten</a></li>
+					<li><a href="./AcceptedProjectOverview.html">Geaccepteerde evenmenten</a></li>
+					<li><a href="./EventOverview.html">Alle evenementen</a></li>
+					<li><a href="CourseOverview.html">Cursussen</a></li>
 					<li><a href="./#">Certificaten</a></li>
 					<li><a href="./#">Materiaal</a></li>
 					<li><a href="./#">Account gegevens</a></li>
@@ -125,7 +128,7 @@
 				<div class="project-card-container" id="card-container"></div>
 				<script src="./src/openDiensten.js"></script>
 			</div>
-			<div class="container content"></div>
+			<div class="container content" id="replacable"></div>
 		</div>
 
 		<footer>

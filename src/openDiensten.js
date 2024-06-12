@@ -28,10 +28,6 @@ function generateCards(items) {
 	items.forEach((item) => {
 		console.log("item", item);
 		const card = document.createElement("div");
-
-
-		//cardLink.href = `Openshifts.html?id=${item.ProjectId}`;
-
 		let neededCertificates = item.CertificatesNeeded || "-";
 
 		card.innerHTML = `
