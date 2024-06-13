@@ -10,9 +10,10 @@
         <link href="css/stylesheet.css" rel="stylesheet" />
         <script src="src/validation.js"></script>
         <script src="src/DynamicEventLoading.js"></script>
+        <script src="./src/userInfo.js"></script>
         
     </head>
-    <body onload="loadAcceptedProjects(event)">
+    <body onload="onLoadUserInfo('Coordinator'), loadAcceptedProjects(event)" style="display: none;" id="unBlockID">
         <!-- Begin navigatie -->
 		<nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px;">
 		
@@ -129,12 +130,12 @@
                     <li><a href="CourseOverview.html">Cursussen</a></li>
                     <li><a href="./#">Certificaten</a></li>
                     <li><a href="./#">Materiaal</a></li>
-                    <li><a href="./#">Account gegevens</a></li>
+                    <li><a href="./StaticUserInfo.html">Account gegevens</a></li>
                 </ul>
             </div>
             <div class="col-lg-9 col-md-12">
                 <h2 class="page-title">Geaccepteerde projecten</h2>
-                <div class="project-card-container" id="eventCards"></div>
+                <div class="project-card-container" id="replacable"></div>
             </div>
         </div>
     </body>

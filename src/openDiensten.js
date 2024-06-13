@@ -1,7 +1,7 @@
 async function fetchData() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
 	try {
-		const response = await fetch("https://api-ehbo.onrender.com/api/getActiveProjects", {
+		const response = await fetch("http://localhost:3000/api/getActiveProjects", {
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
 				Authorization: `bearer ${jwtToken}`, // Ensure the format is correct
@@ -23,7 +23,7 @@ async function fetchData() {
 }
 
 function generateCards(items) {
-	const container = document.getElementById("card-container");
+	const container = document.getElementById("replacable");
 	container.innerHTML = "";
 	items.forEach((item) => {
 		console.log("item", item);
