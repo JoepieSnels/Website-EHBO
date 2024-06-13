@@ -209,7 +209,7 @@ async function getAcceptedProjectsFromDB(event) {
 	event.preventDefault();
 
 	try {
-		const response = await fetch("http://localhost:3000/api/getAcceptedProjects", {
+		const response = await fetch("https://api-ehbo.onrender.com/api/getAcceptedProjects", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
