@@ -11,9 +11,12 @@
         <script src="src/permission.js"></script>
         <script src="src/validation.js"></script>
         <script src="src/DynamicEventLoading.js"></script>
+        <script src="./src/userInfo.js"></script>
         
     </head>
-    <body style="display: none;" onload="loadAcceptedProjects(event, 'Coordinator')" id="unBlockID">
+
+    <body onload="onLoadUserInfo('Coordinator'), loadAcceptedProjects(event)" style="display: none;" id="unBlockID">
+
         <!-- Begin navigatie -->
 		<nav class="mb-4 navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px;">
 		
@@ -122,13 +125,24 @@
         <div class="row">
             <div class="col-lg-3 col-sm-4 d-none d-sm-block">
                 <ul class="side-nav">
+
+                    <li><a href="./#">Mijn diensten</a></li>
+                    <li><a href="./ActiveProjects.html">actieve evenmenten</a></li>
+                    <li><a href="./AcceptedProjectOverview.html">Geaccepteerde evenmenten</a></li>
+                    <li><a href="./EventOverview.html">Alle evenementen</a></li>
+                    <li><a href="CourseOverview.html">Cursussen</a></li>
+                    <li><a href="./#">Certificaten</a></li>
+                    <li><a href="./#">Materiaal</a></li>
+                    <li><a href="./StaticUserInfo.html">Account gegevens</a></li>
+
                     <li><a href="./#">Aanvragen</a></li>
                     <li class="active-link"><a href="./AcceptedProjectOverview.html">Geaccepteerde projecten</a></li>
+
                 </ul>
             </div>
             <div class="col-lg-9 col-sm-8">
                 <h2 class="page-title">Geaccepteerde projecten</h2>
-                <div class="project-card-container" id="eventCards"></div>
+                <div class="project-card-container" id="replacable"></div>
             </div>
         </div>
 
