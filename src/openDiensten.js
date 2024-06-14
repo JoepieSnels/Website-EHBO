@@ -1,43 +1,3 @@
-async function onLoadUserInfo(requiredPermission) {
-	console.log("On page load");
-
-	// HARDCODDED, WEGHALEN ZODRA LOGIN WERKT
-	// createSessionAndPermission('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTcxNzUwNjQ2MCwiZXhwIjoxNzE4NTQzMjYwfQ.YrckiyoGuslcp_5oiBpT6fAe8lUfQAadTwOh1HmR9ow', 'Hulpverlener!Coordinator');
-
-	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
-	const permissions = window.sessionStorage.getItem("permissions"); // Haalt de permissies op
-
-	// Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
-	if (jwtToken === null) {
-		alertNoAcces();
-		return;
-	}
-
-	// Kijk of in de string van permissies de benodigde permissie zit
-	if (permissions === null || !permissions.match(requiredPermission)) {
-		alertNoAcces();
-		return;
-	}
-
-	// Maak verzoek naar de server om te kijken of de token geldig is
-	const apiRoute = "https://api-ehbo.onrender.com/api/validatetoken";
-	const validateResult = await fetch(apiRoute, {
-		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
-			Authorization: `bearer ${jwtToken}`,
-		},
-	});
-
-	const toJson = await validateResult.json();
-
-	if (toJson.message === "Not authorized") {
-		alertNoAcces();
-		return;
-	}
-
-	document.getElementById("unBlockID").style.display = "block"; // Even controleren welke dit moet zijn
-}
-
 async function fetchData() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
 	try {
@@ -92,7 +52,11 @@ function generateCards(items) {
 }
 
 function goToDetail(projectId) {
-	document.location.href = `./Openshifts.html?id=${projectId}`;
+	let link = "Openshifts.html?id=" + projectId;
+	if (window.location.href.includes("Coordinator")) {
+		link = "OpenshiftsCoordinator.html?id=" + projectId;
+	}
+	document.location.href = link;
 }
 async function loadActiveProjects(requiredPermission) {
 	if (getPermission(requiredPermission)) {
@@ -219,7 +183,94 @@ function fillShiftPage(shiftDetailsArray, projectId) {
                                     <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
                                     <h5 class="col-12">Schrijf je in!</h5>
 									<div class="col-12">
-                                    <button class="btn btn-primary float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${projectId}')">Schrijf in!</button>
+									<button class="btn btn-primary" onclick="assignShift(${shiftDetails.ShiftId}, ${projectId})">Inschrijven</button>
+									</div>
+                                </div>
+                            </div>`;
+		projectItems += projectItem;
+	});
+
+	document.getElementById("replacable").innerHTML = projectItems;
+}
+function loadAssignedShifts(event) {
+	event.preventDefault();
+
+	var url = document.location.href;
+	var paramsString = url.split("?")[1];
+	if (!paramsString) {
+		console.error("No query parameters found in the URL");
+		return;
+	}
+	var params = paramsString.split("&");
+	var data = {},
+		tmp;
+	for (var i = 0, l = params.length; i < l; i++) {
+		tmp = params[i].split("=");
+		data[tmp[0]] = tmp[1];
+	}
+	const projectId = data.id;
+
+	getAssignedShifts(event, projectId)
+		.then((shifts) => {
+			fillAssignedShiftsPage(shifts, projectId);
+		})
+		.catch((error) => {
+			console.log("Error loading projects:", error);
+		});
+}
+async function getAssignedShifts(event, projectId) {
+	if (event) {
+		event.preventDefault();
+	}
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
+
+	try {
+		const response = await fetch(`http://localhost:3000/api/getAssignedShifts?projectId=${projectId}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+				Authorization: `Bearer ${jwtToken}`,
+			},
+		});
+
+		if (!response.ok) {
+			throw new Error("Network response was not ok");
+		}
+
+		const dataJson = await response.json();
+		return dataJson.data;
+	} catch (error) {
+		console.log("Error fetching data: " + error);
+	}
+}
+function fillAssignedShiftsPage(data, projectId) {
+	if (!Array.isArray(shiftDetailsArray) || shiftDetailsArray.length === 0) {
+		console.error("No shift details provided");
+		return;
+	}
+
+	let projectItems = "";
+
+	shiftDetailsArray.forEach((data) => {
+		const projectItem = `<div class="card project-card">
+                                <div class="card-header col-12" id="projectTitle">
+                                    <b>Evenement:</b> ${data.Title}
+                                </div>                            
+                                <div class="card-body row project-card-body">
+                                    <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum: </b>${data.ShiftStartDate.split("T")[0]} ${data.ShiftEndDate}</p>
+                                    <p class="card-text col-lg-4 col-sm-6" id="shiftTime"><b>Tijd: </b>${data.ShiftStartTime.slice(0, 5)} - ${data.ShiftEndTime.slice(0, 5)}</p>
+									<p class="card-text col-lg-4 col-sm-6" id="userName"><b>Voornaam:</b> ${data.FirstName} <b>Achternaam:</b>   ${data.LastName}</p>
+									<div class="col-12"> <h5><b>Gebruiker gegevens:</b></h5></div>
+									<p class="card-text col-lg-4 col-sm-6" id="userEmail"><b>Email:</b> ${data.Emailaddress}</p>
+									<p class="card-text col-lg-4 col-sm-6" id="userPhone"><b>Telefoonnummer:</b> ${data.PhoneNumber}</p>
+									<div class="col-12"><h5><b>Adres gegevens:</b></h5></div>
+									<p class="card-text col-lg-4 col-sm-6" id="userCity"><b>Woonplaats:</b> ${data.City}</p>
+									<p class="card-text col-lg-4 col-sm-6" id="userStreet"><b>Straat:</b> ${data.Street}</p>
+									<p
+
+                                    <h5 class="col-12">Dienst gereed?</h5>
+									<div class="col-12">
+									<button class="btn btn-primary" onclick="setShift(${data.ShiftId})">Dienst gereed</button>
 									</div>
                                 </div>
                             </div>`;
