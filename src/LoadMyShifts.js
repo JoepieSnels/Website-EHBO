@@ -78,12 +78,12 @@ async function getShiftById(event, id) {
 	console.log('Loading shift with ID: ' + id);
 
 	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/getShiftById/${id}`, {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/getShiftById?shiftId=${id}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
-				Authorization: `Bearer${jwtToken}`,
-			},
+				Authorization: `Bearer ${jwtToken}`,
+			}
 		});
 		const dataJson = await response.json();
 		return dataJson.data;
@@ -106,12 +106,7 @@ function loadShiftDetailPage(event) {
 		data[tmp[0]] = tmp[1];
 	}
 
-	// Test loading, delete when API end-point is ready
-	createDetailShiftCard(testShift);
-	return;
-	// End of test loading
-
-	getShiftById(event, id)
+	getShiftById(event, params)
 		.then((shift) => {
 			createShiftCard(shift, true);
 		}
@@ -127,8 +122,9 @@ function createDetailShiftCard(shift) {
     }
 
     const item = `<div class="card project-list-card" onclick="goShiftDetailPage(${shift.ShiftId})">
-                    <div class="card-header" id="projectTitle">
-                        <b>Project:</b> ${shift.Title} 
+                    <div class="card-header row" id="projectTitle">
+                        <p class=col-lg-10><b>Project:</b> ${shift.Title} </p>
+						<button type="button" class="col-lg-2 sol-sm-4 btn btn-danger" onclick="checkForRemoval(event, ${shift})" >Uitschrijven</button>
                     </div>
                     <div class="card-body row project-card-body">
                         <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum:</b> ${shift.StartDate} ${shift.EndDate}</p>
@@ -137,23 +133,55 @@ function createDetailShiftCard(shift) {
                         <p class="card-text col-lg-4 col-sm-6" id="shiftLocation"><b>Locatie:</b> ${shift.Address}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="shiftNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
 						<p class="card-text col-lg-12 col-sm-12" id="shiftDescription"><b>Beschrijving:</b> ${shift.Description}</p>
-						<div class="col-lg-4"></div>					
-						<button type="button" class="col-lg-3 sol-sm-12 btn btn-danger" onclick"checkForRemoval(event, ${shift})">Uitschrijven</button>
                     </div>
                 </div>`;
 
 	document.getElementById("myShift").innerHTML += item;
 }
 
-
 function checkForRemoval(event, shift) {
-	const sevenDaysAway = new Date();
-	if(shift.StartDate) {
+	event.preventDefault(); // This is redundant for a button of type "button"
+	console.log('LOGGGGGGGGG');
+	
+	const date = new Date();
+	const sevenDaysFromNow = new Date(date.setDate(date.getDate() + 7)); // Fix to get correct date
+	
+	if (shift.StartDate > sevenDaysFromNow) {
+		// Add removal
+		removeEnrollment(event, shift.ShiftId)
+			.then((response) => {
+				if(response.status === 200) {
+					alert('Dienst verwijderd');
+					document.location.href = `./MyShift.html`;
+				} else {
+					alert('Dienst kon niet worden verwijderd');
+				}
+			}
 
+			)
+	} else {
+		alert('Shift mag niet worden verwijderd omdat deze binnen 7 dagen plaatsvindt');
 	}
 }
 
-
 async function removeEnrollment(event, shiftId) {
+	event.preventDefault();
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
+	console.log('Deleting assigned shift with ID: ' + id);
 
+	try {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/deleteAssignedShift`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json; charset-UTF-8",
+				Authorization: `Bearer ${jwtToken}`,
+			},
+			body: {
+				"shiftId": shiftId
+			}
+		});
+		return await response.json();
+	} catch(error) {
+		console.log('Error fetching data: ' + error);
+	}
 }
