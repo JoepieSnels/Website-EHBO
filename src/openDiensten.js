@@ -20,7 +20,7 @@ async function onLoadUserInfo(requiredPermission) {
 	}
 
 	// Maak verzoek naar de server om te kijken of de token geldig is
-	const apiRoute = "http://localhost:3000/api/validatetoken";
+	const apiRoute = "https://api-ehbo.onrender.com/api/validatetoken";
 	const validateResult = await fetch(apiRoute, {
 		headers: {
 			"Content-Type": "application/json; charset=UTF-8",
@@ -224,7 +224,7 @@ function fillShiftPage(shiftDetailsArray, projectId) {
                                     <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
                                     <h5 class="col-12">Schrijf je in!</h5>
 									<div class="col-12">
-									<button class="btn btn-primary" onclick="assignShift(${shiftDetails.ShiftId}, ${projectId})">Inschrijven</button>
+									<button class="btn btn-primary" onclick="setShift(${shiftDetails.ShiftId}, ${projectId})">Inschrijven</button>
 									</div>
                                 </div>
                             </div>`;
@@ -270,7 +270,7 @@ async function getAssignedShifts(projectId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
 	try {
-		const response = await fetch(`http://localhost:3000/api/getassignedshifts?projectId=${projectId}`, {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/getassignedshifts?projectId=${projectId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
@@ -304,7 +304,7 @@ function fillAssignedShiftsPage(DetailsArray) {
                                     <b>Evenement:</b> ${data.Title}
                                 </div>                            
                                 <div class="card-body row project-card-body">
-                                    <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum: </b>${data.StartDate.split("T")[0]} ${data.EndDate}</p>
+                                    <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum: </b>${data.StartDate.split("T")[0]} ${data.EndDate.split("T")[0]}</p>
                                     <p class="card-text col-lg-4 col-sm-6" id="shiftTime"><b>Tijd: </b>${data.StartTime.slice(0, 5)} - ${data.EndTime.slice(0, 5)}</p>
                                     <p class="card-text col-lg-4 col-sm-6" id="userName"><b>Voornaam:</b> ${data.FirstName} <b>Achternaam:</b> ${data.LastName}</p>
                                     <div class="col-12"><h5><b>Gebruiker gegevens:</b></h5></div>
@@ -315,7 +315,7 @@ function fillAssignedShiftsPage(DetailsArray) {
                                     <p class="card-text col-lg-4 col-sm-6" id="userStreet"><b>Straat:</b> ${data.Street}</p>
                                     <div class="col-12"><h5><b>Dienst gereed?</b></h5></div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary" onclick="setShift(${data.ShiftId})">Dienst gereed</button>
+                                        <button class="btn btn-primary" onclick="setShift(${(data.ShiftId, data.ProjectId)})">Dienst gereed</button>
                                     </div>
                                 </div>
                             </div>`;
@@ -325,18 +325,20 @@ function fillAssignedShiftsPage(DetailsArray) {
 	document.getElementById("replacable").innerHTML = projectItems;
 }
 
-async function setShift(shiftId) {
+async function setShift(shiftId, projectId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Assuming userID is stored in session storage
-	console.log("Setting shift:", shiftId);
 
 	try {
-		const response = await fetch(`http://localhost:3000/api/acceptShift`, {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/acceptForShift`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
 				Authorization: `Bearer ${jwtToken}`,
 			},
-			body: JSON.stringify({ shiftId, userId }),
+			body: JSON.stringify({
+				shiftId: shiftId,
+				projectId: projectId,
+			}),
 		});
 
 		if (!response.ok) {

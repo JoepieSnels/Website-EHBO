@@ -15,7 +15,7 @@ async function getPermission(requiredPermission) {
 	}
 
 	// Maak verzoek naar de server om te kijken of de token geldig is
-	const apiRoute = "http://localhost:3000/api/validatetoken";
+	const apiRoute = "https://api-ehbo.onrender.com/api/validatetoken";
 	const validateResult = await fetch(apiRoute, {
 		headers: {
 			"Content-Type": "application/json; charset=UTF-8",
