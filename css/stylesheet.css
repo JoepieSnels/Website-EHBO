@@ -58,6 +58,7 @@
 
 .side-nav a:hover {
 	color: grey;
+
 }
 
 .side-nav .active-link {
@@ -232,9 +233,9 @@ h1 {
 	width: 100rem;
 }
 
-.top {
+/* .top {
 	margin-top: 60px;
-}
+} */
 
 /* login */
 

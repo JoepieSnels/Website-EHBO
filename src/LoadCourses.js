@@ -40,8 +40,8 @@ async function getCoursesFromDB(event) {
         const response = await fetch('https://api-ehbo.onrender.com/api/getAvailableCourses', {
             method: 'GET',
             headers:{
-                'Content-Type': 'application/json; charset-UTF-8',
-                'Authorization': `bearer ${token}`
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': `Bearer ${jwtToken}`
             }
 
         });

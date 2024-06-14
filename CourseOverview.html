@@ -12,7 +12,7 @@
 </head>
 <body onload="loadAllCourses(event)">
 <!-- Begin navigatie -->
-<nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px;">
+<nav class="mb-4 navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px;">
 
     <!-- Hamburger Menu -->
     <div class="fixed-top d-sm-none">
@@ -29,31 +29,30 @@
                 <div class="dropdown-divider"></div>
                 <ul class="navbar-nav">
                     <div class="dropdown">
-                        <a class="btn" data-toggle="collapse" data-target="#nav-collapse" role="button" aria-expanded="false" aria-controls="#nav-collapse">
-                            Informatie
+                        <a class="btn dropdown-toggle" data-toggle="collapse" data-target="#nav-collapse" role="button" aria-expanded="false" aria-controls="#nav-collapse">
+                            Algemene informatie
                         </a><br>
                         <div class="dropdown-divider"></div>
-                        <div id="responder-nav">
-                            <a class="btn" href="./#">Mijn diensten</a><br>
-                            <a class="btn active-link"href="./OpenShifts.html">Open diensten</a><br>
-                            <a class="btn" href="./#">Certificaten</a><br>
-                            <a class="btn" href="./#">Materiaal</a><br>
-                            <a class="btn" href="./#">Account gegevens</a><br>
+                        <div class="pl-4 dropdown collapse" style="background-color: rgb(205, 229, 239); border-radius: 10px;" id="nav-collapse"> <!-- Dropdown overons-->
+                        
+                            <a href="./tilburg.html" class="btn">Over Ons</a><br />
+                            <a class="btn" href="./activiteiten.html">Activiteiten</a><br />
+                            <a class="btn" href="./opleidingen.html">Opleidingen</a><br />
+                            <a class="btn" href="./lidmaatschap.html">Lidmaatschap</a><br />
+                            <a class="btn" href="./contact.html">Contact</a><br />
+                            <a class="btn" href="./hulpverlening.html">Hulpverlening</a><br />
+                            <div class="dropdown-divider"></div>
                         </div>
+                        
                     </div>
 
-                    <div class="dropdown collapse" id="nav-collapse"> <!-- Dropdown overons-->
-                        <a href="./tilburg.html" class="btn">Over Ons</a><br>
-                        <div class="dropdown-divider"></div>
-                        <a class="btn" href="./activiteiten.html" >Activiteiten</a><br>
-                        <a class="btn" href="./opleidingen.html">Opleidingen</a><br>
-                        <a class="btn" href="./lidmaatschap.html">Lidmaatschap</a><br>
-                        <a class="btn" href="./contact.html">Contact</a><br>
-                        <a class="btn" href="./hulpverlening.html">Hulpverlening</a><br>
-                        <div class="dropdown-divider"></div>
-                        <a href="./Login.html" class="btn btn-lg btn-primary" style=" background-color: #042062; border-color: #042062;">Inloggen</a>
-
+                    <div id="responder-nav">
+                        <a class="btn" href="./#">Mijn diensten</a><br>
+                        <a class="btn active-link"href="./OpenShifts.html">Open diensten</a><br>
+                        <a class="btn" href="./#">Certificaten</a><br>
+                        <a class="btn" href="./#">Account gegevens</a><br>
                     </div>
+                </div>
                 </ul>
             </div>
             <div style="height: 1000px; background-color: rgba(0, 0, 0, 0.6); "></div>
@@ -125,14 +124,12 @@
             <li><a href="./AcceptedProjectOverview.html">Geaccepteerde evenmenten</a></li>
             <li><a href="./EventOverview.html">Alle evenementen</a></li>
             <li><a href="CourseOverview.html">Cursussen</a></li>
-            <li><a href="./#">Certificaten</a></li>
-            <li><a href="./#">Materiaal</a></li>
             <li><a href="./#">Account gegevens</a></li>
         </ul>
     </div>
     <div class="col-lg-9 col-md-12">
-        <h2 class="page-title top center">Open Cursussen</h2>
-        <div class="project-card-container p-3 center" id="course"></div>
+        <h2 class="page-title">Open Cursussen</h2>
+        <div class="project-card-container col-12" id="course"></div>
     </div>
 </div>
 </body>

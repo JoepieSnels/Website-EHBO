@@ -5,7 +5,7 @@ async function getPermission(requiredPermission) {
 
     	// Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
 	if (jwtToken === null) { 
-		alertNoAcces();
+		alertNoAcces(); 
 		return;
 	}
 

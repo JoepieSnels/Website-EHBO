@@ -283,24 +283,17 @@ function validateForm(event) {
 	function createSessionAndPermission(token, permissions) {
 		window.sessionStorage.setItem("jwtToken", token);
 		window.sessionStorage.setItem("permissions", permissions);
-		const firstRole = permissions.split('!')[0]
-		//TO-DO iets van een dubbele nav voor meerdere permissies of een knop om te wisselen
-		switch(firstRole){
-			case "Hulpverlener":
-				window.location.href = "./ActiveProjects.html";
-				break;
-			case "Coordinator":
-				window.location.href = "./AcceptedProjectOverview.html";
-				break;
-			case "Ledenadministratie":
-				window.location.href = "./createCursus.html";
-				break;
-			default:
-				window.location.href = "./index.html";
-				alert('Permissions are incorrect')
+		if(permissions.match('LedenAdministrator')) {
+			window.location.href = "./createCursus.html";
+		} else if (permissions.match('Coordinator')) {
+			window.location.href = "./AcceptedProjectOverview.html";
+		} else if (permissions.match = 'Hulpverlener') {
+			window.location.href = "./ActiveProjects.html";
+		} else {
+			window.location.href = ".index.html";
 		}
 		
-		
+		//TO-DO iets van een dubbele nav voor meerdere permissies of een knop om te wisselen
 	}
 
 }
