@@ -1,3 +1,43 @@
+async function onLoadUserInfo(requiredPermission) {
+	console.log("On page load");
+
+	// HARDCODDED, WEGHALEN ZODRA LOGIN WERKT
+	// createSessionAndPermission('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTcxNzUwNjQ2MCwiZXhwIjoxNzE4NTQzMjYwfQ.YrckiyoGuslcp_5oiBpT6fAe8lUfQAadTwOh1HmR9ow', 'Hulpverlener!Coordinator');
+
+	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
+	const permissions = window.sessionStorage.getItem("permissions"); // Haalt de permissies op
+
+	// Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
+	if (jwtToken === null) {
+		alertNoAcces();
+		return;
+	}
+
+	// Kijk of in de string van permissies de benodigde permissie zit
+	if (permissions === null || !permissions.match(requiredPermission)) {
+		alertNoAcces();
+		return;
+	}
+
+	// Maak verzoek naar de server om te kijken of de token geldig is
+	const apiRoute = "http://localhost:3000/api/validatetoken";
+	const validateResult = await fetch(apiRoute, {
+		headers: {
+			"Content-Type": "application/json; charset=UTF-8",
+			Authorization: `bearer ${jwtToken}`,
+		},
+	});
+
+	const toJson = await validateResult.json();
+
+	if (toJson.message === "Not authorized") {
+		alertNoAcces();
+		return;
+	}
+
+	document.getElementById("unBlockID").style.display = "block"; // Even controleren welke dit moet zijn
+}
+
 async function fetchData() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
 	try {
@@ -147,6 +187,7 @@ async function assignShift(shiftId, projectId) {
 		}
 
 		const dataJson = await response.json();
+		return dataJson.data;
 		alert("Inschrijving gelukt!");
 	} catch (error) {
 		if (error.status === 500) {
@@ -192,8 +233,13 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 
 	document.getElementById("replacable").innerHTML = projectItems;
 }
-function loadAssignedShifts(event) {
-	event.preventDefault();
+
+function loadAssignedShifts(event, requiredPermission) {
+	onLoadUserInfo(requiredPermission);
+
+	if (event) {
+		event.preventDefault();
+	}
 
 	var url = document.location.href;
 	var paramsString = url.split("?")[1];
@@ -210,22 +256,21 @@ function loadAssignedShifts(event) {
 	}
 	const projectId = data.id;
 
-	getAssignedShifts(event, projectId)
+	getAssignedShifts(projectId)
 		.then((shifts) => {
-			fillAssignedShiftsPage(shifts, projectId);
+			console.log("Shifts:", shifts);
+			fillAssignedShiftsPage(shifts);
 		})
 		.catch((error) => {
 			console.log("Error loading projects:", error);
 		});
 }
-async function getAssignedShifts(event, projectId) {
-	if (event) {
-		event.preventDefault();
-	}
+
+async function getAssignedShifts(projectId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
 	try {
-		const response = await fetch(`http://localhost:3000/api/getAssignedShifts?projectId=${projectId}`, {
+		const response = await fetch(`http://localhost:3000/api/getassignedshifts?projectId=${projectId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
@@ -241,41 +286,76 @@ async function getAssignedShifts(event, projectId) {
 		return dataJson.data;
 	} catch (error) {
 		console.log("Error fetching data: " + error);
+		throw error;
 	}
 }
-function fillAssignedShiftsPage(data, projectId) {
-	if (!Array.isArray(shiftDetailsArray) || shiftDetailsArray.length === 0) {
-		console.error("No shift details provided");
+
+function fillAssignedShiftsPage(DetailsArray) {
+	if (!Array.isArray(DetailsArray) || DetailsArray.length === 0) {
+		console.error("No details provided");
 		return;
 	}
 
 	let projectItems = "";
 
-	shiftDetailsArray.forEach((data) => {
+	DetailsArray.forEach((data) => {
 		const projectItem = `<div class="card project-card">
                                 <div class="card-header col-12" id="projectTitle">
                                     <b>Evenement:</b> ${data.Title}
                                 </div>                            
                                 <div class="card-body row project-card-body">
-                                    <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum: </b>${data.ShiftStartDate.split("T")[0]} ${data.ShiftEndDate}</p>
-                                    <p class="card-text col-lg-4 col-sm-6" id="shiftTime"><b>Tijd: </b>${data.ShiftStartTime.slice(0, 5)} - ${data.ShiftEndTime.slice(0, 5)}</p>
-									<p class="card-text col-lg-4 col-sm-6" id="userName"><b>Voornaam:</b> ${data.FirstName} <b>Achternaam:</b>   ${data.LastName}</p>
-									<div class="col-12"> <h5><b>Gebruiker gegevens:</b></h5></div>
-									<p class="card-text col-lg-4 col-sm-6" id="userEmail"><b>Email:</b> ${data.Emailaddress}</p>
-									<p class="card-text col-lg-4 col-sm-6" id="userPhone"><b>Telefoonnummer:</b> ${data.PhoneNumber}</p>
-									<div class="col-12"><h5><b>Adres gegevens:</b></h5></div>
-									<p class="card-text col-lg-4 col-sm-6" id="userCity"><b>Woonplaats:</b> ${data.City}</p>
-									<p class="card-text col-lg-4 col-sm-6" id="userStreet"><b>Straat:</b> ${data.Street}</p>
-									<p
-
-                                    <h5 class="col-12">Dienst gereed?</h5>
-									<div class="col-12">
-									<button class="btn btn-primary" onclick="setShift(${data.ShiftId})">Dienst gereed</button>
-									</div>
+                                    <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum: </b>${data.StartDate.split("T")[0]} ${data.EndDate}</p>
+                                    <p class="card-text col-lg-4 col-sm-6" id="shiftTime"><b>Tijd: </b>${data.StartTime.slice(0, 5)} - ${data.EndTime.slice(0, 5)}</p>
+                                    <p class="card-text col-lg-4 col-sm-6" id="userName"><b>Voornaam:</b> ${data.FirstName} <b>Achternaam:</b> ${data.LastName}</p>
+                                    <div class="col-12"><h5><b>Gebruiker gegevens:</b></h5></div>
+                                    <p class="card-text col-lg-4 col-sm-6" id="userEmail"><b>Email:</b> ${data.Emailaddress}</p>
+                                    <p class="card-text col-lg-4 col-sm-6" id="userPhone"><b>Telefoonnummer:</b> ${data.PhoneNumber}</p>
+                                    <div class="col-12"><h5><b>Adres gegevens:</b></h5></div>
+                                    <p class="card-text col-lg-4 col-sm-6" id="userCity"><b>Woonplaats:</b> ${data.City}</p>
+                                    <p class="card-text col-lg-4 col-sm-6" id="userStreet"><b>Straat:</b> ${data.Street}</p>
+                                    <div class="col-12"><h5><b>Dienst gereed?</b></h5></div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary" onclick="setShift(${data.ShiftId})">Dienst gereed</button>
+                                    </div>
                                 </div>
                             </div>`;
 		projectItems += projectItem;
 	});
 
 	document.getElementById("replacable").innerHTML = projectItems;
+}
+
+async function setShift(shiftId) {
+	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Assuming userID is stored in session storage
+	console.log("Setting shift:", shiftId);
+
+	try {
+		const response = await fetch(`http://localhost:3000/api/acceptShift`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+				Authorization: `Bearer ${jwtToken}`,
+			},
+			body: JSON.stringify({ shiftId, userId }),
+		});
+
+		if (!response.ok) {
+			throw new Error("Network response was not ok");
+		}
+
+		const dataJson = await response.json();
+		alert("Dienst gereed!");
+	} catch (error) {
+		if (error.status === 500) {
+			return;
+		} else {
+			alert("Dienst is al gereed.");
+			console.log("Error setting shift: " + error);
+		}
+	}
+}
+function alertNoAcces() {
+	console.log("Not the right site permissions");
+	alert("You have no access to this page, redirecting to login");
+	window.location.href = "./login.html";
 }
