@@ -30,9 +30,58 @@ function createCard(courseDetail) {
     console.log(courseDetail);
 }
 
+function createCourseCard(courseDetail) {
+    console.log(courseDetail);
+
+    let courseDate = courseDetail.DateTime.split('T')[0];
+    let courseTime = courseDetail.DateTime.split('T')[1].slice(0, -8);
+    let courseCost = '€' + courseDetail.Cost.replace('.', ',')
+
+    var item = `<div class="card project-card">
+                    <div class="card-header" id="courseTitle">
+                    <span class="align-middle"><b >Titel: </b>${courseDetail.Title}</span>
+                        
+                        <button class="btn btn-primary float-right align-middle" onclick="courseVerwijderen">Verwijderen</button>
+                    </div>
+                    <div class="card-body row project-list-body">
+                        <p class="card-text col-lg-4 col-sm-6"><b>Datum: </b>${courseDate}</p>
+                        <p class="card-text col-lg-4 col-sm-6"><b>Tijd: </b>${courseTime}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="courseLocation"><b>Locatie: </b> ${courseDetail.Location}</p>
+                        <p class="card-text col-lg-4 col-sm-6"><b>Docent: </b>${courseDetail.Teacher}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="courseCost"><b>Kosten: </b> ${courseCost}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="courseMaxParticipants"><b>Deelnemers: </b>${courseDetail.EnrolledCount} / ${courseDetail.MaxParticipants}</p>
+                        <p class="card-text col-12" id="courseDescription"><b>Beschrijving: </b> ${courseDetail.Description}</p>
+                    </div>
+                </div>`
+
+    document.getElementById('course').innerHTML += item;
+    console.log(courseDetail);
+}
+
+async function getAllCoursesFromDB() {
+    const jwtToken = window.sessionStorage.getItem('jwtToken')
+    try {
+        const response = await fetch('https://api-ehbo.onrender.com/api/getCourses', {
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': `Bearer ${jwtToken}`
+            }
+        });
+        const dataJson = await response.json();
+
+        if(!dataJson.status === 200) {
+            alert('Er zijn geen cursussen gevonden');
+        }
+        return dataJson.data;
+    } catch(error) {
+        console.error("Error getting all courses:", error);
+    }
+}
+
 async function getCoursesFromDB(event) {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxODE4MDA0MiwiZXhwIjoxNzE5MjE2ODQyfQ.HN5VjPipJBHM1x48DRW5o6wwLKpCHs1kJI9keOjONSw'
+    //const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxODE4MDA0MiwiZXhwIjoxNzE5MjE2ODQyfQ.HN5VjPipJBHM1x48DRW5o6wwLKpCHs1kJI9keOjONSw'
     console.log('Loading courses from Database');
     event.preventDefault();
 
@@ -59,7 +108,27 @@ async function getCoursesFromDB(event) {
     }
 }
 
-function loadAllCourses(event) {
+function loadAllCourses(requiredPermission) {
+    if(getPermission(requiredPermission)) {
+        getAllCoursesFromDB().then(courses => {
+            if(courses.length === undefined) {
+                console.log('Er zijn geen cursussen gevonden')
+                document.getElementById('course').innerHTML = 'Er zijn geen cursussen gevonden'
+            }
+    
+            for(let i = 0; i < courses.length; i++) {
+                createCourseCard(courses[i])
+            }
+        }).catch(error => {
+            console.log('Error loading projects:', error);
+        });
+    }
+    
+}
+
+
+
+function loadAvailableCourses(event) {
     getCoursesFromDB(event).then(courses => {
 
         if (courses.length === undefined) {
