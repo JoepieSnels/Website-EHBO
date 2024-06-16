@@ -37,7 +37,7 @@ async function onLoadUserInfo(requiredPermission) {
 
 	document.getElementById("unBlockID").style.display = "block"; // Even controleren welke dit moet zijn
 }
-
+//gebruikt
 function fillAcceptedDetailPage(projectDetails) {
 	console.log(projectDetails);
 
@@ -67,6 +67,8 @@ function fillAcceptedDetailPage(projectDetails) {
 
 	console.log(projectDetails.Id);
 }
+
+//gebruikt
 function createCard(projectDetails) {
 	console.log(projectDetails);
 	// projectDetails = testProjectDetails;
@@ -153,7 +155,7 @@ function createCard(projectDetails) {
 	document.getElementById("eventCards").innerHTML += item;
 	console.log(projectDetails.Id);
 }
-
+//gebruikt
 function createAcceptedCard(projectDetails) {
 	console.log(projectDetails);
 	// projectDetails = testProjectDetails;
@@ -183,14 +185,15 @@ function createAcceptedCard(projectDetails) {
 	console.log(projectDetails.Id);
 }
 
-//gebruikt
+
 function goAcceptedDetailPage(id) {
 	document.location.href = `./CreateShift.html?id=${id}`;
 }
 
 //gebruikt
-function loadAcceptedProjects(event) {
-	getAcceptedProjectsFromDB(event)
+function loadAcceptedProjects(requiredPermission) {
+	if(getPermission(requiredPermission)) {
+		getAcceptedProjectsFromDB(event)
 		.then((projects) => {
 			console.log(projects[0].Title);
 			for (let i = 0; i < projects.length; i++) {
@@ -200,6 +203,8 @@ function loadAcceptedProjects(event) {
 		.catch((error) => {
 			console.log("Error loading projects:", error);
 		});
+	}
+	
 }
 
 //gebruikt
@@ -223,12 +228,11 @@ async function getAcceptedProjectsFromDB(event) {
 		console.log("Error fetching data: " + error);
 	}
 }
-
-async function getProjectsFromDB(event) {
+//gebruikt
+async function getProjectsFromDB() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
 	console.log("Loading projects from Database");
-	event.preventDefault();
 
 	try {
 		const response = await fetch("https://api-ehbo.onrender.com/api/getAllUndecidedProjects", {
@@ -245,9 +249,10 @@ async function getProjectsFromDB(event) {
 		console.log("Error fetching data: " + error);
 	}
 }
-
-function loadAllProjects(event) {
-	getProjectsFromDB(event)
+//gebruikt
+function loadAllProjects(requiredPermission) {
+	if(getPermission(requiredPermission)) {
+		getProjectsFromDB()
 		.then((projects) => {
 			console.log(projects[0].Title);
 			for (let i = 0; i < projects.length; i++) {
@@ -257,17 +262,19 @@ function loadAllProjects(event) {
 		.catch((error) => {
 			console.log("Error loading projects:", error);
 		});
+	}
+	
 }
 
-//gebruikt
-// Load project based on ID
 
+// Load project based on ID
+//gebruikt
 async function getProjectsFromDBWithId(event, id) {
 	console.log(id);
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
 	console.log("Loading project with Id: " + id);
-	event.preventDefault();
+
 
 	try {
 		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
@@ -321,9 +328,10 @@ function goDetailPage(id) {
 function goAcceptedDetailPage(id) {
 	document.location.href = `./CreateShift.html?id=${id}`;
 }
-
-function loadProjectDetails(event) {
-	var url = document.location.href,
+//gebruikt
+function loadProjectDetails(requiredPermission) {
+	if(getPermission(requiredPermission)){
+		var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
 		tmp;
@@ -342,8 +350,10 @@ function loadProjectDetails(event) {
 		.catch((error) => {
 			console.log("Error loading projects:", error);
 		});
+	}
+	
 }
-
+//gebruikt
 function fillDetailPage(projectDetails) {
 	console.log(projectDetails);
 
@@ -490,8 +500,9 @@ function rejectProject(id) {
 		});
 }
 //gebruikt
-function loadAcceptedProjectDetails(event) {
-	var url = document.location.href,
+function loadAcceptedProjectDetails(requiredPermission) {
+	if(getPermission(requiredPermission)) {
+		var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
 		tmp;
@@ -510,9 +521,11 @@ function loadAcceptedProjectDetails(event) {
 		.catch((error) => {
 			console.log("Error loading projects:", error);
 		});
+	}
+	
 }
 
-//gebruikt
+
 function fillAcceptedDetailPage(projectDetails) {
 	console.log(projectDetails);
 

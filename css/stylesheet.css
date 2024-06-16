@@ -4,7 +4,19 @@
 }
 .content {
 	padding-bottom: 2.5rem;
+	padding-top: 20px;
 }
+
+/* @media(max-width: 600px) {
+	.content {
+		padding-top:20px;
+	}
+}
+@media (min-width:600px) {
+	.content {
+		padding-top: 20px;
+	}
+} */
 .project-card:hover {
 	cursor: pointer;
 }
@@ -137,20 +149,13 @@ h1,a, button{
 	font-family: Helvetica, sans-serif;
 }
 
-h1 {
+/* h1 {
 	padding-top: 20px;
-}
+} */
 
 
 
 
-
-
-@media (min-width:600px) {
-	.content {
-		margin-top: 20px;
-	}
-}
 
 .content .info {
 	margin-top: 20px;
@@ -158,10 +163,10 @@ h1 {
 }
 
 
-.content .btn {
+/* .content .btn {
 	background-color: #042062;
 	border: 0px;
-}
+} */
 
 .content .btn:hover {
 	background-color: #6f85c2;
