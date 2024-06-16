@@ -91,7 +91,7 @@ async function loadInfo(requiredPermission) {
 			document.getElementById("facStraat").innerHTML = data.Street;
 		}
 	}
-	}
+	
 	
 }
 
