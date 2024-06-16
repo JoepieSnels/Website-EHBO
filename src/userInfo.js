@@ -91,13 +91,15 @@ async function loadInfo(requiredPermission) {
 			document.getElementById("facStraat").innerHTML = data.Street;
 		}
 	}
+	}
+	
 }
 
-function alertNoAcces() {
-	console.log("Not the right site permissions");
-	alert("You have no access to this page, redirecting to login");
-	window.location.href = "./login.html";
-}
+// function alertNoAcces() {
+// 	console.log("Not the right site permissions");
+// 	alert("You have no access to this page, redirecting to login");
+// 	window.location.href = "./login.html";
+// }
 
 // TIJDELIJK -> REMOVE!!!
 // Zo kan je een sessie aanmaken
