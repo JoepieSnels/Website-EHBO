@@ -72,26 +72,36 @@ async function loadActiveProjects(requiredPermission) {
 
 
 function loadShifts(requiredPermission) {
+	console.log('LOAD SHIFTS')
 	if(getPermission(requiredPermission)) {
 
-		var url = document.location.href;
-		var paramsString = url.split("?")[1];
-		if (!paramsString) {
-			console.error("No query parameters found in the URL");
-			return;
-		}
-		var params = paramsString.split("&");
-		var data = {},
-			tmp;
-		for (var i = 0, l = params.length; i < l; i++) {
-			tmp = params[i].split("=");
-			data[tmp[0]] = tmp[1];
-		}
-		const projectId = data.id;
+		// var url = document.location.href;
+		// var paramsString = url.split("?")[1];
+		// if (!paramsString) {
+		// 	console.error("No query parameters found in the URL");
+		// 	return;
+		// }
+		// var params = paramsString.split("&");
+		// var data = {},
+		// 	tmp;
+		// for (var i = 0, l = params.length; i < l; i++) {
+		// 	tmp = params[i].split("=");
+		// 	data[tmp[0]] = tmp[1];
+		// }
+		var url = document.location.href,
+		params = url.split("?")[1].split("&"),
+		data = {},
+		tmp;
+	console.log(params);
+	for (var i = 0, l = params.length; i < l; i++) {
+		tmp = params[i].split("=");
+		data[tmp[0]] = tmp[1];
+	}
 
-		getShifts(projectId)
+		console.log(data.id)
+		getShifts(data.id)
 			.then((shifts) => {
-				fillShiftPage(shifts, projectId);
+				fillShiftPage(shifts, data.Id);
 			})
 			.catch((error) => {
 				console.log("Error loading projects:", error);

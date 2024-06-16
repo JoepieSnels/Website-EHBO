@@ -37,38 +37,36 @@ async function onLoadUserInfo(requiredPermission) {
 
 	document.getElementById("unBlockID").style.display = "block"; // Even controleren welke dit moet zijn
 }
-//gebruikt
-function fillAcceptedDetailPage(projectDetails) {
-	console.log(projectDetails);
 
-	if (!projectDetails.EndDate) {
-		projectDetails.EndDate = "";
-	} else {
-		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
-	}
+// function fillAcceptedDetailPage(projectDetails) {
+// 	console.log(projectDetails);
 
-	const projectItem = `<div class="card project-card">
-                            <div class="card-header col-12" id="projectTitle">
-                                <b>Project:</b> ${projectDetails.Title}
-                                <b> Bedrijf:</b> ${projectDetails.Company}
-                            </div>
-                            <div class="card-body row project-card-body">
-                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
-                                <p class="card-text col-lg-4 col
-                        <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
-                    </div>
-                </div>`;
+// 	if (!projectDetails.EndDate) {
+// 		projectDetails.EndDate = "";
+// 	} else {
+// 		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
+// 	}
 
-	document.getElementById("eventCards").innerHTML += projectItem;
+// 	const projectItem = `<div class="card project-card">
+//                             <div class="card-header col-12" id="projectTitle">
+//                                 <b>Project:</b> ${projectDetails.Title}
+//                                 <b> Bedrijf:</b> ${projectDetails.Company}
+//                             </div>
+//                             <div class="card-body row project-card-body">
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
+//                                 <p class="card-text col-lg-4 col
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
+//                     </div>
+//                 </div>`;
 
-	console.log(projectDetails.Id);
-}
+// 	document.getElementById("eventCards").innerHTML += projectItem;
 
-//gebruikt
+// 	console.log(projectDetails.Id);
+// }
 function createCard(projectDetails) {
 	console.log(projectDetails);
 	// projectDetails = testProjectDetails;
@@ -98,35 +96,35 @@ function createCard(projectDetails) {
 	console.log(projectDetails.Id);
 }
 
-function fillAcceptedDetailPage(projectDetails) {
-	console.log(projectDetails);
+// function fillAcceptedDetailPage(projectDetails) {
+// 	console.log(projectDetails);
 
-	if (!projectDetails.EndDate) {
-		projectDetails.EndDate = "";
-	} else {
-		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
-	}
+// 	if (!projectDetails.EndDate) {
+// 		projectDetails.EndDate = "";
+// 	} else {
+// 		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
+// 	}
 
-	const projectItem = `<div class="card project-card">
-                            <div class="card-header col-12" id="projectTitle">
-                                <b>Project:</b> ${projectDetails.Title}
-                                <b> Bedrijf:</b> ${projectDetails.Company}
-                            </div>
-                            <div class="card-body row project-card-body">
-                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
-                                <p class="card-text col-lg-4 col
-                        <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
-                    </div>
-                </div>`;
+// 	const projectItem = `<div class="card project-card">
+//                             <div class="card-header col-12" id="projectTitle">
+//                                 <b>Project:</b> ${projectDetails.Title}
+//                                 <b> Bedrijf:</b> ${projectDetails.Company}
+//                             </div>
+//                             <div class="card-body row project-card-body">
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
+//                                 <p class="card-text col-lg-4 col
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
+//                     </div>
+//                 </div>`;
 
-	document.getElementById("eventCards").innerHTML += projectItem;
+// 	document.getElementById("eventCards").innerHTML += projectItem;
 
-	console.log(projectDetails.Id);
-}
+// 	console.log(projectDetails.Id);
+// }
 function createCard(projectDetails) {
 	console.log(projectDetails);
 	// projectDetails = testProjectDetails;
@@ -155,7 +153,7 @@ function createCard(projectDetails) {
 	document.getElementById("eventCards").innerHTML += item;
 	console.log(projectDetails.Id);
 }
-//gebruikt
+
 function createAcceptedCard(projectDetails) {
 	console.log(projectDetails);
 	// projectDetails = testProjectDetails;
@@ -185,7 +183,7 @@ function createAcceptedCard(projectDetails) {
 	console.log(projectDetails.Id);
 }
 
-
+//gebruikt
 function goAcceptedDetailPage(id) {
 	document.location.href = `./CreateShift.html?id=${id}`;
 }
@@ -193,7 +191,7 @@ function goAcceptedDetailPage(id) {
 //gebruikt
 function loadAcceptedProjects(requiredPermission) {
 	if(getPermission(requiredPermission)) {
-		getAcceptedProjectsFromDB(event)
+		getAcceptedProjectsFromDB()
 		.then((projects) => {
 			console.log(projects[0].Title);
 			for (let i = 0; i < projects.length; i++) {
@@ -208,10 +206,10 @@ function loadAcceptedProjects(requiredPermission) {
 }
 
 //gebruikt
-async function getAcceptedProjectsFromDB(event) {
+async function getAcceptedProjectsFromDB() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	console.log("Loading projects from Database");
-	event.preventDefault();
+	
 
 	try {
 		const response = await fetch("https://api-ehbo.onrender.com/api/getAcceptedProjects", {
@@ -228,11 +226,12 @@ async function getAcceptedProjectsFromDB(event) {
 		console.log("Error fetching data: " + error);
 	}
 }
-//gebruikt
+
 async function getProjectsFromDB() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
 	console.log("Loading projects from Database");
+
 
 	try {
 		const response = await fetch("https://api-ehbo.onrender.com/api/getAllUndecidedProjects", {
@@ -249,7 +248,7 @@ async function getProjectsFromDB() {
 		console.log("Error fetching data: " + error);
 	}
 }
-//gebruikt
+
 function loadAllProjects(requiredPermission) {
 	if(getPermission(requiredPermission)) {
 		getProjectsFromDB()
@@ -266,10 +265,10 @@ function loadAllProjects(requiredPermission) {
 	
 }
 
-
-// Load project based on ID
 //gebruikt
-async function getProjectsFromDBWithId(event, id) {
+// Load project based on ID
+
+async function getProjectsFromDBWithId(id) {
 	console.log(id);
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
@@ -291,35 +290,7 @@ async function getProjectsFromDBWithId(event, id) {
 		console.log("Error fetching data: " + error);
 	}
 
-	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
-			method: "GET", // Use GET method
-			headers: {
-				"Content-Type": "application/json; charset=UTF-8",
-				Authorization: `Bearer ${token}`,
-			},
-		});
 
-		const dataJson = await response.json();
-		return dataJson.data;
-	} catch (error) {
-		console.log("Error fetching data: " + error);
-	}
-
-	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
-			method: "GET", // Use GET method
-			headers: {
-				"Content-Type": "application/json; charset=UTF-8",
-				Authorization: `Bearer ${token}`,
-			},
-		});
-
-		const dataJson = await response.json();
-		return dataJson.data;
-	} catch (error) {
-		console.log("Error fetching data: " + error);
-	}
 }
 
 function goDetailPage(id) {
@@ -328,10 +299,9 @@ function goDetailPage(id) {
 function goAcceptedDetailPage(id) {
 	document.location.href = `./CreateShift.html?id=${id}`;
 }
-//gebruikt
-function loadProjectDetails(requiredPermission) {
-	if(getPermission(requiredPermission)){
-		var url = document.location.href,
+
+function loadProjectDetails() {
+	var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
 		tmp;
@@ -342,7 +312,7 @@ function loadProjectDetails(requiredPermission) {
 	}
 	console.log(data.id);
 
-	getProjectsFromDBWithId(event, data.id)
+	getProjectsFromDBWithId(data.id)
 		.then((project) => {
 			console.log(project);
 			fillDetailPage(project);
@@ -350,10 +320,8 @@ function loadProjectDetails(requiredPermission) {
 		.catch((error) => {
 			console.log("Error loading projects:", error);
 		});
-	}
-	
 }
-//gebruikt
+
 function fillDetailPage(projectDetails) {
 	console.log(projectDetails);
 
@@ -396,7 +364,7 @@ function goAcceptedDetailPage(id) {
 	document.location.href = `./CreateShift.html?id=${id}`;
 }
 
-function loadProjectDetails(event) {
+function loadProjectDetails() {
 	var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
@@ -408,7 +376,7 @@ function loadProjectDetails(event) {
 	}
 	console.log(data.id);
 
-	getProjectsFromDBWithId(event, data.id)
+	getProjectsFromDBWithId( data.id)
 		.then((project) => {
 			console.log(project);
 			fillDetailPage(project);
@@ -513,7 +481,7 @@ function loadAcceptedProjectDetails(requiredPermission) {
 	}
 	console.log(data.id);
 
-	getProjectsFromDBWithId(event, data.id)
+	getProjectsFromDBWithId(data.id)
 		.then((project) => {
 			console.log(project);
 			fillAcceptedDetailPage(project);
@@ -525,7 +493,7 @@ function loadAcceptedProjectDetails(requiredPermission) {
 	
 }
 
-
+//gebruikt
 function fillAcceptedDetailPage(projectDetails) {
 	console.log(projectDetails);
 

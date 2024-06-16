@@ -20,7 +20,7 @@
 				<!-- Hamburger Menu -->
 				<div class="fixed-top d-sm-none">
 					<nav class="navbar navbar-light bg-light d-flex align-items-center" style="gap: 10px">
-						<img src="./images/logo.png" alt="logo" style="width: 80px" />
+						<a href="./index.html"><img src="./images/logo.png" alt="logo" style="width: 80px" /></a>
 						<h3>EHBO Tilburg</h3>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
@@ -44,12 +44,34 @@
 										<div class="dropdown-divider"></div>
 									</div>
 									<div id="responder-nav">
-										<a class="btn" href="./#">Aanvragen</a><br />
-										<a class="btn active-link" href="./AcceptedProjectOverview">Geaccepteerde aanvragen</a><br />
-										<!-- <a class="btn" href="./#">Certificaten</a><br>
-                                            <a class="btn" href="./#">Materiaal</a><br>
-                                            <a class="btn" href="./#">Account gegevens</a><br>   -->
+										<a class="btn dropdown-toggle d-xs-block" data-toggle="collapse" data-target="#hulpverlener2" role="button" aria-expanded="false" aria-controls="#hulpverlener2" id="toggle-btn-hulp-2">Hulpverlener</a><br class="d-block" id="toggle-btn-hulp-2" />
+										<div id="hulpverlener2" class="dropdown collapse">
+											<ul class="list-group">
+												<a href="./MyShifts.html" class="list-group-item list-group-item-action mt-1">Mijn diensten</a>
+												<a href="./ActiveProjects.html" class="list-group-item list-group-item-action">Open projecten</a>
+												<a href="./CourseOverview.html" class="list-group-item list-group-item-action">Cursussen</a>
+
+											</ul>
+										</div>
+										<a class="btn dropdown-toggle d-xs-block" data-toggle="collapse" data-target="#coordinator2" role="button" aria-expanded="false" aria-controls="#coordinator2" id="toggle-btn-coordinator-2">Coordinator</a><br class="d-block" id="toggle-btn-hulp-2" />
+										<div id="coordinator2" class="dropdown collapse">
+											<ul class="list-group">
+												<a href="./AcceptedProjectOverview.html" class="list-group-item list-group-item-action mt-1">Geaccepteerde Projecten</a>
+												<a href="./EventOverview.html" class="list-group-item list-group-item-action">Aanvragen</a>
+
+											</ul>
+										</div>
+										<a id="toggle-btn-ledenadministratie-2" class="btn dropdown-toggle d-xs-block" data-toggle="collapse" data-target="#ledenadministratie2" role="button" aria-expanded="false" aria-controls="#ledenadministratie2">Ledenadministratie</a><br class="d-block" id="toggle-btn-hulp-2" />
+
+										<div id="ledenadministratie2" class="dropdown collapse">
+											<ul class="list-group">
+												<a href="./AllCourseOverview.html" class="list-group-item list-group-item-action mt-1">Alle cursussen</a>
+												<a href="./createCursus.html" class="list-group-item list-group-item-action">Cursus aanmaken</a>
+
+											</ul>
+										</div>
 									</div>
+									<a class="btn" href="./StaticUserInfo.html">Accountinformatie</a><br />
 								</div>
 							</ul>
 						</div>
@@ -72,14 +94,14 @@
 					<ul class="navbar-nav">
 						<div class="btn-group" style="width: fit-content">
 							<!-- Dropdown overons-->
-							<a href="./tilburg.html" class="btn btn-light d-none d-md-block">Over&nbsp;Ons</a>
-							<a href="./tilburg.html" class="btn btn-light d-md-none">Over</a>
+							<a href="./overons.html" class="btn btn-light d-none d-md-block">Over&nbsp;Ons</a>
+							<a href="./overons.html" class="btn btn-light d-md-none">Over</a>
 							<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-spilt" data-toggle="dropdown"></button>
 							<div class="dropdown-menu" style="padding: 2px">
-								<a href="#" class="btn">De vereniging</a><br />
-								<a href="#" class="btn">Het bestuur</a><br />
-								<a href="#" class="btn">Docenten</a><br />
-								<a href="#" class="btn">Lotus</a>
+								<a href="./overons.html#vereniging" class="btn">De vereniging</a><br />
+								<a href="./overons.html#bestuur" class="btn">Het bestuur</a><br />
+								<a href="./overons.html#docenten" class="btn">Docenten</a><br />
+								<a href="./overons.html#lotus" class="btn">Lotus</a>
 							</div>
 						</div>
 						<div class="dropdown d-lg-none">
@@ -113,58 +135,45 @@
 			<!-- Einde Navigatie -->
 
 			<div class="row content">
-				<div class="col-lg-3 col-sm-4 d-none d-sm-block">
+				<!-- begin side nav -->
+				<div class="side-nav col-3 d-none d-sm-block">
 					<ul class="p-1 list-group border border-light rounded">
-						<a data-toggle="collapse" data-target="#hulpverlener" id="toggle-btn-hulp-1" class="p-2 font-weight-bolder btn btn-light btn-outline-info d-none d-md-block">Hulpverlener</a>
-						<a data-toggle="collapse" data-target="#hulpverlener" id="toggle-btn-hulp-2" class="p-2 btn btn-light btn-outline-info d-sm-block d-md-none">Hulpverlener</a>
+						<a data-toggle="collapse" data-target="#hulpverlener" id="toggle-btn-hulp-1" class="p-2 btn btn-light d-xs-none d-sm-block">Hulpverlener</a>
 
 						<div id="hulpverlener" class="collapse">
 							<ul class="list-group">
-								<a href="#" class="list-group-item list-group-item-action mt-1">Item 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Item 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Item 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Item 1</a>
+								<a href="./MyShifts.html" class="list-group-item list-group-item-action mt-1">Mijn diensten</a>
+								<a href="./ActiveProjects.html" class="list-group-item list-group-item-action">Open Projecten</a>
+								<a href="./CourseOverview.html" class="list-group-item list-group-item-action">Cursussen</a>
+								
 							</ul>
 						</div>
 
-						<a data-toggle="collapse" data-target="#coordinator" id="toggle-btn-coordinator-1" class="p-2 font-weight-bolder btn btn-light btn-outline-info d-sm-none d-md-block mt-2">Coördinator</a>
-						<a data-toggle="collapse" data-target="#coordinator" id="toggle-btn-coordinator-2" class="p-2 btn btn-light btn-outline-info d-sm-block d-md-none mt-2">Coördinator</a>
+						<a data-toggle="collapse" data-target="#coordinator" id="toggle-btn-coordinator-1" class="p-2 btn btn-light d-xs-none d-sm-block mt-2">Coördinator</a>
 
 						<div id="coordinator" class="collapse">
 							<ul class="list-group">
-								<a href="#" class="list-group-item list-group-item-action mt-1">Item 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Item 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Item 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Item 1</a>
+								<a href="./AcceptedProjectOverview.html" class="list-group-item list-group-item-action mt-1">Geaccepteerde Projecten</a>
+								<a href="./EventOverview.html" class="list-group-item list-group-item-action">Aanvragen</a>
 							</ul>
 						</div>
 
-						<a data-toggle="collapse" data-target="#ledenadministratie" id="toggle-btn-ledenadministratie-1" class="p-2 font-weight-bolder btn btn-light btn-outline-info d-sm-none d-md-block mt-2">Leden Administratie</a>
-						<a data-toggle="collapse" data-target="#ledenadministratie" id="toggle-btn-ledenadministratie-2" class="p-2 btn btn-light btn-outline-info d-sm-block d-md-none mt-2">Leden Administratie</a>
+						<a data-toggle="collapse" data-target="#Leden-Administratie" id="toggle-btn-ledenadministratie-1" class="p-2 btn btn-light d-xs-none d-sm-block mt-2">Ledenadministratie</a>
 
-						<div id="ledenadministratie" class="collapse">
+						<div id="Leden-Administratie" class="collapse">
 							<ul class="list-group">
-								<a href="#" class="list-group-item list-group-item-action mt-1">Item 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Item 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Item 1</a>
-								<a href="#" class="list-group-item list-group-item-action">Item 1</a>
+								<a href="./AllCourseOverview.html" class="list-group-item list-group-item-action mt-1">Alle cursussen</a>
+								<a href="./createCursus.html" class="list-group-item list-group-item-action">Cursus aanmaken</a>
+
 							</ul>
 						</div>
 
-						<a href="#" class="list-group-item list-group-item-action btn btn-outline-dark btn-light mt-2">Account Informatie</a>
+						<a href="./StaticUserInfo.html" class="list-group-item list-group-item-action btn btn-outline-dark mt-2">Accountinformatie</a>
 					</ul>
 				</div>
-				<!-- <div class="col-lg-3 col-sm-4 d-none d-sm-block">
-					<ul class="side-nav">
-						<li><a href="./#">Mijn diensten</a></li>
-						<li class="active-link"><a href="./ActiveProjects.html">Open diensten</a></li>
-						<li><a href="CourseOverview.html">Cursussen</a></li>
-						<li><a href="./#">Certificaten</a></li>
-						<li><a href="./#">Materiaal</a></li>
-						<li><a href="./StaticUserInfo.html">Account gegevens</a></li>
-					</ul>
-				</div> -->
-				<div class="col-lg-9 col-sm-8">
+				<!-- Side nav Eind -->
+
+				<div class="col-9">
 					<h2 class="page-title">Projecten</h2>
 					<div class="project-card-container" id="replacable"></div>
 				</div>

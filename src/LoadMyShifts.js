@@ -11,7 +11,7 @@ const testShift = {
 }
 //gebruikt
 function loadShifts(requiredPermission) {
-	if(requiredPermission) {
+	if(getPermission(requiredPermission)) {
 		getShiftsFromDB()
 		.then((shifts) => {
 			for (let i = 0; i < shifts.length; i++) {
@@ -82,7 +82,7 @@ async function getShiftById(id) {
 	console.log('Loading shift with ID: ' + id);
 
 	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/getShiftById?shiftId=1`, {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/getShiftById?shiftId=${id}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
@@ -91,7 +91,7 @@ async function getShiftById(id) {
 			
 		});
 		const dataJson = await response.json();
-
+		console.log(dataJson)
 		return dataJson.data[0];
 	} catch(error) {
 		console.log('Error fetching data: ' + error);
@@ -104,15 +104,27 @@ function goShiftDetailPage(id) {
 //hier
 function loadShiftDetailPage(requiredPermission) {
 	if(getPermission(requiredPermission)) {
+		// var url = document.location.href,
+		// params = url.split("?")[1].split("&"),
+		// data = {},
+		// tmp;
+		// for (var i = 0, l = params.length; i < l; i++) {
+		// 	tmp = params[i].split("=");
+		// 	data[tmp[0]] = tmp[1];
+		// }
 		var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
 		tmp;
-		for (var i = 0, l = params.length; i < l; i++) {
-			tmp = params[i].split("=");
-			data[tmp[0]] = tmp[1];
-		}
-		getShiftById(params)
+	console.log(params);
+	for (var i = 0, l = params.length; i < l; i++) {
+		tmp = params[i].split("=");
+		data[tmp[0]] = tmp[1];
+	}
+
+		console.log(data.id)
+
+		getShiftById(data.id)
 			.then((shift) => {
 				createDetailShiftCard(shift);
 			}
