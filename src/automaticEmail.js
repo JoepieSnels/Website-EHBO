@@ -51,20 +51,20 @@ function sendMail(event) {
         landLine: null
     }
 
-    if(document.getElementById('landLine').value) {
-        params.landLine = document.getElementById('landLine').value
+    if(document.getElementById('homePhone').value) {
+        params.landLine = document.getElementById('homePhone').value
     } else {
         params.landLine = 'Niet ingevuld'
     }
 
-    if(document.getElementById('invoiceEmail').value) {
-        params.invoiceEmail = document.getElementById('invoiceEmail').value
+    if(document.getElementById('billingEmail').value) {
+        params.invoiceEmail = document.getElementById('billingEmail').value
     } else {
         params.invoiceEmail = 'Niet ingevuld'
     }
 
-    if(document.getElementById('invoiceAdres').value && document.getElementById('invoiceStreet').value && document.getElementById('invoiceNumber').value) {
-        params.invoiceAdres =  `${document.getElementById('invoiceStreet').value} ${document.getElementById('invoiceNumber').value}, ${document.getElementById('invoiceAdres').value}`
+    if(document.getElementById('billingCity').value && document.getElementById('billingStreet').value && document.getElementById('billingHouseNumber').value) {
+        params.invoiceAdres =  `${document.getElementById('billingStreet').value} ${document.getElementById('billingHouseNumber').value}, ${document.getElementById('billingCity').value}`
     } else {
         params.invoiceAdres = 'Niet ingevuld'
     }
@@ -80,17 +80,17 @@ function sendMail(event) {
             document.getElementById('firstName').value = ''
             document.getElementById('lastName').value = ''
             document.getElementById('phoneNumber').value = ''
-            document.getElementById('landLine').value = ''
+            document.getElementById('homePhone').value = ''
             document.getElementById('dateOfBirth').value = ''
             document.getElementById('gender').value = ''
             document.getElementById('city').value = ''
             document.getElementById('postalCode').value = ''
             document.getElementById('street').value = ''
             document.getElementById('houseNumber').value = ''
-            document.getElementById('invoiceEmail').value = ''
-            document.getElementById('invoiceAdres').value = ''
-            document.getElementById('invoiceStreet').value = ''
-            document.getElementById('invoiceNumber').value = ''
+            document.getElementById('billingEmail').value = ''
+            document.getElementById('billingCity').value = ''
+            document.getElementById('billingStreet').value = ''
+            document.getElementById('billingHouseNumber').value = ''
 
             console.log(res)
             alert('Aanvraag is ingezonden')
