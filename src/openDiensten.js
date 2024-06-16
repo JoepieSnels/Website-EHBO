@@ -293,6 +293,8 @@ async function getAssignedShifts(projectId) {
 function fillAssignedShiftsPage(DetailsArray) {
 	if (!Array.isArray(DetailsArray) || DetailsArray.length === 0) {
 		console.error("No details provided");
+		alert("Er zijn geen diensten gevonden.");
+		window.location.href = "./ActiveProjectCoordinator.html";
 		return;
 	}
 
