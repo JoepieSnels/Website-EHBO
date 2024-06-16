@@ -3,62 +3,165 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 		<title>KNV EHBO Tilburg</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
+
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
-		<link href="./style.css" rel="stylesheet" />
+		<link href="./css/stylesheet.css" rel="stylesheet" />
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div class="row d-flex">
-				<div class="col-lg-2 col-sm-1 d-none d-lg-flex">
-					<a href="index.html"><img class="logo-image img-fluid float-left" src="images/logo.png" alt="ehbo logo" /></a>
-				</div>
-				<div class="col-lg-10 col-sm-11 align-self-center">
-					<div class="row">
-						<div class="col-sm-2 d-flex d-lg-none">
-							<img class="logo-image img-fluid float-left" src="./logo.png" alt="ehbo logo" />
-						</div>
-						<div class="col-lg-9 col-sm-8 align-self-end">
-							<h1>EHBO Tiburg</h1>
-						</div>
-						<div class="col-lg-3 col-sm-2 align-self-end login-btn">
-							<a type="button" class="btn btn-primary float-right" href="./Login.html">Inloggen</a>
-						</div>
-					</div>
-					<div class="row nav-buttons">
-						<div class="btn-group" role="group">
-							<div class="dropdown">
-								<a class="btn lala" type="button" href="./tilburg.html">Tilburg</a>
-								<button class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-									<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="index.html">De vereniging</a>
-									<a class="dropdown-item" href="index.html">Het bestuur</a>
-									<a class="dropdown-item" href="index.html">Docenten</a>
-									<a class="dropdown-item" href="index.html">Lotus</a>
+		<div class="page-container">
+			<nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px">
+				<div class="fixed-top d-sm-none">
+					<nav class="navbar navbar-light bg-light d-flex align-items-center" style="gap: 10px">
+						<a href="index.html"><img src="./images/logo.png" alt="logo" style="width: 80px" /></a>
+						<h3>EHBO Tilburg</h3>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					</nav>
+					<div class="collapse" id="navbarToggleExternalContent">
+						<div class="bg-light p-4">
+							<div class="dropdown-divider"></div>
+							<ul class="navbar-nav">
+								<div class="dropdown">
+									<!-- Dropdown overons-->
+									<a href="./overons.html" class="btn">Over Ons</a><br />
+									<div class="dropdown-divider"></div>
+									<a class="btn" href="./activiteiten.html">Activiteiten</a><br />
+									<a class="btn" href="./opleidingen.html">Opleidingen</a><br />
+									<a class="btn" href="./lidmaatschap.html">Lidmaatschap</a><br />
+									<a class="btn" href="./contact.html">Contact</a><br />
+									<a class="btn" href="./hulpverlening.html">Hulpverlening</a><br />
+									<div class="dropdown-divider"></div>
+									<div class="login-btn">
+										<a href="./Login.html" class="btn btn-lg">Inloggen</a>
+									</div>
 								</div>
-							</div>
-
-							<a type="button" class="btn" href="./activiteiten.html"><p>Activiteiten</p></a>
-							<a type="button" class="btn" href="./opleidingen.html"><p>Opleidingen</p></a>
-							<a type="button" class="btn" href="./StaticUserInfo.html"><p>Lidmaatschap</p></a>
-							<a type="button" class="btn" href="./contact.html"><p>Contact</p></a>
-							<a type="button" class="btn" href="./hulpverlening.html"><p>Hulpverlening</p></a>
+							</ul>
 						</div>
+						<div style="height: 1000px; background-color: rgba(0, 0, 0, 0.6)"></div>
 					</div>
 				</div>
+
+				<div class="d-md-none" style="height: 50px"></div>
+
+				<!-- Voor als de pagina wel normaal wilt doen -->
+
+				<a class="navbar-brand d-none d-sm-block" href="index.html">
+					<img src="./images/logo.png" alt="logo" style="width: 100px" />
+				</a>
+
+				<!-- Header en andere button zooi -->
+				<div class="d-none d-sm-block">
+					<h1 class="d-none d-lg-block">EHBO Vereniging Tilburg</h1>
+					<h2 class="d-none d-sm-block d-lg-none">EHBO Tilburg</h2>
+					<ul class="navbar-nav">
+						<div class="btn-group" style="width: fit-content">
+							<!-- Dropdown overons-->
+							<a href="./overons.html" class="btn btn-light d-none d-md-block">Over&nbsp;Ons</a>
+							<a href="./overons.html" class="btn btn-light d-md-none">Over</a>
+							<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-spilt" data-toggle="dropdown"></button>
+							<div class="dropdown-menu" style="padding: 2px">
+								<a href="./overons.html#vereniging" class="btn">De vereniging</a><br />
+								<a href="./overons.html#bestuur" class="btn">Het bestuur</a><br />
+								<a href="./overons.html#docenten" class="btn">Docenten</a><br />
+								<a href="./overons.html#lotus" class="btn">Lotus</a>
+							</div>
+						</div>
+						<div class="dropdown d-lg-none">
+							<!-- Dit is de dropdown voor als items weg gehaald worden-->
+							<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">Meer weten</button>
+							<div class="dropdown-menu" style="padding: 2px">
+								<a href="./activiteiten.html" class="btn">Activiteiten</a><br />
+								<a href="./hulpverlening.html" class="btn">Hulpverlening</a><br />
+								<a href="./opleidingen.html" class="btn">Opleidingen</a><br />
+								<a href="./lidmaatschap.html" class="btn d-md-none">Lidmaatschap</a>
+							</div>
+						</div>
+						<li class="nav-item">
+							<a class="nav-link d-none d-lg-block" href="./activiteiten.html">Activiteiten</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link d-none d-lg-block" href="./opleidingen.html">Opleidingen</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link d-none d-md-block" href="./lidmaatschap.html">Lidmaatschap</a>
+						</li>
+						<li class="nav-item lala">
+							<a class="nav-link" href="./contact.html">Contact</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link d-none d-lg-block" href="./hulpverlening.html">Hulpverlening</a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- Inloggen -->
+				<div class="d-flex justify-content-end login-btn" style="width: 100%">
+					<a href="./Login.html" class="btn btn-lg d-none d-xl-block">Inloggen</a>
+				</div>
+
+				<div class="d-flex justify-content-end d-xl-none login-btn" style="width: 60%">
+					<a href="./Login.html" class="btn btn-lg d-none d-sm-block d-lx-none">Inloggen</a>
+				</div>
+			</nav>
+			<div class="container content">
+				<div>
+					<h1 class="page-title">Activiteiten</h1>
+					<p>De vereniging organiseert diverse activiteiten, zoals herhalings-/oefenavonden en verdiepingsavonden Hieronder zullen wij trachten een kleine bloemlezing te geven over de activiteiten die wij als vereniging nastreven. Als u nog meer wil weten neem dan even contact met ons op.</p>
+				</div>
+				<div>
+					<h4>Oefenavonden</h4>
+					<h6><b>Afwisselende herlings-/oefenavonden</b></h6>
+					<p>
+						We proberen de herhalingsavonden zo aantrekkelijk mogelijk te houden zodat de EHBO-ers met plezier naar deze avonden toegaan en voldaan weer naar huis gaan. Ook worden onderwerpen behandeld die niet tot de basisstof van de EHBO behoren, waardoor er een verdieping van kennis komt, en ook op deze manier de lessen interessant blijven. Hierdoor heeft de EHBO-er een plezierige en leerzame avond en haar of zijn omgeving heeft een EHBO-er in de buurt die op vaardige wijze hulp kan verlenen. <br />
+						Wij trachten dit te bereiken door afwisseling aan te brengen in vormgeving en onderwerpen. Het feit dat we de beschikking hebben over meerdere kaderinstructeurs is al een basis om afwisseling te krijgen in de wijze waarop de avond is ingericht.
+					</p>
+					<h6><b>Automatische verlening</b></h6>
+					<p>
+						De EHBO-stof is verdeeld in een aantal verschillende hoofdgroepen en per hoofdgroep is door het Oranje Kruis beschreven wat een hulpverlener daarover moet weten, dit wordt beschreven in zogenaamde "eindtermen." Tijdens de herhalingslessen worden de hoofdgroepen behandeld en de daarbij behorende eindtermen afgetekend. Een hulpverlener moet kunnen aantonen dat hij of zij alle eindtermen beheerst voor automatische verlenging. <br />
+						<br />
+						Eens in de twee jaar moeten alle onderdelen gevolgd zijn, de levensreddende onderdelen twee keer. <br />
+						Als je slim plant kun je in 4 of 5 avonden per jaar aan deze voorwaarden voldoen. In de praktijk echter wordt gepland op interessante onderwerpen waardoor de meeste leden ruimschoots hun "eindtermen" halen.
+					</p>
+				</div>
+				<div>
+					<h4>Extra verdiepingsavonden</h4>
+					<p>
+						Tijdens deze verdiepingsavonden wordt nieuwe kennis aangedragen, bestaande kennis verbreed of verdiept. Soms kan dat leiden tot een aanvullende certificaat. Te weten: Eerste Hulp bij Wandelletsel. <br /><br />
+						Andere voorbeelden van een verdiepingsavond:
+					</p>
+
+					<ul>
+						<li>Hulpverlening bij evenementen</li>
+						<li>Ouderkamer</li>
+						<li>Hoe om te gaan met meerdere slachtoffers</li>
+					</ul>
+				</div>
+				<div>
+					<h4>Kinderavonden</h4>
+					<p>Dit is een avond waarbij de hulpverlening aan kinderen centraal staat. Kinderen van de leden en gastouders worden uitgenodigd om zich door lotussen te laten grimeren en te instrueren. Deze junior lotussen worden daarna door de ouders of andere leden geholpen. Degenen die eerder aan zo'n avond hebben meegewerkt zullen be-amen dat de inzet en het spel van de kinderen buitengewoon indrukwekkend is.</p>
+				</div>
+				<div>
+					<h4>Andere activiteiten</h4>
+
+					<ul>
+						<li>Herhalingslessen voor gastouders en leden die alleen Eerste Hulp aan Kinderen - certificaat hebben. Speciaal voor leden en gastouders met het EHAK-certificaat organiseren we avonden waarbij er tijdens de lessen alleen kinderletsels en kinderziekten aanbod komen.</li>
+						<li>Herhalingslessen Reanimatie en AED gebruik Deze avonden worden in carrouselvorm gegeven waarbij het accent ligt op het reanimeren en het gebruik van AED maar waarbij ook de meeste levensreddende handelingen nog even de revue passeren.</li>
+					</ul>
+				</div>
 			</div>
+			<footer>
+				<div class="divider"></div>
+				<div class="row footer">
+					<div class="col-lg-6 col-8"><p>EHBO Afdeling Tilburg</p></div>
+					<div class="col-lg-6 col-4"><p class="float-right">2024</p></div>
+				</div>
+			</footer>
 		</div>
-		<footer>
-			<div class="divider"></div>
-			<div class="row footer">
-				<div class="col-6"><p>EHBO Afdeling Tilburg</p></div>
-				<div class="col-6"><p class="float-right">2024</p></div>
-			</div>
-		</footer>
 	</body>
 </html>
