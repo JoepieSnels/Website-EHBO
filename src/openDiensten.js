@@ -301,26 +301,30 @@ function fillAssignedShiftsPage(DetailsArray) {
 	let projectItems = "";
 
 	DetailsArray.forEach((data) => {
+		const projectId = data.ProjectId[0]; // Assuming that the first element is the correct one
+		const shiftId = data.ShiftId[0]; // Assuming that the first element is the correct one
+
 		const projectItem = `<div class="card project-card">
                                 <div class="card-header col-12" id="projectTitle">
-                                    <b>Evenement:</b> ${data.Title}
-                                </div>                            
+                                   <p class="card-text col-sm-6" id="userName"><b>Naam:</b> ${data.FirstName} ${data.LastName}</p>
+                                </div>
                                 <div class="card-body row project-card-body">
-                                    <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum: </b>${data.StartDate.split("T")[0]} ${data.EndDate.split("T")[0]}</p>
-                                    <p class="card-text col-lg-4 col-sm-6" id="shiftTime"><b>Tijd: </b>${data.StartTime.slice(0, 5)} - ${data.EndTime.slice(0, 5)}</p>
-                                    <p class="card-text col-lg-4 col-sm-6" id="userName"><b>Voornaam:</b> ${data.FirstName} <b>Achternaam:</b> ${data.LastName}</p>
+                                    <p class="card-text col-sm-6" id="shiftDate"><b>Datum: </b>${data.StartDate.split("T")[0]} ${data.EndDate.split("T")[0]}</p>
+                                    <p class="card-text col-sm-6" id="shiftTime"><b>Tijd: </b>${data.StartTime.slice(0, 5)} - ${data.EndTime.slice(0, 5)}</p>
+
                                     <div class="col-12"><h5><b>Gebruiker gegevens:</b></h5></div>
-                                    <p class="card-text col-lg-4 col-sm-6" id="userEmail"><b>Email:</b> ${data.Emailaddress}</p>
-                                    <p class="card-text col-lg-4 col-sm-6" id="userPhone"><b>Telefoonnummer:</b> ${data.PhoneNumber}</p>
+                                    <p class="card-text col-sm-6" id="userEmail"><b>Email:</b> ${data.Emailaddress}</p>
+                                    <p class="card-text col-sm-6" id="userPhone"><b>Telefoonnummer:</b> ${data.PhoneNumber}</p>
                                     <div class="col-12"><h5><b>Adres gegevens:</b></h5></div>
-                                    <p class="card-text col-lg-4 col-sm-6" id="userCity"><b>Woonplaats:</b> ${data.City}</p>
-                                    <p class="card-text col-lg-4 col-sm-6" id="userStreet"><b>Straat:</b> ${data.Street}</p>
+                                    <p class="card-text col-sm-6" id="userCity"><b>Woonplaats:</b> ${data.City}</p>
+                                    <p class="card-text col-sm-6" id="userStreet"><b>Straat:</b> ${data.Street}</p>
                                     <div class="col-12"><h5><b>Dienst gereed?</b></h5></div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary" onclick="setShift(${(data.ShiftId, data.ProjectId)})">Dienst gereed</button>
+                                        <button class="btn btn-primary float-right" onclick="setShift(${shiftId}, ${projectId})">Dienst gereed</button>
                                     </div>
                                 </div>
                             </div>`;
+		console.log(`ShiftId: ${shiftId}, ProjectId: ${projectId}`);
 		projectItems += projectItem;
 	});
 
@@ -331,8 +335,9 @@ async function setShift(shiftId, projectId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Assuming userID is stored in session storage
 
 	try {
+		console.log(`projectId: ${projectId}, shiftId: ${shiftId}`);
 		const response = await fetch(`https://api-ehbo.onrender.com/api/acceptForShift`, {
-			method: "POST",
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
 				Authorization: `Bearer ${jwtToken}`,
@@ -348,9 +353,12 @@ async function setShift(shiftId, projectId) {
 		}
 
 		const dataJson = await response.json();
+		console.log(dataJson);
 		alert("Dienst gereed!");
+		window.location.reload();
 	} catch (error) {
 		if (error.status === 500) {
+			alert("Er is iets mis gegaan!");
 			return;
 		} else {
 			alert("Dienst is al gereed.");
