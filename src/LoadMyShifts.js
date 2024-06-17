@@ -10,34 +10,27 @@ function loadShifts(event) {
 			console.log("Error loading projects:", error);
 		});
 }
-    
 
 function createShiftCard(shift) {
 	console.log(shift);
 
 	if(shift.EndDate) {
 		const date = new Date().toISOString();
-		if(shift.EndDate === date || shift.EndDate > date) {
-			shift.EndDate = '- ' + shift.EndDate;
+		if(shift.EndDate < date || shift.EndDate === date) {
+			return;
 		} else {
-			return null;
+			shift.EndDate = '- ' + shift.EndDate;
 		}
-        
     } else {
         shift.EndDate = '';
     }
-
-	shift.StartDate = shift.StartDate.split("T")[0];
-	shift.EndDate = shift.EndDate.split("T")[0];
-
-	
 
     const item = `<div class="card project-list-card" onclick="goShiftDetailPage(${shift.ShiftId})">
                     <div class="card-header" id="projectTitle">
                         <b>Project:</b> ${shift.Title} 
                     </div>
                     <div class="card-body row project-card-body">
-                        <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum:</b> ${shift.StartDate} ${shift.EndDate}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum:</b> ${shift.StartDate.split("T")[0]} ${shift.EndDate.split("T")[0]}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="shiftTime"><b>Tijd:</b> ${shift.StartTime.slice(0, 5)} - ${shift.EndTime.slice(0, 5)}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="shiftCompany"><b>Bedrijf:</b> ${shift.Company}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="shiftLocation"><b>Locatie:</b> ${shift.Address}</p>
@@ -50,8 +43,8 @@ function createShiftCard(shift) {
 }
 
 // Get an array of shifts from the database from this user
-async function getShiftsFromDB() {
-
+async function getShiftsFromDB(event) {
+    event.preventDefault();
     const jwtToken = window.sessionStorage.getItem("jwtToken");
 	console.log("Loading shifts from DB");
 
@@ -70,23 +63,21 @@ async function getShiftsFromDB() {
 	}
 }
 
-async function getShiftById(id) {
-
+async function getShiftById(event, id) {
+	event.preventDefault();
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
-
 	console.log('Loading shift with ID: ' + id);
 
 	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/getShiftById?shiftId=1`, {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/getShiftById?shiftId=${id}`, {
 			method: "GET",
 			headers: {
-				"Content-Type": "application/json; charset-UTF-8",
+				"Content-Type": "application/json; charset=UTF-8",
 				Authorization: `Bearer ${jwtToken}`,
 			}
-			
 		});
 		const dataJson = await response.json();
-
+		console.log(dataJson.data);
 		return dataJson.data[0];
 	} catch(error) {
 		console.log('Error fetching data: ' + error);
@@ -96,9 +87,9 @@ async function getShiftById(id) {
 function goShiftDetailPage(id) {
 	document.location.href = `./MyShiftDetail.html?id=${id}`;
 }
-//hier
+
 function loadShiftDetailPage(event) {
-		var url = document.location.href,
+	var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
 		tmp;
@@ -109,7 +100,7 @@ function loadShiftDetailPage(event) {
 
 	getShiftById(event, data.id)
 		.then((shift) => {
-			createDetailShiftCard(shift[0]);
+			createDetailShiftCard(shift);
 		});
 }
 
@@ -135,7 +126,6 @@ function createDetailShiftCard(shift) {
                         <p class="card-text col-lg-4 col-sm-6" id="shiftNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
 						<p class="card-text col-lg-12 col-sm-12" id="shiftDescription"><b>Beschrijving:</b> ${shift.Description}</p>
                     </div>
-					<button type="button" class="col-12 btn btn-danger d-block d-md-none" onclick="checkForRemoval(event, ${shift})" >Uitschrijven</button>
                 </div>`;
 
 	document.getElementById("myShift").innerHTML += item;
@@ -143,13 +133,13 @@ function createDetailShiftCard(shift) {
 
 function checkForRemoval(event, shiftStartDate, shiftId) {
 	event.preventDefault(); // This is redundant for a button of type "button"
+	console.log(shiftId)
 	
 	const date = new Date();
 	const sevenDaysFromNow = new Date(date.setDate(date.getDate() + 7)).toISOString(); // Fix to get correct date
-	
-	console.log(sevenDaysFromNow);
 	console.log(shiftStartDate);
-
+	console.log(sevenDaysFromNow);
+	
 	if (shiftStartDate > sevenDaysFromNow) {
 		// Add removal
 		removeEnrollment(event, shiftId)
@@ -160,9 +150,7 @@ function checkForRemoval(event, shiftStartDate, shiftId) {
 				} else {
 					alert('Dienst kon niet worden verwijderd');
 				}
-			}
-
-			)
+			})
 	} else {
 		alert('Shift mag niet worden verwijderd omdat deze binnen 7 dagen plaatsvindt');
 	}
