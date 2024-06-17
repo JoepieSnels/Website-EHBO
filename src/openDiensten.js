@@ -67,7 +67,7 @@ function generateCardsCoordinator(items) {
 		
 
 		card.innerHTML = `
-		<div class="card project-list-card" onclick="goToDetailCoordinator(${item.ProjectId})">
+		<div class="card project-list-card clickable-card" onclick="goToDetailCoordinator(${item.ProjectId})">
 			<div class="card-header col-12" id="projectTitle"><b>Project:</b> ${item.Title}</div>
 		
 			<div class="card-body row project-card-body">
@@ -129,6 +129,7 @@ async function loadActiveProjectsCoordinator(requiredPermission) {
 			console.log("init");
 		}
 	}
+	
 }
 
 
@@ -332,23 +333,20 @@ function fillAssignedShiftsPage(DetailsArray) {
 		console.log(projectId)
 		const shiftId = data.ShiftId[0]; // Assuming that the first element is the correct one
 
-		const projectItem = `<div class="card project-card">
-                                <div class="card-header col-12" id="projectTitle">
-                                   <p class="card-text col-sm-6" id="userName"><b>Naam:</b> ${data.FirstName} ${data.LastName}</p>
-                                </div>
+		const projectItem = `<div class="card project-list-card">
+								
                                 <div class="card-body row project-card-body">
-                                    <p class="card-text col-sm-6" id="shiftDate"><b>Datum: </b>${data.StartDate.split("T")[0]} ${data.EndDate.split("T")[0]}</p>
-                                    <p class="card-text col-sm-6" id="shiftTime"><b>Tijd: </b>${data.StartTime.slice(0, 5)} - ${data.EndTime.slice(0, 5)}</p>
+									<p class="card-text col-9"><b>Naam: </b>${data.FirstName} ${data.LastName}</p>
+                                    <p class="card-text col-sm-6" id="shiftDate"><b>Start: </b>${data.StartDate.split("T")[0]} ${data.StartTime.slice(0, 5)}</p>
+                                    <p class="card-text col-sm-6" id="shiftTime"><b>Eind: </b>${data.EndDate.split("T")[0]}  ${data.EndTime.slice(0, 5)}</p>
 
-                                    <div class="col-12"><h5><b>Gebruiker gegevens:</b></h5></div>
+                                  
                                     <p class="card-text col-sm-6" id="userEmail"><b>Email:</b> ${data.Emailaddress}</p>
                                     <p class="card-text col-sm-6" id="userPhone"><b>Telefoonnummer:</b> ${data.PhoneNumber}</p>
-                                    <div class="col-12"><h5><b>Adres gegevens:</b></h5></div>
-                                    <p class="card-text col-sm-6" id="userCity"><b>Woonplaats:</b> ${data.City}</p>
-                                    <p class="card-text col-sm-6" id="userStreet"><b>Straat:</b> ${data.Street}</p>
-                                    <div class="col-12"><h5><b>Dienst gereed?</b></h5></div>
+  
+                                    
                                     <div class="col-12">
-                                        <button class="btn btn-primary float-right" onclick="setShift(${shiftId}, ${projectId})">Dienst gereed</button>
+                                        <button class="btn btn-primary float-right" onclick="setShift(${shiftId}, ${projectId})">Dienst Accepteren</button>
                                     </div>
                                 </div>
                             </div>`;
