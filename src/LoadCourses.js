@@ -5,24 +5,25 @@ function createCard(courseDetail) {
     let courseTime = courseDetail.DateTime.split('T')[1].slice(0, -8);
     let courseCost = '€' + courseDetail.Cost.replace('.', ',')
 
-    var item = `<div class="card project-card">
+    var item = `<div class="card project-list-card">
                     <div class="card-header" id="courseTitle">
                         <div class="row">
-                            <div class="col-12 col-sm-10">
+                            <div class="col-10">
                                 <b class="align-middle">Titel:</b> <span class="align-middle">${courseDetail.Title}</span>
-                                <b class="align-middle">Voor certificaat:</b> <span class="align-middle">${courseDetail.CertificateTitel}</span>
                             </div>
-                            <div class="col-12 col-sm-2">
-                                <button class="btn btn-primary float-right" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
+                            <div class="col-2">
+                                <button class="btn btn-blue float-right" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
                             </div>
                         </div>
                     </div>
                     <div class="card-body row project-card-body">
-                        <p class="card-text col-12" id="courseDescription"><b>Beschrijving:</b> ${courseDetail.Description}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="courseDateTime"><b>Datum en tijd:</b> ${courseDate} - ${courseTime}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="courseCost"><b>Prijs:</b> ${courseCost}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="courseMaxParticipants"><b>Max. aantal deelnemers:</b> ${courseDetail.MaxParticipants}</p>
-                        <p class="card-text col-12" id="courseLocation"><b>Locatie:</b> ${courseDetail.Location}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="courseDateTime"><b>Datum: </b>${courseDate}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id=""><b>Tijd: </b>${courseTime}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="courseLocation"><b>Locatie: </b>${courseDetail.Location}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="courseCost"><b>Prijs: </b>${courseCost}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="courseMaxParticipants"><b>Max. aantal deelnemers: </b>${courseDetail.MaxParticipants}</p>
+                        <p class="card-text col-lg-4 col-sm-6"><b>Voor certificaat: </b>${courseDetail.CertificateTitel}</p>
+                        <p class="card-text col-12" id="courseDescription"><b>Beschrijving: </b>${courseDetail.Description}</p>
                     </div>
                 </div>`
 
@@ -36,11 +37,11 @@ function createCourseCard(courseDetail) {
     let courseTime = courseDetail.DateTime.split('T')[1].slice(0, -8);
     let courseCost = '€' + courseDetail.Cost.replace('.', ',')
 
-    var item = `<div class="card project-card">
+    var item = `<div class="card project-list-card">
                     <div class="card-header" id="courseTitle">
                     <span class="align-middle"><b >Titel: </b>${courseDetail.Title}</span>
                         
-                        <button class="btn btn-primary float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
+                        <button class=" btn-danger btn float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
                     </div>
                     <div class="card-body row project-list-body">
                         <p class="card-text col-lg-4 col-sm-6"><b>Datum: </b>${courseDate}</p>
@@ -78,11 +79,10 @@ async function getAllCoursesFromDB() {
     }
 }
 
-async function getCoursesFromDB(event) {
+async function getCoursesFromDB() {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
-    //const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcxODE4MDA0MiwiZXhwIjoxNzE5MjE2ODQyfQ.HN5VjPipJBHM1x48DRW5o6wwLKpCHs1kJI9keOjONSw'
     console.log('Loading courses from Database');
-    event.preventDefault();
+
 
     try {
         const response = await fetch('https://api-ehbo.onrender.com/api/getAvailableCourses', {
@@ -129,7 +129,7 @@ function loadAllCourses(requiredPermission) {
 
 function loadAvailableCourses(requiredPermission) {
     if(getPermission(requiredPermission)) {
-        getCoursesFromDB(event).then(courses => {
+        getCoursesFromDB().then(courses => {
 
             if (courses.length === undefined) {
                 console.log('Er zijn geen cursussen gevonden')

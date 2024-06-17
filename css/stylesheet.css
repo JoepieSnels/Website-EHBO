@@ -22,9 +22,9 @@
 	width: 30rem;
 }
 
-.update-card {
+/* .update-card {
 	margin-top: 40px;
-}
+} */
 
 .update-card h6 {
 	font-size: larger;
@@ -86,7 +86,7 @@
 
 
 
-.project-list-card:hover{
+.clickable-card:hover{
 	border: 1px solid #042062;
 	box-shadow: 2px 2px #6f85c2;
 }
@@ -110,6 +110,10 @@
 	object-fit: contain;
 }
 
+.more-info-btn {
+	margin-bottom: 20px;
+}
+
 .more-info-btn img {
 	height: 200px;
 	width: 300px;
@@ -127,10 +131,7 @@
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.nav-buttons {
-	padding: 0px 10px;
-	font-family: Tahoma;
-}
+
 
 h1,a, button{
 	font-family: Helvetica, sans-serif;
@@ -138,18 +139,35 @@ h1,a, button{
 
 
 
-.content .info {
-	margin-top: 20px;
-	margin-bottom: 20px;
+
+@media(min-width: 600px) {
+	.info {
+		margin: 20px auto 0px auto;
+
+	}
+}
+
+@media(min-width: 1000px) {
+	.info {
+		margin: 30px auto 0px auto;
+
+	}
 }
 
 
-.content .btn:hover {
+
+.content .btn-blue {
 	background-color: #6f85c2;
+	color: white;
 }
 
-.content > div {
-	padding-bottom: 25px;
+.content .btn-blue:hover {
+	background-color: #3159b7;
+}
+ 
+.content .btn-danger:hover {
+	color: white;
+	background-color: #870000;
 }
 
 .certificates {
@@ -184,6 +202,7 @@ h1,a, button{
 }
 .request-form {
 	width: 100rem;
+	margin-top: 40px
 }
 
 .top {
@@ -240,11 +259,18 @@ footer {
 
 /* buttons */
 
+ .accountinfo {
+	background-color: white
+}
+
 .side-nav .btn {
-	border: 1px solid #d1dbf6;
+	border: 1px solid #e3e6f4;
 	background-color: #e3e6f4;
+	color: black;
 
 }
+
+
 
 .side-nav .btn:hover {
 	background-color: #6f85c2;

@@ -9,14 +9,11 @@ async function fetchData() {
 			},
 		});
 
-		console.log("Response Status:", response.status);
-
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
 
 		const data = await response.json();
-		console.log(data.data);
 		return data.data;
 	} catch (error) {
 		console.error("Error fetching data:", error);
@@ -24,15 +21,53 @@ async function fetchData() {
 }
 
 function generateCards(items) {
+
 	const container = document.getElementById("replacable");
 	container.innerHTML = "";
 	items.forEach((item) => {
-		console.log("item", item);
+		let date = ""
+		if(item.endDate){
+			date = `${item.Date.split("T")[0]} - ${item.EndDate.split("T")[0]}`
+		} else {
+			date = item.Date.split("T")[0]
+		}
 		const card = document.createElement("div");
 		let neededCertificates = item.CertificatesNeeded || "-";
+		
 
 		card.innerHTML = `
-		<div class="card project-list-card" onclick="goToDetail(${item.ProjectId})">
+		<div class="card project-list-card clickable-card" onclick="goToDetail(${item.ProjectId})">
+			<div class="card-header col-12" id="projectTitle"><b>Project:</b> ${item.Title}</div>
+		
+			<div class="card-body row project-card-body">
+				<div class="row col-lg-8 col-sm-12 px-0 py-2">
+					<p class="card-text col-lg-6 col-sm-6" id="projectDate"><b>Datum:</b> ${date}</p>
+					<p class="card-text col-lg-6 col-sm-6" id="projectTime"><b>Tijd:</b> ${item.StartTime.slice(0, 5)} - ${item.EndTime.slice(0, 5)}</p>
+					<p class="card-text col-lg-6 col-sm-6" id="projectLocation"><b>Locatie:</b> ${item.Address} ${item.HouseNr}, ${item.City}</p>
+					<p class="card-text col-lg-6 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> ${neededCertificates}</p>
+				</div>
+				
+				<p class="card-text col-lg-4 col-sm-12" id="Description"><b>Beschrijving:</b></br>${item.Description}</p>
+				
+			</div>
+		</div>`;
+
+		container.appendChild(card);
+	});
+}
+
+function generateCardsCoordinator(items) {
+
+	const container = document.getElementById("replacable");
+	container.innerHTML = "";
+	items.forEach((item) => {
+
+		const card = document.createElement("div");
+		let neededCertificates = item.CertificatesNeeded || "-";
+		
+
+		card.innerHTML = `
+		<div class="card project-list-card clickable-card" onclick="goToDetailCoordinator(${item.ProjectId})">
 			<div class="card-header col-12" id="projectTitle"><b>Project:</b> ${item.Title}</div>
 		
 			<div class="card-body row project-card-body">
@@ -52,17 +87,24 @@ function generateCards(items) {
 	});
 }
 
+
+function goToDetailCoordinator(projectId) {
+	document.location.href = "OpenshiftsCoordinator.html?projectId=" + projectId;
+
+}
+
 function goToDetail(projectId) {
-	let link = "Openshifts.html?id=" + projectId;
-	if (window.location.href.includes("Coordinator")) {
-		link = "OpenshiftsCoordinator.html?id=" + projectId;
-	}
-	document.location.href = link;
+	document.location.href = "OpenShifts.html?projectId=" + projectId;
+
 }
 
 
+
 async function loadActiveProjects(requiredPermission) {
+
+
 	if (getPermission(requiredPermission)) {
+
 		const data = await fetchData();
 
 		if (data && Array.isArray(data)) {
@@ -74,36 +116,35 @@ async function loadActiveProjects(requiredPermission) {
 	}
 }
 
+async function loadActiveProjectsCoordinator(requiredPermission) {
+
+
+	if (getPermission(requiredPermission)) {
+		const data = await fetchData();
+
+		if (data && Array.isArray(data)) {
+			console.log("in if init");
+			generateCardsCoordinator(data);
+		} else {
+			console.log("init");
+		}
+	}
+	
+}
+
 
 function loadShifts(requiredPermission) {
-	console.log('LOAD SHIFTS')
 	if(getPermission(requiredPermission)) {
 
-		// var url = document.location.href;
-		// var paramsString = url.split("?")[1];
-		// if (!paramsString) {
-		// 	console.error("No query parameters found in the URL");
-		// 	return;
-		// }
-		// var params = paramsString.split("&");
-		// var data = {},
-		// 	tmp;
-		// for (var i = 0, l = params.length; i < l; i++) {
-		// 	tmp = params[i].split("=");
-		// 	data[tmp[0]] = tmp[1];
-		// }
 		var url = document.location.href,
-		params = url.split("?")[1].split("&"),
+		params = url.split("?")[1].split("="),
 		data = {},
 		tmp;
-	console.log(params);
-	for (var i = 0, l = params.length; i < l; i++) {
-		tmp = params[i].split("=");
-		data[tmp[0]] = tmp[1];
-	}
+		console.log(params);
+		
 
-		console.log(data.id)
-		getShifts(data.id)
+		console.log(params[1])
+		getShifts(params[1])
 			.then((shifts) => {
 				fillShiftPage(shifts, data.Id);
 			})
@@ -160,10 +201,11 @@ async function assignShift(shiftId, projectId) {
 		if (!response.ok) {
 			throw new Error("Network response was not ok");
 		}
+		alert("Je bent ingeschreven")
+		window.location.href = "./ActiveProjects.html";
 
 		const dataJson = await response.json();
 		return dataJson.data;
-		alert("Inschrijving gelukt!");
 	} catch (error) {
 		if (error.status === 500) {
 			return;
@@ -179,28 +221,38 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 		console.error("No shift details provided");
 		return;
 	}
+	console.log(shiftDetailsArray)
 
 	let projectItems = "";
+	
 
 	shiftDetailsArray.forEach((shiftDetails) => {
+
+		let date;
+		if(shiftDetails.StartDate === shiftDetails.EndDate) {
+			date = shiftDetails.StartDate.split("T")[0]
+		} else if (!shiftDetails.EndDate){
+			date = shiftDetails.StartDate.split("T")[0]
+		} else {
+			date = `${shiftDetails.StartDate.split("T")[0]} - ${shiftDetails.EndDate.split("T")[0]}`
+		}
 		if (!shiftDetails.StartDate) {
 			console.error("No StartDate in shift details");
 			return;
 		}
 
+		console.log(shiftDetails.ProjectId)
+
+
 		let endDate = shiftDetails.EndDate ? "- " + shiftDetails.EndDate.split("T")[0] : "";
 
-		const projectItem = `<div class="card project-card">
-                                <div class="card-header col-12" id="projectTitle">
-                                    <b>Shift:</b> ${shiftDetails.ShiftId}
-                                </div>                            
+		const projectItem = `<div class="card project-list-card">
+                             
                                 <div class="card-body row project-card-body">
-                                    <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${shiftDetails.StartDate.split("T")[0]} ${endDate}</p>
-                                    <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
-                                    <h5 class="col-12">Schrijf je in!</h5>
-									<div class="col-12">
-									<button class="btn btn-primary" onclick="setShift(${shiftDetails.ShiftId}, ${projectId})">Inschrijven</button>
-									</div>
+
+                                    <p class="card-text col-12" id="projectDate"><b>Datum: </b>${date}</p>
+                                    <p class="card-text col-12 col-sm-8 col-lg-10" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
+                                    <button class="col-sm-4  col-lg-2 btn btn-blue float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${shiftDetails.ProjectId}')">Inschrijven</button>
                                 </div>
                             </div>`;
 		projectItems += projectItem;
@@ -209,14 +261,10 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 	document.getElementById("replacable").innerHTML = projectItems;
 }
 
-function loadAssignedShifts(event, requiredPermission) {
-	onLoadUserInfo(requiredPermission);
-
-	if (event) {
-		event.preventDefault();
-	}
-
-	var url = document.location.href;
+function loadAssignedShifts(requiredPermission) {
+	console.log('loadAssignedShifts')
+	if(getPermission(requiredPermission)){ 
+		var url = document.location.href;
 	var paramsString = url.split("?")[1];
 	if (!paramsString) {
 		console.error("No query parameters found in the URL");
@@ -239,9 +287,14 @@ function loadAssignedShifts(event, requiredPermission) {
 		.catch((error) => {
 			console.log("Error loading projects:", error);
 		});
+	}
+
+
+	
 }
 
 async function getAssignedShifts(projectId) {
+	console.log('getAssignedShifts')
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
 	try {
@@ -258,6 +311,7 @@ async function getAssignedShifts(projectId) {
 		}
 
 		const dataJson = await response.json();
+		console.log('lala', dataJson.data)
 		return dataJson.data;
 	} catch (error) {
 		console.log("Error fetching data: " + error);
@@ -269,7 +323,7 @@ function fillAssignedShiftsPage(DetailsArray) {
 	if (!Array.isArray(DetailsArray) || DetailsArray.length === 0) {
 		console.error("No details provided");
 		alert("Er zijn geen diensten gevonden.");
-		window.location.href = "./ActiveProjectCoordinator.html";
+		window.location.href = "./activeprojectcoordinator.html";
 		return;
 	}
 
@@ -277,25 +331,23 @@ function fillAssignedShiftsPage(DetailsArray) {
 
 	DetailsArray.forEach((data) => {
 		const projectId = data.ProjectId[0]; // Assuming that the first element is the correct one
+		console.log(projectId)
 		const shiftId = data.ShiftId[0]; // Assuming that the first element is the correct one
 
-		const projectItem = `<div class="card project-card">
-                                <div class="card-header col-12" id="projectTitle">
-                                   <p class="card-text col-sm-6" id="userName"><b>Naam:</b> ${data.FirstName} ${data.LastName}</p>
-                                </div>
+		const projectItem = `<div class="card project-list-card">
+								
                                 <div class="card-body row project-card-body">
-                                    <p class="card-text col-sm-6" id="shiftDate"><b>Datum: </b>${data.StartDate.split("T")[0]} ${data.EndDate.split("T")[0]}</p>
-                                    <p class="card-text col-sm-6" id="shiftTime"><b>Tijd: </b>${data.StartTime.slice(0, 5)} - ${data.EndTime.slice(0, 5)}</p>
+									<p class="card-text col-9"><b>Naam: </b>${data.FirstName} ${data.LastName}</p>
+                                    <p class="card-text col-sm-6" id="shiftDate"><b>Start: </b>${data.StartDate.split("T")[0]} ${data.StartTime.slice(0, 5)}</p>
+                                    <p class="card-text col-sm-6" id="shiftTime"><b>Eind: </b>${data.EndDate.split("T")[0]}  ${data.EndTime.slice(0, 5)}</p>
 
-                                    <div class="col-12"><h5><b>Gebruiker gegevens:</b></h5></div>
+                                  
                                     <p class="card-text col-sm-6" id="userEmail"><b>Email:</b> ${data.Emailaddress}</p>
                                     <p class="card-text col-sm-6" id="userPhone"><b>Telefoonnummer:</b> ${data.PhoneNumber}</p>
-                                    <div class="col-12"><h5><b>Adres gegevens:</b></h5></div>
-                                    <p class="card-text col-sm-6" id="userCity"><b>Woonplaats:</b> ${data.City}</p>
-                                    <p class="card-text col-sm-6" id="userStreet"><b>Straat:</b> ${data.Street}</p>
-                                    <div class="col-12"><h5><b>Dienst gereed?</b></h5></div>
+  
+                                    
                                     <div class="col-12">
-                                        <button class="btn btn-primary float-right" onclick="setShift(${shiftId}, ${projectId})">Dienst gereed</button>
+                                        <button class="btn btn-primary float-right" onclick="setShift(${shiftId}, ${projectId})">Dienst Accepteren</button>
                                     </div>
                                 </div>
                             </div>`;
