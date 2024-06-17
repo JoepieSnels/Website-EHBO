@@ -30,7 +30,69 @@ async function getPermission(requiredPermission) {
 		return;
 	}
 
-	document.getElementById("unBlockID").style.display = "block"; // Even controleren welke dit moet zijn
+    document.getElementById('unBlockID').style.display = 'block'; // Even controleren welke dit moet zijn
+
+	// Check permissions
+    if (!permissions.match('Hulpverlener')) {
+        console.log('No permission for the hulpverlener');
+        // Zorg dat hij niet meer zichtbaar is
+        document.getElementById('toggle-btn-hulp-1').classList.remove('d-sm-block');
+        document.getElementById('toggle-btn-hulp-1').classList.add('d-sm-none');
+
+        document.getElementById('toggle-btn-hulp-2').classList.remove('d-block');
+        document.getElementById('toggle-btn-hulp-2').classList.add('d-none');
+
+        
+        // document.getElementById('toggle-btn-hulp-3').classList.remove('d-md-block');
+        // document.getElementById('toggle-btn-hulp-3').classList.add('d-md-none');
+
+    }
+
+    if (!permissions.match('Coordinator')) {
+        console.log('No permission for the coordinator');
+        document.getElementById('toggle-btn-coordinator-1').classList.remove('d-sm-block');
+        document.getElementById('toggle-btn-coordinator-1').classList.add('d-sm-none');
+
+        document.getElementById('toggle-btn-coordinator-2').classList.remove('d-block');
+        document.getElementById('toggle-btn-coordinator-2').classList.add('d-none');
+        // document.getElementById('toggle-btn-coordinator-3').classList.remove('d-md-block');
+        // document.getElementById('toggle-btn-coordinator-3').classList.add('d-md-none');
+    }
+    
+    if (!permissions.match('LedenAdministrator')) {
+        console.log('No permission for the Ledenadministratie');
+        document.getElementById('toggle-btn-ledenadministratie-1').classList.remove('d-sm-block');
+        document.getElementById('toggle-btn-ledenadministratie-1').classList.add('d-sm-none');
+
+        document.getElementById('toggle-btn-ledenadministratie-2').classList.remove('d-block');
+        document.getElementById('toggle-btn-ledenadministratie-2').classList.add('d-none');
+		
+        
+        // document.getElementById('toggle-btn-ledenadministratie-3').classList.remove('d-md-block');
+        // document.getElementById('toggle-btn-ledenadministratie-3').classList.add('d-md-none');
+
+    }
+	if(!permissions.match('!')) {
+		if(permissions.match('Hulpverlener')) {
+			document.getElementById('toggle-btn-hulp-1').setAttribute('aria-expanded', 'true')
+			document.getElementById('hulpverlener').classList.add('show')
+			document.getElementById('toggle-btn-hulp-2').setAttribute('aria-expanded', 'true')
+			document.getElementById('hulpverlener2').classList.add('show')
+		}
+		if(permissions.match('Coordinator')) {
+			document.getElementById('toggle-btn-coordinator-1').setAttribute('aria-expanded', 'true')
+			document.getElementById('coordinator').classList.add('show')
+			document.getElementById('toggle-btn-coordinator-2').setAttribute('aria-expanded', 'true')
+			document.getElementById('coordinator2').classList.add('show')
+		
+		}
+		if(permissions.match('LedenAdministrator')) {
+		document.getElementById('toggle-btn-ledenadministratie-1').setAttribute('aria-expanded', 'true')
+		document.getElementById('ledenadministratie').classList.add('show')
+		document.getElementById('toggle-btn-ledenadministratie-2').setAttribute('aria-expanded', 'true')
+		document.getElementById('ledenadministratie2').classList.add('show')
+		}
+	}
 }
 
 function alertNoAcces() {

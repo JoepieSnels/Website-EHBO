@@ -1,42 +1,3 @@
-async function onLoadUserInfo(requiredPermission) {
-	console.log("On page load");
-
-	// HARDCODDED, WEGHALEN ZODRA LOGIN WERKT
-	// createSessionAndPermission('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTcxNzUwNjQ2MCwiZXhwIjoxNzE4NTQzMjYwfQ.YrckiyoGuslcp_5oiBpT6fAe8lUfQAadTwOh1HmR9ow', 'Hulpverlener!Coordinator');
-
-	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
-	const permissions = window.sessionStorage.getItem("permissions"); // Haalt de permissies op
-
-	// Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
-	if (jwtToken === null) {
-		alertNoAcces();
-		return;
-	}
-
-	// Kijk of in de string van permissies de benodigde permissie zit
-	if (permissions === null || !permissions.match(requiredPermission)) {
-		alertNoAcces();
-		return;
-	}
-
-	// Maak verzoek naar de server om te kijken of de token geldig is
-	const apiRoute = "https://api-ehbo.onrender.com/api/validatetoken";
-	const validateResult = await fetch(apiRoute, {
-		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
-			Authorization: `bearer ${jwtToken}`,
-		},
-	});
-
-	const toJson = await validateResult.json();
-
-	if (toJson.message === "Not authorized") {
-		alertNoAcces();
-		return;
-	}
-
-	document.getElementById("unBlockID").style.display = "block"; // Even controleren welke dit moet zijn
-}
 
 async function fetchData() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
@@ -98,6 +59,8 @@ function goToDetail(projectId) {
 	}
 	document.location.href = link;
 }
+
+
 async function loadActiveProjects(requiredPermission) {
 	if (getPermission(requiredPermission)) {
 		const data = await fetchData();
@@ -110,37 +73,49 @@ async function loadActiveProjects(requiredPermission) {
 		}
 	}
 }
-function loadShifts(event) {
-	event.preventDefault();
 
-	var url = document.location.href;
-	var paramsString = url.split("?")[1];
-	if (!paramsString) {
-		console.error("No query parameters found in the URL");
-		return;
-	}
-	var params = paramsString.split("&");
-	var data = {},
+
+function loadShifts(requiredPermission) {
+	console.log('LOAD SHIFTS')
+	if(getPermission(requiredPermission)) {
+
+		// var url = document.location.href;
+		// var paramsString = url.split("?")[1];
+		// if (!paramsString) {
+		// 	console.error("No query parameters found in the URL");
+		// 	return;
+		// }
+		// var params = paramsString.split("&");
+		// var data = {},
+		// 	tmp;
+		// for (var i = 0, l = params.length; i < l; i++) {
+		// 	tmp = params[i].split("=");
+		// 	data[tmp[0]] = tmp[1];
+		// }
+		var url = document.location.href,
+		params = url.split("?")[1].split("&"),
+		data = {},
 		tmp;
+	console.log(params);
 	for (var i = 0, l = params.length; i < l; i++) {
 		tmp = params[i].split("=");
 		data[tmp[0]] = tmp[1];
 	}
-	const projectId = data.id;
 
-	getShifts(event, projectId)
-		.then((shifts) => {
-			fillShiftPage(shifts, projectId);
-		})
-		.catch((error) => {
-			console.log("Error loading projects:", error);
-		});
+		console.log(data.id)
+		getShifts(data.id)
+			.then((shifts) => {
+				fillShiftPage(shifts, data.Id);
+			})
+			.catch((error) => {
+				console.log("Error loading projects:", error);
+			});
+	}
+	
 }
 
-async function getShifts(event, projectId) {
-	if (event) {
-		event.preventDefault();
-	}
+async function getShifts(projectId) {
+
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
 	try {

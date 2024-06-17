@@ -6,165 +6,187 @@
 
 		<title>KNV EHBO Tilburg</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
-
-		<title>Document</title>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
-
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-        <script src="./src/openDiensten.js"></script>
+		<script src="src/permission.js"></script>
+		<script src="./src/openDiensten.js"></script>
 		<link href="css/stylesheet.css" rel="stylesheet" />
-        <script src="https://kit.fontawesome.com/ef708f113d.js" crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/ef708f113d.js" crossorigin="anonymous"></script>
 	</head>
-	<body onload="loadShifts(event)">
-        <!-- Begin navigatie -->
-		<nav class="navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px;">
-		
-			<!-- Hamburger Menu -->
-			<div class="fixed-top d-sm-none">
-				<nav class="navbar navbar-light bg-light d-flex align-items-center" style="gap: 10px;">
-					<img src="./images/logo.png" alt="logo" style="width:80px;">
-					<h3>EHBO Tilburg</h3>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
-						aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-				</nav>
-                    <div class="collapse" id="navbarToggleExternalContent">
-                        <div class="bg-light p-4">
-                            <div class="dropdown-divider"></div>
-                                <ul class="navbar-nav">
-                                    <div class="dropdown">
-                                        <a class="btn" data-toggle="collapse" data-target="#nav-collapse" role="button" aria-expanded="false" aria-controls="#nav-collapse">
-                                            Informatie
-                                        </a><br>
-                                        <div class="dropdown-divider"></div>
-                                        <div id="responder-nav">
-                                            <a class="btn" href="./#">Mijn diensten</a><br>
-                                            <a class="btn active-link"href="./OpenShifts.html">Open diensten</a><br>
-                                            <a class="btn" href="./#">Certificaten</a><br>
-                                            <a class="btn" href="./#">Materiaal</a><br>
-                                            <a class="btn" href="./#">Account gegevens</a><br>  
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="dropdown collapse" id="nav-collapse"> <!-- Dropdown overons-->
-                                        <a href="./tilburg.html" class="btn">Over Ons</a><br>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="btn" href="./activiteiten.html" >Activiteiten</a><br>
-                                        <a class="btn" href="./opleidingen.html">Opleidingen</a><br>
-                                        <a class="btn" href="./lidmaatschap.html">Lidmaatschap</a><br>
-                                        <a class="btn" href="./contact.html">Contact</a><br>
-                                        <a class="btn" href="./hulpverlening.html">Hulpverlening</a><br>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="./Login.html" class="btn btn-lg btn-primary" style=" background-color: #042062; border-color: #042062;">Inloggen</a>
-                                        
-                                    </div>
-                                </ul>
-                            </div>
-                            <div style="height: 1000px; background-color: rgba(0, 0, 0, 0.6); "></div>    
-                        </div>
-                        
-                    </div>
-                    
 
-                    <div class="d-md-none" style="height: 50px;"></div>
-                
-                    <!-- Voor als de pagina wel normaal wilt doen -->
-                
-                    <a class="navbar-brand d-none d-sm-block" href="index.html">
-                        <img src="./images/logo.png" alt="logo" style="width:100px;">
-                    </a>
-                
-                    <!-- Header en andere button zooi -->
-                    <div class="d-none d-sm-block">
-                        <h1 class="d-none d-lg-block">EHBO Vereniging Tilburg</h1>
-                        <h2 class="d-none d-sm-block d-lg-none">EHBO Tilburg</h2>
-                        <ul class="navbar-nav tinkiewinkie">
-                            <div class="btn-group tinkiewinkie " style="width: fit-content;"> <!-- Dropdown overons-->
-                                <a href="./tilburg.html" class="btn btn-light d-none d-md-block">Over&nbsp;Ons</a>
-                                <a href="./tilburg.html" class="btn btn-light d-md-none">Over</a>
-                                <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-spilt"
-                                    data-toggle="dropdown"></button>
-                                <div class="dropdown-menu dipsy" style="padding: 2px;">
-                                    <a href="#" class="btn">De vereniging</a><br>
-                                    <a href="#" class="btn">Het bestuur</a><br>
-                                    <a href="#" class="btn">Docenten</a><br>
-                                    <a href="#" class="btn">Lotus</a>
-                                </div>
-                            </div>
-                            <div class="dropdown d-lg-none tinkiewinkie "> <!-- Dit is de dropdown voor als items weg gehaald worden-->
-                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">Meer weten</button>
-                                <div class="dropdown-menu dipsy" style="padding: 2px;">
-                                    <a href="./activiteiten.html" class="btn">Activiteiten</a><br>
-                                    <a href="./hulpverlening.html" class="btn">Hulpverlening</a><br>
-                                    <a href="./opleidingen.html" class="btn">Opleidingen</a><br>
-                                    <a href="./lidmaatschap.html" class="btn d-md-none">Lidmaatschap</a>
-                                </div>
-                            </div>
-                            <li class="nav-item">
-                                <a class="nav-link d-none d-lg-block" href="./activiteiten.html">Activiteiten</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link d-none d-lg-block" href="./opleidingen.html">Opleidingen</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link d-none d-md-block" href="./lidmaatschap.html">Lidmaatschap</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./contact.html">Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link d-none d-lg-block" href="./hulpverlening.html">Hulpverlening</a>
-                            </li>
-                        </ul>
-                
-                    </div>
-                
-                    <!-- Inloggen -->
-                    <div class="d-flex justify-content-end" style="width: 100%;">
-                        <a href="./Login.html" class="btn btn-lg btn-primary d-none d-xl-block" style="margin-right:20px; background-color: #042062; border-color: #042062;">Inloggen</a>
-                    </div>
-                
-                    <div class="d-flex justify-content-end d-xl-none" style="width: 60%;">
-                        <a href="./Login.html" class="btn btn-lg btn-primary d-none d-sm-block d-lx-none" style="background-color: #042062; border-color: #042062;">Inloggen</a>
-                    </div>
-                </div>
-            
-            </div>
-		</nav>
+	<body onload="loadShifts('Hulpverlener')" style="display: none" id="unBlockID">
+		<div class="page-container">
+			<!-- Begin navigatie -->
+			<nav class="mb-4 navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px">
+				<!-- Hamburger Menu -->
+				<div class="fixed-top d-sm-none">
+					<nav class="navbar navbar-light bg-light d-flex align-items-center" style="gap: 10px">
+						<a href="./index.html"><img src="./images/logo.png" alt="logo" style="width: 80px" /></a>
+						<h3>EHBO Tilburg</h3>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					</nav>
+					<div class="collapse" id="navbarToggleExternalContent">
+						<div class="bg-light p-4">
+							<div class="dropdown-divider"></div>
+							<ul class="navbar-nav">
+								<div class="dropdown">
+									<a class="btn dropdown-toggle" data-toggle="collapse" data-target="#nav-collapse" role="button" aria-expanded="false" aria-controls="#nav-collapse"> Algemene informatie </a><br />
+									<div class="dropdown-divider"></div>
+									<div class="dropdown collapse" id="nav-collapse">
+										<!-- Dropdown overons-->
+										<a href="./tilburg.html" class="btn">Over Ons</a><br />
+										<a class="btn" href="./activiteiten.html">Activiteiten</a><br />
+										<a class="btn" href="./opleidingen.html">Opleidingen</a><br />
+										<a class="btn" href="./lidmaatschap.html">Lidmaatschap</a><br />
+										<a class="btn" href="./contact.html">Contact</a><br />
+										<a class="btn" href="./hulpverlening.html">Hulpverlening</a><br />
+										<div class="dropdown-divider"></div>
+									</div>
+									<div id="responder-nav">
+										<a class="btn dropdown-toggle d-xs-block" data-toggle="collapse" data-target="#hulpverlener2" role="button" aria-expanded="false" aria-controls="#hulpverlener2" id="toggle-btn-hulp-2">Hulpverlener</a><br class="d-block" id="toggle-btn-hulp-2" />
+										<div id="hulpverlener2" class="dropdown collapse">
+											<ul class="list-group">
+												<a href="./MyShifts.html" class="list-group-item list-group-item-action mt-1">Mijn diensten</a>
+												<a href="./ActiveProjects.html" class="list-group-item list-group-item-action">Open projecten</a>
+												<a href="./CourseOverview.html" class="list-group-item list-group-item-action">Cursussen</a>
 
-        <div class="row">
-            <div class="col-lg-3 col-sm-4 d-none d-sm-block">
-                <ul class="side-nav">
-                    <li><a href="./#">Mijn diensten</a></li>
-                    <li><a href="./ActiveProjects.html">actieve evenmenten</a></li>
-                    <li><a href="./AcceptedProjectOverview.html">Geaccepteerde evenmenten</a></li>
-                    <li><a href="./EventOverview.html">Alle evenementen</a></li>
-                    <li><a href="CourseOverview.html">Cursussen</a></li>
-                    <li><a href="./#">Certificaten</a></li>
-                    <li><a href="./#">Materiaal</a></li>
-                    <li><a href="./StaticUserInfo.html">Account gegevens</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-9 col-sm-8">
-                <h2 class="page-title">Open diensten</h2>
-                <div class="project-card-container" id="replacable"></div>
-            </div>
-            <div class="container content">
-			
-            </div>
-        </div>
+											</ul>
+										</div>
+										<a class="btn dropdown-toggle d-xs-block" data-toggle="collapse" data-target="#coordinator2" role="button" aria-expanded="false" aria-controls="#coordinator2" id="toggle-btn-coordinator-2">Coordinator</a><br class="d-block" id="toggle-btn-hulp-2" />
+										<div id="coordinator2" class="dropdown collapse">
+											<ul class="list-group">
+												<a href="./AcceptedProjectOverview.html" class="list-group-item list-group-item-action mt-1">Geaccepteerde Projecten</a>
+												<a href="./EventOverview.html" class="list-group-item list-group-item-action">Aanvragen</a>
 
-	
-		
-		<footer>
-			<div class="divider"></div>
-			<div class="row footer">
-				<div class="col-6"><p>EHBO Afdeling Tilburg</p></div>
-				<div class="col-6"><p class="float-right">2024</p></div>
+											</ul>
+										</div>
+										<a id="toggle-btn-ledenadministratie-2" class="btn dropdown-toggle d-xs-block" data-toggle="collapse" data-target="#ledenadministratie2" role="button" aria-expanded="false" aria-controls="#ledenadministratie2">Ledenadministratie</a><br class="d-block" id="toggle-btn-hulp-2" />
+
+										<div id="ledenadministratie2" class="dropdown collapse">
+											<ul class="list-group">
+												<a href="./AllCourseOverview.html" class="list-group-item list-group-item-action mt-1">Alle cursussen</a>
+												<a href="./createCursus.html" class="list-group-item list-group-item-action">Cursus aanmaken</a>
+
+											</ul>
+										</div>
+									</div>
+									<a class="btn" href="./StaticUserInfo.html">Accountinformatie</a><br />
+								</div>
+							</ul>
+						</div>
+						<div style="height: 1000px; background-color: rgba(0, 0, 0, 0.6)"></div>
+					</div>
+				</div>
+
+				<div class="d-md-none" style="height: 50px"></div>
+
+				<!-- Voor als de pagina wel normaal wilt doen -->
+
+				<a class="navbar-brand d-none d-sm-block" href="index.html">
+					<img src="./images/logo.png" alt="logo" style="width: 100px" />
+				</a>
+
+				<!-- Header en andere button zooi -->
+				<div class="d-none d-sm-block">
+					<h1 class="d-none d-lg-block">EHBO Vereniging Tilburg</h1>
+					<h2 class="d-none d-sm-block d-lg-none">EHBO Tilburg</h2>
+					<ul class="navbar-nav">
+						<div class="btn-group" style="width: fit-content">
+							<!-- Dropdown overons-->
+							<a href="./overons.html" class="btn btn-light d-none d-md-block">Over&nbsp;Ons</a>
+							<a href="./overons.html" class="btn btn-light d-md-none">Over</a>
+							<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-spilt" data-toggle="dropdown"></button>
+							<div class="dropdown-menu" style="padding: 2px">
+								<a href="./overons.html#vereniging" class="btn">De vereniging</a><br />
+								<a href="./overons.html#bestuur" class="btn">Het bestuur</a><br />
+								<a href="./overons.html#docenten" class="btn">Docenten</a><br />
+								<a href="./overons.html#lotus" class="btn">Lotus</a>
+							</div>
+						</div>
+						<div class="dropdown d-lg-none">
+							<!-- Dit is de dropdown voor als items weg gehaald worden-->
+							<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">Meer weten</button>
+							<div class="dropdown-menu" style="padding: 2px">
+								<a href="./activiteiten.html" class="btn">Activiteiten</a><br />
+								<a href="./hulpverlening.html" class="btn">Hulpverlening</a><br />
+								<a href="./opleidingen.html" class="btn">Opleidingen</a><br />
+								<a href="./lidmaatschap.html" class="btn d-md-none">Lidmaatschap</a>
+							</div>
+						</div>
+						<li class="nav-item">
+							<a class="nav-link d-none d-lg-block" href="./activiteiten.html">Activiteiten</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link d-none d-lg-block" href="./opleidingen.html">Opleidingen</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link d-none d-md-block" href="./lidmaatschap.html">Lidmaatschap</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="./contact.html">Contact</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link d-none d-lg-block" href="./hulpverlening.html">Hulpverlening</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<!-- Einde Navigatie -->
+
+			<div class="row content">
+				<!-- begin side nav -->
+				<div class="side-nav col-3 d-none d-sm-block">
+					<ul class="p-1 list-group border border-light rounded">
+						<a data-toggle="collapse" data-target="#hulpverlener" id="toggle-btn-hulp-1" class="p-2 btn btn-light d-xs-none d-sm-block">Hulpverlener</a>
+
+						<div id="hulpverlener" class="collapse">
+							<ul class="list-group">
+								<a href="./MyShifts.html" class="list-group-item list-group-item-action mt-1">Mijn diensten</a>
+								<a href="./ActiveProjects.html" class="list-group-item list-group-item-action">Open Projecten</a>
+								<a href="./CourseOverview.html" class="list-group-item list-group-item-action">Cursussen</a>
+								
+							</ul>
+						</div>
+
+						<a data-toggle="collapse" data-target="#coordinator" id="toggle-btn-coordinator-1" class="p-2 btn btn-light d-xs-none d-sm-block mt-2">Coördinator</a>
+
+						<div id="coordinator" class="collapse">
+							<ul class="list-group">
+								<a href="./AcceptedProjectOverview.html" class="list-group-item list-group-item-action mt-1">Geaccepteerde Projecten</a>
+								<a href="./EventOverview.html" class="list-group-item list-group-item-action">Aanvragen</a>
+							</ul>
+						</div>
+
+						<a data-toggle="collapse" data-target="#Leden-Administratie" id="toggle-btn-ledenadministratie-1" class="p-2 btn btn-light d-xs-none d-sm-block mt-2">Ledenadministratie</a>
+
+						<div id="Leden-Administratie" class="collapse">
+							<ul class="list-group">
+								<a href="./AllCourseOverview.html" class="list-group-item list-group-item-action mt-1">Alle cursussen</a>
+								<a href="./createCursus.html" class="list-group-item list-group-item-action">Cursus aanmaken</a>
+
+							</ul>
+						</div>
+
+						<a href="./StaticUserInfo.html" class="list-group-item list-group-item-action btn btn-outline-dark mt-2">Accountinformatie</a>
+					</ul>
+				</div>
+				<!-- Side nav Eind -->
+
+				<div class="col-9">
+					<h2 class="page-title">Open diensten</h2>
+					<div class="project-card-container" id="replacable"></div>
+				</div>
 			</div>
-		</footer>
 
+			<footer>
+				<div class="divider"></div>
+				<div class="row footer">
+					<div class="col-lg-6 col-8"><p>EHBO Afdeling Tilburg</p></div>
+					<div class="col-lg-6 col-4"><p class="float-right">2024</p></div>
+				</div>
+			</footer>
+		</div>
 	</body>
 </html>

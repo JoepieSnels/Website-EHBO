@@ -123,13 +123,12 @@
         <!-- Einde navigatie -->
         <!-- Start Form -->
 
-        
         <div class="container">
             <div class="row gutters">
                 <div class="col-12">
                     <div class="card update-card">
                         <div class="card-body">
-                            <form onsubmit="verifyInputs()">
+                            <form onsubmit="verifyInputs(event)">
                                 <div class="row gutters">
                                     <div class="col-12">
                                         <h6 class="mb-2">Persoonsgegevens</h6>
@@ -137,37 +136,37 @@
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="firstName">Voornaam</label>
-                                            <input type="text" class="form-control" id="firstName" placeholder="Jan" maxlength=50 required>
+                                            <input type="text" class="form-control" id="firstName" placeholder="Jan" maxlength="50" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="lastName">Achternaam</label>
-                                            <input type="text" class="form-control" id="lastName" placeholder="de Jong" maxlength=50 required>
+                                            <input type="text" class="form-control" id="lastName" placeholder="de Jong" maxlength="50" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="phoneNumber">Mobiel telefoonnummer</label>
-                                            <input type="text" class="form-control" id="phoneNumber" placeholder="06-12345678" maxlength=11 required>
+                                            <input type="text" class="form-control" id="phoneNumber" placeholder="06-12345678" maxlength="11" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="homePhone">Vast telefoonnummer</label>
-                                            <input type="text" class="form-control" id="homePhone" placeholder="(+31) 70 123 45 67" maxlength=16>
+                                            <input type="text" class="form-control" id="homePhone" placeholder="(+31) 70 123 45 67" maxlength="16" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="email">Emailadres</label>
-                                            <input type="email" class="form-control" id="email" placeholder="abc@example.nl" maxlength=320 required>
+                                            <input type="email" class="form-control" id="email" placeholder="abc@example.nl" maxlength="320" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="dateOfBirth">Geboortedatum</label>
-                                            <input type="date" class="form-control" id="dateOfBirth" placeholder="dd - mm - jjjj" required>
+                                            <input type="date" class="form-control" id="dateOfBirth" placeholder="dd - mm - jjjj" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
@@ -182,7 +181,6 @@
                                             </select>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="row gutters">
                                     <div class="col-12">
@@ -191,25 +189,25 @@
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="street">Straat</label>
-                                            <input type="name" class="form-control" id="street" placeholder="Ridderstraat" maxlength=70 required>
+                                            <input type="name" class="form-control" id="street" placeholder="Ridderstraat" maxlength="70" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="houseNumber">Huisnummer</label>
-                                            <input type="name" class="form-control" id="houseNumber" placeholder="18" maxlength=10 required>
+                                            <input type="name" class="form-control" id="houseNumber" placeholder="18" maxlength="10" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="postalCode">Postcode</label>
-                                            <input type="text" class="form-control" id="postalCode" placeholder="5001AA" maxlength=7 required>
+                                            <input type="text" class="form-control" id="postalCode" placeholder="5001AA" maxlength="7" required />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="city">Woonplaats</label>
-                                            <input type="text" class="form-control" id="city" placeholder="Breda" maxlength=50 required>
+                                            <input type="text" class="form-control" id="city" placeholder="Breda" maxlength="50" required />
                                         </div>
                                     </div>
                                 </div>
@@ -220,38 +218,36 @@
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="billingStreet">Straat</label>
-                                            <input type="name" class="form-control" id="billingStreet" placeholder="Molenstraat" maxlength=70>
+                                            <input type="name" class="form-control" id="billingStreet" placeholder="Molenstraat" maxlength="70" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="billingHouseNumber">Huisnummer</label>
-                                            <input type="name" class="form-control" id="billingHouseNumber" placeholder="158" maxlength=10>
+                                            <input type="name" class="form-control" id="billingHouseNumber" placeholder="158" maxlength="10" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="billingCity">Woonplaats</label>
-                                            <input type="text" class="form-control" id="billingCity" placeholder="Amsterdam" maxlength=50>
+                                            <input type="text" class="form-control" id="billingCity" placeholder="Amsterdam" maxlength="50" />
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="billingEmail">Emailadres</label>
-                                            <input type="text" class="form-control" id="billingEmail" placeholder="factuur@server.nl" maxlength=320>
+                                            <input type="text" class="form-control" id="billingEmail" placeholder="factuur@server.nl" maxlength="320" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row"> 
+                                <div class="row">
                                     <div class="col-9">
-    
                                         <button class="btn btn-outline-primary" type="button" data-toggle="collapse" aria-expanded="false" data-target="#collapse" role="button" aria-controls="#collapse">Certificaten</button>
-                                        
-                                        
+
                                         <div class="collapse certificates" id="collapse">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="eenheidsdiploma">
-                                                 <label class="form-check-label" for="eenheidsdiploma">Eenheidsdiploma</label>   
+                                                <input class="form-check-input" type="checkbox" value="" id="eenheidsdiploma" />
+                                                <label class="form-check-label" for="eenheidsdiploma">Eenheidsdiploma</label>
                                             </div>
                                             <div class="form-check col-12">
                                                 <input type="checkbox" class="form-check-input" id="reanimatie" />
@@ -261,7 +257,7 @@
                                                 <input type="checkbox" class="form-check-input" id="ehak" />
                                                 <label class="form-check-label" for="ehaK">Eerste hulp aan Kinderen</label>
                                             </div>
-                                          
+
                                             <div class="form-check col-12">
                                                 <input type="checkbox" class="form-check-input" id="brandwondletsels" />
                                                 <label class="form-check-label" for="brandwondletsels">Brandwondletsels</label>
@@ -276,18 +272,17 @@
                                         <button type="submit" class="btn btn-primary px-4 float-right">Versturen</button>
                                     </div>
                                 </div>
-                                
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="top">
+        <footer>
             <div class="divider"></div>
             <div class="row footer">
-                <div class="col-6"><p>EHBO Afdeling Tilburg</p></div>
-                <div class="col-6"><p class="float-right">2024</p></div>
+                <div class="col-lg-6 col-8"><p>EHBO Afdeling Tilburg</p></div>
+                <div class="col-lg-6 col-4"><p class="float-right">2024</p></div>
             </div>
         </footer>
     </body>

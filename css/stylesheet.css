@@ -1,18 +1,14 @@
-.tinkiewinkie a:hover,
-.tinkiewinkie button:hover,
-.tinkiewinkie li a:hover {
-	color: #3159b7 !important;
+.page-container {
+	position: relative;
+ 	min-height: 100vh;
 }
+.content {
+	padding-bottom: 2.5rem;
+	padding-top: 20px;
+}
+
 .project-card:hover {
 	cursor: pointer;
-}
-.dipsy a:hover::after {
-	background: #fbe326;
-	content: "";
-	position: absolute;
-	height: 20%;
-	width: 5px;
-	left: 0;
 }
 
 .card img {
@@ -36,7 +32,7 @@
 	color: #3159b7;
 }
 
-.side-nav {
+/* .side-nav {
 	margin: 10px;
 	border-radius: 5px;
 	border: 1px solid rgb(222, 222, 222);
@@ -73,11 +69,8 @@
 
 .side-nav .active-link a:hover {
 	color: black;
-}
+} */
 
-.page-title {
-	padding: 10px;
-}
 
 .project-list-card {
 	margin: 15px;
@@ -139,63 +132,24 @@
 	font-family: Tahoma;
 }
 
-h1,
-a {
+h1,a, button{
 	font-family: Helvetica, sans-serif;
 }
 
-h1 {
-	padding-top: 20px;
-}
 
-.btn-group a:hover p,
-.lala:hover {
-	color: #fbe326;
-}
-
-.login-btn a {
-	margin-right: 50px;
-	background-color: #042062;
-	border: 0px;
-}
-.login-btn a:hover {
-	background-color: #6f85c2;
-}
-
-.btn-group > a:hover::after,
-.lala:hover::after {
-	background: #fbe326;
-	content: "";
-	position: absolute;
-	bottom: 0;
-	height: 6px;
-	left: 0;
-	right: 0;
-}
-
-.content {
-	margin-top: 50px;
-}
 
 .content .info {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-.lala:hover {
-	text-decoration: none;
-}
 
-
-
-
-
-.content .btn {
-	background-color: #042062;
-	border: 0px;
-}
 
 .content .btn:hover {
 	background-color: #6f85c2;
+}
+
+.content > div {
+	padding-bottom: 25px;
 }
 
 .certificates {
@@ -238,20 +192,31 @@ h1 {
 
 /* login */
 
-
+.login-btn a {
+	margin-right: 50px;
+	background-color: #042062;
+	border: 0px;
+	color: white;
+}
+.login-btn a:hover {
+	background-color: #6f85c2;
+	color: white;
+}
 
 
 /* footer */
 
-.footer {
-	margin-top: auto;
-	padding-top: 20px;
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 2.5rem;            
 
 }
 
 .footer p {
 	color: grey;
-	padding: 0px 30px 0px 30px;
+	padding: 20px 30px 0px 30px;
 }
 
 
@@ -271,4 +236,17 @@ h1 {
 .row {
 	width: 100%;
 	margin: auto;
+}
+
+/* buttons */
+
+.side-nav .btn {
+	border: 1px solid #d1dbf6;
+	background-color: #e3e6f4;
+
+}
+
+.side-nav .btn:hover {
+	background-color: #6f85c2;
+	color: white;
 }
