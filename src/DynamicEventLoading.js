@@ -152,7 +152,6 @@ function createCard(projectDetails) {
 }
 
 function createAcceptedCard(projectDetails) {
-
 	projectDetails.RequestDate = projectDetails.RequestDate.split("T")[0];
 	projectDetails.Date = projectDetails.Date.split("T")[0];
 	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
@@ -185,26 +184,24 @@ function goAcceptedDetailPage(id) {
 
 //gebruikt
 function loadAcceptedProjects(requiredPermission) {
-	if(getPermission(requiredPermission)) {
+	if (getPermission(requiredPermission)) {
 		getAcceptedProjectsFromDB()
-		.then((projects) => {
-			console.log(projects[0].Title);
-			for (let i = 0; i < projects.length; i++) {
-				createAcceptedCard(projects[i]);
-			}
-		})
-		.catch((error) => {
-			console.log("Error loading projects:", error);
-		});
+			.then((projects) => {
+				console.log(projects[0].Title);
+				for (let i = 0; i < projects.length; i++) {
+					createAcceptedCard(projects[i]);
+				}
+			})
+			.catch((error) => {
+				console.log("Error loading projects:", error);
+			});
 	}
-	
 }
 
 //gebruikt
 async function getAcceptedProjectsFromDB() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	console.log("Loading projects from Database");
-	
 
 	try {
 		const response = await fetch("https://api-ehbo.onrender.com/api/getAcceptedProjects", {
@@ -227,7 +224,6 @@ async function getProjectsFromDB() {
 	//const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
 	console.log("Loading projects from Database");
 
-
 	try {
 		const response = await fetch("https://api-ehbo.onrender.com/api/getAllUndecidedProjects", {
 			method: "GET",
@@ -245,19 +241,18 @@ async function getProjectsFromDB() {
 }
 
 function loadAllProjects(requiredPermission) {
-	if(getPermission(requiredPermission)) {
+	if (getPermission(requiredPermission)) {
 		getProjectsFromDB()
-		.then((projects) => {
-			console.log(projects[0].Title);
-			for (let i = 0; i < projects.length; i++) {
-				createCard(projects[i]);
-			}
-		})
-		.catch((error) => {
-			console.log("Error loading projects:", error);
-		});
+			.then((projects) => {
+				console.log(projects[0].Title);
+				for (let i = 0; i < projects.length; i++) {
+					createCard(projects[i]);
+				}
+			})
+			.catch((error) => {
+				console.log("Error loading projects:", error);
+			});
 	}
-	
 }
 
 //gebruikt
@@ -268,7 +263,6 @@ async function getProjectsFromDBWithId(id) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	//const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
 	console.log("Loading project with Id: " + id);
-
 
 	try {
 		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
@@ -284,8 +278,6 @@ async function getProjectsFromDBWithId(id) {
 	} catch (error) {
 		console.log("Error fetching data: " + error);
 	}
-
-
 }
 
 function goDetailPage(id) {
@@ -306,10 +298,8 @@ function loadProjectDetails() {
 		data[tmp[0]] = tmp[1];
 	}
 
-
 	getProjectsFromDBWithId(data.id)
 		.then((project) => {
-
 			fillDetailPage(project);
 		})
 		.catch((error) => {
@@ -328,8 +318,6 @@ function fillDetailPage(projectDetails) {
 	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
 		projectDetails.IsAccepted = "No Reply";
 	}
-
-
 
 	const projectItem = `<div class="card project-list-card">
                             <div class="card-header col-12" id="projectTitle">
@@ -362,8 +350,6 @@ function goDetailPage(id) {
 function goAcceptedDetailPage(id) {
 	document.location.href = `./CreateShift.html?id=${id}`;
 }
-
-
 
 function acceptProject(id) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
@@ -413,145 +399,187 @@ function rejectProject(id) {
 }
 //gebruikt
 function loadAcceptedProjectDetails(requiredPermission) {
-	if(getPermission(requiredPermission)) {
+	if (getPermission(requiredPermission)) {
 		var url = document.location.href,
-		params = url.split("?")[1].split("&"),
-		data = {},
-		tmp;
-	console.log(params);
-	for (var i = 0, l = params.length; i < l; i++) {
-		tmp = params[i].split("=");
-		data[tmp[0]] = tmp[1];
-	}
-	console.log(data.id);
+			params = url.split("?")[1].split("&"),
+			data = {},
+			tmp;
+		console.log(params);
+		for (var i = 0, l = params.length; i < l; i++) {
+			tmp = params[i].split("=");
+			data[tmp[0]] = tmp[1];
+		}
+		console.log(data.id);
 
-	getProjectsFromDBWithId(data.id)
-		.then((project) => {
-			console.log(project);
-			fillAcceptedDetailPage(project);
-		})
-		.catch((error) => {
-			console.log("Error loading projects:", error);
-		});
+		getProjectsFromDBWithId(data.id)
+			.then((project) => {
+				console.log(project);
+				fillAcceptedDetailPage(project);
+			})
+			.catch((error) => {
+				console.log("Error loading projects:", error);
+			});
 	}
-	
 }
 
 //gebruikt
 function fillAcceptedDetailPage(projectDetails) {
-
-
 	if (!projectDetails.EndDate) {
 		projectDetails.EndDate = "";
 	} else {
-		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
+		projectDetails.EndDate = projectDetails.EndDate.split("T")[0];
 	}
-
+	projectDetails.Date = projectDetails.Date.split("T")[0];
 	const status = setStatus(projectDetails.IsAccepted);
+	const beginDate = projectDetails.Date;
+	const endDate = projectDetails.EndDate;
+	console.log(typeof beginDate, typeof endDate);
 
-	const projectItem = `<div class="card project-list-card">
-                            <div class="card-header col-12" id="projectTitle">
-                                <b>Project:</b> ${projectDetails.Title} 
-
-                            </div>                            
-                            <div class="card-body row project-card-body">
-                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectCompany"><b>Bedrijf: </b> ${projectDetails.Company}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status: </b>${status}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="ContactPersonName"><b>Contact Persoon: </b>${projectDetails.ContactPerson}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="ContactPersonEmail"><b>Contact Email: </b>${projectDetails.ContactEmailAddress}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="CompanyPhoneNumber"><b>Telefoon Nummer: </b>${projectDetails.PhoneNumber}</p>
-                                <p class="card-text col-lg-7 col-sm-7" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
-								<br>
-							
-                                <h5 class="col-12">Maak diensten aan</h5>
-                                <div class="container" id="shiftCreator">
-									<div class="shift0" id="shift0">
-										<div class="row">
-											<label for="shiftBeginTime" class="col-6 col-sm-3">Begin Tijd</label>          
-											<input type="time" id="shiftBeginTime0" class="col-6 col-sm-3"></input>
-											<label for="shiftEndTime" class="col-6 col-sm-3">Eind Tijd</label>
-											<input type="time" id="shiftEndTime0" class="col-6 col-sm-3"></input>
-										</div>
-										<div class="row">
-											<label for="shiftBeginDate" class="col-6 col-sm-3">Begin datum</label>
-											<input type="date" id="shiftBeginDate0" class="col-6 col-sm-3"></input>
-											<label for="shiftEndDate" class="col-6 col-sm-3">Eind datum</label>
-											<input type="date" id="shiftEndDate0" class="col-6 col-sm-3"></input>
-										</div>
-									</div>
-								</div>
-								<div class="container" id="knop">
-									<div class="row">
-										<div class="col-12" style="padding-top: 20px">
-											<button class="btn btn-primary float-left" onclick="addShift(${projectDetails.ProjectId})" >Add Shift</button>
-											<button class="btn btn-success float-right" onclick="setActive(${projectDetails.ProjectId})">Zet actief</button>
-										</div>
-									</div>
-								</div>
-
-                       		</div>
-						</div>`;
+	const projectItem = `
+    <div class="card project-list-card">
+        <div class="card-header col-12" id="projectTitle">
+            <b>Project:</b> ${projectDetails.Title}
+        </div>
+        <div class="card-body row project-card-body">
+            <div class="card-text col-lg-4 col-sm-6" id="projectDate">
+                <b>Begin datum: </b>
+                <label id="beginDate" class="col-6">${beginDate}</label>
+            </div>
+            <div class="card-text col-lg-4 col-sm-6" id="projectDate">
+                <b>Eind datum: </b>
+                <label id="endDate" class="col-6">${endDate}</label>
+            </div>
+            <p class="card-text col-lg-4 col-sm-6" id="projectTime">
+                <b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}
+            </p>
+            <p class="card-text col-lg-4 col-sm-6" id="projectCompany">
+                <b>Bedrijf: </b>${projectDetails.Company}
+            </p>
+            <p class="card-text col-lg-4 col-sm-6" id="projectLocation">
+                <b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}
+            </p>
+            <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates">
+                <b>Benodigde certificaten: </b> Geen
+            </p>
+            <p class="card-text col-lg-4 col-sm-6" id="projectStatus">
+                <b>Status: </b>${status}
+            </p>
+            <p class="card-text col-lg-4 col-sm-6" id="ContactPersonName">
+                <b>Contact Persoon: </b>${projectDetails.ContactPerson}
+            </p>
+            <p class="card-text col-lg-4 col-sm-6" id="ContactPersonEmail">
+                <b>Contact Email: </b>${projectDetails.ContactEmailAddress}
+            </p>
+            <p class="card-text col-lg-4 col-sm-6" id="CompanyPhoneNumber">
+                <b>Telefoon Nummer: </b>${projectDetails.PhoneNumber}
+            </p>
+            <p class="card-text col-lg-7 col-sm-7" id="Description">
+                <b>Beschrijving: </b>${projectDetails.Description}
+            </p>
+            <br>
+            <h5 class="col-12">Maak diensten aan</h5>
+            <div class="container" id="shiftCreator">
+                <div class="shift0" id="shift0">
+                    <div class="row">
+                        <label for="shiftBeginTime" class="col-6 col-sm-3">Begin Tijd</label>
+                        <input type="time" id="shiftBeginTime0" class="col-6 col-sm-3"></input>
+                        <label for="shiftEndTime" class="col-6 col-sm-3">Eind Tijd</label>
+                        <input type="time" id="shiftEndTime0" class="col-6 col-sm-3"></input>
+                    </div>
+                    <div class="row">
+                        <label for="shiftBeginDate" class="col-6 col-sm-3">Begin datum</label>
+                        <input type="date" id="shiftBeginDate0" class="col-6 col-sm-3"></input>
+                        <label for="shiftEndDate" class="col-6 col-sm-3">Eind datum</label>
+                        <input type="date" id="shiftEndDate0" class="col-6 col-sm-3"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="container" id="knop">
+                <div class="row">
+                    <div class="col-12" style="padding-top: 20px">
+                        <button class="btn btn-primary float-left" onclick="addShift(${projectDetails.ProjectId})">Bevestig dienst</button>
+                        <button class="btn btn-success float-right" onclick="setActive(${projectDetails.ProjectId})">Zet actief</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
 	document.getElementById("replacable").innerHTML = projectItem;
 }
 
 let shifts = [];
 let count = 0;
-function checkInput() {
+
+// Usage in checkInput
+function checkInput(count) {
 	const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
 	const endTime = document.getElementById(`shiftEndTime${count}`).value;
-	const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
-	const endDate = document.getElementById(`shiftEndDate${count}`).value;
+	const shiftBeginDate = document.getElementById(`shiftBeginDate${count}`).value;
+	const shiftEndDate = document.getElementById(`shiftEndDate${count}`).value;
+	const beginDateElement = document.getElementById("beginDate");
+	const endDateElement = document.getElementById("endDate");
+
+	if (!beginDateElement || !endDateElement) {
+		console.error("Begin date or end date label not found");
+		return { valid: false, alert: "Internal error: required fields missing" };
+	}
+
+	const beginDate = beginDateElement.textContent.trim();
+	const endDate = endDateElement.textContent.trim();
+	console.log(beginDate, endDate);
 	let alert = "";
-	if (!beginTime || !endTime || !beginDate || !endDate) {
+
+	if (!beginTime || !endTime || !shiftBeginDate || !shiftEndDate) {
 		console.log("leeg veld");
 		alert = "Een veld mist";
-		return false;
+		return { valid: false, alert: alert };
 	}
-	// if(validateDate(beginDate, endDate) && validateTime(beginTime, endTime, beginDate, endDate)) {
-	// 	return true
-	// }
-	// return false
 
-	// if(!validateDate(beginDate, endDate)) {
-	// 	console.log('datum')
-	// 	alert = 'Einddatum moet voor begindatum zijn'
-	// 	return false;
-	// }
-	// if (!validateTime(beginTime, endTime, beginDate, endDate)) {
-	// 	console.log('tijd')
-	// 	alert = 'Eindtijd moet na begintijd zijn'
-	// 	return false;
-	// }
-	// return 'hoi'
+	if (!validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate)) {
+		console.log("datum verkeerd!");
+		alert = "Einddatum moet voor begindatum zijn";
+		return { valid: false, alert: alert };
+	}
+
+	return { valid: true, alert: "" };
 }
+
+// if(!validateDate(beginDate, endDate)) {
+// 	console.log('datum')
+// 	alert = 'Einddatum moet voor begindatum zijn'
+// 	return false;
+// }
+// if (!validateTime(beginTime, endTime, beginDate, endDate)) {
+// 	console.log('tijd')
+// 	alert = 'Eindtijd moet na begintijd zijn'
+// 	return false;
+// }
 function addShift(projectId) {
-	// if(!checkInput()) {
-	// 	alert("NEEE")
-	// } else {
-	// alert(checkInput())
+	const result = checkInput(count);
+
+	if (!result.valid) {
+		alert(result.alert);
+		return; // Stop further execution if the input is invalid
+	}
+
+	// If the input is valid, proceed with adding the shift
 	appendShiftForm(count + 1);
 
 	const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
 	const endTime = document.getElementById(`shiftEndTime${count}`).value;
-	const beginDate = document.getElementById(`shiftBeginDate${count}`).value;
-	const endDate = document.getElementById(`shiftEndDate${count}`).value;
+	const shiftBeginDate = document.getElementById(`shiftBeginDate${count}`).value;
+	const shiftEndDate = document.getElementById(`shiftEndDate${count}`).value;
 
 	shifts.push({
 		beginTime: beginTime,
 		endTime: endTime,
-		beginDate: beginDate,
-		endDate: endDate,
+		beginDate: shiftBeginDate,
+		endDate: shiftEndDate,
 		projectId: projectId,
 	});
 
 	hideLastShift(count);
 	count++;
-
-	//}
 }
 
 function hideLastShift(teller) {
