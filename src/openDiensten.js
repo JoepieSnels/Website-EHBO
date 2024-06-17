@@ -89,12 +89,12 @@ function generateCardsCoordinator(items) {
 
 
 function goToDetailCoordinator(projectId) {
-	document.location.href = "OpenshiftsCoordinator.html?id=" + projectId;
+	document.location.href = "OpenshiftsCoordinator.html?projectId=" + projectId;
 
 }
 
 function goToDetail(projectId) {
-	document.location.href = "OpenShifts.html?id=" + projectId;
+	document.location.href = "OpenShifts.html?projectId=" + projectId;
 
 }
 
@@ -137,17 +137,14 @@ function loadShifts(requiredPermission) {
 	if(getPermission(requiredPermission)) {
 
 		var url = document.location.href,
-		params = url.split("?")[1].split("&"),
+		params = url.split("?")[1].split("="),
 		data = {},
 		tmp;
 		console.log(params);
-		for (var i = 0, l = params.length; i < l; i++) {
-			tmp = params[i].split("=");
-			data[tmp[0]] = tmp[1];
-		}
+		
 
-		console.log(data.id)
-		getShifts(data.id)
+		console.log(params[1])
+		getShifts(params[1])
 			.then((shifts) => {
 				fillShiftPage(shifts, data.Id);
 			})
@@ -204,6 +201,8 @@ async function assignShift(shiftId, projectId) {
 		if (!response.ok) {
 			throw new Error("Network response was not ok");
 		}
+		alert("Je bent ingeschreven")
+		window.location.href = "./ActiveProjects.html";
 
 		const dataJson = await response.json();
 		return dataJson.data;
@@ -242,6 +241,8 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 			return;
 		}
 
+		console.log(shiftDetails.ProjectId)
+
 
 		let endDate = shiftDetails.EndDate ? "- " + shiftDetails.EndDate.split("T")[0] : "";
 
@@ -251,7 +252,7 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 
                                     <p class="card-text col-12" id="projectDate"><b>Datum: </b>${date}</p>
                                     <p class="card-text col-12 col-sm-8 col-lg-10" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
-                                    <button class="col-sm-4  col-lg-2 btn btn-blue float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${projectId}')">Inschrijven</button>
+                                    <button class="col-sm-4  col-lg-2 btn btn-blue float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${shiftDetails.ProjectId}')">Inschrijven</button>
                                 </div>
                             </div>`;
 		projectItems += projectItem;
