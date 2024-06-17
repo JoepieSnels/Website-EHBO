@@ -22,9 +22,9 @@
 	width: 30rem;
 }
 
-.update-card {
+/* .update-card {
 	margin-top: 40px;
-}
+} */
 
 .update-card h6 {
 	font-size: larger;
@@ -86,7 +86,7 @@
 
 
 
-.project-list-card:hover{
+.clickable-card:hover{
 	border: 1px solid #042062;
 	box-shadow: 2px 2px #6f85c2;
 }
@@ -138,9 +138,19 @@ h1,a, button{
 
 
 
-.content .info {
-	margin-top: 20px;
-	margin-bottom: 20px;
+
+@media(min-width: 600px) {
+	.info {
+		margin: 20px auto 0px auto;
+
+	}
+}
+
+@media(min-width: 1000px) {
+	.info {
+		margin: 30px auto 0px auto;
+
+	}
 }
 
 
@@ -184,6 +194,7 @@ h1,a, button{
 }
 .request-form {
 	width: 100rem;
+	margin-top: 40px
 }
 
 .top {

@@ -9,14 +9,11 @@ async function fetchData() {
 			},
 		});
 
-		console.log("Response Status:", response.status);
-
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
 
 		const data = await response.json();
-		console.log(data.data);
 		return data.data;
 	} catch (error) {
 		console.error("Error fetching data:", error);
@@ -27,17 +24,22 @@ function generateCards(items) {
 	const container = document.getElementById("replacable");
 	container.innerHTML = "";
 	items.forEach((item) => {
-		console.log("item", item);
+		let date = ""
+		if(item.endDate){
+			date = `${item.Date.split("T")[0]} - ${item.EndDate.split("T")[0]}`
+		} else {
+			date = item.Date.split("T")[0]
+		}
 		const card = document.createElement("div");
 		let neededCertificates = item.CertificatesNeeded || "-";
 
 		card.innerHTML = `
-		<div class="card project-list-card" onclick="goToDetail(${item.ProjectId})">
+		<div class="card project-list-card clickable-card" onclick="goToDetail(${item.ProjectId})">
 			<div class="card-header col-12" id="projectTitle"><b>Project:</b> ${item.Title}</div>
 		
 			<div class="card-body row project-card-body">
 				<div class="row col-lg-8 col-sm-12 px-0 py-2">
-					<p class="card-text col-lg-6 col-sm-6" id="projectDate"><b>Datum:</b> ${item.Date.split("T")[0]}</p>
+					<p class="card-text col-lg-6 col-sm-6" id="projectDate"><b>Datum:</b> ${date}</p>
 					<p class="card-text col-lg-6 col-sm-6" id="projectTime"><b>Tijd:</b> ${item.StartTime.slice(0, 5)} - ${item.EndTime.slice(0, 5)}</p>
 					<p class="card-text col-lg-6 col-sm-6" id="projectLocation"><b>Locatie:</b> ${item.Address} ${item.HouseNr}, ${item.City}</p>
 					<p class="card-text col-lg-6 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> ${neededCertificates}</p>

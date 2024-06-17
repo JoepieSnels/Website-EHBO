@@ -67,34 +67,33 @@ async function onLoadUserInfo(requiredPermission) {
 
 // 	console.log(projectDetails.Id);
 // }
-function createCard(projectDetails) {
-	console.log(projectDetails);
-	// projectDetails = testProjectDetails;
+// function createCard(projectDetails) {
+// 	console.log(projectDetails);
 
-	projectDetails.RequestDate = projectDetails.RequestDate.split("T")[0];
-	projectDetails.Date = projectDetails.Date.split("T")[0];
-	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
-		projectDetails.IsAccepted = "No Reply";
-	}
+// 	projectDetails.RequestDate = projectDetails.RequestDate.split("T")[0];
+// 	projectDetails.Date = projectDetails.Date.split("T")[0];
+// 	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
+// 		projectDetails.IsAccepted = "No Reply";
+// 	}
 
-	var item = `<div class="card project-card" onclick="goDetailPage(${projectDetails.ProjectId})">
-                    <div class="card-header" id="projectTitle">
-                        <b>Project:</b> ${projectDetails.Title}
-                        <b> Bedrijf:</b> ${projectDetails.Company}
-                    </div>
-                    <div class="card-body row project-card-body">
-                        <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum:</b> ${projectDetails.Date}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd:</b> ${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig:</b> ${projectDetails.PeopleNeeded}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie:</b> ${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
-                    </div>
-                </div>`;
+// 	var item = `<div class="card project-card" onclick="goDetailPage(${projectDetails.ProjectId})">
+//                     <div class="card-header" id="projectTitle">
+//                         <b>Project:</b> ${projectDetails.Title}
+//                         <b> Bedrijf:</b> ${projectDetails.Company}
+//                     </div>
+//                     <div class="card-body row project-card-body">
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum:</b> ${projectDetails.Date}</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd:</b> ${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig:</b> ${projectDetails.PeopleNeeded}</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie:</b> ${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
+//                     </div>
+//                 </div>`;
 
-	document.getElementById("eventCards").innerHTML += item;
-	console.log(projectDetails.Id);
-}
+// 	document.getElementById("eventCards").innerHTML += item;
+// 	console.log(projectDetails.Id);
+// }
 
 // function fillAcceptedDetailPage(projectDetails) {
 // 	console.log(projectDetails);
@@ -127,7 +126,6 @@ function createCard(projectDetails) {
 // }
 function createCard(projectDetails) {
 	console.log(projectDetails);
-	// projectDetails = testProjectDetails;
 
 	projectDetails.RequestDate = projectDetails.RequestDate.split("T")[0];
 	projectDetails.Date = projectDetails.Date.split("T")[0];
@@ -135,15 +133,14 @@ function createCard(projectDetails) {
 		projectDetails.IsAccepted = "No Reply";
 	}
 
-	var item = `<div class="card project-card" onclick="goDetailPage(${projectDetails.ProjectId})">
+	var item = `<div class="card project-list-card clickable-card" onclick="goDetailPage(${projectDetails.ProjectId})">
                     <div class="card-header" id="projectTitle">
                         <b>Project:</b> ${projectDetails.Title}
-                        <b> Bedrijf:</b> ${projectDetails.Company}
                     </div>
                     <div class="card-body row project-card-body">
                         <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum:</b> ${projectDetails.Date}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd:</b> ${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig:</b> ${projectDetails.PeopleNeeded}</p>
+                        <p class="card-text col-lg-4 col-sm-6"><b>Bedrijf:</b> ${projectDetails.Company}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie:</b> ${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
                         <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
@@ -155,8 +152,6 @@ function createCard(projectDetails) {
 }
 
 function createAcceptedCard(projectDetails) {
-	console.log(projectDetails);
-	// projectDetails = testProjectDetails;
 
 	projectDetails.RequestDate = projectDetails.RequestDate.split("T")[0];
 	projectDetails.Date = projectDetails.Date.split("T")[0];
@@ -165,7 +160,7 @@ function createAcceptedCard(projectDetails) {
 	}
 	const status = setStatus(projectDetails.IsAccepted);
 
-	var item = `<div class="card project-list-card" onclick="goAcceptedDetailPage(${projectDetails.ProjectId})">
+	var item = `<div class="clickable-card card project-list-card " onclick="goAcceptedDetailPage(${projectDetails.ProjectId})">
                     <div class="card-header" id="projectTitle">
                         <b>Project:</b> ${projectDetails.Title} 
                     </div>
@@ -229,7 +224,7 @@ async function getAcceptedProjectsFromDB() {
 
 async function getProjectsFromDB() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
-	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
+	//const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
 	console.log("Loading projects from Database");
 
 
@@ -238,7 +233,7 @@ async function getProjectsFromDB() {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
-				Authorization: `Bearer${token}`,
+				Authorization: `Bearer${jwtToken}`,
 			},
 		});
 		const dataJson = await response.json();
@@ -271,7 +266,7 @@ function loadAllProjects(requiredPermission) {
 async function getProjectsFromDBWithId(id) {
 	console.log(id);
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
-	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
+	//const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
 	console.log("Loading project with Id: " + id);
 
 
@@ -280,7 +275,7 @@ async function getProjectsFromDBWithId(id) {
 			method: "GET", // Use GET method
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${jwtToken}`,
 			},
 		});
 
@@ -310,11 +305,11 @@ function loadProjectDetails() {
 		tmp = params[i].split("=");
 		data[tmp[0]] = tmp[1];
 	}
-	console.log(data.id);
+
 
 	getProjectsFromDBWithId(data.id)
 		.then((project) => {
-			console.log(project);
+
 			fillDetailPage(project);
 		})
 		.catch((error) => {
@@ -330,26 +325,30 @@ function fillDetailPage(projectDetails) {
 	} else {
 		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
 	}
+	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
+		projectDetails.IsAccepted = "No Reply";
+	}
 
-	const projectItem = `<div class="card project-card">
+
+
+	const projectItem = `<div class="card project-list-card">
                             <div class="card-header col-12" id="projectTitle">
                                 <b>Project:</b> ${projectDetails.Title}
-                                <b> Bedrijf:</b> ${projectDetails.Company}
                             </div>
                             <div class="card-body row project-card-body">
                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
+                                <p class="card-text col-lg-4 col-sm-6"><b>Bedrijf: </b> ${projectDetails.Company}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status: </b>${projectDetails.IsAccepted}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="ContactPersonName"><b>Contact Persoon: </b>${projectDetails.ContactPerson}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="ContactPersonEmail"><b>Contact Email: </b>${projectDetails.ContactEmailAddress}</p>
                                 <p class="card-text col-lg-4 col-sm-6" id="CompanyPhoneNumber"><b>Telefoon Nummer: </b>${projectDetails.PhoneNumber}</p>
-                                <p class="card-text col-lg-6 col-sm-6" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
+                                <p class="card-text col-12" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
                                 <div class="col-12" id="buttons">
-                                <button class="btn btn-success float-right" onclick="acceptProject(${projectDetails.ProjectId})">Accepteren</button>
-                                <button class="btn btn-danger float-right" onclick="rejectProject(${projectDetails.ProjectId})">Weigeren</button>
+									<button class="btn btn-success float-right m-2" onclick="acceptProject(${projectDetails.ProjectId})">Accepteren</button>
+									<button class="btn btn-danger float-right m-2" onclick="rejectProject(${projectDetails.ProjectId})">Weigeren</button>
                                 </div>
                             </div>
                         </div>`;
@@ -364,62 +363,7 @@ function goAcceptedDetailPage(id) {
 	document.location.href = `./CreateShift.html?id=${id}`;
 }
 
-function loadProjectDetails() {
-	var url = document.location.href,
-		params = url.split("?")[1].split("&"),
-		data = {},
-		tmp;
-	console.log(params);
-	for (var i = 0, l = params.length; i < l; i++) {
-		tmp = params[i].split("=");
-		data[tmp[0]] = tmp[1];
-	}
-	console.log(data.id);
 
-	getProjectsFromDBWithId( data.id)
-		.then((project) => {
-			console.log(project);
-			fillDetailPage(project);
-		})
-		.catch((error) => {
-			console.log("Error loading projects:", error);
-		});
-}
-
-function fillDetailPage(projectDetails) {
-	console.log(projectDetails);
-
-	if (!projectDetails.EndDate) {
-		projectDetails.EndDate = "";
-	} else {
-		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
-	}
-
-	const projectItem = `<div class="card project-card">
-                            <div class="card-header col-12" id="projectTitle">
-                                <b>Project:</b> ${projectDetails.Title}
-                                <b> Bedrijf:</b> ${projectDetails.Company}
-                            </div>
-                            <div class="card-body row project-card-body">
-                                <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status: </b>${projectDetails.IsAccepted}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="ContactPersonName"><b>Contact Persoon: </b>${projectDetails.ContactPerson}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="ContactPersonEmail"><b>Contact Email: </b>${projectDetails.ContactEmailAddress}</p>
-                                <p class="card-text col-lg-4 col-sm-6" id="CompanyPhoneNumber"><b>Telefoon Nummer: </b>${projectDetails.PhoneNumber}</p>
-                                <p class="card-text col-lg-6 col-sm-6" id="Description"><b>Beschrijving: </b>${projectDetails.Description}</p>
-                                <div class="col-12" id="buttons">
-                                <button class="btn btn-success float-right" onclick="acceptProject(${projectDetails.ProjectId})">Accepteren</button>
-                                <button class="btn btn-danger float-right" onclick="rejectProject(${projectDetails.ProjectId})">Weigeren</button>
-                                </div>
-                            </div>
-                        </div>`;
-
-	document.getElementById("replacable").innerHTML = projectItem;
-}
 
 function acceptProject(id) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
@@ -495,7 +439,7 @@ function loadAcceptedProjectDetails(requiredPermission) {
 
 //gebruikt
 function fillAcceptedDetailPage(projectDetails) {
-	console.log(projectDetails);
+
 
 	if (!projectDetails.EndDate) {
 		projectDetails.EndDate = "";
@@ -505,7 +449,7 @@ function fillAcceptedDetailPage(projectDetails) {
 
 	const status = setStatus(projectDetails.IsAccepted);
 
-	const projectItem = `<div class="card project-card">
+	const projectItem = `<div class="card project-list-card">
                             <div class="card-header col-12" id="projectTitle">
                                 <b>Project:</b> ${projectDetails.Title} 
 
@@ -527,16 +471,16 @@ function fillAcceptedDetailPage(projectDetails) {
                                 <div class="container" id="shiftCreator">
 									<div class="shift0" id="shift0">
 										<div class="row">
-											<label for="shiftBeginTime" class="col-3">Begin Tijd</label>          
-											<input type="time" id="shiftBeginTime0" class="col-3"></input>
-											<label for="shiftEndTime" class="col-3">Eind Tijd</label>
-											<input type="time" id="shiftEndTime0" class="col-3"></input>
+											<label for="shiftBeginTime" class="col-6 col-sm-3">Begin Tijd</label>          
+											<input type="time" id="shiftBeginTime0" class="col-6 col-sm-3"></input>
+											<label for="shiftEndTime" class="col-6 col-sm-3">Eind Tijd</label>
+											<input type="time" id="shiftEndTime0" class="col-6 col-sm-3"></input>
 										</div>
 										<div class="row">
-											<label for="shiftBeginDate" class="col-3">Begin datum</label>
-											<input type="date" id="shiftBeginDate0" class="col-3"></input>
-											<label for="shiftEndDate" class="col-3">Eind datum</label>
-											<input type="date" id="shiftEndDate0" class="col-3"></input>
+											<label for="shiftBeginDate" class="col-6 col-sm-3">Begin datum</label>
+											<input type="date" id="shiftBeginDate0" class="col-6 col-sm-3"></input>
+											<label for="shiftEndDate" class="col-6 col-sm-3">Eind datum</label>
+											<input type="date" id="shiftEndDate0" class="col-6 col-sm-3"></input>
 										</div>
 									</div>
 								</div>
