@@ -110,6 +110,10 @@
 	object-fit: contain;
 }
 
+.more-info-btn {
+	margin-bottom: 20px;
+}
+
 .more-info-btn img {
 	height: 200px;
 	width: 300px;
@@ -127,10 +131,7 @@
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.nav-buttons {
-	padding: 0px 10px;
-	font-family: Tahoma;
-}
+
 
 h1,a, button{
 	font-family: Helvetica, sans-serif;
@@ -153,13 +154,17 @@ h1,a, button{
 	}
 }
 
-
-.content .btn:hover {
-	background-color: #6f85c2;
+.content .btn-danger {
+	
 }
 
-.content > div {
-	padding-bottom: 25px;
+.content .btn {
+	
+}
+
+.content .btn-danger:hover {
+	color: #3159b7;
+	background-color: #870000;
 }
 
 .certificates {
@@ -251,11 +256,17 @@ footer {
 
 /* buttons */
 
+ .accountinfo {
+	background-color: white
+}
+
 .side-nav .btn {
 	border: 1px solid #d1dbf6;
 	background-color: #e3e6f4;
 
 }
+
+
 
 .side-nav .btn:hover {
 	background-color: #6f85c2;

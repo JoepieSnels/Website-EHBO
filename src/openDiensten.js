@@ -178,8 +178,17 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 	}
 
 	let projectItems = "";
+	
 
 	shiftDetailsArray.forEach((shiftDetails) => {
+		let date;
+		if(shiftDetails.StartDate === shiftDetails.EndDate) {
+			date = shiftDetails.StartDate.split("T")[0]
+		} else if (!shiftDetails.EndDate){
+			date = shiftDetails.StartDate.split("T")[0]
+		} else {
+			date = `${shiftDetails.StartDate.split("T")[0]} - ${shiftDetails.EndDate.split("T")[0]}`
+		}
 		if (!shiftDetails.StartDate) {
 			console.error("No StartDate in shift details");
 			return;
@@ -187,17 +196,13 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 
 		let endDate = shiftDetails.EndDate ? "- " + shiftDetails.EndDate.split("T")[0] : "";
 
-		const projectItem = `<div class="card project-card">
-                                <div class="card-header col-12" id="projectTitle">
-                                    <b>Shift:</b> ${shiftDetails.ShiftId}
-                                </div>                            
+		const projectItem = `<div class="card project-list-card">
+                             
                                 <div class="card-body row project-card-body">
-                                    <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${shiftDetails.StartDate.split("T")[0]} ${endDate}</p>
-                                    <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
-                                    <h5 class="col-12">Schrijf je in!</h5>
-									<div class="col-12">
-                                    <button class="btn btn-primary float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${projectId}')">Schrijf in!</button>
-									</div>
+                                    <p class="card-text col-12" id="projectDate"><b>Datum: </b>${date}</p>
+                                    <p class="card-text col-12 col-sm-8 col-lg-10" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
+                                    <button class="col-sm-4  col-lg-2 btn btn-primary float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${projectId}')">Inschrijven</button>
+									
                                 </div>
                             </div>`;
 		projectItems += projectItem;
