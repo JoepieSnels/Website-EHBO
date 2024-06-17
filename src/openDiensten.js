@@ -9,14 +9,11 @@ async function fetchData() {
 			},
 		});
 
-		console.log("Response Status:", response.status);
-
 		if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
 
 		const data = await response.json();
-		console.log(data.data);
 		return data.data;
 	} catch (error) {
 		console.error("Error fetching data:", error);
@@ -28,18 +25,23 @@ function generateCards(items) {
 	const container = document.getElementById("replacable");
 	container.innerHTML = "";
 	items.forEach((item) => {
-
+		let date = ""
+		if(item.endDate){
+			date = `${item.Date.split("T")[0]} - ${item.EndDate.split("T")[0]}`
+		} else {
+			date = item.Date.split("T")[0]
+		}
 		const card = document.createElement("div");
 		let neededCertificates = item.CertificatesNeeded || "-";
 		
 
 		card.innerHTML = `
-		<div class="card project-list-card" onclick="goToDetail(${item.ProjectId})">
+		<div class="card project-list-card clickable-card" onclick="goToDetail(${item.ProjectId})">
 			<div class="card-header col-12" id="projectTitle"><b>Project:</b> ${item.Title}</div>
 		
 			<div class="card-body row project-card-body">
 				<div class="row col-lg-8 col-sm-12 px-0 py-2">
-					<p class="card-text col-lg-6 col-sm-6" id="projectDate"><b>Datum:</b> ${item.Date.split("T")[0]}</p>
+					<p class="card-text col-lg-6 col-sm-6" id="projectDate"><b>Datum:</b> ${date}</p>
 					<p class="card-text col-lg-6 col-sm-6" id="projectTime"><b>Tijd:</b> ${item.StartTime.slice(0, 5)} - ${item.EndTime.slice(0, 5)}</p>
 					<p class="card-text col-lg-6 col-sm-6" id="projectLocation"><b>Locatie:</b> ${item.Address} ${item.HouseNr}, ${item.City}</p>
 					<p class="card-text col-lg-6 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> ${neededCertificates}</p>
@@ -131,9 +133,7 @@ async function loadActiveProjectsCoordinator(requiredPermission) {
 
 
 function loadShifts(requiredPermission) {
-
 	if(getPermission(requiredPermission)) {
-
 
 		var url = document.location.href,
 		params = url.split("?")[1].split("&"),
@@ -224,27 +224,33 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 	console.log(shiftDetailsArray)
 
 	let projectItems = "";
+	
 
 	shiftDetailsArray.forEach((shiftDetails) => {
-		console.log(shiftDetails)
-		// if (!shiftDetails.StartDate) {
-		// 	console.error("No StartDate in shift details");
-		// 	return;
-		// }
+
+		let date;
+		if(shiftDetails.StartDate === shiftDetails.EndDate) {
+			date = shiftDetails.StartDate.split("T")[0]
+		} else if (!shiftDetails.EndDate){
+			date = shiftDetails.StartDate.split("T")[0]
+		} else {
+			date = `${shiftDetails.StartDate.split("T")[0]} - ${shiftDetails.EndDate.split("T")[0]}`
+		}
+		if (!shiftDetails.StartDate) {
+			console.error("No StartDate in shift details");
+			return;
+		}
+
 
 		let endDate = shiftDetails.EndDate ? "- " + shiftDetails.EndDate.split("T")[0] : "";
 
-		const projectItem = `<div class="card project-card">
-                                <div class="card-header col-12" id="projectTitle">
-                                    <b>Shift:</b> ${shiftDetails.ShiftId}
-                                </div>                            
+		const projectItem = `<div class="card project-list-card">
+                             
                                 <div class="card-body row project-card-body">
-                                    <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${shiftDetails.StartDate.split("T")[0]} ${endDate}</p>
-                                    <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
-                                    <h5 class="col-12">Schrijf je in!</h5>
-									<div class="col-12">
-									<button class="btn btn-primary" onclick="setShift(${shiftDetails.ShiftId}, ${projectId})">Inschrijven</button>
-									</div>
+
+                                    <p class="card-text col-12" id="projectDate"><b>Datum: </b>${date}</p>
+                                    <p class="card-text col-12 col-sm-8 col-lg-10" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
+                                    <button class="col-sm-4  col-lg-2 btn btn-blue float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${projectId}')">Inschrijven</button>
                                 </div>
                             </div>`;
 		projectItems += projectItem;

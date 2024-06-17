@@ -15,7 +15,7 @@ function loadShifts(requiredPermission) {
 		getShiftsFromDB()
 		.then((shifts) => {
 			for (let i = 0; i < shifts.length; i++) {
-				createShiftCard(shifts[i]);
+				createDetailShiftCard(shifts[i]);
 				
 			}
 		})
@@ -37,7 +37,7 @@ function createShiftCard(shift) {
         shift.EndDate = '';
     }
 
-    const item = `<div class="card project-list-card" onclick="goShiftDetailPage(${shift.ShiftId})">
+    const item = `<div class="card project-list-card clickable-card" onclick="goShiftDetailPage(${shift.ShiftId})">
                     <div class="card-header" id="projectTitle">
                         <b>Project:</b> ${shift.Title} 
                     </div>
@@ -144,8 +144,8 @@ function createDetailShiftCard(shift) {
 
     const item = `<div class="card project-list-card">
                     <div class="card-header row" id="projectTitle">
-                        <p class=col-9><b>Project:</b> ${shift.Title} </p>
-						<button type="button" class="col-3 btn btn-danger d-none d-md-block" onclick="checkForRemoval(event, ${shift})" >Uitschrijven</button>
+                        <div class="col-lg-10 col-sm-8"><b>Project:</b> ${shift.Title} </div>
+						<button type="button" class="col-lg-2 col-sm-4  btn-danger btn d-none d-md-block" onclick="checkForRemoval(${shift})" >Uitschrijven</button>
                     </div>
                     <div class="card-body row project-card-body">
                         <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum:</b> ${shift.StartDate} ${shift.EndDate}</p>
@@ -155,22 +155,18 @@ function createDetailShiftCard(shift) {
                         <p class="card-text col-lg-4 col-sm-6" id="shiftNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
 						<p class="card-text col-lg-12 col-sm-12" id="shiftDescription"><b>Beschrijving:</b> ${shift.Description}</p>
                     </div>
-					<button type="button" class="col-12 btn btn-danger d-block d-md-none" onclick="checkForRemoval(event, ${shift})" >Uitschrijven</button>
+					<button type="button" class="col-12 btn btn-danger d-block d-sm-none" onclick="checkForRemoval( ${shift})" >Uitschrijven</button>
                 </div>`;
 
 	document.getElementById("myShift").innerHTML += item;
 }
 
-function checkForRemoval(event, shift) {
-	event.preventDefault(); // This is redundant for a button of type "button"
-	console.log('LOGGGGGGGGG');
-	
+function checkForRemoval(shift) {
 	const date = new Date();
-	const sevenDaysFromNow = new Date(date.setDate(date.getDate() + 7)); // Fix to get correct date
+	const sevenDaysFromNow = new Date(date.setDate(date.getDate() + 7));
 	
 	if (shift.StartDate > sevenDaysFromNow) {
-		// Add removal
-		removeEnrollment(event, shift.ShiftId)
+		removeEnrollment(hift.ShiftId)
 			.then((response) => {
 				if(response.status === 200) {
 					alert('Dienst verwijderd');
@@ -179,15 +175,13 @@ function checkForRemoval(event, shift) {
 					alert('Dienst kon niet worden verwijderd');
 				}
 			}
-
 			)
 	} else {
 		alert('Shift mag niet worden verwijderd omdat deze binnen 7 dagen plaatsvindt');
 	}
 }
 
-async function removeEnrollment(event, shiftId) {
-	event.preventDefault();
+async function removeEnrollment(shiftId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	console.log('Deleting assigned shift with ID: ' + id);
 

@@ -291,53 +291,54 @@ function alertNoAccess() {
 
 }
 
-async function onLoadUserInfo(requiredPermission) {
-    console.log('On page load');
+// async function onLoadUserInfo(requiredPermission) {
+//     console.log('On page load');
 
-    // HARDCODDED, WEGHALEN ZODRA LOGIN WERKT
-    // createSessionAndPermission('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTcxNzUwNjQ2MCwiZXhwIjoxNzE4NTQzMjYwfQ.YrckiyoGuslcp_5oiBpT6fAe8lUfQAadTwOh1HmR9ow', 'Hulpverlener!Coordinator');
-    const jwtToken = window.sessionStorage.getItem('jwtToken'); // Haalt de token op uit de session
-    const permissions = window.sessionStorage.getItem('permissions'); // Haalt de permissies op
+//     // HARDCODDED, WEGHALEN ZODRA LOGIN WERKT
+//     // createSessionAndPermission('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTcxNzUwNjQ2MCwiZXhwIjoxNzE4NTQzMjYwfQ.YrckiyoGuslcp_5oiBpT6fAe8lUfQAadTwOh1HmR9ow', 'Hulpverlener!Coordinator');
+//     const jwtToken = window.sessionStorage.getItem('jwtToken'); // Haalt de token op uit de session
+//     const permissions = window.sessionStorage.getItem('permissions'); // Haalt de permissies op
 
-    // Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
-    if (jwtToken === null) {
-        alertNoAccess();
-        return;
-    }
+//     // Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
+//     if (jwtToken === null) {
+//         alertNoAccess();
+//         return;
+//     }
 
-    // Kijk of in de string van permissies de benodigde permissie zit
-    if (permissions === null || !permissions.match(requiredPermission)) {
-        alertNoAccess();
-        return;
+//     // Kijk of in de string van permissies de benodigde permissie zit
+//     if (permissions === null || !permissions.match(requiredPermission)) {
+//         alertNoAccess();
+//         return;
 
-    }
+//     }
 
-    // Maak verzoek naar de server om te kijken of de token geldig is
-    const apiRoute = 'https://api-ehbo.onrender.com/api/validatetoken';
-    const validateResult = await fetch(apiRoute, {
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': `bearer ${jwtToken}`
-        }
-    });
+//     // Maak verzoek naar de server om te kijken of de token geldig is
+//     const apiRoute = 'https://api-ehbo.onrender.com/api/validatetoken';
+//     const validateResult = await fetch(apiRoute, {
+//         headers: {
+//             'Content-Type': 'application/json; charset=UTF-8',
+//             'Authorization': `bearer ${jwtToken}`
+//         }
+//     });
 
-    const toJson = await validateResult.json();
+//     const toJson = await validateResult.json();
 
-    if (toJson.message === 'Not authorized') {
-        alertNoAccess();
-        return;
-    }
+//     if (toJson.message === 'Not authorized') {
+//         alertNoAccess();
+//         return;
+//     }
 
-    document.getElementById('unBlockID').style.display = 'block'; // Even controleren welke dit moet zijn
-
-
-    // HET STUK HIER NA IS ANDERS PER PAGINA
-    loadInfo(jwtToken);
+//     document.getElementById('unBlockID').style.display = 'block'; // Even controleren welke dit moet zijn
 
 
-}
+//     // HET STUK HIER NA IS ANDERS PER PAGINA
+//     loadInfo(jwtToken);
+
+
+// }
 
 async function loadInfo(jwtToken) {
+    const jwtToken = window.sessionStorage.getItem('jwtToken');
     const apiRoute = 'https://api-ehbo.onrender.com/api/member'
     const validateResult = await fetch(apiRoute, {
         headers: {
