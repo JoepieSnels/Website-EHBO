@@ -56,7 +56,6 @@ function validateDate(beginDate, endDate) {
 function validateTime(beginTime, endTime, beginDate, endDate) {
 	if (beginDate === endDate) {
 		if (beginTime >= endTime) {
-			alert("End time must be after begin time");
 			console.error("End time must be after begin time");
 			return false;
 		}

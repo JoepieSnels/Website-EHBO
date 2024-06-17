@@ -540,20 +540,15 @@ function checkInput(count) {
 		alert = "Einddatum moet voor begindatum zijn";
 		return { valid: false, alert: alert };
 	}
+	if (!validateTime(beginTime, endTime, beginDate, endDate)) {
+		console.log("tijd");
+		alert = "Eindtijd moet na begintijd zijn";
+		return { valid: false, alert: alert };
+	}
 
 	return { valid: true, alert: "" };
 }
 
-// if(!validateDate(beginDate, endDate)) {
-// 	console.log('datum')
-// 	alert = 'Einddatum moet voor begindatum zijn'
-// 	return false;
-// }
-// if (!validateTime(beginTime, endTime, beginDate, endDate)) {
-// 	console.log('tijd')
-// 	alert = 'Eindtijd moet na begintijd zijn'
-// 	return false;
-// }
 function addShift(projectId) {
 	const result = checkInput(count);
 
