@@ -8,7 +8,6 @@
 // 	return true;
 // }
 
-
 // // Validate Phone Number
 // function validatePhoneNumber(phoneNumber) {
 // 	const phoneNumberPattern = /^(?:\+31\s?|0)?6[\s-]?[1-9][0-9]{7}$/;
@@ -283,9 +282,9 @@ function validateForm(event) {
 	function createSessionAndPermission(token, permissions) {
 		window.sessionStorage.setItem("jwtToken", token);
 		window.sessionStorage.setItem("permissions", permissions);
-		const firstRole = permissions.split('!')[0]
+		const firstRole = permissions.split("!")[0];
 		//TO-DO iets van een dubbele nav voor meerdere permissies of een knop om te wisselen
-		switch(firstRole){
+		switch (firstRole) {
 			case "Hulpverlener":
 				window.location.href = "./ActiveProjects.html";
 				break;
@@ -297,10 +296,7 @@ function validateForm(event) {
 				break;
 			default:
 				window.location.href = "./index.html";
-				alert('Permissions are incorrect')
+				alert("Permissions are incorrect");
 		}
-		
-		
 	}
-
 }
