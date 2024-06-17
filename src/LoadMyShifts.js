@@ -10,6 +10,7 @@ function loadShifts(event) {
 			console.log("Error loading projects:", error);
 		});
 }
+    
 
 function createShiftCard(shift) {
 	console.log(shift);
@@ -49,8 +50,8 @@ function createShiftCard(shift) {
 }
 
 // Get an array of shifts from the database from this user
-async function getShiftsFromDB(event) {
-    event.preventDefault();
+async function getShiftsFromDB() {
+
     const jwtToken = window.sessionStorage.getItem("jwtToken");
 	console.log("Loading shifts from DB");
 
@@ -69,21 +70,24 @@ async function getShiftsFromDB(event) {
 	}
 }
 
-async function getShiftById(event, id) {
-	event.preventDefault();
+async function getShiftById(id) {
+
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
+
 	console.log('Loading shift with ID: ' + id);
 
 	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/getShiftById?shiftId=${id}`, {
+		const response = await fetch(`https://api-ehbo.onrender.com/api/getShiftById?shiftId=1`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
 				Authorization: `Bearer ${jwtToken}`,
 			}
+			
 		});
 		const dataJson = await response.json();
-		return dataJson.data;
+
+		return dataJson.data[0];
 	} catch(error) {
 		console.log('Error fetching data: ' + error);
 	}
@@ -92,9 +96,9 @@ async function getShiftById(event, id) {
 function goShiftDetailPage(id) {
 	document.location.href = `./MyShiftDetail.html?id=${id}`;
 }
-
+//hier
 function loadShiftDetailPage(event) {
-	var url = document.location.href,
+		var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
 		tmp;
@@ -131,6 +135,7 @@ function createDetailShiftCard(shift) {
                         <p class="card-text col-lg-4 col-sm-6" id="shiftNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
 						<p class="card-text col-lg-12 col-sm-12" id="shiftDescription"><b>Beschrijving:</b> ${shift.Description}</p>
                     </div>
+					<button type="button" class="col-12 btn btn-danger d-block d-md-none" onclick="checkForRemoval(event, ${shift})" >Uitschrijven</button>
                 </div>`;
 
 	document.getElementById("myShift").innerHTML += item;
