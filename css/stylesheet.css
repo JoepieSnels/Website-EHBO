@@ -154,16 +154,19 @@ h1,a, button{
 	}
 }
 
-.content .btn-danger {
-	
+
+
+.content .btn-blue {
+	background-color: #6f85c2;
+	color: white;
 }
 
-.content .btn {
-	
+.content .btn-blue:hover {
+	background-color: #3159b7;
 }
-
+ 
 .content .btn-danger:hover {
-	color: #3159b7;
+	color: white;
 	background-color: #870000;
 }
 
@@ -261,8 +264,9 @@ footer {
 }
 
 .side-nav .btn {
-	border: 1px solid #d1dbf6;
+	border: 1px solid #e3e6f4;
 	background-color: #e3e6f4;
+	color: black;
 
 }
 

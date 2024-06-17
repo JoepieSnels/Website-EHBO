@@ -74,22 +74,7 @@ async function loadActiveProjects(requiredPermission) {
 
 
 function loadShifts(requiredPermission) {
-	console.log('LOAD SHIFTS')
 	if(getPermission(requiredPermission)) {
-
-		// var url = document.location.href;
-		// var paramsString = url.split("?")[1];
-		// if (!paramsString) {
-		// 	console.error("No query parameters found in the URL");
-		// 	return;
-		// }
-		// var params = paramsString.split("&");
-		// var data = {},
-		// 	tmp;
-		// for (var i = 0, l = params.length; i < l; i++) {
-		// 	tmp = params[i].split("=");
-		// 	data[tmp[0]] = tmp[1];
-		// }
 		var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
@@ -201,7 +186,7 @@ function fillShiftPage(shiftDetailsArray, projectId) {
                                 <div class="card-body row project-card-body">
                                     <p class="card-text col-12" id="projectDate"><b>Datum: </b>${date}</p>
                                     <p class="card-text col-12 col-sm-8 col-lg-10" id="projectTime"><b>Tijd: </b>${shiftDetails.StartTime.slice(0, 5)} - ${shiftDetails.EndTime.slice(0, 5)}</p>
-                                    <button class="col-sm-4  col-lg-2 btn btn-primary float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${projectId}')">Inschrijven</button>
+                                    <button class="col-sm-4  col-lg-2 btn btn-blue float-right" onclick="assignShift('${shiftDetails.ShiftId}', '${projectId}')">Inschrijven</button>
 									
                                 </div>
                             </div>`;

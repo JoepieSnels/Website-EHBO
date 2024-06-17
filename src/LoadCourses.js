@@ -12,7 +12,7 @@ function createCard(courseDetail) {
                                 <b class="align-middle">Titel:</b> <span class="align-middle">${courseDetail.Title}</span>
                             </div>
                             <div class="col-2">
-                                <button class="btn btn-primary float-right" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
+                                <button class="btn btn-blue float-right" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
                             </div>
                         </div>
                     </div>

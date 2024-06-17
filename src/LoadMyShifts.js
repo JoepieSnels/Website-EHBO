@@ -145,7 +145,7 @@ function createDetailShiftCard(shift) {
     const item = `<div class="card project-list-card">
                     <div class="card-header row" id="projectTitle">
                         <div class="col-lg-10 col-sm-8"><b>Project:</b> ${shift.Title} </div>
-						<button type="button" class="col-lg-2 col-sm-4 btn btn-danger d-none d-md-block" onclick="checkForRemoval(${shift})" >Uitschrijven</button>
+						<button type="button" class="col-lg-2 col-sm-4  btn-danger btn d-none d-md-block" onclick="checkForRemoval(${shift})" >Uitschrijven</button>
                     </div>
                     <div class="card-body row project-card-body">
                         <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum:</b> ${shift.StartDate} ${shift.EndDate}</p>
