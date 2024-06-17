@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>KNV EHBO Tilburg</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous" />
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -53,6 +54,7 @@
 										<div id="coordinator2" class="dropdown collapse">
 											<ul class="list-group">
 												<a href="./AcceptedProjectOverview.html" class="list-group-item list-group-item-action mt-1">Geaccepteerde Projecten</a>
+												<a href="./ActiveProjectCoordinator.html" class="list-group-item list-group-item-action">Actieve diensten</a>
 												<a href="./EventOverview.html" class="list-group-item list-group-item-action">Aanvragen</a>
 											</ul>
 										</div>
@@ -147,6 +149,7 @@
 						<div id="coordinator" class="collapse">
 							<ul class="list-group">
 								<a href="./AcceptedProjectOverview.html" class="list-group-item list-group-item-action mt-1">Geaccepteerde Projecten</a>
+								<a href="./ActiveProjectCoordinator.html" class="list-group-item list-group-item-action">Actieve diensten</a>
 								<a href="./EventOverview.html" class="list-group-item list-group-item-action">Aanvragen</a>
 							</ul>
 						</div>
@@ -160,7 +163,7 @@
 							</ul>
 						</div>
 
-						<a href="./StaticUserInfo.html" class="list-group-item list-group-item-action btn btn-outline-dark mt-2">Accountinformatie</a>
+						<a href="./StaticUserInfo.html" class="accountinfo list-group-item list-group-item-action mt-2">Accountinformatie</a>
 					</ul>
 				</div>
 				<!-- Side nav Eind -->
@@ -177,37 +180,37 @@
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="firstname">Voornaam:</label>
+												<label for="firstname"><b>Voornaam:</b></label>
 												<label for="firstname" id="firstname">Geen voornaam bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="lastname">Achternaam:</label>
+												<label for="lastname"><b>Achternaam:</b></label>
 												<label for="lastname" id="lastname">Geen achternaam bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="email">Emailadres:</label>
+												<label for="email"><b>Emailadres:</b></label>
 												<label for="email" id="emailaddress">Geen emailadres bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="phone">Telefoonnummer:</label>
+												<label for="phone"><b>Telefoonnummer:</b></label>
 												<label for="phone" id="phone">Geen telefoonnummer bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="sex">Geslacht:</label>
+												<label for="sex"><b>Geslacht:</b></label>
 												<label for="sex" id="sex">Geen geslacht bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="birthdate">Geboortedatum</label>
+												<label for="birthdate"><b>Geboortedatum</b></label>
 												<label for="birthdate" id="birthdate">Geen geboortedatum bekend</label>
 											</div>
 										</div>
@@ -218,25 +221,25 @@
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="street">Straat:</label>
+												<label for="street"><b>Straat:</b></label>
 												<label for="street" id="street">Geen straat bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="houseNumber">Huisnummer:</label>
+												<label for="houseNumber"><b>Huisnummer:</b></label>
 												<label for="houseNumber" id="houseNumber">Geen huisnummer bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="zipCode">Postcode:</label>
+												<label for="zipCode"><b>Postcode:</b></label>
 												<label for="zipCode" id="zipCode">Geen postcode bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="city">Woonplaats:</label>
+												<label for="city"><b>Woonplaats:</b></label>
 												<label for="city" id="city">Geen woonplaats bekend</label>
 											</div>
 										</div>
@@ -247,25 +250,25 @@
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="role">Emailadres:</label>
+												<label for="role"><b>Emailadres:</b></label>
 												<label for="role" id="facEmail">Geen Emailadres bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="role">Straatnaam:</label>
+												<label for="role"><b>Straatnaam:</b></label>
 												<label for="role" id="facStraat"> Geen straatnaam bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="role">Huisnummer:</label>
+												<label for="role"><b>Huisnummer:</b></label>
 												<label for="role" id="facHuisNr">Geen huisnummer bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="role">Stad:</label>
+												<label for="role"><b>Stad:</b></label>
 												<label for="role" id="facStad">Geen stad bekend</label>
 											</div>
 										</div>
@@ -276,13 +279,13 @@
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="role">Functie:</label>
+												<label for="role"><b>Functie:</b></label>
 												<label for="role" id="roles">Geen functie bekend</label>
 											</div>
 										</div>
 										<div class="col-sm-6 col-12">
 											<div class="form-group">
-												<label for="role">Certificaten:</label>
+												<label for="role"><b>Certificaten:</b></label>
 												<label for="role" id="certificaten">Geen certificaten gevonden</label>
 											</div>
 										</div>

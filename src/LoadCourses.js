@@ -12,7 +12,7 @@ function createCard(courseDetail) {
                                 <b class="align-middle">Titel:</b> <span class="align-middle">${courseDetail.Title}</span>
                             </div>
                             <div class="col-2">
-                                <button class="btn btn-primary float-right" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
+                                <button class="btn btn-blue float-right" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@ function createCourseCard(courseDetail) {
                     <div class="card-header" id="courseTitle">
                     <span class="align-middle"><b >Titel: </b>${courseDetail.Title}</span>
                         
-                        <button class="btn btn-primary float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
+                        <button class=" btn-danger btn float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
                     </div>
                     <div class="card-body row project-list-body">
                         <p class="card-text col-lg-4 col-sm-6"><b>Datum: </b>${courseDate}</p>

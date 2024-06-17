@@ -1,21 +1,21 @@
-const testShift = {
-	ShiftId: 1,
-	Title: 'Test Titel',
-	StartDate: '2024-12-12',
-	EndDate: '2024-12-13',
-	StartTime: '15:00:00',
-	EndTime: '19:30:00',
-	Company: 'Bedrijf B',
-	Address: 'Test Straat 55, Breda',
-	Description: 'Barbell papa dienst lekker gewichten heffen en trainen enzo en geen hartaanval krijgen, dat soort dingen ja dit komt zeker goed. Barbell papa heeft U nodig om veilig te blijven'
-}
+// const testShift = {
+// 	ShiftId: 1,
+// 	Title: 'Test Titel',
+// 	StartDate: '2024-12-12',
+// 	EndDate: '2024-12-13',
+// 	StartTime: '15:00:00',
+// 	EndTime: '19:30:00',
+// 	Company: 'Bedrijf B',
+// 	Address: 'Test Straat 55, Breda',
+// 	Description: 'Barbell papa dienst lekker gewichten heffen en trainen enzo en geen hartaanval krijgen, dat soort dingen ja dit komt zeker goed. Barbell papa heeft U nodig om veilig te blijven'
+// }
 //gebruikt
 function loadShifts(requiredPermission) {
 	if(getPermission(requiredPermission)) {
 		getShiftsFromDB()
 		.then((shifts) => {
 			for (let i = 0; i < shifts.length; i++) {
-				createShiftCard(shifts[i]);
+				createDetailShiftCard(shifts[i]);
 				
 			}
 		})
@@ -27,7 +27,7 @@ function loadShifts(requiredPermission) {
 }
 
 function createShiftCard(shift) {
-
+	console.log('createShiftCard')
 	shift.StartDate = shift.StartDate.split("T")[0];
 	shift.EndDate = shift.EndDate.split("T")[0];
 
@@ -133,44 +133,57 @@ function loadShiftDetailPage(requiredPermission) {
 }
 
 function createDetailShiftCard(shift) {
-	shift.StartDate = shift.StartDate.split("T")[0];
-	shift.EndDate = shift.EndDate.split("T")[0];
-
-	if(shift.EndDate === shift.StartDate) {
-        shift.StartDate = '- ' + shift.EndDate;
+	console.log('createDetailSHiftCard')
+	const startDate = shift.StartDate.split("T")[0];
+	const endDate = shift.EndDate.split("T")[0];
+	let date = '';
+	console.log('lal')
+	if(shift.StartDate === shift.EndDate) {
+		date = startDate
+       
     } else {
-        shift.EndDate = '';
+        date = `${startDate} - ${endDate}`
     }
+	console.log('poeps')
+
+
 
     const item = `<div class="card project-list-card">
                     <div class="card-header row" id="projectTitle">
-                        <p class=col-9><b>Project:</b> ${shift.Title} </p>
-						<button type="button" class="col-3 btn btn-danger d-none d-md-block" onclick="checkForRemoval(${shift})" >Uitschrijven</button>
+                        <div class="col-lg-10 col-sm-8"><b>Project:</b> ${shift.Title} </div>
+						<button type="button" class="col-lg-2 col-sm-4 btn-danger btn d-none d-md-block" onclick="checkForRemoval(${shift.ShiftId}, '${shift.StartDate}')">Uitschrijven</button>
                     </div>
                     <div class="card-body row project-card-body">
-                        <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum:</b> ${shift.StartDate} ${shift.EndDate}</p>
+                        <p class="card-text col-lg-4 col-sm-6" id="shiftDate"><b>Datum:</b> ${date}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="shiftTime"><b>Tijd:</b> ${shift.StartTime.slice(0, 5)} - ${shift.EndTime.slice(0, 5)}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="shiftCompany"><b>Bedrijf:</b> ${shift.Company}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="shiftLocation"><b>Locatie:</b> ${shift.Address}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="shiftNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
 						<p class="card-text col-lg-12 col-sm-12" id="shiftDescription"><b>Beschrijving:</b> ${shift.Description}</p>
                     </div>
-					<button type="button" class="col-12 btn btn-danger d-block d-md-none" onclick="checkForRemoval( ${shift})" >Uitschrijven</button>
+					<button type="button" class="col-12 btn btn-danger d-block d-sm-none" onclick="checkForRemoval(${shift.ShiftId}, '${shift.StartDate}')">Uitschrijven</button>
                 </div>`;
 
 	document.getElementById("myShift").innerHTML += item;
+	console.log(shift)
 }
 
-function checkForRemoval(shift) {
+
+
+function checkForRemoval(shiftId, shiftStartDate) {
+	console.log(shiftId)
+	console.log(shiftStartDate)
+	const laldate = new Date(shiftStartDate)
 	const date = new Date();
 	const sevenDaysFromNow = new Date(date.setDate(date.getDate() + 7));
 	
-	if (shift.StartDate > sevenDaysFromNow) {
-		removeEnrollment(hift.ShiftId)
+	if (laldate > sevenDaysFromNow) {
+		console.log("lalalallalalallalalalal")
+		removeEnrollment(shiftId)
 			.then((response) => {
 				if(response.status === 200) {
 					alert('Dienst verwijderd');
-					document.location.href = `./MyShift.html`;
+					document.location.href = `./MyShifts.html`;
 				} else {
 					alert('Dienst kon niet worden verwijderd');
 				}
@@ -183,18 +196,19 @@ function checkForRemoval(shift) {
 
 async function removeEnrollment(shiftId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
-	console.log('Deleting assigned shift with ID: ' + id);
+	console.log('Deleting assigned shift with ID: ' + shiftId);
+	console.log(typeof shiftId)
 
 	try {
 		const response = await fetch(`https://api-ehbo.onrender.com/api/deleteAssignedShift`, {
-			method: "DELETE",
+			method: 'DELETE',
 			headers: {
-				"Content-Type": "application/json; charset-UTF-8",
+				'Content-Type': 'application/json; charset=UTF-8',
 				Authorization: `Bearer ${jwtToken}`,
 			},
-			body: {
-				"shiftId": shiftId
-			}
+			body: JSON.stringify({
+				'shiftId': shiftId
+			})
 		});
 		return await response.json();
 	} catch(error) {
