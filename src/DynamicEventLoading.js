@@ -449,12 +449,18 @@ function fillAcceptedDetailPage(projectDetails) {
                 <b>Eind datum: </b>
                 <label id="endDate" class="col-6">${endDate}</label>
             </div>
-            <p class="card-text col-lg-4 col-sm-6" id="projectTime">
-                <b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}
-            </p>
-            <p class="card-text col-lg-4 col-sm-6" id="projectCompany">
+			 <p class="card-text col-lg-4 col-sm-6" id="projectCompany">
                 <b>Bedrijf: </b>${projectDetails.Company}
             </p>
+            <div class="card-text col-lg-4 col-sm-6" id="projectTime">
+				<b>Begin tijd: </b>
+                <label id="beginTime class="col-6">${projectDetails.StartTime.slice(0, 5)}</label> 
+            </div>
+			<div class="card-text col-lg-4 col-sm-6" id="projectTime">
+				<b>Eind tijd: </b>
+				<label id="endTime" class="col-6">${projectDetails.EndTime.slice(0, 5)}</label> 
+			</div>
+           
             <p class="card-text col-lg-4 col-sm-6" id="projectLocation">
                 <b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}
             </p>
@@ -512,20 +518,17 @@ let count = 0;
 
 // Usage in checkInput
 function checkInput(count) {
-	const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
-	const endTime = document.getElementById(`shiftEndTime${count}`).value;
+	const shiftBeginTime = document.getElementById(`shiftBeginTime${count}`).value;
+	const shiftEndTime = document.getElementById(`shiftEndTime${count}`).value;
 	const shiftBeginDate = document.getElementById(`shiftBeginDate${count}`).value;
 	const shiftEndDate = document.getElementById(`shiftEndDate${count}`).value;
-	const beginDateElement = document.getElementById("beginDate");
-	const endDateElement = document.getElementById("endDate");
+	const beginDate = document.getElementById("beginDate").textContent;
+	const endDate = document.getElementById("endDate").textContent;
+	const beginTime = document.getElementById("beginTime").textContent;
+	const endTime = document.getElementById("endTime").textContent;
 
-	if (!beginDateElement || !endDateElement) {
-		console.error("Begin date or end date label not found");
-		return { valid: false, alert: "Internal error: required fields missing" };
-	}
+	console.log(beginDate, endDate, beginTime, endTime);
 
-	const beginDate = beginDateElement.textContent.trim();
-	const endDate = endDateElement.textContent.trim();
 	console.log(beginDate, endDate);
 	let alert = "";
 
@@ -537,16 +540,16 @@ function checkInput(count) {
 
 	if (!validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate)) {
 		console.log("datum verkeerd!");
-		alert = "Einddatum moet voor begindatum zijn";
+		alert = result.alert;
 		return { valid: false, alert: alert };
 	}
-	if (!validateTime(beginTime, endTime, beginDate, endDate)) {
+	if (!validateTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime)) {
 		console.log("tijd");
-		alert = "Eindtijd moet na begintijd zijn";
+		alert = result.alert;
 		return { valid: false, alert: alert };
 	}
 
-	return { valid: true, alert: "" };
+	return { valid: true, alert: alert };
 }
 
 function addShift(projectId) {
