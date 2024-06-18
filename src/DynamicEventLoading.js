@@ -1,4 +1,132 @@
+async function onLoadUserInfo(requiredPermission) {
+	console.log("On page load");
+
+	// HARDCODDED, WEGHALEN ZODRA LOGIN WERKT
+	// createSessionAndPermission('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTcxNzUwNjQ2MCwiZXhwIjoxNzE4NTQzMjYwfQ.YrckiyoGuslcp_5oiBpT6fAe8lUfQAadTwOh1HmR9ow', 'Hulpverlener!Coordinator');
+
+	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
+	const permissions = window.sessionStorage.getItem("permissions"); // Haalt de permissies op
+
+	// Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
+	if (jwtToken === null) {
+		alertNoAcces();
+		return;
+	}
+
+	// Kijk of in de string van permissies de benodigde permissie zit
+	if (permissions === null || !permissions.match(requiredPermission)) {
+		alertNoAcces();
+		return;
+	}
+
+	// Maak verzoek naar de server om te kijken of de token geldig is
+	const apiRoute = "https://api-ehbo.onrender.com/api/validatetoken";
+	const validateResult = await fetch(apiRoute, {
+		headers: {
+			"Content-Type": "application/json; charset=UTF-8",
+			Authorization: `bearer ${jwtToken}`,
+		},
+	});
+
+	const toJson = await validateResult.json();
+
+	if (toJson.message === "Not authorized") {
+		alertNoAcces();
+		return;
+	}
+
+	document.getElementById("unBlockID").style.display = "block"; // Even controleren welke dit moet zijn
+}
+
+// function fillAcceptedDetailPage(projectDetails) {
+// 	console.log(projectDetails);
+
+// 	if (!projectDetails.EndDate) {
+// 		projectDetails.EndDate = "";
+// 	} else {
+// 		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
+// 	}
+
+// 	const projectItem = `<div class="card project-card">
+//                             <div class="card-header col-12" id="projectTitle">
+//                                 <b>Project:</b> ${projectDetails.Title}
+//                                 <b> Bedrijf:</b> ${projectDetails.Company}
+//                             </div>
+//                             <div class="card-body row project-card-body">
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
+//                                 <p class="card-text col-lg-4 col
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
+//                     </div>
+//                 </div>`;
+
+// 	document.getElementById("eventCards").innerHTML += projectItem;
+
+// 	console.log(projectDetails.Id);
+// }
+// function createCard(projectDetails) {
+// 	console.log(projectDetails);
+
+// 	projectDetails.RequestDate = projectDetails.RequestDate.split("T")[0];
+// 	projectDetails.Date = projectDetails.Date.split("T")[0];
+// 	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
+// 		projectDetails.IsAccepted = "No Reply";
+// 	}
+
+// 	var item = `<div class="card project-card" onclick="goDetailPage(${projectDetails.ProjectId})">
+//                     <div class="card-header" id="projectTitle">
+//                         <b>Project:</b> ${projectDetails.Title}
+//                         <b> Bedrijf:</b> ${projectDetails.Company}
+//                     </div>
+//                     <div class="card-body row project-card-body">
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum:</b> ${projectDetails.Date}</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd:</b> ${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig:</b> ${projectDetails.PeopleNeeded}</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie:</b> ${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten:</b> Geen</p>
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
+//                     </div>
+//                 </div>`;
+
+// 	document.getElementById("eventCards").innerHTML += item;
+// 	console.log(projectDetails.Id);
+// }
+
+// function fillAcceptedDetailPage(projectDetails) {
+// 	console.log(projectDetails);
+
+// 	if (!projectDetails.EndDate) {
+// 		projectDetails.EndDate = "";
+// 	} else {
+// 		projectDetails.EndDate = "- " + projectDetails.EndDate.split("T")[0];
+// 	}
+
+// 	const projectItem = `<div class="card project-card">
+//                             <div class="card-header col-12" id="projectTitle">
+//                                 <b>Project:</b> ${projectDetails.Title}
+//                                 <b> Bedrijf:</b> ${projectDetails.Company}
+//                             </div>
+//                             <div class="card-body row project-card-body">
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectDate"><b>Datum: </b>${projectDetails.Date.split("T")[0]} ${projectDetails.EndDate}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectTime"><b>Tijd: </b>${projectDetails.StartTime.slice(0, 5)} - ${projectDetails.EndTime.slice(0, 5)}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="amountFirstResponders"><b>Hulpverleners nodig: </b> ${projectDetails.PeopleNeeded}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectLocation"><b>Locatie: </b>${projectDetails.Address} ${projectDetails.HouseNr}, ${projectDetails.City}</p>
+//                                 <p class="card-text col-lg-4 col-sm-6" id="projectNeededCertificates"><b>Benodigde certificaten: </b> Geen</p>
+//                                 <p class="card-text col-lg-4 col
+//                         <p class="card-text col-lg-4 col-sm-6" id="projectStatus"><b>Status:</b> ${projectDetails.IsAccepted}</p>
+//                     </div>
+//                 </div>`;
+
+// 	document.getElementById("eventCards").innerHTML += projectItem;
+
+// 	console.log(projectDetails.Id);
+// }
 function createCard(projectDetails) {
+	console.log(projectDetails);
+
 	projectDetails.RequestDate = projectDetails.RequestDate.split("T")[0];
 	projectDetails.Date = projectDetails.Date.split("T")[0];
 	if (projectDetails.IsAccepted === undefined || projectDetails.IsAccepted === null) {
@@ -20,6 +148,7 @@ function createCard(projectDetails) {
                 </div>`;
 
 	document.getElementById("eventCards").innerHTML += item;
+	console.log(projectDetails.Id);
 }
 
 function createAcceptedCard(projectDetails) {
@@ -45,12 +174,20 @@ function createAcceptedCard(projectDetails) {
                 </div>`;
 
 	document.getElementById("replacable").innerHTML += item;
+	console.log(projectDetails.Id);
 }
 
+//gebruikt
+function goAcceptedDetailPage(id) {
+	document.location.href = `./CreateShift.html?id=${id}`;
+}
+
+//gebruikt
 function loadAcceptedProjects(requiredPermission) {
 	if (getPermission(requiredPermission)) {
 		getAcceptedProjectsFromDB()
 			.then((projects) => {
+				console.log(projects[0].Title);
 				for (let i = 0; i < projects.length; i++) {
 					createAcceptedCard(projects[i]);
 				}
@@ -61,11 +198,13 @@ function loadAcceptedProjects(requiredPermission) {
 	}
 }
 
+//gebruikt
 async function getAcceptedProjectsFromDB() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
+	console.log("Loading projects from Database");
 
 	try {
-		const response = await fetch(`${config.apiURL}/api/getAcceptedProjects`, {
+		const response = await fetch("https://api-ehbo.onrender.com/api/getAcceptedProjects", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
@@ -73,6 +212,7 @@ async function getAcceptedProjectsFromDB() {
 			},
 		});
 		const dataJson = await response.json();
+		console.log(dataJson);
 		return dataJson.data;
 	} catch (error) {
 		console.log("Error fetching data: " + error);
@@ -81,9 +221,11 @@ async function getAcceptedProjectsFromDB() {
 
 async function getProjectsFromDB() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
+	//const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
+	console.log("Loading projects from Database");
 
 	try {
-		const response = await fetch(`${config.apiURL}/api/getAllUndecidedProjects`, {
+		const response = await fetch("https://api-ehbo.onrender.com/api/getAllUndecidedProjects", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
@@ -91,6 +233,7 @@ async function getProjectsFromDB() {
 			},
 		});
 		const dataJson = await response.json();
+		console.log(dataJson);
 		return dataJson.data;
 	} catch (error) {
 		console.log("Error fetching data: " + error);
@@ -101,6 +244,7 @@ function loadAllProjects(requiredPermission) {
 	if (getPermission(requiredPermission)) {
 		getProjectsFromDB()
 			.then((projects) => {
+				console.log(projects[0].Title);
 				for (let i = 0; i < projects.length; i++) {
 					createCard(projects[i]);
 				}
@@ -111,12 +255,18 @@ function loadAllProjects(requiredPermission) {
 	}
 }
 
+//gebruikt
+// Load project based on ID
+
 async function getProjectsFromDBWithId(id) {
+	console.log(id);
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
+	//const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
+	console.log("Loading project with Id: " + id);
 
 	try {
-		const response = await fetch(`${config.apiURL}/api/getProject?projectId=${id}`, {
-			method: "GET",
+		const response = await fetch(`https://api-ehbo.onrender.com/api/getProject?projectId=${id}`, {
+			method: "GET", // Use GET method
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
 				Authorization: `Bearer ${jwtToken}`,
@@ -142,7 +292,7 @@ function loadProjectDetails() {
 		params = url.split("?")[1].split("&"),
 		data = {},
 		tmp;
-
+	console.log(params);
 	for (var i = 0, l = params.length; i < l; i++) {
 		tmp = params[i].split("=");
 		data[tmp[0]] = tmp[1];
@@ -158,6 +308,8 @@ function loadProjectDetails() {
 }
 
 function fillDetailPage(projectDetails) {
+	console.log(projectDetails);
+
 	if (!projectDetails.EndDate) {
 		projectDetails.EndDate = "";
 	} else {
@@ -192,10 +344,17 @@ function fillDetailPage(projectDetails) {
 	document.getElementById("replacable").innerHTML = projectItem;
 }
 
+function goDetailPage(id) {
+	document.location.href = `./EventDetail.html?id=${id}`;
+}
+function goAcceptedDetailPage(id) {
+	document.location.href = `./CreateShift.html?id=${id}`;
+}
+
 function acceptProject(id) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
-	fetch(`${config.apiURL}/api/acceptproject`, {
+	fetch("https://api-ehbo.onrender.com/api/acceptproject", {
 		method: "PUT",
 		body: JSON.stringify({ projectId: id }),
 		headers: {
@@ -204,6 +363,7 @@ function acceptProject(id) {
 		},
 	})
 		.then((response) => {
+			console.log("Response Status:", response.status);
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
@@ -217,7 +377,7 @@ function acceptProject(id) {
 function rejectProject(id) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
-	fetch(`${config.apiURL}/api/rejectproject`, {
+	fetch("https://api-ehbo.onrender.com/api/rejectproject", {
 		method: "PUT",
 		body: JSON.stringify({ projectId: id }),
 		headers: {
@@ -226,6 +386,7 @@ function rejectProject(id) {
 		},
 	})
 		.then((response) => {
+			console.log("Response Status:", response.status);
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
@@ -236,20 +397,23 @@ function rejectProject(id) {
 			console.error("Error rejecting project:", error);
 		});
 }
-
+//gebruikt
 function loadAcceptedProjectDetails(requiredPermission) {
 	if (getPermission(requiredPermission)) {
 		var url = document.location.href,
 			params = url.split("?")[1].split("&"),
-			data = {};
-
+			data = {},
+			tmp;
+		console.log(params);
 		for (var i = 0, l = params.length; i < l; i++) {
 			tmp = params[i].split("=");
 			data[tmp[0]] = tmp[1];
 		}
+		console.log(data.id);
 
 		getProjectsFromDBWithId(data.id)
 			.then((project) => {
+				console.log(project);
 				fillAcceptedDetailPage(project);
 			})
 			.catch((error) => {
@@ -258,6 +422,7 @@ function loadAcceptedProjectDetails(requiredPermission) {
 	}
 }
 
+//gebruikt
 function fillAcceptedDetailPage(projectDetails) {
 	if (!projectDetails.EndDate) {
 		projectDetails.EndDate = "";
@@ -268,6 +433,7 @@ function fillAcceptedDetailPage(projectDetails) {
 	const status = setStatus(projectDetails.IsAccepted);
 	const beginDate = projectDetails.Date;
 	const endDate = projectDetails.EndDate;
+	console.log(typeof beginDate, typeof endDate);
 
 	const projectItem = `
     <div class="card project-list-card">
@@ -288,7 +454,7 @@ function fillAcceptedDetailPage(projectDetails) {
             </p>
             <div class="card-text col-lg-4 col-sm-6" id="projectTime">
 				<b>Begin tijd: </b>
-                <label id="beginTime class="col-6">${projectDetails.StartTime.slice(0, 5)}</label> 
+                <label id="beginTime" class="col-6">${projectDetails.StartTime.slice(0, 5)}</label> 
             </div>
 			<div class="card-text col-lg-4 col-sm-6" id="projectTime">
 				<b>Eind tijd: </b>
@@ -350,32 +516,34 @@ function fillAcceptedDetailPage(projectDetails) {
 let shifts = [];
 let count = 0;
 
+// Usage in checkInput
 function checkInput(count) {
 	const shiftBeginTime = document.getElementById(`shiftBeginTime${count}`).value;
 	const shiftEndTime = document.getElementById(`shiftEndTime${count}`).value;
 	const shiftBeginDate = document.getElementById(`shiftBeginDate${count}`).value;
 	const shiftEndDate = document.getElementById(`shiftEndDate${count}`).value;
-	const beginDate = document.getElementById("beginDate").textContent.trim();
-	const endDate = document.getElementById("endDate").textContent.trim();
+	const beginDate = document.getElementById("beginDate").textContent;
+	const endDate = document.getElementById("endDate").textContent;
 	const beginTime = document.getElementById("beginTime").textContent;
 	const endTime = document.getElementById("endTime").textContent;
 
 	console.log(beginDate, endDate, beginTime, endTime);
 
-
+	console.log(beginDate, endDate);
 	let alert = "";
 
 	if (!beginTime || !endTime || !shiftBeginDate || !shiftEndDate) {
 		alert = "Een veld mist";
 		return { valid: false, alert: alert };
 	}
+	if (!validateShiftTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime).valid) {
+		alert = validateShiftTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime).alert;
 
-	if (!validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate)) {
-		alert = result.alert;
 		return { valid: false, alert: alert };
 	}
-	if (!validateTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime)) {
-		alert = result.alert;
+
+	if (!validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate).valid) {
+		alert = validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate).alert;
 		return { valid: false, alert: alert };
 	}
 
@@ -387,9 +555,10 @@ function addShift(projectId) {
 
 	if (!result.valid) {
 		alert(result.alert);
-		return;
+		return; // Stop further execution if the input is invalid
 	}
 
+	// If the input is valid, proceed with adding the shift
 	appendShiftForm(count + 1);
 
 	const beginTime = document.getElementById(`shiftBeginTime${count}`).value;
@@ -452,7 +621,7 @@ function setActive(id) {
 	}
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
-	fetch(`${config.apiURL}/api/setProjectActive`, {
+	fetch("https://api-ehbo.onrender.com/api/setProjectActive", {
 		method: "PUT",
 		body: JSON.stringify({ projectId: id }),
 		headers: {
@@ -461,6 +630,7 @@ function setActive(id) {
 		},
 	})
 		.then((response) => {
+			console.log("Response Status:", response.status);
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
@@ -474,7 +644,13 @@ function setActive(id) {
 
 function createShifts() {
 	for (let i = 0; i < shifts.length; i++) {
-		fetch(`${config.apiURL}/api/createshift`, {
+		console.log(shifts[i].projectId);
+		console.log(shifts[i].beginTime);
+		console.log(shifts[i].endTime);
+		console.log(shifts[i].beginDate);
+		console.log(shifts[i].endDate);
+
+		fetch("https://api-ehbo.onrender.com/api/createshift", {
 			method: "POST",
 			body: JSON.stringify({
 				projectId: shifts[i].projectId,
@@ -489,9 +665,11 @@ function createShifts() {
 			},
 		})
 			.then((response) => {
+				console.log("Response Status:", response.status);
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
+
 				alert("Diensten aangemaakt");
 			})
 			.catch((error) => {
