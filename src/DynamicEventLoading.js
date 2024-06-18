@@ -541,9 +541,10 @@ function checkInput(count) {
 
 		return { valid: false, alert: alert };
 	}
-
 	if (!validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate).valid) {
+		console.log(shiftBeginDate, shiftEndDate, beginDate, endDate);
 		alert = validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate).alert;
+		console.log(alert);
 		return { valid: false, alert: alert };
 	}
 

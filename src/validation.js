@@ -81,11 +81,6 @@ function timeToInt(time) {
 }
 
 function validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate) {
-	console.log("Project Begin Date:", beginDate);
-	console.log("Project End Date:", endDate);
-	console.log("Shift Begin Date:", shiftBeginDate);
-	console.log("Shift End Date:", shiftEndDate);
-
 	if (shiftBeginDate > shiftEndDate) {
 		console.log("Fout datum: shift begin datum is na de shift eind datum");
 		return { valid: false, alert: "Fout datum: shift begin datum is na de shift eind datum" };
@@ -101,10 +96,9 @@ function validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate) {
 		return { valid: false, alert: "Datum fout: shift datum ligt buiten de project datum bereik" };
 	}
 
-	return true;
+	return { valid: true, alert: "" };
 }
 function validateShiftTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime) {
-	console.log("Project Begin Time:", beginTime);
 	if (shiftBeginTime > shiftEndTime) {
 		console.log("Fout tijd: shift begin tijd is na de shift eind tijd");
 		return { valid: false, alert: "Fout tijd: shift begin tijd is na de shift eind tijd" };
@@ -135,4 +129,3 @@ function formatGender(gender) {
 		return "Zeg ik liever niet";
 	}
 }
-
