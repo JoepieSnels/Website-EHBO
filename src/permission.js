@@ -1,21 +1,18 @@
 
 async function getPermission(requiredPermission) {
-	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
-	const permissions = window.sessionStorage.getItem("permissions"); // Haalt de permissies op
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
+	const permissions = window.sessionStorage.getItem("permissions");
 
-	// Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
 	if (jwtToken === null) {
 		alertNoAcces();
 		return;
 	}
 
-	// Kijk of in de string van permissies de benodigde permissie zit
 	if (permissions === null || !permissions.match(requiredPermission)) {
 		alertNoAcces();
 		return;
 	}
 
-	// Maak verzoek naar de server om te kijken of de token geldig is
 	const apiRoute = `${config.apiURL}/api/validatetoken`;
 	const validateResult = await fetch(apiRoute, {
 		headers: {
@@ -31,21 +28,15 @@ async function getPermission(requiredPermission) {
 		return;
 	}
 
-    document.getElementById('unBlockID').style.display = 'block'; // Even controleren welke dit moet zijn
+    document.getElementById('unBlockID').style.display = 'block';
 
-	// Check permissions
     if (!permissions.match('Hulpverlener')) {
         console.log('No permission for the hulpverlener');
-        // Zorg dat hij niet meer zichtbaar is
         document.getElementById('toggle-btn-hulp-1').classList.remove('d-sm-block');
         document.getElementById('toggle-btn-hulp-1').classList.add('d-sm-none');
 
         document.getElementById('toggle-btn-hulp-2').classList.remove('d-block');
         document.getElementById('toggle-btn-hulp-2').classList.add('d-none');
-
-        
-        // document.getElementById('toggle-btn-hulp-3').classList.remove('d-md-block');
-        // document.getElementById('toggle-btn-hulp-3').classList.add('d-md-none');
 
     }
 
@@ -56,8 +47,6 @@ async function getPermission(requiredPermission) {
 
         document.getElementById('toggle-btn-coordinator-2').classList.remove('d-block');
         document.getElementById('toggle-btn-coordinator-2').classList.add('d-none');
-        // document.getElementById('toggle-btn-coordinator-3').classList.remove('d-md-block');
-        // document.getElementById('toggle-btn-coordinator-3').classList.add('d-md-none');
     }
     
     if (!permissions.match('LedenAdministrator')) {
@@ -67,10 +56,6 @@ async function getPermission(requiredPermission) {
 
         document.getElementById('toggle-btn-ledenadministratie-2').classList.remove('d-block');
         document.getElementById('toggle-btn-ledenadministratie-2').classList.add('d-none');
-		
-        
-        // document.getElementById('toggle-btn-ledenadministratie-3').classList.remove('d-md-block');
-        // document.getElementById('toggle-btn-ledenadministratie-3').classList.add('d-md-none');
 
     }
 	if(!permissions.match('!')) {

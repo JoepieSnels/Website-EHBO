@@ -6,14 +6,13 @@ function validateFields(validators) {
 		}
 	}
 	return null;
-}
-// Validate Email
+
 function validateEmail(email) {
 	const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 	return pattern.test(email) ? true : "Email is incorrect";
 }
 
-// Validate Phone Number
+
 function validatePhoneNumber(phoneNumber) {
 	const phoneNumberPattern = /^(?:\+31\s?|0)?6[\s-]?[1-9][0-9]{7}$/;
 	return phoneNumberPattern.test(phoneNumber) ? true : "Mobiel nummer is incorrect";
@@ -40,7 +39,6 @@ function validateDate(beginDate, endDate) {
 	return true;
 }
 
-//Validate Time
 function validateTime(beginTime, endTime, beginDate, endDate) {
 	if (beginDate === endDate) {
 		if (beginTime >= endTime) {
@@ -76,23 +74,21 @@ function setStatus(status) {
 }
 
 function timeToInt(time) {
-	console.log(parseInt(time.split(":")[0] + time.split(":")[1]));
 	return parseInt(time.split(":")[0] + time.split(":")[1]);
 }
 
 function validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate) {
+
+
 	if (shiftBeginDate > shiftEndDate) {
-		console.log("Fout datum: shift begin datum is na de shift eind datum");
 		return { valid: false, alert: "Fout datum: shift begin datum is na de shift eind datum" };
 	}
 
 	if (beginDate > endDate) {
-		console.log("Fout datum: project begin datum is na de project eind datum");
 		return { valid: false, alert: "Fout datum: project begin datum is na de project eind datum" };
 	}
 
 	if (shiftBeginDate < beginDate || shiftEndDate > endDate) {
-		console.log("Datum fout: shift datum ligt buiten de project datum bereik");
 		return { valid: false, alert: "Datum fout: shift datum ligt buiten de project datum bereik" };
 	}
 
@@ -100,17 +96,14 @@ function validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate) {
 }
 function validateShiftTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime) {
 	if (shiftBeginTime > shiftEndTime) {
-		console.log("Fout tijd: shift begin tijd is na de shift eind tijd");
 		return { valid: false, alert: "Fout tijd: shift begin tijd is na de shift eind tijd" };
 	}
 	if (beginDate === endDate) {
 		if (shiftBeginTime >= shiftEndTime) {
-			console.log("Fout tijd: shift begin tijd is na de shift eind tijd");
 			return { valid: false, alert: "Fout tijd: shift begin tijd is na de shift eind tijd" };
 		}
 	}
 	if (shiftBeginTime < beginTime || shiftEndTime > endTime) {
-		console.log("Tijd fout: shift tijd ligt buiten de project tijd bereik");
 		return { valid: false, alert: "Tijd fout: shift tijd ligt buiten de project tijd bereik" };
 	}
 

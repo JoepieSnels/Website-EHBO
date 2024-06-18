@@ -1,5 +1,3 @@
-
-
 async function loadCreateCursus(requiredPermission) {
     const jwtToken = window.sessionStorage.getItem("jwtToken");
     if (getPermission(requiredPermission)){
@@ -39,11 +37,10 @@ async function createCursus() {
     const locationElement = document.getElementById('cursus-location');
     const datetimeElement = document.getElementById('cursus-datetime');
     const certificateElement = document.getElementById('cursus-certificate');
-    const participantsElement = document.getElementById('cursus-deelnemers');
     const costElement = document.getElementById('cursus-cost');
 
     const validationResult = validateFieldValues(titleElement.value.trim(), descriptionElement.value.trim(), locationElement.value.trim(), 
-                                    datetimeElement.value.trim(), certificateElement.value.trim(), participantsElement.value.trim(), costElement.value.trim());
+                                    datetimeElement.value.trim(), certificateElement.value.trim(), costElement.value.trim());
 
     if (validationResult === 1) {
         console.log('De velden zijn correct ingevuld. Cursus wordt aangemaakt...');
@@ -62,7 +59,6 @@ async function createCursus() {
                 description: descriptionElement.value.trim(),
                 datetime: datetimeElement.value.trim(),
                 cost: costElement.value.trim(),
-                maxParticipants: participantsElement.value.trim(),
                 location: locationElement.value.trim(),
                 certificatieTitle: certificateElement.value.trim() 
 			}),
@@ -124,9 +120,6 @@ function validateFieldValues(title, description, location, datetime, certificate
         return 'Er is geen certificaat opgegeven, geef alstublief een certificaat op';
     }
 
-    if (deelnemers === '') {
-        return 'Er is geen maximaal aantal deelnemers opgegeven, geef alstublief een maximaal aantal deelnemers op';
-    }
 
     if (cost === '') {
         return 'Er is geen of een foutief bedrag voor de kosten opgegeven, geef alstublief een bedrag voor de kosten op';

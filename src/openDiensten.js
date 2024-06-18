@@ -225,7 +225,6 @@ function fillShiftPage(shiftDetailsArray) {
 			return;
 		}
 
-		console.log(shiftDetails.ProjectId)
 		let endDate = shiftDetails.EndDate ? "- " + shiftDetails.EndDate.split("T")[0] : "";
 
 		const projectItem = `<div class="card project-list-card">
@@ -307,8 +306,8 @@ function fillAssignedShiftsPage(DetailsArray) {
 	let projectItems = "";
 
 	DetailsArray.forEach((data) => {
-		const projectId = data.ProjectId[0]; // Assuming that the first element is the correct one
-		const shiftId = data.ShiftId[0]; // Assuming that the first element is the correct one
+		const projectId = data.ProjectId[0]; 
+		const shiftId = data.ShiftId[0]; 
 
 		const projectItem = `<div class="card project-list-card">
 								
@@ -316,15 +315,9 @@ function fillAssignedShiftsPage(DetailsArray) {
 									<p class="card-text col-9"><b>Naam: </b>${data.FirstName} ${data.LastName}</p>
                                     <p class="card-text col-sm-6" id="shiftDate"><b>Start: </b>${data.StartDate.split("T")[0]} ${data.StartTime.slice(0, 5)}</p>
                                     <p class="card-text col-sm-6" id="shiftTime"><b>Eind: </b>${data.EndDate.split("T")[0]}  ${data.EndTime.slice(0, 5)}</p>
-
-                                  
                                     <p class="card-text col-sm-6" id="userEmail"><b>Email:</b> ${data.Emailaddress}</p>
                                     <p class="card-text col-sm-6" id="userPhone"><b>Telefoonnummer:</b> ${data.PhoneNumber}</p>
-  
-                                    
-                                    <div class="col-12">
-                                        <button class="btn btn-primary float-right" onclick="setShift(${shiftId}, ${projectId})">Dienst Accepteren</button>
-                                    </div>
+                                    <button class="col-12 btn btn-primary float-right" onclick="setShift(${shiftId}, ${projectId})">Dienst Accepteren</button>
                                 </div>
                             </div>`;
 		projectItems += projectItem;
@@ -334,7 +327,7 @@ function fillAssignedShiftsPage(DetailsArray) {
 }
 
 async function setShift(shiftId, projectId) {
-	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Assuming userID is stored in session storage
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
 	try {
 		const response = await fetch(`${config.apiURL}/api/acceptForShift`, {

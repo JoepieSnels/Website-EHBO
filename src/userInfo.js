@@ -1,6 +1,6 @@
 async function loadInfo(requiredPermission) {
 	if (getPermission(requiredPermission)) {
-		const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
+		const jwtToken = window.sessionStorage.getItem("jwtToken"); 
 		const apiRoute = `${config.apiURL}/api/member`;
 		const validateResult = await fetch(apiRoute, {
 			headers: {
@@ -9,7 +9,6 @@ async function loadInfo(requiredPermission) {
 			},
 		});
 
-		// To do validate Result
 		const toJson = await validateResult.json();
 		const data = toJson.data;
 

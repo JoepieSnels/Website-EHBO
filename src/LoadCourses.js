@@ -10,7 +10,7 @@ function createCard(courseDetail) {
                             <div class="col-10">
                                 <b class="align-middle">Titel:</b> <span class="align-middle">${courseDetail.Title}</span>
                             </div>
-                            <div class="col-2">
+                            <div class="col-2 d-none d-sm-block">
                                 <button class="btn btn-blue float-right" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
                             </div>
                         </div>
@@ -20,9 +20,10 @@ function createCard(courseDetail) {
                         <p class="card-text col-lg-4 col-sm-6" id=""><b>Tijd: </b>${courseTime}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="courseLocation"><b>Locatie: </b>${courseDetail.Location}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="courseCost"><b>Prijs: </b>${courseCost}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="courseMaxParticipants"><b>Max. aantal deelnemers: </b>${courseDetail.MaxParticipants}</p>
-                        <p class="card-text col-lg-4 col-sm-6"><b>Voor certificaat: </b>${courseDetail.CertificateTitel}</p>
+                        <p class="card-text col-lg-6 col-sm-6"><b>Voor certificaat: </b>${courseDetail.CertificateTitel}</p>
                         <p class="card-text col-12" id="courseDescription"><b>Beschrijving: </b>${courseDetail.Description}</p>
+                        <button class="btn btn-blue float-right d-block d-sm-none col-12" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
+
                     </div>
                 </div>`
 
@@ -39,7 +40,7 @@ function createCourseCard(courseDetail) {
                     <div class="card-header" id="courseTitle">
                     <span class="align-middle"><b >Titel: </b>${courseDetail.Title}</span>
                         
-                        <button class=" btn-danger btn float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
+                        <button class="d-none d-sm-block btn-danger btn float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
                     </div>
                     <div class="card-body row project-list-body">
                         <p class="card-text col-lg-4 col-sm-6"><b>Datum: </b>${courseDate}</p>
@@ -47,8 +48,9 @@ function createCourseCard(courseDetail) {
                         <p class="card-text col-lg-4 col-sm-6" id="courseLocation"><b>Locatie: </b> ${courseDetail.Location}</p>
                         <p class="card-text col-lg-4 col-sm-6"><b>Docent: </b>${courseDetail.Teacher}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="courseCost"><b>Kosten: </b> ${courseCost}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="courseMaxParticipants"><b>Deelnemers: </b>${courseDetail.EnrolledCount} / ${courseDetail.MaxParticipants}</p>
+                        <p class="card-text col-lg-4 col-sm-6"><b>Certificaat: </b>${courseDetail.CertificateTitel}</p>
                         <p class="card-text col-12" id="courseDescription"><b>Beschrijving: </b> ${courseDetail.Description}</p>
+                        <button class="col-12 d-block d-sm-none btn-danger btn float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
                     </div>
                 </div>`
 
