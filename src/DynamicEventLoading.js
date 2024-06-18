@@ -454,7 +454,7 @@ function fillAcceptedDetailPage(projectDetails) {
             </p>
             <div class="card-text col-lg-4 col-sm-6" id="projectTime">
 				<b>Begin tijd: </b>
-                <label id="beginTime class="col-6">${projectDetails.StartTime.slice(0, 5)}</label> 
+                <label id="beginTime" class="col-6">${projectDetails.StartTime.slice(0, 5)}</label> 
             </div>
 			<div class="card-text col-lg-4 col-sm-6" id="projectTime">
 				<b>Eind tijd: </b>
@@ -533,19 +533,17 @@ function checkInput(count) {
 	let alert = "";
 
 	if (!beginTime || !endTime || !shiftBeginDate || !shiftEndDate) {
-		console.log("leeg veld");
 		alert = "Een veld mist";
 		return { valid: false, alert: alert };
 	}
+	if (!validateShiftTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime).valid) {
+		alert = validateShiftTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime).alert;
 
-	if (!validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate)) {
-		console.log("datum verkeerd!");
-		alert = result.alert;
 		return { valid: false, alert: alert };
 	}
-	if (!validateTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime)) {
-		console.log("tijd");
-		alert = result.alert;
+
+	if (!validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate).valid) {
+		alert = validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate).alert;
 		return { valid: false, alert: alert };
 	}
 

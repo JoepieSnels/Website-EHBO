@@ -116,6 +116,7 @@ function validateShiftDate(shiftBeginDate, shiftEndDate, beginDate, endDate) {
 	return true;
 }
 function validateShiftTime(beginTime, endTime, beginDate, endDate, shiftBeginTime, shiftEndTime) {
+	console.log("Project Begin Time:", beginTime);
 	if (shiftBeginTime > shiftEndTime) {
 		console.log("Fout tijd: shift begin tijd is na de shift eind tijd");
 		return { valid: false, alert: "Fout tijd: shift begin tijd is na de shift eind tijd" };
@@ -131,7 +132,7 @@ function validateShiftTime(beginTime, endTime, beginDate, endDate, shiftBeginTim
 		return { valid: false, alert: "Tijd fout: shift tijd ligt buiten de project tijd bereik" };
 	}
 
-	return true;
+	return { valid: true, alert: "" };
 }
 
 //export {validateEmail, validatePhoneNumber, validateLandlineNumber, isDateAtLeastAWeekAway, validateTime, validatePassword, validatePostalCode, validateHouseNumber, validateDateOfBirth}
