@@ -176,7 +176,7 @@ async function updateMemberOnAPI() {
 
 // }
 
-async function loadInfo(jwtToken) {
+async function loadInfo() {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	const apiRoute = `${config.apiURL}/api/member`;
 	const validateResult = await fetch(apiRoute, {

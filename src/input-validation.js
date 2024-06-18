@@ -1,16 +1,3 @@
-// let apiBaseUrl;
-
-// async function config(){
-// 	const response = await fetch('../config.json');
-// 	const config = await response.json();
-// 	apiBaseUrl = config.apiURL;
-// 	console.log(apiBaseUrl)
-// }
-
-// config()
-
-
-
 function formatDate(date) {
 	if (!date) return "";
 
