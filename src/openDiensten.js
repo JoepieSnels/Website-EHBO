@@ -1,11 +1,10 @@
-
 async function fetchData() {
-	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
+	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	try {
-		const response = await fetch("https://api-ehbo.onrender.com/api/getActiveProjects", {
+		const response = await fetch(`${config.apiURL}/api/getActiveProjects`, {
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
-				Authorization: `bearer ${jwtToken}`, // Ensure the format is correct
+				Authorization: `bearer ${jwtToken}`,
 			},
 		});
 
@@ -21,7 +20,6 @@ async function fetchData() {
 }
 
 function generateCards(items) {
-
 	const container = document.getElementById("replacable");
 	container.innerHTML = "";
 	items.forEach((item) => {
@@ -108,10 +106,7 @@ async function loadActiveProjects(requiredPermission) {
 		const data = await fetchData();
 
 		if (data && Array.isArray(data)) {
-			console.log("in if init");
 			generateCards(data);
-		} else {
-			console.log("init");
 		}
 	}
 }
@@ -123,11 +118,8 @@ async function loadActiveProjectsCoordinator(requiredPermission) {
 		const data = await fetchData();
 
 		if (data && Array.isArray(data)) {
-			console.log("in if init");
 			generateCardsCoordinator(data);
-		} else {
-			console.log("init");
-		}
+		} 
 	}
 	
 }
@@ -140,10 +132,7 @@ function loadShifts(requiredPermission) {
 		params = url.split("?")[1].split("="),
 		data = {},
 		tmp;
-		console.log(params);
-		
 
-		console.log(params[1])
 		getShifts(params[1])
 			.then((shifts) => {
 				fillShiftPage(shifts, data.Id);
@@ -160,7 +149,7 @@ async function getShifts(projectId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
 	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/getshifts?projectId=${projectId}`, {
+		const response = await fetch(`${config.apiURL}/api/getshifts?projectId=${projectId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
@@ -181,15 +170,14 @@ async function getShifts(projectId) {
 
 async function assignShift(shiftId, projectId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
-	const userId = window.sessionStorage.getItem("userID"); // Assuming userID is stored in session storage
-	console.log("Assigning shift:", shiftId, projectId, userId);
+	const userId = window.sessionStorage.getItem("userID");
 	if (!userId) {
 		console.error("No userID found in session storage");
 		return;
 	}
 
 	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/assignShift`, {
+		const response = await fetch(`${config.apiURL}/api/assignShift`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
@@ -211,21 +199,17 @@ async function assignShift(shiftId, projectId) {
 			return;
 		} else {
 			alert("Je bent al ingeschreven voor deze dienst.");
-			console.log("Error assigning shift: " + error);
 		}
 	}
 }
 
-function fillShiftPage(shiftDetailsArray, projectId) {
+function fillShiftPage(shiftDetailsArray) {
 	if (!Array.isArray(shiftDetailsArray) || shiftDetailsArray.length === 0) {
-		console.error("No shift details provided");
+		alert("Er bestaan nog geen shifts voor dit project")
 		return;
 	}
-	console.log(shiftDetailsArray)
 
 	let projectItems = "";
-	
-
 	shiftDetailsArray.forEach((shiftDetails) => {
 
 		let date;
@@ -242,8 +226,6 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 		}
 
 		console.log(shiftDetails.ProjectId)
-
-
 		let endDate = shiftDetails.EndDate ? "- " + shiftDetails.EndDate.split("T")[0] : "";
 
 		const projectItem = `<div class="card project-list-card">
@@ -262,7 +244,6 @@ function fillShiftPage(shiftDetailsArray, projectId) {
 }
 
 function loadAssignedShifts(requiredPermission) {
-	console.log('loadAssignedShifts')
 	if(getPermission(requiredPermission)){ 
 		var url = document.location.href;
 	var paramsString = url.split("?")[1];
@@ -277,11 +258,10 @@ function loadAssignedShifts(requiredPermission) {
 		tmp = params[i].split("=");
 		data[tmp[0]] = tmp[1];
 	}
-	const projectId = data.id;
+	const projectId = data.projectId;
 
 	getAssignedShifts(projectId)
 		.then((shifts) => {
-			console.log("Shifts:", shifts);
 			fillAssignedShiftsPage(shifts);
 		})
 		.catch((error) => {
@@ -294,11 +274,10 @@ function loadAssignedShifts(requiredPermission) {
 }
 
 async function getAssignedShifts(projectId) {
-	console.log('getAssignedShifts')
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 
 	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/getassignedshifts?projectId=${projectId}`, {
+		const response = await fetch(`${config.apiURL}/api/getassignedshifts?projectId=${projectId}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
@@ -311,7 +290,6 @@ async function getAssignedShifts(projectId) {
 		}
 
 		const dataJson = await response.json();
-		console.log('lala', dataJson.data)
 		return dataJson.data;
 	} catch (error) {
 		console.log("Error fetching data: " + error);
@@ -321,7 +299,6 @@ async function getAssignedShifts(projectId) {
 
 function fillAssignedShiftsPage(DetailsArray) {
 	if (!Array.isArray(DetailsArray) || DetailsArray.length === 0) {
-		console.error("No details provided");
 		alert("Er zijn geen diensten gevonden.");
 		window.location.href = "./activeprojectcoordinator.html";
 		return;
@@ -331,7 +308,6 @@ function fillAssignedShiftsPage(DetailsArray) {
 
 	DetailsArray.forEach((data) => {
 		const projectId = data.ProjectId[0]; // Assuming that the first element is the correct one
-		console.log(projectId)
 		const shiftId = data.ShiftId[0]; // Assuming that the first element is the correct one
 
 		const projectItem = `<div class="card project-list-card">
@@ -351,7 +327,6 @@ function fillAssignedShiftsPage(DetailsArray) {
                                     </div>
                                 </div>
                             </div>`;
-		console.log(`ShiftId: ${shiftId}, ProjectId: ${projectId}`);
 		projectItems += projectItem;
 	});
 
@@ -362,8 +337,7 @@ async function setShift(shiftId, projectId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Assuming userID is stored in session storage
 
 	try {
-		console.log(`projectId: ${projectId}, shiftId: ${shiftId}`);
-		const response = await fetch(`https://api-ehbo.onrender.com/api/acceptForShift`, {
+		const response = await fetch(`${config.apiURL}/api/acceptForShift`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
@@ -380,7 +354,6 @@ async function setShift(shiftId, projectId) {
 		}
 
 		const dataJson = await response.json();
-		console.log(dataJson);
 		alert("Dienst gereed!");
 		window.location.reload();
 	} catch (error) {
@@ -389,12 +362,10 @@ async function setShift(shiftId, projectId) {
 			return;
 		} else {
 			alert("Dienst is al gereed.");
-			console.log("Error setting shift: " + error);
 		}
 	}
 }
 function alertNoAcces() {
-	console.log("Not the right site permissions");
 	alert("You have no access to this page, redirecting to login");
 	window.location.href = "./login.html";
 }
