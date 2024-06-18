@@ -1,3 +1,4 @@
+
 async function getPermission(requiredPermission) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
 	const permissions = window.sessionStorage.getItem("permissions"); // Haalt de permissies op
@@ -15,7 +16,7 @@ async function getPermission(requiredPermission) {
 	}
 
 	// Maak verzoek naar de server om te kijken of de token geldig is
-	const apiRoute = "https://api-ehbo.onrender.com/api/validatetoken";
+	const apiRoute = `${config.apiURL}/api/validatetoken`;
 	const validateResult = await fetch(apiRoute, {
 		headers: {
 			"Content-Type": "application/json; charset=UTF-8",

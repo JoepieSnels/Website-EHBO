@@ -38,19 +38,7 @@ function validateDate(beginDate, endDate) {
 	}
 
 	return true;
-	//return beginDate <= endDate ? true : "Einddatum moet na de begindatum zijn"
 }
-
-// // Validate Time
-// function validateTime(beginTime, endTime) {
-//     beginTime <= endTime ? true : 'Eindtijd moet na begintijd zijn'
-// }
-
-// Check House number
-// function validateHouseNumber(houseNumber) {
-// 	const houseNumberPattern = /^[0-9]{1,5} ?[a-zA-Z]?$/;
-// 	houseNumberPattern.test(houseNumber) ? true : 'Huis nummer is incorrect'
-// }
 
 //Validate Time
 function validateTime(beginTime, endTime, beginDate, endDate) {
@@ -135,4 +123,16 @@ function validateShiftTime(beginTime, endTime, beginDate, endDate, shiftBeginTim
 	return { valid: true, alert: "" };
 }
 
-//export {validateEmail, validatePhoneNumber, validateLandlineNumber, isDateAtLeastAWeekAway, validateTime, validatePassword, validatePostalCode, validateHouseNumber, validateDateOfBirth}
+function formatGender(gender) {
+	const lowercaseGender = gender.toLowerCase();
+	if (lowercaseGender === "male" || lowercaseGender === "m" || lowercaseGender === "Male" || lowercaseGender === "M") {
+		return "Man";
+	} else if (lowercaseGender === "female" || lowercaseGender === "f" || lowercaseGender === "Female" || lowercaseGender === "F") {
+		return "Vrouw";
+	} else if (lowercaseGender === "other" || lowercaseGender === "o" || lowercaseGender === "Other" || lowercaseGender === "O") {
+		return "Anders";
+	} else {
+		return "Zeg ik liever niet";
+	}
+}
+

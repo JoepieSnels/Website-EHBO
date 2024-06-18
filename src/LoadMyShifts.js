@@ -1,16 +1,6 @@
-// const testShift = {
-// 	ShiftId: 1,
-// 	Title: 'Test Titel',
-// 	StartDate: '2024-12-12',
-// 	EndDate: '2024-12-13',
-// 	StartTime: '15:00:00',
-// 	EndTime: '19:30:00',
-// 	Company: 'Bedrijf B',
-// 	Address: 'Test Straat 55, Breda',
-// 	Description: 'Barbell papa dienst lekker gewichten heffen en trainen enzo en geen hartaanval krijgen, dat soort dingen ja dit komt zeker goed. Barbell papa heeft U nodig om veilig te blijven'
-// }
-//gebruikt
+
 function loadShifts(requiredPermission) {
+	
 	if(getPermission(requiredPermission)) {
 		getShiftsFromDB()
 		.then((shifts) => {
@@ -27,7 +17,6 @@ function loadShifts(requiredPermission) {
 }
 
 function createShiftCard(shift) {
-	console.log('createShiftCard')
 	shift.StartDate = shift.StartDate.split("T")[0];
 	shift.EndDate = shift.EndDate.split("T")[0];
 
@@ -54,14 +43,11 @@ function createShiftCard(shift) {
 	document.getElementById("myShift").innerHTML += item;
 }
 
-// Get an array of shifts from the database from this user
 async function getShiftsFromDB() {
 
     const jwtToken = window.sessionStorage.getItem("jwtToken");
-	console.log("Loading shifts from DB");
-
     try {
-		const response = await fetch("https://api-ehbo.onrender.com/api/getMyShifts", {
+		const response = await fetch(`${config.apiURL}/api/getMyShifts`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
@@ -78,11 +64,8 @@ async function getShiftsFromDB() {
 async function getShiftById(id) {
 
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
-
-	console.log('Loading shift with ID: ' + id);
-
 	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/getShiftById?shiftId=${id}`, {
+		const response = await fetch(`${config.apiURL}/api/getShiftById?shiftId=${id}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
@@ -91,7 +74,6 @@ async function getShiftById(id) {
 			
 		});
 		const dataJson = await response.json();
-		console.log(dataJson)
 		return dataJson.data[0];
 	} catch(error) {
 		console.log('Error fetching data: ' + error);
@@ -101,28 +83,21 @@ async function getShiftById(id) {
 function goShiftDetailPage(id) {
 	document.location.href = `./MyShiftDetail.html?id=${id}`;
 }
-//hier
+
 function loadShiftDetailPage(requiredPermission) {
 	if(getPermission(requiredPermission)) {
-		// var url = document.location.href,
-		// params = url.split("?")[1].split("&"),
-		// data = {},
-		// tmp;
-		// for (var i = 0, l = params.length; i < l; i++) {
-		// 	tmp = params[i].split("=");
-		// 	data[tmp[0]] = tmp[1];
-		// }
+
 		var url = document.location.href,
 		params = url.split("?")[1].split("&"),
 		data = {},
 		tmp;
-	console.log(params);
+
 	for (var i = 0, l = params.length; i < l; i++) {
 		tmp = params[i].split("=");
 		data[tmp[0]] = tmp[1];
 	}
 
-		console.log(data.id)
+
 
 		getShiftById(data.id)
 			.then((shift) => {
@@ -133,18 +108,18 @@ function loadShiftDetailPage(requiredPermission) {
 }
 
 function createDetailShiftCard(shift) {
-	console.log('createDetailSHiftCard')
+
 	const startDate = shift.StartDate.split("T")[0];
 	const endDate = shift.EndDate.split("T")[0];
 	let date = '';
-	console.log('lal')
+
 	if(shift.StartDate === shift.EndDate) {
 		date = startDate
        
     } else {
         date = `${startDate} - ${endDate}`
     }
-	console.log('poeps')
+
 
 
 
@@ -165,19 +140,17 @@ function createDetailShiftCard(shift) {
                 </div>`;
 
 	document.getElementById("myShift").innerHTML += item;
-	console.log(shift)
-}
+
 
 
 
 function checkForRemoval(shiftId, shiftStartDate) {
-	console.log(shiftId)
-	console.log(shiftStartDate)
-	const laldate = new Date(shiftStartDate)
+
+	const shiftDate = new Date(shiftStartDate)
 	const date = new Date();
 	const sevenDaysFromNow = new Date(date.setDate(date.getDate() + 7));
 	
-	if (laldate > sevenDaysFromNow) {
+	if (shiftDate > sevenDaysFromNow) {
 		console.log("lalalallalalallalalalal")
 		removeEnrollment(shiftId)
 			.then((response) => {
@@ -197,10 +170,9 @@ function checkForRemoval(shiftId, shiftStartDate) {
 async function removeEnrollment(shiftId) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
 	console.log('Deleting assigned shift with ID: ' + shiftId);
-	console.log(typeof shiftId)
 
 	try {
-		const response = await fetch(`https://api-ehbo.onrender.com/api/deleteAssignedShift`, {
+		const response = await fetch(`${config.apiURL}/api/deleteAssignedShift`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json; charset=UTF-8',

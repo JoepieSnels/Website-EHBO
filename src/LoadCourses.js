@@ -1,5 +1,4 @@
 function createCard(courseDetail) {
-    console.log(courseDetail);
 
     let courseDate = courseDetail.DateTime.split('T')[0];
     let courseTime = courseDetail.DateTime.split('T')[1].slice(0, -8);
@@ -28,7 +27,6 @@ function createCard(courseDetail) {
                 </div>`
 
     document.getElementById('course').innerHTML += item;
-    console.log(courseDetail);
 }
 
 function createCourseCard(courseDetail) {
@@ -61,7 +59,7 @@ function createCourseCard(courseDetail) {
 async function getAllCoursesFromDB() {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
     try {
-        const response = await fetch('https://api-ehbo.onrender.com/api/getCourses', {
+        const response = await fetch(`${config.apiURL}/api/getCourses`, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json; charset=UTF-8',
@@ -81,11 +79,10 @@ async function getAllCoursesFromDB() {
 
 async function getCoursesFromDB() {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
-    console.log('Loading courses from Database');
 
 
     try {
-        const response = await fetch('https://api-ehbo.onrender.com/api/getAvailableCourses', {
+        const response = await fetch(`${config.apiURL}/api/getAvailableCourses`, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json; charset-UTF-8',
@@ -99,8 +96,6 @@ async function getCoursesFromDB() {
             alert('Er zijn geen beschikbare cursussen gevonden');
         }
 
-
-        console.log(dataJson);
         return dataJson.data;
     } catch(error) {
         console.log('Error fetching data: ' + error);
@@ -111,7 +106,6 @@ function loadAllCourses(requiredPermission) {
     if(getPermission(requiredPermission)) {
         getAllCoursesFromDB().then(courses => {
             if(courses.length === undefined) {
-                console.log('Er zijn geen cursussen gevonden')
                 document.getElementById('course').innerHTML = 'Er zijn geen cursussen gevonden'
             }
     
@@ -132,7 +126,6 @@ function loadAvailableCourses(requiredPermission) {
         getCoursesFromDB().then(courses => {
 
             if (courses.length === undefined) {
-                console.log('Er zijn geen cursussen gevonden')
                 document.getElementById('course').innerHTML = 'Er zijn geen beschikbare cursussen gevonden'
             }
     
@@ -150,7 +143,7 @@ function loadAvailableCourses(requiredPermission) {
 async function enrollInCourse(courseId) {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
     try {
-        const loginResult = await fetch("https://api-ehbo.onrender.com/api/enrollCourse", {
+        const loginResult = await fetch(`${config.apiURL}/api/enrollCourse`, {
             method: "POST",
             body: JSON.stringify({
                 courseId: courseId
@@ -162,7 +155,6 @@ async function enrollInCourse(courseId) {
         });
 
         const jsonResult = await loginResult.json();
-        console.log(jsonResult);
 
         if (jsonResult.message === 'enrollment created') {
             alert('Aangemeld voor de cursus!');
@@ -181,7 +173,7 @@ async function enrollInCourse(courseId) {
 async function deleteCourse(courseId) {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
     try {
-        const response = await fetch('https://api-ehbo.onrender.com/api/deleteCourse', {
+        const response = await fetch(`${config.apiURL}/api/deleteCourse`, {
             method: "DELETE",
             body: JSON.stringify({
                 courseId: courseId
@@ -191,10 +183,8 @@ async function deleteCourse(courseId) {
                 'Authorization': `bearer ${jwtToken}`
             }
         })
-
         
         const jsonResult = await response.json();
-        console.log(jsonResult);
 
         if (jsonResult.message === 'Course deleted') {
             alert('Cursus verwijderd');
