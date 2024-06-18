@@ -1,5 +1,4 @@
 function createCard(courseDetail) {
-    console.log(courseDetail);
 
     let courseDate = courseDetail.DateTime.split('T')[0];
     let courseTime = courseDetail.DateTime.split('T')[1].slice(0, -8);
@@ -11,7 +10,7 @@ function createCard(courseDetail) {
                             <div class="col-10">
                                 <b class="align-middle">Titel:</b> <span class="align-middle">${courseDetail.Title}</span>
                             </div>
-                            <div class="col-2">
+                            <div class="col-2 d-none d-sm-block">
                                 <button class="btn btn-blue float-right" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
                             </div>
                         </div>
@@ -21,14 +20,14 @@ function createCard(courseDetail) {
                         <p class="card-text col-lg-4 col-sm-6" id=""><b>Tijd: </b>${courseTime}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="courseLocation"><b>Locatie: </b>${courseDetail.Location}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="courseCost"><b>Prijs: </b>${courseCost}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="courseMaxParticipants"><b>Max. aantal deelnemers: </b>${courseDetail.MaxParticipants}</p>
-                        <p class="card-text col-lg-4 col-sm-6"><b>Voor certificaat: </b>${courseDetail.CertificateTitel}</p>
+                        <p class="card-text col-lg-6 col-sm-6"><b>Voor certificaat: </b>${courseDetail.CertificateTitel}</p>
                         <p class="card-text col-12" id="courseDescription"><b>Beschrijving: </b>${courseDetail.Description}</p>
+                        <button class="btn btn-blue float-right d-block d-sm-none col-12" onclick="enrollInCourse(${courseDetail.CourseId})"> Inschrijven </button>
+
                     </div>
                 </div>`
 
     document.getElementById('course').innerHTML += item;
-    console.log(courseDetail);
 }
 
 function createCourseCard(courseDetail) {
@@ -41,7 +40,7 @@ function createCourseCard(courseDetail) {
                     <div class="card-header" id="courseTitle">
                     <span class="align-middle"><b >Titel: </b>${courseDetail.Title}</span>
                         
-                        <button class=" btn-danger btn float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
+                        <button class="d-none d-sm-block btn-danger btn float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
                     </div>
                     <div class="card-body row project-list-body">
                         <p class="card-text col-lg-4 col-sm-6"><b>Datum: </b>${courseDate}</p>
@@ -49,8 +48,9 @@ function createCourseCard(courseDetail) {
                         <p class="card-text col-lg-4 col-sm-6" id="courseLocation"><b>Locatie: </b> ${courseDetail.Location}</p>
                         <p class="card-text col-lg-4 col-sm-6"><b>Docent: </b>${courseDetail.Teacher}</p>
                         <p class="card-text col-lg-4 col-sm-6" id="courseCost"><b>Kosten: </b> ${courseCost}</p>
-                        <p class="card-text col-lg-4 col-sm-6" id="courseMaxParticipants"><b>Deelnemers: </b>${courseDetail.EnrolledCount} / ${courseDetail.MaxParticipants}</p>
+                        <p class="card-text col-lg-4 col-sm-6"><b>Certificaat: </b>${courseDetail.CertificateTitel}</p>
                         <p class="card-text col-12" id="courseDescription"><b>Beschrijving: </b> ${courseDetail.Description}</p>
+                        <button class="col-12 d-block d-sm-none btn-danger btn float-right align-middle" onclick="deleteCourse(${courseDetail.CourseId})">Verwijderen</button>
                     </div>
                 </div>`
 
@@ -61,7 +61,7 @@ function createCourseCard(courseDetail) {
 async function getAllCoursesFromDB() {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
     try {
-        const response = await fetch('https://api-ehbo.onrender.com/api/getCourses', {
+        const response = await fetch(`${config.apiURL}/api/getCourses`, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json; charset=UTF-8',
@@ -81,11 +81,10 @@ async function getAllCoursesFromDB() {
 
 async function getCoursesFromDB() {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
-    console.log('Loading courses from Database');
 
 
     try {
-        const response = await fetch('https://api-ehbo.onrender.com/api/getAvailableCourses', {
+        const response = await fetch(`${config.apiURL}/api/getAvailableCourses`, {
             method: 'GET',
             headers:{
                 'Content-Type': 'application/json; charset-UTF-8',
@@ -99,8 +98,6 @@ async function getCoursesFromDB() {
             alert('Er zijn geen beschikbare cursussen gevonden');
         }
 
-
-        console.log(dataJson);
         return dataJson.data;
     } catch(error) {
         console.log('Error fetching data: ' + error);
@@ -111,7 +108,6 @@ function loadAllCourses(requiredPermission) {
     if(getPermission(requiredPermission)) {
         getAllCoursesFromDB().then(courses => {
             if(courses.length === undefined) {
-                console.log('Er zijn geen cursussen gevonden')
                 document.getElementById('course').innerHTML = 'Er zijn geen cursussen gevonden'
             }
     
@@ -132,7 +128,6 @@ function loadAvailableCourses(requiredPermission) {
         getCoursesFromDB().then(courses => {
 
             if (courses.length === undefined) {
-                console.log('Er zijn geen cursussen gevonden')
                 document.getElementById('course').innerHTML = 'Er zijn geen beschikbare cursussen gevonden'
             }
     
@@ -150,7 +145,7 @@ function loadAvailableCourses(requiredPermission) {
 async function enrollInCourse(courseId) {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
     try {
-        const loginResult = await fetch("https://api-ehbo.onrender.com/api/enrollCourse", {
+        const loginResult = await fetch(`${config.apiURL}/api/enrollCourse`, {
             method: "POST",
             body: JSON.stringify({
                 courseId: courseId
@@ -162,7 +157,6 @@ async function enrollInCourse(courseId) {
         });
 
         const jsonResult = await loginResult.json();
-        console.log(jsonResult);
 
         if (jsonResult.message === 'enrollment created') {
             alert('Aangemeld voor de cursus!');
@@ -181,7 +175,7 @@ async function enrollInCourse(courseId) {
 async function deleteCourse(courseId) {
     const jwtToken = window.sessionStorage.getItem('jwtToken')
     try {
-        const response = await fetch('https://api-ehbo.onrender.com/api/deleteCourse', {
+        const response = await fetch(`${config.apiURL}/api/deleteCourse`, {
             method: "DELETE",
             body: JSON.stringify({
                 courseId: courseId
@@ -191,10 +185,8 @@ async function deleteCourse(courseId) {
                 'Authorization': `bearer ${jwtToken}`
             }
         })
-
         
         const jsonResult = await response.json();
-        console.log(jsonResult);
 
         if (jsonResult.message === 'Course deleted') {
             alert('Cursus verwijderd');

@@ -1,50 +1,7 @@
-// async function onLoadUserInfo(requiredPermission) {
-// 	console.log("On page load");
-
-// 	// HARDCODDED, WEGHALEN ZODRA LOGIN WERKT
-// 	// createSessionAndPermission('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTcxNzUwNjQ2MCwiZXhwIjoxNzE4NTQzMjYwfQ.YrckiyoGuslcp_5oiBpT6fAe8lUfQAadTwOh1HmR9ow', 'Hulpverlener!Coordinator');
-
-// 	const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
-// 	const permissions = window.sessionStorage.getItem("permissions"); // Haalt de permissies op
-
-// 	// Kijkt of de token een waarde heeft, zo nee is het null en stuurt hij de gebruiker naar de login page
-// 	if (jwtToken === null) {
-// 		alertNoAcces();
-// 		return;
-// 	}
-
-// 	// Kijk of in de string van permissies de benodigde permissie zit
-// 	if (permissions === null || !permissions.match(requiredPermission)) {
-// 		alertNoAcces();
-// 		return;
-// 	}
-
-// 	// Maak verzoek naar de server om te kijken of de token geldig is
-// 	const apiRoute = "https://api-ehbo.onrender.com/api/validatetoken";
-// 	const validateResult = await fetch(apiRoute, {
-// 		headers: {
-// 			"Content-Type": "application/json; charset=UTF-8",
-// 			Authorization: `bearer ${jwtToken}`,
-// 		},
-// 	});
-
-// 	const toJson = await validateResult.json();
-
-// 	if (toJson.message === "Not authorized") {
-// 		alertNoAcces();
-// 		return;
-// 	}
-
-// 	document.getElementById("unBlockID").style.display = "block"; // Even controleren welke dit moet zijn
-
-// 	// HET STUK HIER NA IS ANDERS PER PAGINA
-// 	// loadInfo(jwtToken);
-// }
-
 async function loadInfo(requiredPermission) {
 	if (getPermission(requiredPermission)) {
-		const jwtToken = window.sessionStorage.getItem("jwtToken"); // Haalt de token op uit de session
-		const apiRoute = "https://api-ehbo.onrender.com/api/member";
+		const jwtToken = window.sessionStorage.getItem("jwtToken"); 
+		const apiRoute = `${config.apiURL}/api/member`;
 		const validateResult = await fetch(apiRoute, {
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
@@ -52,7 +9,6 @@ async function loadInfo(requiredPermission) {
 			},
 		});
 
-		// To do validate Result
 		const toJson = await validateResult.json();
 		const data = toJson.data;
 
@@ -72,7 +28,7 @@ async function loadInfo(requiredPermission) {
 		document.getElementById("lastname").innerHTML = data.LastName;
 		document.getElementById("emailaddress").innerHTML = data.Emailaddress;
 		document.getElementById("phone").innerHTML = data.PhoneNumber;
-		document.getElementById("sex").innerHTML = transgender(data.Gender);
+		document.getElementById("sex").innerHTML = formatGender(data.Gender);
 		document.getElementById("birthdate").innerHTML = cleanBirthdate[0];
 		document.getElementById("street").innerHTML = data.Street;
 		document.getElementById("houseNumber").innerHTML = data.HouseNr;
@@ -95,22 +51,9 @@ async function loadInfo(requiredPermission) {
 	
 }
 
-// function alertNoAcces() {
-// 	console.log("Not the right site permissions");
-// 	alert("You have no access to this page, redirecting to login");
-// 	window.location.href = "./login.html";
-// }
 
-// TIJDELIJK -> REMOVE!!!
-// Zo kan je een sessie aanmaken
-// function createSessionAndPermission(token, permissions) {
-// 	window.sessionStorage.setItem('jwtToken', token);
-// 	window.sessionStorage.setItem('permissions', permissions);
-
-// }
-
-function transgender(deadGender) {
-	const lowercaseGender = deadGender.toLowerCase();
+function formatGender(gender) {
+	const lowercaseGender = gender.toLowerCase();
 	if (lowercaseGender === "male" || lowercaseGender === "m" || lowercaseGender === "Male" || lowercaseGender === "M") {
 		return "Man";
 	} else if (lowercaseGender === "female" || lowercaseGender === "f" || lowercaseGender === "Female" || lowercaseGender === "F") {

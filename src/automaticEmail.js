@@ -3,12 +3,10 @@ function isOn() {
     let i = 0;
     if(document.getElementById('eenheidsdiploma').checked) {
         items[i] = 'Eenheidsdiploma'
-        console.log(items)
         i++
     }
     if(document.getElementById('reanimatie').checked) {
         items[i] = 'Reanimate'
-        console.log(items)
         i++
     }
     if(document.getElementById('ehak').checked) {
@@ -32,7 +30,6 @@ function isOn() {
 function sendMail(event) {
 	event.preventDefault();
 	let items = isOn();
-	console.log(items);
 
     var params = {
         email: document.getElementById('email').value,
@@ -69,8 +66,6 @@ function sendMail(event) {
         params.invoiceAdres = 'Niet ingevuld'
     }
 
-    console.log(params)
-
     const serviceID = 'service_hxe2zge'
     const templateID = 'template_jrylr0f'
 
@@ -92,7 +87,6 @@ function sendMail(event) {
             document.getElementById('billingStreet').value = ''
             document.getElementById('billingHouseNumber').value = ''
 
-            console.log(res)
             alert('Aanvraag is ingezonden')
     }).catch(err=>console.log(err))
 }

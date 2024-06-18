@@ -11,15 +11,14 @@
 		<link rel="stylesheet" href="./css/stylesheet.css" />
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="config.js"></script>
 		<script src="./src/validation.js"></script>
 		<script src="./src/UserUpdate.js"></script>
 	</head>
 	<body>
 		<div class="page-container">
 			<div class="page-container">
-				<!-- Begin navigatie -->
 				<nav class="mb-4 navbar navbar-expand-sm bg-light navbar-light" style="gap: 20px">
-					<!-- Hamburger Menu -->
 					<div class="fixed-top d-sm-none">
 						<nav class="navbar navbar-light bg-light d-flex align-items-center" style="gap: 10px">
 							<a href="./index.html"><img src="./images/logo.png" alt="logo" style="width: 80px" /></a>
@@ -36,8 +35,7 @@
 										<a class="btn dropdown-toggle" data-toggle="collapse" data-target="#nav-collapse" role="button" aria-expanded="false" aria-controls="#nav-collapse"> Algemene informatie </a><br />
 										<div class="dropdown-divider"></div>
 										<div class="dropdown collapse" id="nav-collapse">
-											<!-- Dropdown overons-->
-											<a href="./tilburg.html" class="btn">Over Ons</a><br />
+											<a href="./overons.html" class="btn">Over Ons</a><br />
 											<a class="btn" href="./activiteiten.html">Activiteiten</a><br />
 											<a class="btn" href="./opleidingen.html">Opleidingen</a><br />
 											<a class="btn" href="./lidmaatschap.html">Lidmaatschap</a><br />
@@ -81,19 +79,15 @@
 
 					<div class="d-md-none" style="height: 50px"></div>
 
-					<!-- Voor als de pagina wel normaal wilt doen -->
-
 					<a class="navbar-brand d-none d-sm-block" href="index.html">
 						<img src="./images/logo.png" alt="logo" style="width: 100px" />
 					</a>
 
-					<!-- Header en andere button zooi -->
 					<div class="d-none d-sm-block">
 						<h1 class="d-none d-lg-block">EHBO Vereniging Tilburg</h1>
 						<h2 class="d-none d-sm-block d-lg-none">EHBO Tilburg</h2>
 						<ul class="navbar-nav">
 							<div class="btn-group" style="width: fit-content">
-								<!-- Dropdown overons-->
 								<a href="./overons.html" class="btn btn-light d-none d-md-block">Over&nbsp;Ons</a>
 								<a href="./overons.html" class="btn btn-light d-md-none">Over</a>
 								<button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-spilt" data-toggle="dropdown"></button>
@@ -105,7 +99,6 @@
 								</div>
 							</div>
 							<div class="dropdown d-lg-none">
-								<!-- Dit is de dropdown voor als items weg gehaald worden-->
 								<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">Meer weten</button>
 								<div class="dropdown-menu" style="padding: 2px">
 									<a href="./activiteiten.html" class="btn">Activiteiten</a><br />
@@ -132,10 +125,8 @@
 						</ul>
 					</div>
 				</nav>
-				<!-- Einde Navigatie -->
 
 				<div class="row content">
-					<!-- begin side nav -->
 					<div class="side-nav col-lg-3 col-sm-4 d-none d-sm-block">
 						<ul class="p-1 list-group border border-light rounded">
 							<a data-toggle="collapse" data-target="#hulpverlener" id="toggle-btn-hulp-1" class="p-2 btn btn-light d-xs-none d-sm-block">Hulpverlener</a>
@@ -170,8 +161,6 @@
 							<a href="./StaticUserInfo.html" class="list-group-item list-group-item-action btn btn-outline-dark mt-2">Accountinformatie</a>
 						</ul>
 					</div>
-					<!-- Side nav Eind -->
-					<!-- Einde navigatie -->
 
 					<div class="container col-lg-9 col-sm-8">
 						<div class="row gutters">
@@ -231,41 +220,6 @@
 														</select>
 													</div>
 												</div>
-												<!--							<div class="col-sm-6 col-12">-->
-												<!--								<div class="form-group">-->
-												<!--									<label for="certificatesButton">Certificaten</label>-->
-												<!--									<div class="dropdown show">-->
-												<!--										<div class="input-group">-->
-												<!--											<input type="text" class="form-control bg-white" id="certificatesInput" placeholder="Selecteer uw certificaten" disabled required>-->
-												<!--											<button class="btn dropdown-toggle" id="certificatesButton" data-toggle="dropdown" aria-expanded="true">-->
-												<!--												<span class="sr-only">Toggle Dropdown</span>-->
-												<!--											</button>-->
-												<!--											<div class="dropdown-menu choiceboxAlignment" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);" x-placement="bottom-start">-->
-												<!--												<div class="form-check dropdown-item">-->
-												<!--													<input type="checkbox" class="form-check-input" id="unitDiploma">-->
-												<!--													<label class="form-check-label" for="unitDiploma">Eenheidsdiploma</label>-->
-												<!--												</div>-->
-												<!--												<div class="form-check dropdown-item">-->
-												<!--													<input type="checkbox" class="form-check-input" id="resuscitation">-->
-												<!--													<label class="form-check-label" for="resuscitation">Reanimatie</label>-->
-												<!--												</div>-->
-												<!--												<div class="form-check dropdown-item">-->
-												<!--													<input type="checkbox" class="form-check-input" id="firstAidKids">-->
-												<!--													<label class="form-check-label" for="firstAidKids">Eerste hulp aan kinderen</label>-->
-												<!--												</div>-->
-												<!--												<div class="form-check dropdown-item">-->
-												<!--													<input type="checkbox" class="form-check-input" id="burnAid">-->
-												<!--													<label class="form-check-label" for="burnAid">Brandwondletsels</label>-->
-												<!--												</div>-->
-												<!--												<div class="form-check dropdown-item">-->
-												<!--													<input type="checkbox" class="form-check-input" id="eventAid">-->
-												<!--													<label class="form-check-label" for="eventAid">Evenementen hulpverlening</label>-->
-												<!--												</div>-->
-												<!--											</div>-->
-												<!--										</div>-->
-												<!--									</div>-->
-												<!--								</div>-->
-												<!--							</div>-->
 											</div>
 											<div class="row gutters">
 												<div class="col-12">
@@ -312,12 +266,7 @@
 														<input type="name" class="form-control" id="billingHouseNumber" placeholder="Vul huisnummer in" maxlength="10" />
 													</div>
 												</div>
-												<!--							<div class="col-sm-6 col-12">-->
-												<!--								<div class="form-group">-->
-												<!--									<label for="billingPostalCode">Postcode</label>-->
-												<!--									<input type="text" class="form-control" id="billingPostalCode" placeholder="Vul postcode in">-->
-												<!--								</div>-->
-												<!--							</div>-->
+
 												<div class="col-sm-6 col-12">
 													<div class="form-group">
 														<label for="billingCity">Woonplaats</label>
