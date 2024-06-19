@@ -360,5 +360,5 @@ async function setShift(shiftId, projectId) {
 }
 function alertNoAcces() {
 	alert("You have no access to this page, redirecting to login");
-	window.location.href = "./login.html";
+	window.location.href = "./Login.html";
 }
