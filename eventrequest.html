@@ -105,73 +105,111 @@
 			</nav>
 
 			<div class="container content">
-				<div class="row col-12">
-					<div class="card request-form">
+				<div class="rpw">
+					<div class="card update-card row">
 						<div class="card-header">
 							<h3>Evenement aanvragen</h3>
 						</div>
-						<div class="card-body col-12">
-							<form class="col-12" id="form">
-								<h5 class="card-title">Contact gegevens</h5>
-								<div class="form-row col-12">
-									<label class="col-lg-2 col-form-label col-12" for="company">Bedrijfsnaam</label>
-									<input type="text" maxlength="120" class="form-control col-lg-3 col-12" name="name" id="company" required />
-									<div class="col-2 d-none d-lg-flex"></div>
-									<label class="col-lg-2 col-12 col-form-label right-form" for="contactperson">Contactpersoon</label>
-									<input type="name" maxlength="120" class="form-control col-lg-3 col-12" id="contact" required />
-								</div>
+						<form class="card-body row">
+							<div class="col-12">
+								<h6 class="mb-2">Contact gegevens</h6>
+							</div>
 
-								<div class="form-row">
-									<label class="col-lg-2 col-12" for="phonenumber">Mobielnr</label>
-									<input type="tel" maxlength="11" class="form-control col-lg-3 col-12" id="phonenumber" required />
-									<div class="col-2 d-none d-lg-flex"></div>
-									<label class="col-lg-2 col-12 right-form" for="landlinenumber">Vast telefoonnr</label>
-									<input type="tel" maxlength="16" class="form-control col-lg-3 col-12" id="landlinenumber" />
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label class="" for="company">Bedrijfsnaam</label>
+									<input type="text" maxlength="120" class="form-control" name="name" id="company" required />
 								</div>
-								<div class="form-row">
-									<label class="col-lg-2 col-12 col-form-label" for="email">Email</label>
-									<input type="email" maxlength="320" class="form-control col-lg-3 col-12" id="email" required />
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="contactperson">Contactpersoon</label>
+									<input type="name" maxlength="120" class="form-control" id="contact" required />
 								</div>
-								<h5 class="card-title">Tijd en datum</h5>
-								<div class="form-row">
-									<label class="col-lg-2 col-12" for="beginDate">Begin datum</label>
-									<input type="date" class="form-control col-lg-3 col-12" id="beginDate" required />
-									<div class="col-2 d-none d-lg-flex"></div>
-									<label class="col-lg-2 col-12 right-form" for="endDate">Eind datum</label>
-									<input type="date" class="form-control col-lg-3 col-12" id="endDate" required />
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="phonenumber">Mobielnr</label>
+									<input type="tel" maxlength="11" class="form-control" id="phonenumber" required />
 								</div>
-								<div class="form-row">
-									<label class="col-lg-2 col-12" for="beginTime">Begin tijd</label>
-									<input type="time" class="form-control col-lg-3 col-12" id="beginTime" required />
-									<div class="col-2 d-none d-lg-flex"></div>
-									<label class="col-lg-2 col-12 right-form" for="endTime">Eind tijd</label>
-									<input type="time" class="form-control col-lg-3 col-12" id="endTime" required />
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="landlinenumber">Vast telefoonnr</label>
+									<input type="tel" maxlength="16" class="form-control" id="landlinenumber" />
 								</div>
-
-								<h5 class="card-title">Plaats</h5>
-								<div class="form-row">
-									<label class="col-lg-2 col-form-label col-12" for="city">Stad</label>
-									<input type="text" maxlength="70" class="form-control col-lg-3 col-12" id="city" required />
-									<div class="col-2 d-none d-lg-flex"></div>
-									<label class="col-lg-2 col-form-label col-12 right-form" for="adress">Straatnaam</label>
-									<input type="text" maxlength="70" class="form-control col-lg-3 col-12" id="adress" required />
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="email">Email</label>
+									<input type="email" maxlength="320" class="form-control" id="email" required />
 								</div>
-								<div class="form-row">
-									<label class="col-lg-2 col-form-label col-12" for="housenumber">Huisnummer</label>
-									<input type="text" maxlength="10" class="form-control col-lg-3 col-12" id="housenumber" required />
+							</div>
+							<div class="col-12">
+								<h6 class="mb-2">Contact gegevens</h6>
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="beginDate">Begin datum</label>
+									<input type="date" class="form-control" id="beginDate" required />
 								</div>
-								<h5 class="card-title">Evenement beschijving</h5>
-								<div class="form-row">
-									<label for="title" class="col-form-label col-lg-2 col-12">Titel</label>
-									<input type="text" maxlength="120" class="form-control col-lg-4 col-12" id="title" required />
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="endDate">Eind datum</label>
+									<input type="date" class="form-control" id="endDate" required />
 								</div>
-								<div class="form-row">
-									<label class="col-lg-2 col-form-label col-12" for="description">Beschrijving</label>
-									<textarea class="form-control col-lg-9 col-12" maxlength="320" id="description" required></textarea>
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="beginTime">Begin tijd</label>
+									<input type="time" class="form-control" id="beginTime" required />
 								</div>
-								<button type="button" class="btn btn-primary float-right" onclick="ExtractInfo(event)">Verstuur</button>
-							</form>
-						</div>
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="endTime">Eind tijd</label>
+									<input type="time" class="form-control" id="endTime" required />
+								</div>
+							</div>
+							<div class="col-12">
+								<h6 class="mb-2">Plaats</h6>
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="city">Stad</label>
+									<input type="text" maxlength="70" class="form-control" id="city" required />
+								</div>
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="adress">Straatnaam</label>
+									<input type="text" maxlength="70" class="form-control" id="adress" required />
+								</div>
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="housenumber">Huisnummer</label>
+									<input type="text" maxlength="10" class="form-control" id="housenumber" required />
+								</div>
+							</div>
+							<div class="col-12">
+								<h6 class="mb-2">Plaats</h6>
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="title">Titel</label>
+									<input type="text" maxlength="120" class="form-control" id="title" required />
+								</div>
+							</div>
+							<div class="col-sm-6 col-12">
+								<div class="form-group">
+									<label for="description">Beschrijving</label>
+									<textarea class="form-control" maxlength="320" id="description" required></textarea>
+								</div>
+							</div>
+							<button type="button" class="btn btn-primary float-right" onclick="ExtractInfo(event)">Verstuur</button>
+						</form>
 					</div>
 				</div>
 			</div>

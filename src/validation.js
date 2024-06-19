@@ -61,7 +61,8 @@ function validatePostalCode(postalCode) {
 }
 
 function validateHouseNumber(houseNumber) {
-	return houseNumber.length < 11 ? true : "Huisnummer is te lang";
+	const pattern = /^[0-9]{1,5} ?[a-zA-Z]?[0-9]{0,5}?$/;
+	return houseNumber.length < 11 && pattern.test(houseNumber) ? true : "Huisnummer is te lang";
 }
 
 function validateDateOfBirth(dateOfBirth) {
