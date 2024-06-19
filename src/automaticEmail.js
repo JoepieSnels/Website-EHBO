@@ -66,8 +66,8 @@ function sendMail(event) {
         params.invoiceAdres = 'Niet ingevuld'
     }
 
-    const serviceID = 'service_hxe2zge'
-    const templateID = 'template_jrylr0f'
+    const serviceID = config.serviceID
+    const templateID = config.templateID
 
     emailjs.send(serviceID, templateID, params).then(
         res => {

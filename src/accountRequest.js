@@ -30,7 +30,7 @@ function verifyInputs(event) {
         issueMessage += 'Postcode';
     }
 
-    const houseNumberPattern = /^[0-9]{1,5} ?[a-zA-Z]?$/;
+    const houseNumberPattern = /^[0-9]{1,5} ?[a-zA-Z]?[0-9]{0,5}?$/;
     if(!houseNumberPattern.test(document.getElementById('houseNumber').value.trim())) {
         issues += 1;
         if(issues > 1) {
