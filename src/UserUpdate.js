@@ -127,45 +127,48 @@ async function updateMemberOnAPI() {
 }
 
 async function loadInfo() {
-	const jwtToken = window.sessionStorage.getItem("jwtToken");
-	const apiRoute = `${config.apiURL}/api/member`;
-	const validateResult = await fetch(apiRoute, {
-		headers: {
-			"Content-Type": "application/json; charset=UTF-8",
-			Authorization: `bearer ${jwtToken}`,
-		},
-	});
-
-	const toJson = await validateResult.json();
-	const data = toJson.data;
-
-	const cleanBirthdate = data.DateOfBirth.split("T");
-
-	document.getElementById("firstname").value = data.FirstName;
-	document.getElementById("lastname").value = data.LastName;
-	document.getElementById("mobilePhone").value = data.PhoneNumber;
-	document.getElementById("email").value = data.Emailaddress;
-
-	document.getElementById("dateOfBirth").value = cleanBirthdate[0];
-	document.getElementById("street").value = data.Street;
-	document.getElementById("houseNumber").value = data.HouseNr;
-	document.getElementById("postalCode").value = data.PostCode;
-	document.getElementById("city").value = data.City;
-	document.getElementById("gender").value = formatGender(data.Gender);
-
-	if (data.LandLine) {
-		document.getElementById("homePhone").value = data.LandLine;
+	if(getPermission('Hulpverlener!Coordinator!LedenAdministrator')) {
+		const jwtToken = window.sessionStorage.getItem("jwtToken");
+		const apiRoute = `${config.apiURL}/api/member`;
+		const validateResult = await fetch(apiRoute, {
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+				Authorization: `bearer ${jwtToken}`,
+			},
+		});
+	
+		const toJson = await validateResult.json();
+		const data = toJson.data;
+	
+		const cleanBirthdate = data.DateOfBirth.split("T"); 
+	
+		document.getElementById("firstname").value = data.FirstName;
+		document.getElementById("lastname").value = data.LastName;
+		document.getElementById("mobilePhone").value = data.PhoneNumber;
+		document.getElementById("email").value = data.Emailaddress;
+	
+		document.getElementById("dateOfBirth").value = cleanBirthdate[0];
+		document.getElementById("street").value = data.Street;
+		document.getElementById("houseNumber").value = data.HouseNr;
+		document.getElementById("postalCode").value = data.PostCode;
+		document.getElementById("city").value = data.City;
+		document.getElementById("gender").value = formatGender(data.Gender);
+	
+		if (data.LandLine) {
+			document.getElementById("homePhone").value = data.LandLine;
+		}
+	
+		if (data.InvoiceEmail) {
+			document.getElementById("billingEmail").value = data.InvoiceEmail;
+		}
+	
+		if (data.InvoiceCity) {
+			document.getElementById("billingCity").value = data.InvoiceCity;
+			document.getElementById("billingHouseNumber").value = data.InvoiceHouseNr;
+			document.getElementById("billingStreet").value = data.InvoiceStreet;
+		}
+		return data.UserId;
 	}
-
-	if (data.InvoiceEmail) {
-		document.getElementById("billingEmail").value = data.InvoiceEmail;
-	}
-
-	if (data.InvoiceCity) {
-		document.getElementById("billingCity").value = data.InvoiceCity;
-		document.getElementById("billingHouseNumber").value = data.InvoiceHouseNr;
-		document.getElementById("billingStreet").value = data.InvoiceStreet;
-	}
-	return data.UserId;
+	
 }
 
