@@ -226,7 +226,6 @@ async function getAcceptedProjectsFromDB(event) {
 
 async function getProjectsFromDB(event) {
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
-	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
 	console.log("Loading projects from Database");
 	event.preventDefault();
 
@@ -235,7 +234,7 @@ async function getProjectsFromDB(event) {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json; charset-UTF-8",
-				Authorization: `Bearer${token}`,
+				Authorization: `Bearer${jwtToken}`,
 			},
 		});
 		const dataJson = await response.json();
@@ -265,7 +264,6 @@ function loadAllProjects(event) {
 async function getProjectsFromDBWithId(event, id) {
 	console.log(id);
 	const jwtToken = window.sessionStorage.getItem("jwtToken");
-	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzQ5NDY4MiwiZXhwIjoxNzE4NTMxNDgyfQ.6d_LkUK4VWQcYxWpoRycQlJGfnSbWQ__raMiTurIkFw";
 	console.log("Loading project with Id: " + id);
 	event.preventDefault();
 
@@ -274,7 +272,7 @@ async function getProjectsFromDBWithId(event, id) {
 			method: "GET", // Use GET method
 			headers: {
 				"Content-Type": "application/json; charset=UTF-8",
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${jwtToken}`,
 			},
 		});
 
