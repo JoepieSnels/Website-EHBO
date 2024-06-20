@@ -64,7 +64,6 @@ function ExtractInfo(event) {
 				}
 			}
 
-
 			if (i !== 9) {
 				if (info[i].trim() === "" || info[i] === null || (info[i] === undefined && i)) {
 					allFilled = false;
@@ -77,7 +76,6 @@ function ExtractInfo(event) {
 		if (allFilled) {
 			createProjectOnAPI(info);
 			alert("Project created successfully");
-			document.getElementById("form").reset();
 		}
 	} catch (error) {
 		console.log(error);
@@ -111,8 +109,6 @@ async function createProjectOnAPI(data) {
 		});
 
 		const projectData = await projectResult.json();
-
-
 	} catch (error) {
 		console.error("Error posting data:" + error);
 	}
@@ -126,7 +122,6 @@ function showPasswordLogin() {
 		x.type = "password";
 	}
 }
-
 
 function validateForm(event) {
 	let email = document.getElementById("email").value;
@@ -154,7 +149,6 @@ function validateForm(event) {
 		passwordError.style.display = "none";
 		loginOnAPI(event, email, password);
 	}
-
 
 	async function loginOnAPI(event, email, password) {
 		event.preventDefault();
@@ -192,7 +186,6 @@ function validateForm(event) {
 			passwordError.style.display = "block";
 		}
 	}
-
 
 	function createSessionAndPermission(token, permissions) {
 		window.sessionStorage.setItem("jwtToken", token);
