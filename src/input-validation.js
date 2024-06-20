@@ -8,48 +8,52 @@ function formatDate(date) {
 }
 
 function ExtractInfo(event) {
+	console.log("extract info")
 	event.preventDefault();
 	let info = [document.getElementById("company").value, document.getElementById("phonenumber").value, document.getElementById("email").value, document.getElementById("beginDate").value, document.getElementById("city").value, document.getElementById("adress").value, document.getElementById("housenumber").value, document.getElementById("title").value, document.getElementById("description").value, document.getElementById("landlinenumber").value, document.getElementById("contact").value, document.getElementById("beginTime").value, document.getElementById("endTime").value, document.getElementById("endDate").value];
-
+	console.log(info)
 	try {
 		let allFilled = true;
 
 		for (let i = 0; i < info.length; i++) {
 			if (i === 1) {
-				if (!validatePhoneNumber(info[i])) {
+				console.log("validate")
+				console.log(validatePhoneNumber(info[i]))
+				if (validatePhoneNumber(info[i]) != true) {
+					console.log(info[i])
 					alert("Phone number is not valid");
 					allFilled = false;
 					break;
 				}
 			}
 			if (i === 2) {
-				if (!validateEmail(info[i])) {
+				if (validateEmail(info[i]) != true) {
 					allFilled = false;
 					alert("Email is not valid");
 					break;
 				}
 			}
 			if (i === 3) {
-				if (!isDateAtLeastAWeekAway(info[i])) {
+				if (isDateAtLeastAWeekAway(info[i]) != true) {
 					allFilled = false;
 					alert("Date is not at least a week away");
 					break;
 				}
-				if (!validateDate(info[i], info[13])) {
+				if (validateDate(info[i], info[13]) != true) {
 					allFilled = false;
 					alert("End date must be after begin date");
 					break;
 				}
 			}
 			if (i === 6) {
-				if (!validateHouseNumber(info[i])) {
+				if (validateHouseNumber(info[i]) != true ) {
 					allFilled = false;
 					alert("House number is not valid");
 					break;
 				}
 			}
 			if (i === 9 && info[i].trim() !== "") {
-				if (!validateLandlineNumber(info[i])) {
+				if (validateLandlineNumber(info[i]) != true) {
 					allFilled = false;
 					alert("Landline number is not valid");
 					break;
@@ -57,7 +61,7 @@ function ExtractInfo(event) {
 			}
 
 			if (i === 11) {
-				if (!validateTime(info[i], info[12], info[3], info[13])) {
+				if (validateTime(info[i], info[12], info[3], info[13]) != true) {
 					alert("End time must be after begin time");
 					allFilled = false;
 					break;
