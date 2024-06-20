@@ -8,19 +8,15 @@ function formatDate(date) {
 }
 
 function ExtractInfo(event) {
-	console.log("extract info")
 	event.preventDefault();
 	let info = [document.getElementById("company").value, document.getElementById("phonenumber").value, document.getElementById("email").value, document.getElementById("beginDate").value, document.getElementById("city").value, document.getElementById("adress").value, document.getElementById("housenumber").value, document.getElementById("title").value, document.getElementById("description").value, document.getElementById("landlinenumber").value, document.getElementById("contact").value, document.getElementById("beginTime").value, document.getElementById("endTime").value, document.getElementById("endDate").value];
-	console.log(info)
 	try {
 		let allFilled = true;
 
 		for (let i = 0; i < info.length; i++) {
 			if (i === 1) {
-				console.log("validate")
-				console.log(validatePhoneNumber(info[i]))
+
 				if (validatePhoneNumber(info[i]) != true) {
-					console.log(info[i])
 					alert("Phone number is not valid");
 					allFilled = false;
 					break;
